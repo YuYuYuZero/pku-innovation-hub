@@ -43,7 +43,7 @@ function renderShell() {
     sb.innerHTML = `<a class="brand" href="index.html">${LOGO}<div class="wm"><b>创新学社</b><span>资源 · 工具 · 社区</span></div></a>` +
       NAV.map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}</div>` : ""}` + g.items.map(([id, t, href, icon, lock, cnt]) =>
         `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${cnt ? `<span class="cnt">${cnt}</span>` : lock ? `<span class="lk">${ic("LuLock")}</span>` : ""}</a>`).join("") + `</div>`).join("") +
-      `<a class="me" href="#"><span class="av av-sm a1">林</span><div class="who"><b>林同学</b><span>AI俱乐部 · 学社成员</span></div>${ic("LuSettings")}</a>`;
+      `<a class="me" href="#"><span class="av av-sm a1">张</span><div class="who"><b>张同学</b><span>AI俱乐部 · 学社成员</span></div>${ic("LuSettings")}</a>`;
   }
   const tb = document.getElementById("tb");
   if (tb) {
