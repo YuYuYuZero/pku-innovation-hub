@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>移动端与飞书 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css"><script src="assets/icons.js"></script><script src="assets/app.js"></script>
+<style>
+body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%), radial-gradient(50% 60% at 100% 100%, #F1E9DC 0, transparent 60%), #F6F5F2; }
+.stage { display: flex; gap: 34px; padding: 40px 48px; align-items: flex-start; }
+.cap { text-align: center; margin-top: 14px; font-weight: 600; color: var(--ink); font-size: 15px; }
+.cap span { display: block; font-weight: 400; color: var(--muted); font-size: 12.5px; }
+.m-pad { padding: 4px 18px; }
+.m-h { font-family: var(--serif); font-size: 24px; color: var(--ink); }
+.m-ask { margin-top: 12px; background: #fff; border-radius: 14px; padding: 12px 14px; display: flex; gap: 10px; align-items: center; color: var(--muted); font-size: 13.5px; box-shadow: var(--shadow); }
+.m-ask .ic { color: var(--red); font-size: 18px; }
+.m-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; text-align: center; font-size: 11.5px; color: var(--text); }
+.m-grid .gi { width: 48px; height: 48px; border-radius: 14px; margin: 0 auto 5px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.m-card { background: #fff; border-radius: 16px; border: 1px solid var(--line); margin-top: 14px; overflow: hidden; }
+.m-res { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.m-res:last-child { border-bottom: 0; }
+.bub-me { background: var(--ink); color: #fff; border-radius: 16px 16px 4px 16px; padding: 9px 12px; font-size: 13px; margin-left: 50px; }
+.bub-ai { background: #fff; border: 1px solid var(--line); border-radius: 16px 16px 16px 4px; padding: 11px 13px; font-size: 13px; color: var(--ink); margin-top: 12px; margin-right: 20px; line-height: 1.7; }
+.m-in { position: absolute; left: 12px; right: 12px; bottom: 26px; background: #fff; border: 1px solid var(--line-2); border-radius: 16px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; color: var(--faint); font-size: 13px; box-shadow: var(--shadow); }
+.fs { width: 380px; flex: none; }
+.fs-win { background: #fff; border-radius: 16px; box-shadow: var(--shadow-lg); overflow: hidden; border: 1px solid var(--line); }
+.fs-top { height: 46px; background: #F5F6F7; border-bottom: 1px solid #E8E9EB; display: flex; align-items: center; gap: 8px; padding: 0 14px; font-size: 13px; font-weight: 600; color: #1F2329; }
+.fs-body { padding: 16px; background: #F5F6F7; }
+.fs-msg { display: flex; gap: 10px; margin-bottom: 14px; }
+.fs-card { background: #fff; border-radius: 10px; border: 1px solid #DEE0E3; overflow: hidden; flex: 1; }
+.fs-card .h { padding: 10px 14px; background: linear-gradient(90deg, #8C1D24, #A3343C); color: #fff; font-weight: 600; font-size: 13.5px; display: flex; align-items: center; gap: 8px; }
+.fs-card .b { padding: 12px 14px; font-size: 12.5px; color: #1F2329; }
+.fs-card .kv { grid-template-columns: 70px 1fr; font-size: 12.5px; gap: 6px 10px; }
+.fs-card .btns { display: flex; gap: 8px; padding: 0 14px 12px; }
+.fs-card .btns span { flex: 1; text-align: center; height: 30px; line-height: 30px; border-radius: 6px; border: 1px solid #D0D3D6; font-size: 12.5px; color: #1F2329; }
+.fs-card .btns span.p { background: #8C1D24; border-color: #8C1D24; color: #fff; }
+</style></head>
+<body>
+<div class="stage">
+  <div><div class="phone"><div class="scr"><div class="notch"></div><div class="status"><span>9:41</span><span>●●● 5G</span></div>
+    <div class="m-pad">
+      <div class="row between" style="margin-top:6px"><div class="row" style="gap:8px"><span id="ml" style="width:30px;height:30px;display:inline-block"></span><span class="b" style="font-family:var(--serif);font-size:17px">创新学社</span></div><span class="icon-btn" style="width:34px;height:34px"><i class="ic" data-i="LuBell"></i></span></div>
+      <div class="m-h" style="margin-top:14px">晚上好，林同学</div>
+      <div class="m-ask"><i class="ic" data-i="LuSparkles"></i>问 AI 或搜索资源、活动</div>
+      <div class="m-grid">
+        <div><div class="gi t-teal"><i class="ic" data-i="LuMessagesSquare"></i></div>讨论</div><div><div class="gi t-gold"><i class="ic" data-i="LuCalendarDays"></i></div>活动</div><div><div class="gi t-red"><i class="ic" data-i="LuDatabase"></i></div>资源库</div><div><div class="gi t-blue"><i class="ic" data-i="LuLibrary"></i></div>知识库</div>
+      </div>
+      <div class="m-card"><div class="cover cv1" style="height:96px;border-radius:0"><div class="cv-k">THIS THURSDAY</div><div class="cv-t"><b style="font-size:16px">AI 产品从 0 到 1</b></div></div><div style="padding:10px 14px" class="row between"><span class="small muted">10/30 19:00 · 理教 201</span><span class="btn btn-sm btn-p">报名</span></div></div>
+      <div class="m-card" style="padding:12px 14px"><div class="row"><span class="av av-sm a3">许</span><span class="b" style="font-size:13px">小许</span><span class="tag t-violet">学术</span></div><div style="font-size:13px;color:var(--ink);margin-top:6px">RAG 在长文档上为什么会答偏？整理了一页论文笔记……</div></div>
+    </div>
+    <div class="tabbar"><a class="on"><i class="ic" data-i="LuHouse"></i>首页</a><a><i class="ic" data-i="LuMessagesSquare"></i>社区</a><a><span class="fab"><i class="ic" data-i="LuPlus"></i></span></a><a><i class="ic" data-i="LuSparkles"></i>AI</a><a><i class="ic" data-i="LuUser"></i>我的</a></div>
+  </div></div><div class="cap">手机首页<span>问 AI、四个常用入口、活动与讨论</span></div></div>
+
+  <div><div class="phone"><div class="scr"><div class="notch"></div><div class="status"><span>9:41</span><span>●●● 5G</span></div>
+    <div class="m-pad">
+      <div class="row" style="margin-top:6px"><i class="ic" data-i="LuChevronRight" style="transform:rotate(180deg);font-size:20px"></i><span class="b" style="font-size:16px">资源库</span><span class="grow"></span><span class="tag t-line"><i class="ic" data-i="LuLock"></i>成员</span></div>
+      <div class="input" style="margin-top:12px;color:var(--ink)"><i class="ic" data-i="LuSparkles" style="color:var(--red)"></i>做 AI 教育的分享嘉宾</div>
+      <div class="row" style="gap:6px;margin-top:10px;overflow:hidden"><span class="chip on" style="height:28px">全部</span><span class="chip" style="height:28px">外部个人</span><span class="chip" style="height:28px">机构</span><span class="chip" style="height:28px">骨干</span></div>
+      <div class="small muted" style="margin-top:12px">找到 3 项资源</div>
+      <div class="m-card">
+        <div class="m-res"><div class="row between"><span class="b">示例人物 A</span><span class="tag t-red">外部个人</span></div><div class="xs muted">某教育科技公司 · 产品负责人</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">可交流 AI 教育产品经验，可做分享嘉宾</div><div class="row between" style="margin-top:8px"><span class="xs muted">对接人：同学 B</span><span class="btn btn-sm btn-soft">联系对接人</span></div></div>
+        <div class="m-res"><div class="row between"><span class="b">示例机构 C</span><span class="tag t-blue">机构资源</span></div><div class="xs muted">教育公益基金会</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">可提供活动场地与小额赞助</div><div class="row between" style="margin-top:8px"><span class="xs muted">对接人：同学 D</span><span class="btn btn-sm btn-soft">联系对接人</span></div></div>
+        <div class="m-res"><div class="row between"><span class="b">林同学</span><span class="tag t-teal">学社骨干</span></div><div class="xs muted">AI俱乐部</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">熟悉黑客松评审流程，可协助邀请评委</div></div>
+      </div>
+    </div>
+    <div class="tabbar"><a><i class="ic" data-i="LuHouse"></i>首页</a><a><i class="ic" data-i="LuMessagesSquare"></i>社区</a><a><span class="fab"><i class="ic" data-i="LuPlus"></i></span></a><a><i class="ic" data-i="LuSparkles"></i>AI</a><a class="on"><i class="ic" data-i="LuUser"></i>我的</a></div>
+  </div></div><div class="cap">手机搜资源<span>AI 搜索，联系方式经对接人</span></div></div>
+
+  <div><div class="phone"><div class="scr"><div class="notch"></div><div class="status"><span>9:41</span><span>●●● 5G</span></div>
+    <div class="m-pad">
+      <div class="row" style="margin-top:6px"><span class="b" style="font-size:16px">AI 助手</span><span class="grow"></span><span class="tag t-red">全部范围</span></div>
+      <div style="margin-top:16px"><div class="bub-me">上学期黑客松是怎么找赞助的？</div>
+        <div class="bub-ai">先给潜在赞助方发一页方案，再约面谈<span class="cite">1</span>；最后由两家机构提供了场地和模型额度<span class="cite">2</span>，对接人都是外联部同学。
+          <div style="margin-top:8px;padding:7px 9px;background:#FAF9F7;border-radius:8px;font-size:12px" class="row"><span class="cite">1</span><i class="ic" data-i="LuBookOpen"></i>经验 · 外联部手册</div><div style="margin-top:4px;padding:7px 9px;background:#FAF9F7;border-radius:8px;font-size:12px" class="row"><span class="cite">2</span><i class="ic" data-i="LuFileText"></i>活动档案 · 黑客松复盘</div></div>
+        <div class="bub-me" style="margin-top:12px">帮我把这周例会录音整理成纪要</div>
+        <div class="bub-ai"><span class="ai-tag" style="height:18px;font-size:10.5px"><i class="ic" data-i="LuNotebookPen"></i>技能 · 会议纪要</span> 已生成纪要和 4 条待办，确认后分派到飞书任务。<div class="row" style="margin-top:8px;gap:6px"><span class="btn btn-sm btn-p">查看并确认</span></div></div>
+      </div>
+    </div>
+    <div class="m-in"><i class="ic" data-i="LuPlus"></i>问点什么，或输入 / 调用技能<span class="grow"></span><span class="icon-btn" style="width:30px;height:30px;background:var(--red);color:#fff;border-color:var(--red)"><i class="ic" data-i="LuSend"></i></span></div>
+  </div></div><div class="cap">手机 AI 助手<span>回答附出处，可直接调用技能</span></div></div>
+
+  <div class="fs"><div class="fs-win"><div class="fs-top"><i class="ic" data-i="LuMessagesSquare" style="color:#3370FF"></i>外联部工作群 <span class="xs muted" style="font-weight:400">· 飞书</span></div>
+    <div class="fs-body">
+      <div class="fs-msg"><span class="av av-sm a4">F</span><div style="background:#fff;border-radius:10px;padding:9px 12px;font-size:12.5px;border:1px solid #DEE0E3">@创新学社助手 帮我把今晚的交流纪要录进资源库 <span class="tag" style="height:18px">纪要.docx</span></div></div>
+      <div class="fs-msg"><span id="ml2" style="width:28px;height:28px;flex:none"></span><div class="fs-card"><div class="h"><i class="ic" data-i="LuSparkles"></i>识别到 1 项资源 · 待你确认</div>
+        <div class="b"><dl class="kv" style="margin:0"><dt>名称</dt><dd>示例人物 E</dd><dt>机构</dt><dd>某 AI 医疗公司 · 算法负责人</dd><dt>可提供</dt><dd>交流 AI 医疗落地经验；可分享（时间待确认）</dd><dt>对接人</dt><dd>同学 F</dd></dl>
+          <div style="margin-top:8px;padding:6px 8px;border-radius:6px;background:#FFF7E8;color:#8A5A00">资源库已有同名同机构记录，提交后由维护人合并</div></div>
+        <div class="btns"><span class="p">确认提交审核</span><span>修改</span><span>忽略</span></div></div></div>
+      <div class="fs-msg"><span id="ml3" style="width:28px;height:28px;flex:none"></span><div class="fs-card"><div class="h" style="background:linear-gradient(90deg,#1F766C,#2E8C80)"><i class="ic" data-i="LuInbox"></i>审核提醒 · 3 条待审核</div>
+        <div class="b">示例人物 E、示例机构 F、黑客松赞助方案.pdf</div><div class="btns"><span class="p" style="background:#1F766C;border-color:#1F766C">去审核台</span><span>稍后提醒</span></div></div></div>
+    </div></div><div class="cap">飞书机器人<span>在群里 @助手：录入、审核、问答</span></div></div>
+</div>
+<script>document.addEventListener("DOMContentLoaded",()=>{for(const id of ["ml","ml2","ml3"]){const el=document.getElementById(id);el.innerHTML=LOGO.replace('class="mark"','style="width:100%;height:100%"');}});</script>
+</body></html>

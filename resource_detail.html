@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>资源详情 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css"><script src="assets/icons.js"></script><script src="assets/app.js"></script>
+<style>
+.hdc { padding: 22px 24px; display: flex; gap: 18px; align-items: flex-start; }
+.hdc .ra { width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 30px; flex: none; }
+.cols { display: grid; grid-template-columns: 1fr 380px; gap: 16px; margin-top: 16px; align-items: start; }
+.st { font-size: 12.5px; color: var(--muted); font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.graph { width: 100%; height: 300px; display: block; }
+.graph text { font-family: var(--sans); }
+.tl { position: relative; padding-left: 22px; }
+.tl::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+.tl .e { position: relative; padding: 0 0 16px; }
+.tl .e::before { content: ""; position: absolute; left: -20px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--red); }
+.tl .e.g::before { border-color: var(--green); }
+.tl .e .d { font-size: 12px; color: var(--muted); }
+.tl .e .w { font-size: 13.5px; color: var(--ink); margin-top: 2px; }
+.locked { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 10px; background: repeating-linear-gradient(135deg, #F6F5F2 0 8px, #F1EFEB 8px 16px); color: var(--muted); font-size: 13px; }
+</style></head>
+<body data-page="resources">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap" style="max-width:1180px">
+<div class="row small muted" style="margin:4px 0 10px"><a href="resources.html">资源库</a><i class="ic" data-i="LuChevronRight"></i><span>外部个人</span><i class="ic" data-i="LuChevronRight"></i><span>示例人物 A</span></div>
+<div class="card hdc rel"><span class="mk" style="left:-8px;top:-8px">1</span>
+  <div class="ra t-red"><i class="ic" data-i="LuUser"></i></div>
+  <div class="grow"><div class="row"><h1 style="font-family:var(--serif);font-size:26px">示例人物 A</h1><span class="tag t-red">外部个人</span><span class="tag t-green">已审核</span></div>
+    <div class="muted" style="margin-top:2px">某教育科技公司 · 产品负责人</div>
+    <div class="row" style="gap:6px;margin-top:10px"><span class="tag">AI</span><span class="tag">教育</span><span class="tag">产品</span><span class="xs muted" style="margin-left:6px">编号 R-0217 · 学社成员可见</span></div></div>
+  <div class="row"><span class="btn"><i class="ic" data-i="LuListPlus"></i>加入清单</span><span class="btn"><i class="ic" data-i="LuPenLine"></i>纠错</span><span class="btn btn-p"><i class="ic" data-i="LuMessageCircle"></i>联系对接人 · 同学 B</span></div>
+</div>
+<div class="cols">
+  <div>
+    <div class="card pad"><div class="grid g2" style="gap:22px">
+      <div><div class="st">可提供的帮助</div><div style="color:var(--ink)">可交流 AI 教育产品开发经验；可做分享嘉宾。是否担任评委需另行确认。</div></div>
+      <div><div class="st">待确认</div><div style="color:var(--ink)">时间偏好；是否可以线上参与</div><div class="st" style="margin-top:12px">联系方式</div><div class="locked"><i class="ic" data-i="LuEyeOff"></i>仅维护人可见</div></div>
+    </div></div>
+    <div class="card pad rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">2</span>
+      <div class="row between"><div class="st" style="margin:0"><i class="ic" data-i="LuNetwork"></i>关联的人、机构、活动与资料</div><span class="xs muted">录入时手动关联；V1 起 AI 推荐关联，人工确认</span></div>
+      <svg class="graph" viewBox="0 0 720 300">
+        <g stroke="#E2DFDA" stroke-width="1.5">
+          <line x1="360" y1="150" x2="140" y2="62"/><line x1="360" y1="150" x2="140" y2="238"/><line x1="360" y1="150" x2="360" y2="40"/>
+          <line x1="360" y1="150" x2="580" y2="62"/><line x1="360" y1="150" x2="580" y2="238"/><line x1="360" y1="150" x2="360" y2="262"/>
+          <line x1="140" y1="62" x2="140" y2="238" stroke-dasharray="4 4"/>
+        </g>
+        <g>
+          <circle cx="360" cy="150" r="46" fill="#8C1D24"/><text x="360" y="146" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">示例人物 A</text><text x="360" y="166" text-anchor="middle" fill="#F6E6E7" font-size="11">外部个人</text>
+        </g>
+        <g font-size="12.5">
+          <rect x="70" y="40" width="140" height="44" rx="11" fill="#EDF2FA"/><text x="140" y="59" text-anchor="middle" fill="#2F5C9A" font-weight="700">某教育科技公司</text><text x="140" y="75" text-anchor="middle" fill="#7D838C" font-size="11">所属机构</text>
+          <rect x="70" y="216" width="140" height="44" rx="11" fill="#F6F5F2"/><text x="140" y="235" text-anchor="middle" fill="#1B1D21" font-weight="700">示例人物 K</text><text x="140" y="251" text-anchor="middle" fill="#7D838C" font-size="11">同机构 · 外部个人</text>
+          <rect x="290" y="12" width="140" height="44" rx="11" fill="#EAF5F3"/><text x="360" y="31" text-anchor="middle" fill="#1F766C" font-weight="700">同学 B</text><text x="360" y="47" text-anchor="middle" fill="#7D838C" font-size="11">学社对接人 · 外联部</text>
+          <rect x="500" y="40" width="160" height="44" rx="11" fill="#FBF4F4"/><text x="580" y="59" text-anchor="middle" fill="#8C1D24" font-weight="700">AI 产品分享会</text><text x="580" y="75" text-anchor="middle" fill="#7D838C" font-size="11">活动 · 担任嘉宾</text>
+          <rect x="500" y="216" width="160" height="44" rx="11" fill="#FBF5EA"/><text x="580" y="235" text-anchor="middle" fill="#B8862E" font-weight="700">交流纪要.pdf</text><text x="580" y="251" text-anchor="middle" fill="#7D838C" font-size="11">资料 · 知识库</text>
+          <rect x="280" y="240" width="160" height="44" rx="11" fill="#F3EFFA"/><text x="360" y="259" text-anchor="middle" fill="#6B4FA0" font-weight="700">黑客松评委候选</text><text x="360" y="275" text-anchor="middle" fill="#7D838C" font-size="11">清单 · 同学 C 创建</text>
+        </g>
+      </svg>
+    </div>
+    <div class="card pad" style="margin-top:14px"><div class="st"><i class="ic" data-i="LuFileText"></i>相关资料</div>
+      <div class="grid g2" style="gap:10px">
+        <div class="row" style="padding:10px;border:1px solid var(--line);border-radius:12px"><span class="tag t-red" style="height:34px;width:34px;justify-content:center"><i class="ic" data-i="LuFileText"></i></span><div class="grow"><div class="b" style="font-size:13px">AI 产品交流纪要.pdf</div><div class="xs muted">活动档案 · 学社内</div></div></div>
+        <div class="row" style="padding:10px;border:1px solid var(--line);border-radius:12px"><span class="tag t-blue" style="height:34px;width:34px;justify-content:center"><i class="ic" data-i="LuPresentation"></i></span><div class="grow"><div class="b" style="font-size:13px">分享会 PPT（2026 春）</div><div class="xs muted">讲座与学习 · 公开</div></div></div>
+      </div></div>
+  </div>
+  <div>
+    <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">3</span><div class="row between"><div class="st" style="margin:0"><i class="ic" data-i="LuHistory"></i>对接记录</div><span class="btn btn-sm btn-soft"><i class="ic" data-i="LuPlus"></i>记一笔</span></div>
+      <div class="tl" style="margin-top:14px">
+        <div class="e"><div class="d">2026-10-24 · 同学 B</div><div class="w">分享会后交流，对方愿意下学期再来做工作坊</div><span class="tag t-amber" style="margin-top:6px">待跟进 · 时间待确认</span></div>
+        <div class="e g"><div class="d">2026-05-18 · 同学 B</div><div class="w">邀请担任「AI 产品从 0 到 1」分享嘉宾</div><span class="tag t-green" style="margin-top:6px">已完成</span></div>
+        <div class="e g"><div class="d">2026-04-02 · 同学 G（已换届）</div><div class="w">企业参访时认识，交换了联系方式</div><span class="tag t-green" style="margin-top:6px">已录入</span></div>
+      </div>
+      <div class="notice n-gray" style="margin-top:4px"><i class="ic" data-i="LuUsers"></i><div class="small">对接人换届时，记录随资源保留，新的对接人可以接着跟进。</div></div>
+    </div>
+    <div class="card pad rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">4</span><div class="st"><i class="ic" data-i="LuShieldCheck"></i>维护信息</div>
+      <dl class="kv" style="margin:0;font-size:13px"><dt>录入</dt><dd>同学 G · 2026-04-02</dd><dt>审核</dt><dd>维护人 · 2026-04-03</dd><dt>最近更新</dt><dd>同学 B · 2026-10-24</dd><dt>来源</dt><dd>企业参访记录、活动交流记录</dd><dt>更新提醒</dt><dd>6 个月未更新时提醒对接人确认</dd></dl>
+    </div>
+  </div>
+</div>
+</div></div></div></div>
+</body></html>

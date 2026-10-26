@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>讨论 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css"><script src="assets/icons.js"></script><script src="assets/app.js"></script>
+<style>
+.cols { display: grid; grid-template-columns: 1fr 320px; gap: 18px; }
+.composer { padding: 16px 18px; }
+.composer .box { display: flex; gap: 12px; }
+.composer .ta { flex: 1; min-height: 56px; color: var(--faint); font-size: 15px; padding-top: 6px; }
+.composer .bar { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--line); }
+.cat { display: flex; gap: 6px; }
+.cat span { font-size: 12.5px; padding: 4px 10px; border-radius: 8px; border: 1px solid var(--line-2); color: var(--text); display: inline-flex; gap: 5px; align-items: center; }
+.cat span.on { background: var(--red-50); border-color: var(--red-100); color: var(--red); font-weight: 600; }
+.tool { color: var(--muted); font-size: 18px; padding: 0 4px; }
+.fig { margin-top: 10px; border-radius: 12px; border: 1px solid var(--line); background: #FCFBFA; padding: 14px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: center; }
+.bars { display: flex; align-items: flex-end; gap: 10px; height: 96px; padding: 0 6px; border-bottom: 1px solid var(--line-2); }
+.bars i { flex: 1; border-radius: 4px 4px 0 0; background: var(--red-200); }
+.bars i.h { background: var(--red); }
+.aians { margin: 12px 0 0 46px; border-radius: 12px; padding: 12px 14px; background: linear-gradient(180deg, #FFF9F6, #FDF4EF); border: 1px solid #F1DCD5; font-size: 13.5px; color: var(--ink); line-height: 1.7; }
+.aians .srcs { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.aians .srcs span { font-size: 12px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 2px 8px; display: inline-flex; gap: 5px; align-items: center; color: var(--text); }
+.hot li { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.hot li:last-child { border-bottom: 0; }
+.hot .n { width: 20px; height: 20px; border-radius: 6px; background: #F2F1EE; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 2px; }
+.hot li:nth-child(-n+3) .n { background: var(--red); color: #fff; }
+ul { list-style: none; margin: 0; padding: 0; }
+.topics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.topics span { font-size: 12.5px; color: var(--blue); background: var(--blue-50); border-radius: 8px; padding: 4px 10px; }
+.rules { font-size: 12.5px; color: var(--text); margin-top: 8px; padding-left: 18px; list-style: disc; }
+.rules li { margin: 4px 0; }
+</style></head>
+<body data-page="community" data-search="搜索讨论、话题、同学">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap">
+<div class="row between" style="margin:6px 0 16px"><div><h1 class="h-page">讨论</h1><p class="muted" style="margin-top:2px">北大同学自由交流 AI：技术与工具、论文与研究、自己的创业尝试，有问题也可以直接问</p></div>
+<div class="row"><span class="tag t-line"><i class="ic" data-i="LuBadgeCheck"></i>北大认证后可发帖</span></div></div>
+<div class="cols">
+<div>
+  <div class="card composer rel"><span class="mk" style="left:-8px;top:-8px">1</span>
+    <div class="box"><span class="av a1">林</span><div class="ta">分享你在 AI 上的想法、读到的论文、做的东西，或者提一个问题……</div></div>
+    <div class="bar"><div class="cat"><span class="on"><i class="ic" data-i="LuMessageCircle"></i>交流</span><span><i class="ic" data-i="LuBookOpen"></i>学术</span><span><i class="ic" data-i="LuRocket"></i>创业尝试</span><span><i class="ic" data-i="LuLightbulb"></i>问答</span></div>
+      <span class="grow"></span><span class="tool"><i class="ic" data-i="LuImage"></i></span><span class="tool"><i class="ic" data-i="LuLink"></i></span><span class="tool"><i class="ic" data-i="LuHash"></i></span><span class="btn btn-sm btn-p">发布</span></div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="pad row between rel" style="padding-bottom:4px"><span class="mk" style="left:-8px;top:6px">2</span><div class="tabs" style="border:0;gap:20px"><a class="on">最新</a><a>热门</a><a>交流</a><a>学术</a><a>创业尝试</a><a>问答</a></div><span class="chip"><i class="ic" data-i="LuHash"></i>话题</span></div>
+    <div class="post">
+      <div class="hd"><span class="av a5">M</span><div class="grow"><span class="nm">Momo</span> <span class="meta">元培 · 24 级 · 12 分钟前</span></div><span class="tag t-blue">问答</span></div>
+      <div class="bd">非计算机专业，想入门大模型应用，应该先看什么、先做什么？<span class="topic">#AI入门</span></div>
+      <div class="aians rel"><span class="mk" style="left:-10px;top:-10px">3</span><div class="row" style="margin-bottom:4px"><span class="ai-tag"><i class="ic" data-i="LuSparkles"></i>AI 助手先答</span><span class="xs muted">基于社区公开内容 · 仅供参考</span></div>
+        建议先用两三周熟悉提示词和知识库问答，再试着搭一个小工作流<span class="cite">1</span>。社区里有同学按 4 周整理过入门顺序<span class="cite">2</span>，本周日的工作坊也正好讲“做一个自己的知识库助手”<span class="cite">3</span>。
+        <div class="srcs"><span><span class="cite">1</span>精选 · 读书会笔记</span><span><span class="cite">2</span>讨论 · 非 CS 入门路线</span><span><span class="cite">3</span>活动 · 大模型应用工作坊</span></div></div>
+      <div class="act"><span><i class="ic" data-i="LuHeart"></i>9</span><span><i class="ic" data-i="LuMessageCircle"></i>3 位同学回答</span><span><i class="ic" data-i="LuBookmark"></i>收藏</span></div>
+    </div>
+    <div class="post">
+      <div class="hd"><span class="av a3">许</span><div class="grow"><span class="nm">小许</span> <span class="meta">信科 · 博士生 · 40 分钟前</span></div><span class="tag t-violet">学术</span></div>
+      <div class="bd">读了一篇关于“检索增强生成在长文档上为什么会答偏”的论文。作者的实验里，切片粒度对准确率的影响比换更大的模型还明显。整理了一页笔记，周三读书会上可以展开聊。<span class="topic">#RAG</span> <span class="topic">#论文笔记</span>
+        <div class="fig"><div><div class="xs muted" style="margin-bottom:6px">Fig. 不同切片粒度下的回答准确率（示意）</div><div class="bars"><i style="height:38%"></i><i style="height:56%"></i><i class="h" style="height:88%"></i><i style="height:64%"></i><i style="height:45%"></i></div></div><div class="small" style="color:var(--text)">· 段落级切片效果最好<br>· 切片过碎时，模型会“拼接”出错误答案<br>· 加重排比换模型更划算</div></div>
+      </div>
+      <div class="act"><span><i class="ic" data-i="LuHeart"></i>52</span><span><i class="ic" data-i="LuMessageCircle"></i>14</span><span><i class="ic" data-i="LuBookmark"></i>收藏</span><span><i class="ic" data-i="LuQuote"></i>引用</span></div>
+    </div>
+    <div class="post">
+      <div class="hd"><span class="av a4">L</span><div class="grow"><span class="nm">Lynn</span> <span class="meta">新闻与传播 · 24 级 · 2 小时前</span></div><span class="tag">交流</span></div>
+      <div class="bd">用 AI 做了一学期采访稿整理，最大的体会：让它先列出“原话出处”再总结，错得少很多。<span class="at">@小许</span> 这和你说的切片问题是不是一回事？
+        <div class="quote"><div class="row"><span class="av av-sm a3">许</span><span class="b">小许</span><span class="xs muted">40 分钟前 · 学术</span></div><div style="margin-top:6px;color:var(--text)">读了一篇关于“检索增强生成在长文档上为什么会答偏”的论文……</div></div>
+      </div>
+      <div class="act"><span><i class="ic" data-i="LuHeart"></i>21</span><span><i class="ic" data-i="LuMessageCircle"></i>6</span><span><i class="ic" data-i="LuBookmark"></i>收藏</span><span><i class="ic" data-i="LuQuote"></i>引用</span></div>
+    </div>
+    <div class="post">
+      <div class="hd"><span class="av a2">周</span><div class="grow"><span class="nm">阿周</span> <span class="meta">光华 · 23 级 · 3 小时前</span></div><span class="tag t-gold">创业尝试</span></div>
+      <div class="bd">课程笔记助手上线第二周：删掉了一半功能，只留“上传课件 + 按知识点搜索”。下一步想找三位同学深度试用，愿意的评论区留言。</div>
+      <div class="act"><span><i class="ic" data-i="LuHeart"></i>31</span><span><i class="ic" data-i="LuMessageCircle"></i>9</span><span><i class="ic" data-i="LuBookmark"></i>收藏</span><span><i class="ic" data-i="LuQuote"></i>引用</span></div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">4</span>
+    <div class="row between"><span class="h-sec">本周热议</span><div class="seg"><a class="on">本周</a><a>本月</a></div></div>
+    <ul class="hot" style="margin-top:6px">
+      <li><span class="n">1</span><div><div class="b" style="font-size:13.5px">Agent 和工作流的边界在哪？</div><div class="xs muted">交流 · 46 条讨论</div></div></li>
+      <li><span class="n">2</span><div><div class="b" style="font-size:13.5px">RAG 在长文档上为什么会答偏</div><div class="xs muted">学术 · 33 条讨论</div></div></li>
+      <li><span class="n">3</span><div><div class="b" style="font-size:13.5px">非 CS 专业怎么入门大模型应用</div><div class="xs muted">问答 · 29 条讨论</div></div></li>
+      <li><span class="n">4</span><div><div class="b" style="font-size:13.5px">校园 AI 小产品的第一批用户</div><div class="xs muted">创业尝试 · 18 条讨论</div></div></li>
+    </ul>
+  </div>
+  <div class="card pad" style="margin-top:14px"><span class="h-sec">话题</span>
+    <div class="topics"><span>#AI入门</span><span>#论文笔记</span><span>#RAG</span><span>#Agent</span><span>#AI+人文社科</span><span>#读书会</span><span>#创业尝试</span><span>#工具分享</span></div>
+  </div>
+  <div class="card pad rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">5</span><span class="h-sec">社区约定</span>
+    <ul class="rules"><li>北大认证后发帖和评论</li><li>转述他人观点请注明出处</li><li>AI 生成的内容会标注“AI”</li><li>不公开他人联系方式</li></ul>
+  </div>
+</div>
+</div>
+</div></div></div></div>
+</body></html>

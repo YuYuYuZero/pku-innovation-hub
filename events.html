@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>活动 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css"><script src="assets/icons.js"></script><script src="assets/app.js"></script>
+<style>
+.cols { display: grid; grid-template-columns: 1fr 300px; gap: 18px; }
+.feat { display: grid; grid-template-columns: 1.15fr 1fr; overflow: hidden; }
+.feat .cover { border-radius: 0; min-height: 250px; }
+.feat .cover .cv-t b { font-size: 26px; }
+.feat .tx { padding: 22px 24px; display: flex; flex-direction: column; }
+.ev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+.ev .cover { height: 120px; border-radius: 14px 14px 0 0; }
+.ev .tx { padding: 12px 14px 14px; }
+.ev .tt { font-weight: 600; color: var(--ink); font-size: 14.5px; line-height: 1.45; height: 42px; overflow: hidden; }
+.meta-l { font-size: 12.5px; color: var(--muted); display: flex; flex-direction: column; gap: 3px; margin-top: 8px; }
+.meta-l span { display: flex; align-items: center; gap: 6px; }
+.cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 12.5px; margin-top: 10px; }
+.cal .w { color: var(--faint); font-size: 11.5px; padding-bottom: 4px; }
+.cal .d { height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 9px; color: var(--text); position: relative; }
+.cal .d.o { color: var(--faint); }
+.cal .d.e::after { content: ""; position: absolute; bottom: 4px; width: 4px; height: 4px; border-radius: 50%; background: var(--red); }
+.cal .d.t { background: var(--red); color: #fff; font-weight: 700; }
+.cal .d.t::after { background: #fff; }
+.mine { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.mine:last-child { border-bottom: 0; }
+</style></head>
+<body data-page="events" data-search="搜索活动、嘉宾、主办方">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap">
+<div class="row between" style="margin:6px 0 16px"><div><h1 class="h-page">活动</h1><p class="muted" style="margin-top:2px">讲座、工作坊、黑客松、参访，一站报名，结束后回顾与资料自动归档</p></div>
+<div class="row"><span class="btn"><i class="ic" data-i="LuCalendarCheck"></i>订阅到飞书日历</span><span class="btn btn-p"><i class="ic" data-i="LuPlus"></i>发起活动</span></div></div>
+<div class="row wrap-x rel" style="gap:8px;margin-bottom:14px"><span class="mk" style="left:-8px;top:-8px">1</span><span class="chip on">全部</span><span class="chip">讲座分享</span><span class="chip">工作坊</span><span class="chip">黑客松</span><span class="chip">企业参访</span><span class="chip">读书会</span><span class="chip">Demo Day</span><span class="grow"></span><div class="seg"><a class="on">即将开始</a><a>报名中</a><a>往期回顾</a></div></div>
+<div class="cols">
+<div>
+  <div class="card feat rel"><span class="mk" style="left:-8px;top:-8px">2</span>
+    <div class="cover cv1"><div class="cv-k">FEATURED · TALK</div><div class="cv-t"><b>AI 产品从 0 到 1</b><span>第一版做到什么程度就能上线</span></div></div>
+    <div class="tx">
+      <div class="row"><span class="tag t-green">报名中</span><span class="tag">讲座分享</span><span class="tag t-line">北大认证可报名</span></div>
+      <h2 style="font-size:20px;margin-top:10px">AI 产品从 0 到 1 · 分享会（示例）</h2>
+      <div class="meta-l" style="font-size:13.5px"><span><i class="ic" data-i="LuClock"></i>10 月 30 日（周四）19:00–21:00</span><span><i class="ic" data-i="LuMapPin"></i>理教 201（示例）</span><span><i class="ic" data-i="LuUsers"></i>主办：创新学社 AI俱乐部</span></div>
+      <div class="row" style="margin-top:14px"><span class="av av-sm a3">嘉</span><span class="av av-sm a4" style="margin-left:-12px;border:2px solid #fff">宾</span><span class="small muted">2 位嘉宾 · 已报名 86 / 120</span></div>
+      <div class="progress" style="margin-top:10px"><i style="width:72%"></i></div>
+      <div class="row" style="margin-top:auto;padding-top:16px"><span class="btn btn-p">立即报名</span><span class="btn"><i class="ic" data-i="LuShare2"></i>分享</span><span class="btn btn-ghost"><i class="ic" data-i="LuBookmark"></i>收藏</span></div>
+    </div>
+  </div>
+  <div class="ev-grid rel"><span class="mk" style="left:-8px;top:-8px">3</span>
+    <div class="card ev"><div class="cover cv2"><div class="cv-k">WORKSHOP</div></div><div class="tx"><div class="row"><span class="tag t-green">报名中</span><span class="xs muted">剩 12 席</span></div><div class="tt" style="margin-top:6px">大模型应用工作坊（第 3 期）：做一个自己的知识库助手</div><div class="meta-l"><span><i class="ic" data-i="LuClock"></i>11 月 2 日 14:00</span><span><i class="ic" data-i="LuMapPin"></i>二教 305（示例）</span></div></div></div>
+    <div class="card ev"><div class="cover cv4"><div class="cv-k">SOCIAL</div></div><div class="tx"><div class="row"><span class="tag t-amber">需审核</span><span class="xs muted">限 20 人</span></div><div class="tt" style="margin-top:6px">AI 创业快闪小饭局</div><div class="meta-l"><span><i class="ic" data-i="LuClock"></i>11 月 15 日 18:30</span><span><i class="ic" data-i="LuMapPin"></i>校内（报名后通知）</span></div></div></div>
+    <div class="card ev"><div class="cover cv3"><div class="cv-k">VISIT</div></div><div class="tx"><div class="row"><span class="tag t-blue">即将开放</span><span class="xs muted">11 月 1 日开放</span></div><div class="tt" style="margin-top:6px">企业参访：走进一家 AI 公司（示例）</div><div class="meta-l"><span><i class="ic" data-i="LuClock"></i>11 月 21 日 13:30</span><span><i class="ic" data-i="LuMapPin"></i>海淀（示例）</span></div></div></div>
+    <div class="card ev"><div class="cover cv5"><div class="cv-k">HACKATHON</div></div><div class="tx"><div class="row"><span class="tag t-violet">组队中</span><span class="xs muted">48 小时</span></div><div class="tt" style="margin-top:6px">AI for Campus 黑客松（示例）</div><div class="meta-l"><span><i class="ic" data-i="LuClock"></i>12 月 6–7 日</span><span><i class="ic" data-i="LuUsers"></i>可在社区找队友</span></div></div></div>
+    <div class="card ev"><div class="cover cv6"><div class="cv-k" style="color:#8C1D24">READING</div></div><div class="tx"><div class="row"><span class="tag t-green">报名中</span><span class="xs muted">每两周</span></div><div class="tt" style="margin-top:6px">论文读书会：Agent 与工具调用</div><div class="meta-l"><span><i class="ic" data-i="LuClock"></i>11 月 5 日 20:00</span><span><i class="ic" data-i="LuMapPin"></i>线上 · 飞书会议</span></div></div></div>
+    <div class="card ev"><div class="cover cv1" style="filter:grayscale(.55)"><div class="cv-k">REPLAY</div></div><div class="tx"><div class="row"><span class="tag">已结束</span><span class="tag t-red"><i class="ic" data-i="LuPlay"></i>回顾</span></div><div class="tt" style="margin-top:6px">上期回顾：校园 AI 项目怎么找第一批用户</div><div class="meta-l"><span><i class="ic" data-i="LuFileText"></i>纪要、PPT 已归档到知识库</span><span><i class="ic" data-i="LuSparkles"></i>AI 回顾摘要</span></div></div></div>
+  </div>
+</div>
+<div>
+  <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">4</span>
+    <div class="row between"><span class="h-sec">2026 年 11 月</span><div class="row" style="gap:4px"><span class="icon-btn" style="width:30px;height:30px"><i class="ic" data-i="LuChevronRight" style="transform:rotate(180deg)"></i></span><span class="icon-btn" style="width:30px;height:30px"><i class="ic" data-i="LuChevronRight"></i></span></div></div>
+    <div class="cal">
+      <div class="w">一</div><div class="w">二</div><div class="w">三</div><div class="w">四</div><div class="w">五</div><div class="w">六</div><div class="w">日</div>
+      <div class="d o">27</div><div class="d o">28</div><div class="d o">29</div><div class="d o e">30</div><div class="d o">31</div><div class="d">1</div><div class="d e t">2</div>
+      <div class="d">3</div><div class="d">4</div><div class="d e">5</div><div class="d">6</div><div class="d">7</div><div class="d">8</div><div class="d">9</div>
+      <div class="d">10</div><div class="d">11</div><div class="d">12</div><div class="d">13</div><div class="d">14</div><div class="d e">15</div><div class="d">16</div>
+      <div class="d">17</div><div class="d">18</div><div class="d e">19</div><div class="d">20</div><div class="d e">21</div><div class="d">22</div><div class="d">23</div>
+      <div class="d">24</div><div class="d">25</div><div class="d">26</div><div class="d">27</div><div class="d">28</div><div class="d">29</div><div class="d">30</div>
+    </div>
+  </div>
+  <div class="card pad" style="margin-top:14px"><div class="row between"><span class="h-sec">我的报名</span><span class="xs muted">2 场</span></div>
+    <div class="mine"><span class="tag t-green" style="height:auto;padding:4px 8px">已报名</span><div><div class="b" style="font-size:13.5px">AI 产品从 0 到 1 · 分享会</div><div class="xs muted">10 月 30 日 19:00 · 签到码在活动当天开放</div></div></div>
+    <div class="mine"><span class="tag t-amber" style="height:auto;padding:4px 8px">审核中</span><div><div class="b" style="font-size:13.5px">AI 创业快闪小饭局</div><div class="xs muted">11 月 15 日 18:30</div></div></div>
+  </div>
+  <div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuCalendarCheck"></i><div>活动结束后，纪要、PPT 和照片会自动归档到知识库“活动档案”，并生成回顾。</div></div>
+</div>
+</div>
+</div></div></div></div>
+</body></html>

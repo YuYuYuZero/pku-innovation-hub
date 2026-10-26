@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>需求对接 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css"><script src="assets/icons.js"></script><script src="assets/app.js"></script>
+<style>
+.cols { display: grid; grid-template-columns: 380px 1fr; gap: 16px; align-items: start; }
+.nd { padding: 14px 16px; border-bottom: 1px solid var(--line); }
+.nd:last-child { border-bottom: 0; }
+.nd.sel { background: #FFFBFA; box-shadow: inset 3px 0 0 var(--red); }
+.nd .t { font-weight: 700; color: var(--ink); font-size: 14.5px; }
+.nd .m { font-size: 12.5px; color: var(--muted); margin-top: 4px; display: flex; gap: 8px; align-items: center; }
+.kan { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+.kan .col { background: #F4F3F0; border-radius: 14px; padding: 10px; }
+.kan .ch { font-size: 12.5px; font-weight: 600; color: var(--muted); padding: 2px 4px 8px; display: flex; justify-content: space-between; }
+.kc { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 11px 12px; margin-bottom: 8px; box-shadow: var(--shadow-sm); }
+.kc .n { font-weight: 700; color: var(--ink); font-size: 13.5px; }
+.kc .w { font-size: 12px; color: #7A4B1C; background: var(--gold-50); border-radius: 7px; padding: 4px 8px; margin-top: 6px; }
+</style></head>
+<body data-page="needs" data-search="搜索需求">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap" style="max-width:1180px">
+<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">需求对接</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>学社成员可见</span><span class="lv lv2">V2</span></div><p class="muted" style="margin-top:2px">说出你需要什么：AI 从资源库和知识库里推荐候选，再由学社对接人跟进，结果记回资源的对接记录</p></div>
+<span class="btn btn-p"><i class="ic" data-i="LuPlus"></i>提一个需求</span></div>
+<div class="cols">
+  <div class="card rel"><span class="mk" style="left:-8px;top:-8px">1</span>
+    <div class="pad row between" style="padding-bottom:8px"><div class="seg"><a class="on">进行中 4</a><a>已完成 18</a><a>我提的</a></div></div>
+    <div class="nd sel"><div class="row between"><span class="t">黑客松找 3 位评委</span><span class="tag t-amber">对接中</span></div><div class="m"><span class="tag">活动 · AI for Campus 黑客松</span>截止 11-20</div><div class="m"><span class="av av-sm a1" style="width:20px;height:20px;font-size:10px">林</span>林同学 提出 · 对接人 同学 B</div></div>
+    <div class="nd"><div class="row between"><span class="t">工作坊场地（40 人）</span><span class="tag t-green">已找到</span></div><div class="m"><span class="tag">活动 · 工作坊第 3 期</span>截止 10-29</div></div>
+    <div class="nd"><div class="row between"><span class="t">AI 医疗方向分享嘉宾</span><span class="tag t-blue">待推荐</span></div><div class="m"><span class="tag">读书会</span>截止 11-30</div></div>
+    <div class="nd"><div class="row between"><span class="t">黑客松赞助（模型额度）</span><span class="tag t-amber">对接中</span></div><div class="m"><span class="tag">活动 · AI for Campus 黑客松</span>截止 11-15</div></div>
+  </div>
+  <div>
+    <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">2</span>
+      <div class="row between"><div><h2 style="font-size:19px">黑客松找 3 位评委</h2><div class="small muted" style="margin-top:2px">要求：AI 应用方向，有产品或投资背景，12 月 7 日下午可到场</div></div><div class="row"><span class="tag t-amber">对接中 · 1 / 3 已确认</span></div></div>
+      <div class="notice n-teal" style="margin-top:12px"><i class="ic" data-i="LuSparkles"></i><div>AI 推荐了 5 位候选（来自资源库），并找到相关经验：“评审标准要在开赛前公开”<span class="cite">1</span>“评委邀请至少提前三周”<span class="cite">2</span>。</div></div>
+      <div class="kan rel"><span class="mk" style="left:-10px;top:-6px">3</span>
+        <div class="col"><div class="ch"><span>推荐候选</span><span>2</span></div>
+          <div class="kc"><div class="row between"><span class="n">示例人物 K</span><span class="tag t-red">外部个人</span></div><div class="xs muted">某教育科技公司 · 投资经理</div><div class="w">匹配：AI 方向投资；同机构的示例人物 A 曾任嘉宾</div></div>
+          <div class="kc"><div class="row between"><span class="n">示例人物 M</span><span class="tag t-red">外部个人</span></div><div class="xs muted">某 AI 创业公司 · 创始人</div><div class="w">匹配：做过两次校园黑客松评委</div></div>
+        </div>
+        <div class="col"><div class="ch"><span>联系中</span><span>2</span></div>
+          <div class="kc"><div class="row between"><span class="n">示例人物 A</span><span class="tag t-red">外部个人</span></div><div class="xs muted">对接人 同学 B · 10-25 已发邀请</div></div>
+          <div class="kc"><div class="row between"><span class="n">示例人物 P</span><span class="tag t-red">外部个人</span></div><div class="xs muted">对接人 同学 D · 等待回复</div></div>
+        </div>
+        <div class="col"><div class="ch"><span>已确认</span><span>1</span></div>
+          <div class="kc"><div class="row between"><span class="n">林同学</span><span class="tag t-teal">学社骨干</span></div><div class="xs muted">担任评审组织协调</div><div class="row" style="margin-top:6px"><span class="tag t-green"><i class="ic" data-i="LuCheck"></i>已写入对接记录</span></div></div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:6px"><span class="small muted"><i class="ic" data-i="LuShieldCheck"></i> 推荐只给出候选和理由；联系由对接人完成，联系方式不对提需求的人展示</span></div>
+    </div>
+  </div>
+</div>
+</div></div></div></div>
+</body></html>

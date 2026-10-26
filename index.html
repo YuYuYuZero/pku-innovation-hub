@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>首页 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css"><script src="assets/icons.js"></script><script src="assets/app.js"></script>
+<style>
+.hero { border-radius: 20px; padding: 30px 32px 26px; color: #fff; position: relative; overflow: hidden;
+  background: radial-gradient(70% 120% at 100% 0%, #B8414A 0, transparent 60%), radial-gradient(60% 90% at 0% 100%, #6E1A20 0, transparent 70%), #8C1D24; }
+.hero::after { content: ""; position: absolute; right: -40px; top: -60px; width: 420px; height: 420px; opacity: .18;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='white' stroke-width='.6'%3E%3Ccircle cx='100' cy='100' r='96'/%3E%3Ccircle cx='100' cy='100' r='80'/%3E%3Ccircle cx='100' cy='100' r='64'/%3E%3Ccircle cx='100' cy='100' r='48'/%3E%3Cpath d='M100 30 L40 134 L160 134Z'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat; }
+.hero .k { font-size: 12px; letter-spacing: .18em; opacity: .8; }
+.hero h1 { font-family: var(--serif); color: #fff; font-size: 32px; margin: 8px 0 4px; letter-spacing: .03em; }
+.hero p { opacity: .88; font-size: 14.5px; }
+.askbox { margin-top: 20px; background: #fff; border-radius: 14px; padding: 12px 12px 12px 16px; display: flex; align-items: center; gap: 12px; color: var(--muted); box-shadow: 0 10px 30px rgba(40, 6, 9, .25); position: relative; z-index: 2; }
+.askbox .ic { font-size: 20px; color: var(--red); }
+.askbox .ph { flex: 1; font-size: 15px; }
+.qchips { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; position: relative; z-index: 2; }
+.qchips span { font-size: 12.5px; padding: 4px 11px; border-radius: 999px; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .22); }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+.pillar { padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start; }
+.pillar .pi { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex: none; }
+.pillar h3 { font-size: 16px; }
+.pillar p { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.pillar .lks { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.cols { display: grid; grid-template-columns: 1fr 320px; gap: 18px; margin-top: 18px; }
+.evt { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.evt:last-child { border-bottom: 0; }
+.date { width: 48px; height: 52px; border-radius: 11px; background: var(--red-50); color: var(--red); display: flex; flex-direction: column; align-items: center; justify-content: center; flex: none; }
+.date b { font-size: 19px; line-height: 1; font-family: var(--serif); }
+.date span { font-size: 11px; }
+.hot li { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.hot li:last-child { border-bottom: 0; }
+.hot .n { width: 20px; height: 20px; border-radius: 6px; background: #F2F1EE; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 2px; }
+.hot li:nth-child(-n+3) .n { background: var(--red); color: #fff; }
+ul { list-style: none; margin: 0; padding: 0; }
+</style></head>
+<body data-page="home">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap">
+
+<section class="hero rel">
+  <span class="mk" style="left:-8px;top:-8px">1</span>
+  <div class="k">PKU INNOVATION · 资源 · 工具 · 社区</div>
+  <h1>早上好，林同学</h1>
+  <p>找资源、查资料、问问题、看大家在聊什么，都从这里开始。</p>
+  <div class="askbox rel"><span class="mk" style="left:-10px;top:-10px">2</span><i class="ic" data-i="LuSparkles"></i><span class="ph">问学社助手，或搜索资源、资料、活动和讨论</span><span class="kbd">Enter</span><a class="btn btn-p">提问</a></div>
+  <div class="qchips"><span>上学期黑客松的复盘在哪</span><span>有没有做 AI 教育的嘉宾可以请</span><span>Agent 入门看什么</span><span>本周有什么活动</span></div>
+</section>
+
+<div class="pillars rel">
+  <span class="mk" style="left:-8px;top:-8px">3</span>
+  <div class="card pillar"><div class="pi t-red"><i class="ic" data-i="LuDatabase"></i></div><div><h3>学社资产 <span class="tag t-line" style="vertical-align:2px"><i class="ic" data-i="LuLock"></i>学社成员</span></h3><p>资源（人与机构）和知识（文档、经验、模板、活动档案），互相关联</p><div class="lks"><span class="tag">资源库</span><span class="tag">知识库</span><span class="tag">需求对接</span></div></div></div>
+  <div class="card pillar"><div class="pi t-gold"><i class="ic" data-i="LuSparkles"></i></div><div><h3>工具 · AI 助手</h3><p>在你有权限的范围内问答，回答附出处；录入、纪要、整理交给助手</p><div class="lks"><span class="tag">问答</span><span class="tag">资源录入</span><span class="tag">会议纪要</span><span class="tag">文档整理</span></div></div></div>
+  <div class="card pillar"><div class="pi t-teal"><i class="ic" data-i="LuMessagesSquare"></i></div><div><h3>社区</h3><p>北大同学自由交流 AI：技术、学术、创业尝试，以及活动和精选内容</p><div class="lks"><span class="tag">讨论</span><span class="tag">活动</span><span class="tag">精选</span></div></div></div>
+</div>
+
+<div class="cols">
+  <div>
+    <div class="card rel">
+      <span class="mk" style="left:-8px;top:-8px">4</span>
+      <div class="pad row between" style="padding-bottom:6px"><div class="row" style="gap:18px"><span class="h-sec">社区最新</span><div class="seg"><a class="on">全部</a><a>交流</a><a>学术</a><a>创业尝试</a><a>问答</a></div></div><a class="lnk" href="community.html">进入讨论 <i class="ic" data-i="LuChevronRight"></i></a></div>
+      <div class="post">
+        <div class="hd"><span class="av a3">许</span><div class="grow"><span class="nm">小许</span> <span class="meta">信科 · 博士生 · 40 分钟前</span></div><span class="tag t-violet">学术</span></div>
+        <div class="bd">读了一篇关于“检索增强生成在长文档上为什么会答偏”的论文，作者的结论是检索切片太碎比模型能力更关键。整理了一页笔记，周四读书会上可以展开聊。<span class="topic">#RAG</span> <span class="topic">#论文笔记</span></div>
+        <div class="act"><span><i class="ic" data-i="LuHeart"></i>52</span><span><i class="ic" data-i="LuMessageCircle"></i>14</span><span><i class="ic" data-i="LuBookmark"></i>收藏</span><span><i class="ic" data-i="LuQuote"></i>引用</span></div>
+      </div>
+      <div class="post">
+        <div class="hd"><span class="av a1">创</span><div class="grow"><span class="nm">创新学社 AI俱乐部</span> <span class="meta">官方 · 1 小时前</span></div><span class="tag t-red">活动</span></div>
+        <div class="bd">周四晚「AI 产品从 0 到 1」分享会开放报名，结束后纪要和讲座整理会放进“精选”。
+          <div class="embed"><div class="cover cv1" style="height:92px"><div class="cv-k">TALK</div></div><div class="tx"><div class="b">AI 产品从 0 到 1 · 分享会（示例）</div><div class="small muted" style="margin-top:4px"><i class="ic" data-i="LuClock"></i> 10 月 30 日 19:00 <span class="dotsep"></span><i class="ic" data-i="LuMapPin"></i> 理教 201（示例）<span class="dotsep"></span>已报名 86</div><div style="margin-top:8px"><span class="btn btn-sm btn-soft">立即报名</span></div></div></div>
+        </div>
+        <div class="act"><span><i class="ic" data-i="LuHeart"></i>42</span><span><i class="ic" data-i="LuMessageCircle"></i>11</span><span><i class="ic" data-i="LuBookmark"></i>收藏</span><span><i class="ic" data-i="LuShare2"></i>分享</span></div>
+      </div>
+      <div class="post">
+        <div class="hd"><span class="av a2">周</span><div class="grow"><span class="nm">阿周</span> <span class="meta">光华 · 23 级 · 3 小时前</span></div><span class="tag t-gold">创业尝试</span></div>
+        <div class="bd">课程笔记助手上线第二周：删掉了一半功能，只留“上传课件 + 按知识点搜索”。下一步想找三位同学深度试用，愿意的评论区留言。</div>
+        <div class="act"><span><i class="ic" data-i="LuHeart"></i>31</span><span><i class="ic" data-i="LuMessageCircle"></i>9</span><span><i class="ic" data-i="LuBookmark"></i>收藏</span><span><i class="ic" data-i="LuQuote"></i>引用</span></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card pad rel">
+      <span class="mk" style="left:-8px;top:-8px">5</span>
+      <div class="row between"><span class="h-sec">我的待办</span><span class="tag t-line"><i class="ic" data-i="LuLock"></i>学社成员</span></div>
+      <div style="margin-top:6px">
+        <div class="evt"><div class="date" style="background:var(--gold-50);color:var(--gold)"><i class="ic" data-i="LuNotebookPen" style="font-size:20px"></i></div><div class="grow"><div class="b" style="font-size:13.5px">例会纪要待确认</div><div class="xs muted">AI 已生成纪要和 4 条待办</div></div></div>
+        <div class="evt"><div class="date" style="background:var(--red-50)"><i class="ic" data-i="LuInbox" style="font-size:20px"></i></div><div class="grow"><div class="b" style="font-size:13.5px">2 条资源待审核</div><div class="xs muted">外联部提交 · 含 1 条疑似重复</div></div></div>
+      </div>
+    </div>
+    <div class="card pad" style="margin-top:14px">
+      <div class="row between"><span class="h-sec">近期活动</span><a class="lnk" href="events.html">全部 <i class="ic" data-i="LuChevronRight"></i></a></div>
+      <div style="margin-top:6px">
+        <div class="evt"><div class="date"><b>30</b><span>10 月</span></div><div class="grow"><div class="b" style="font-size:13.5px">AI 产品从 0 到 1 · 分享会</div><div class="xs muted">周四 19:00 · 报名中</div></div></div>
+        <div class="evt"><div class="date"><b>02</b><span>11 月</span></div><div class="grow"><div class="b" style="font-size:13.5px">大模型应用工作坊（第 3 期）</div><div class="xs muted">周日 14:00 · 剩 12 席</div></div></div>
+        <div class="evt"><div class="date"><b>05</b><span>11 月</span></div><div class="grow"><div class="b" style="font-size:13.5px">论文读书会：Agent 与工具调用</div><div class="xs muted">周三 20:00 · 线上</div></div></div>
+      </div>
+    </div>
+    <div class="card pad rel" style="margin-top:14px">
+      <span class="mk" style="left:-8px;top:-8px">6</span>
+      <div class="row between"><span class="h-sec">精选</span><a class="lnk" href="featured.html">更多 <i class="ic" data-i="LuChevronRight"></i></a></div>
+      <ul class="hot" style="margin-top:4px">
+        <li><span class="n">1</span><div><div class="b" style="font-size:13.5px">讲座整理｜第一版产品怎么定范围</div><div class="xs muted">来自活动「AI 产品从 0 到 1」</div></div></li>
+        <li><span class="n">2</span><div><div class="b" style="font-size:13.5px">读书会笔记｜Agent 与工作流的边界</div><div class="xs muted">来自读书会第 6 期</div></div></li>
+        <li><span class="n">3</span><div><div class="b" style="font-size:13.5px">北大 AI 相关课程导航</div><div class="xs muted">链接学校官方入口</div></div></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div></div></div></div>
+</body></html>

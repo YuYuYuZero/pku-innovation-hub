@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>录入资源 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css"><script src="assets/icons.js"></script><script src="assets/app.js"></script>
+<style>
+.cols { display: grid; grid-template-columns: 420px 1fr; gap: 18px; align-items: start; }
+.aip { background: linear-gradient(180deg, #FFFAF7 0, #fff 120px); }
+.paste { margin-top: 12px; border: 1px dashed #E3C4C6; border-radius: 12px; padding: 12px 14px; background: #fff; font-size: 13px; line-height: 1.75; color: var(--text); height: 196px; overflow: hidden; position: relative; }
+.paste mark { background: #FBE7C9; color: var(--ink); border-radius: 3px; padding: 0 2px; }
+.paste::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 36px; background: linear-gradient(transparent, #fff); }
+.found { margin-top: 14px; }
+.fi { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); margin-top: 8px; background: #fff; }
+.fi.on { border-color: var(--red-200); background: var(--red-50); }
+.fi .ck { width: 18px; height: 18px; border-radius: 6px; border: 1.5px solid var(--line-2); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; }
+.fi.on .ck { background: var(--red); border-color: var(--red); }
+.form { padding: 22px 24px; }
+.conf { font-size: 11px; font-weight: 600; color: var(--green); margin-left: auto; }
+.conf.mid { color: var(--amber); }
+.check { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--ink); }
+.check .bx { width: 18px; height: 18px; border-radius: 5px; background: var(--red); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; flex: none; margin-top: 2px; }
+.ft { display: flex; align-items: center; gap: 12px; padding: 16px 24px; border-top: 1px solid var(--line); background: #FCFBFA; border-radius: 0 0 var(--r) var(--r); }
+</style></head>
+<body data-page="resources">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap" style="max-width:1180px">
+<div class="row small muted" style="margin:4px 0 6px"><a href="resources.html">资源库</a><i class="ic" data-i="LuChevronRight"></i><span>录入资源</span></div>
+<div class="row between" style="margin-bottom:16px"><div><h1 class="h-page">录入一项资源</h1><p class="muted" style="margin-top:2px">不确定的信息写“待确认”，不要替对方承诺合作。提交后进入待审核列表。</p></div>
+<div class="seg"><a class="on">单条录入</a><a href="upload.html">批量导入</a></div></div>
+<div class="cols">
+  <div class="card pad aip rel"><span class="mk" style="left:-8px;top:-8px">1</span>
+    <div class="row between"><div class="row"><span class="ai-tag"><i class="ic" data-i="LuSparkles"></i>技能 · 资源录入</span><span class="lv lv1">V1</span></div><div class="seg"><a class="on">粘贴文字</a><a>上传文件</a></div></div>
+    <div class="paste">【活动交流纪要 · 10 月 24 日】今晚分享会结束后和 <mark>示例人物 E</mark> 聊了一会儿，她现在是 <mark>某 AI 医疗公司的算法负责人</mark>，之前在医学部做过影像相关的研究。她说 <mark>可以和同学交流 AI 医疗落地经验</mark>，如果时间合适也愿意来做一次分享，但具体时间要等她确认。另外她提到 <mark>所在公司</mark> 也愿意支持学生的 AI 医疗项目……对接人是我（同学 F，外联部）。</div>
+    <div class="row" style="margin-top:12px"><span class="btn btn-p" style="flex:1"><i class="ic" data-i="LuSparkles"></i>AI 提取字段</span><span class="btn"><i class="ic" data-i="LuRefreshCw"></i></span></div>
+    <div class="found rel"><span class="mk" style="left:-10px;top:-6px">2</span><div class="small muted">识别到 2 项资源，选择后填入右侧表单</div>
+      <div class="fi on"><span class="ck"><i class="ic" data-i="LuCheck"></i></span><div class="grow"><div class="b" style="font-size:13.5px">示例人物 E</div><div class="xs muted">外部个人 · 某 AI 医疗公司</div></div><span class="tag t-green">正在编辑</span></div>
+      <div class="fi"><span class="ck"></span><div class="grow"><div class="b" style="font-size:13.5px">某 AI 医疗公司</div><div class="xs muted">机构资源 · 示例人物 E 所在机构</div></div><span class="tag">待编辑</span></div>
+    </div>
+    <div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuShieldCheck"></i><div>AI 只填草稿，所有字段都由你确认后才提交；原文不会公开展示。</div></div>
+  </div>
+  <div class="card rel"><span class="mk" style="left:-8px;top:-8px">3</span>
+    <div class="form">
+      <div class="notice n-amber rel" style="margin-bottom:18px"><span class="mk" style="right:-10px;top:-10px">4</span><i class="ic" data-i="LuTriangleAlert"></i><div><b>可能重复：</b>资源库里已有“示例人物 E（某 AI 医疗公司）”，由同学 G 于 2026-06 录入。<a class="lnk">查看并合并</a> 或 继续新建。</div></div>
+      <div class="grid g2">
+        <div class="field"><div class="label">资源类型 <span class="req">*</span></div><div class="input">外部个人<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div></div>
+        <div class="field"><div class="label">姓名或资源名称 <span class="req">*</span><span class="conf">AI · 高</span></div><div class="input ai">示例人物 E</div></div>
+        <div class="field"><div class="label">所属机构或部门<span class="conf">AI · 高</span></div><div class="input ai">某 AI 医疗公司 · 算法负责人</div></div>
+        <div class="field"><div class="label">领域标签<span class="conf">AI · 高</span></div><div class="input ai"><span class="tag">AI</span><span class="tag">医疗</span><span class="tag">算法</span></div></div>
+      </div>
+      <div class="field"><div class="label">可以提供什么帮助 <span class="req">*</span><span class="conf mid">AI · 中 · 请核对</span></div><div class="input ai textarea">可交流 AI 医疗落地经验；可做分享嘉宾，<b style="color:var(--amber)">时间待确认</b>。</div></div>
+      <div class="grid g2">
+        <div class="field"><div class="label">学社对接人 <span class="req">*</span><span class="conf">AI · 高</span></div><div class="input ai"><span class="av av-sm a4" style="width:22px;height:22px;font-size:10px">F</span>同学 F（外联部）</div></div>
+        <div class="field"><div class="label">资料来源</div><div class="input">活动交流纪要（10 月 24 日）</div></div>
+        <div class="field"><div class="label">联系方式 <span class="tag t-teal" style="height:18px;font-size:11px"><i class="ic" data-i="LuEyeOff"></i>仅维护人可见</span></div><div class="input ph">手机号 / 微信号（选填）</div></div>
+        <div class="field"><div class="label">审核后的可见范围</div><div class="input">学社成员<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div></div>
+      </div>
+      <div class="grid g2"><div class="field"><div class="label">关联 <span class="tag t-violet" style="height:18px;font-size:11px">AI 建议</span></div><div class="input ai"><span class="tag"><i class="ic" data-i="LuCalendarDays"></i>AI 产品分享会</span><span class="tag"><i class="ic" data-i="LuFileText"></i>交流纪要</span></div></div><div class="field"><div class="label">补充说明</div><div class="input ph">如：对方偏好线上交流</div></div></div>
+      <div class="check rel"><span class="mk" style="left:-34px;top:-2px">5</span><span class="bx"><i class="ic" data-i="LuCheck"></i></span><div>我确认对方知道学社会记录这些信息，且信息来源合规；我只录入有权向学社提供的内容。</div></div>
+    </div>
+    <div class="ft"><span class="small muted"><i class="ic" data-i="LuCircleCheck" style="color:var(--green)"></i> 草稿已自动保存</span><span class="grow"></span><span class="btn">存为草稿</span><span class="btn btn-p">提交审核</span></div>
+  </div>
+</div>
+</div></div></div></div>
+</body></html>

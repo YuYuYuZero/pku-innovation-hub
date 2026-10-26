@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>知识库 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css"><script src="assets/icons.js"></script><script src="assets/app.js"></script>
+<style>
+.kb { display: grid; grid-template-columns: 250px 1fr 340px; gap: 14px; align-items: start; }
+.tree { padding: 12px 10px; }
+.sp { display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 9px; font-size: 13.5px; color: var(--text); }
+.sp .ic { font-size: 16px; color: var(--muted); }
+.sp .c { margin-left: auto; font-size: 11.5px; color: var(--faint); }
+.sp.on { background: var(--red-50); color: var(--red); font-weight: 600; }
+.sp.on .ic { color: var(--red); }
+.sub { padding-left: 22px; }
+.sub .sp { font-size: 13px; padding: 5px 10px; }
+.doc { overflow: hidden; }
+.doc .bar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.viewer { background: #EFEDEA; padding: 22px; height: 640px; overflow: hidden; }
+.pagex { background: #fff; width: 100%; max-width: 560px; margin: 0 auto; border-radius: 4px; box-shadow: 0 2px 10px rgba(0, 0, 0, .08); padding: 38px 44px; font-size: 12.5px; color: #333; line-height: 1.85; }
+.pagex h3 { font-family: var(--serif); font-size: 19px; text-align: center; margin-bottom: 4px; }
+.pagex .m { text-align: center; color: var(--muted); font-size: 11.5px; margin-bottom: 16px; }
+.pagex h4 { font-size: 13.5px; margin: 14px 0 4px; }
+.pagex .hl { background: #FBE7C9; }
+.ai { padding: 0; }
+.ai .sec { padding: 14px 16px; border-bottom: 1px solid var(--line); }
+.ai .sec:last-child { border-bottom: 0; }
+.qa .q { background: #F4F3F0; border-radius: 12px 12px 4px 12px; padding: 8px 12px; margin-left: 40px; font-size: 13px; color: var(--ink); }
+.qa .a { margin-top: 10px; font-size: 13px; color: var(--ink); line-height: 1.7; }
+.srcs { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+.srcs div { display: flex; gap: 8px; align-items: center; font-size: 12px; padding: 6px 8px; border-radius: 8px; background: #FAF9F7; border: 1px solid var(--line); }
+.ask2 { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line-2); border-radius: 11px; padding: 8px 8px 8px 12px; color: var(--faint); font-size: 13px; margin-top: 12px; }
+</style></head>
+<body data-page="kb" data-search="搜索文档、文件内容，或向知识库提问">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap" style="max-width:1220px">
+<div class="row small muted" style="margin:4px 0 6px"><a href="kb.html">知识库</a><i class="ic" data-i="LuChevronRight"></i><span>活动档案</span><i class="ic" data-i="LuChevronRight"></i><span>2026 秋</span></div>
+<div class="row between" style="margin:0 0 14px"><div><div class="row"><h1 class="h-page">AI 产品分享会</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>按空间分级可见</span></div><p class="muted" style="margin-top:2px">活动档案 · 纪要、PPT、照片和复盘放在一起，与活动和嘉宾资源双向关联</p></div>
+<div class="row"><span class="btn"><i class="ic" data-i="LuExternalLink"></i>在飞书中打开</span><span class="btn btn-p"><i class="ic" data-i="LuUpload"></i>上传文件</span></div></div>
+<div class="kb">
+  <div class="card tree rel"><span class="mk" style="left:-8px;top:-8px">1</span>
+    <div class="small muted b" style="padding:4px 10px 8px;color:var(--muted)">知识空间</div>
+    <div class="sp"><i class="ic" data-i="LuBuilding2"></i>学社总览<span class="c">24</span></div>
+    <div class="sp"><i class="ic" data-i="LuBookOpen"></i>部门手册<span class="c">58</span></div>
+    <div class="sp on"><i class="ic" data-i="LuFolderOpen"></i>活动档案<span class="c">136</span></div>
+    <div class="sub"><div class="sp"><i class="ic" data-i="LuFolder"></i>2026 秋</div><div class="sp" style="color:var(--red);font-weight:600"><i class="ic" data-i="LuFileText" style="color:var(--red)"></i>AI 产品分享会</div><div class="sp"><i class="ic" data-i="LuFolder"></i>2026 春</div><div class="sp"><i class="ic" data-i="LuFolder"></i>黑客松</div></div>
+    <div class="sp"><i class="ic" data-i="LuDatabase"></i>资源资料<span class="c"><i class="ic" data-i="LuLock"></i></span></div>
+    <div class="sp"><i class="ic" data-i="LuSparkles"></i>AI 内容库<span class="c">71</span></div>
+    <div class="sp"><i class="ic" data-i="LuInbox"></i>归档区<span class="c">只读</span></div>
+    <div class="sep"></div>
+    <div class="sp"><i class="ic" data-i="LuClock"></i>最近浏览</div>
+    <div class="sp"><i class="ic" data-i="LuStar"></i>我的收藏</div>
+  </div>
+  <div class="card doc rel"><span class="mk" style="left:-8px;top:-8px">2</span>
+    <div class="bar"><div class="fi t-red" style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center"><i class="ic" data-i="LuFileText"></i></div><div class="grow"><div class="b">AI 产品分享会 · 活动纪要.pdf</div><div class="xs muted">活动档案 / 2026 秋 · 3 页 · 1.2 MB</div></div><span class="tag t-green">学社内可见</span><span class="icon-btn" style="width:32px;height:32px"><i class="ic" data-i="LuDownload"></i></span><span class="icon-btn" style="width:32px;height:32px"><i class="ic" data-i="LuEllipsis"></i></span></div>
+    <div class="viewer"><div class="pagex">
+      <h3>AI 产品分享会 · 活动纪要</h3><div class="m">2026 年 10 月 24 日 · 理教 201 · 记录：同学 B</div>
+      <h4>一、活动概况</h4><p>本次分享会邀请两位嘉宾，围绕“AI 产品从 0 到 1”展开，现场约 90 位同学参加，线上回放观看约 300 人次。</p>
+      <h4>二、嘉宾观点摘录</h4><p>1. 第一版产品应只解决一个具体问题，<span class="hl">先让三位真实用户独立完成核心流程</span>，再决定下一步。</p><p>2. 校园场景的冷启动可以从一个宿舍楼或一门课开始，优先选择问题最痛的人群。</p><p>3. 评估指标先看留存与完成率，不要过早追求注册量。</p>
+      <h4>三、后续事项</h4><p>· 嘉宾愿意下学期再来做工作坊（时间待确认）<br>· 整理讲座内容发布到社区“精选内容”<br>· 同学提问汇总见附件二</p>
+      <h4>四、待确认事项</h4><p>· 工作坊的具体时间与形式</p>
+    </div></div>
+  </div>
+  <div class="card ai rel"><span class="mk" style="left:-8px;top:-8px">3</span>
+    <div class="sec"><div class="row between"><span class="ai-tag"><i class="ic" data-i="LuSparkles"></i>AI 摘要</span><span class="lv lv1">V1</span></div>
+      <ul style="margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--ink);line-height:1.7"><li>嘉宾建议第一版只解决一个问题</li><li>校园冷启动从小范围人群开始</li><li>下学期工作坊待确认时间</li></ul>
+      <div class="row" style="gap:6px;margin-top:10px"><span class="tag">活动纪要</span><span class="tag">AI 产品</span><span class="tag">冷启动</span><span class="xs muted">AI 自动标签</span></div></div>
+    <div class="sec qa rel"><span class="mk" style="right:10px;top:10px">4</span><div class="small b" style="margin-bottom:8px">向这份文档 / 整个空间提问</div>
+      <div class="q">嘉宾对第一批用户有什么建议？</div>
+      <div class="a">嘉宾建议先让三位真实用户独立完成核心流程<span class="cite">1</span>，冷启动可以从一个宿舍楼或一门课开始，优先选择问题最痛的人群<span class="cite">1</span>。上学期黑客松复盘里也有类似结论<span class="cite">2</span>。</div>
+      <div class="srcs"><div><span class="cite">1</span><i class="ic" data-i="LuFileText"></i>本文档 · 第 1 页 · 二、嘉宾观点摘录</div><div><span class="cite">2</span><i class="ic" data-i="LuFileText"></i>黑客松复盘（2026 春）· 第 3 页</div></div>
+      <div class="ask2">继续提问……<span class="grow"></span><span class="btn btn-sm btn-p"><i class="ic" data-i="LuSend"></i></span></div>
+    </div>
+    <div class="sec"><div class="small b" style="margin-bottom:8px">文件信息</div>
+      <dl class="kv" style="font-size:12.5px;margin:0"><dt>来源</dt><dd>活动整理</dd><dt>维护人</dt><dd>同学 B</dd><dt>可见范围</dt><dd>学社成员</dd><dt>版本</dt><dd>v3 · 2026-10-25 <a class="lnk" style="font-size:12px">历史</a></dd><dt>关联</dt><dd>活动「AI 产品从 0 到 1」· 资源「示例人物 A」</dd></dl>
+    </div>
+  </div>
+</div>
+</div></div></div></div>
+</body></html>

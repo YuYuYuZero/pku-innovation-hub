@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>精选 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css"><script src="assets/icons.js"></script><script src="assets/app.js"></script>
+<style>
+.cols { display: grid; grid-template-columns: 1fr 320px; gap: 18px; align-items: start; }
+.hero { display: grid; grid-template-columns: 1.1fr 1fr; overflow: hidden; }
+.hero .cover { border-radius: 0; min-height: 240px; }
+.hero .tx { padding: 22px 24px; }
+.ag { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+.ar .cover { height: 112px; border-radius: 14px 14px 0 0; }
+.ar .tx { padding: 12px 14px 14px; }
+.ar .tt { font-weight: 600; color: var(--ink); font-size: 14.5px; line-height: 1.45; height: 42px; overflow: hidden; }
+.src { font-size: 12px; color: var(--muted); margin-top: 8px; display: flex; gap: 5px; align-items: center; }
+.cl { display: flex; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.cl:last-child { border-bottom: 0; }
+.cl .ci { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex: none; }
+.flow { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.flow div { display: flex; gap: 10px; align-items: center; font-size: 13px; }
+.flow .n { width: 22px; height: 22px; border-radius: 50%; background: var(--red-50); color: var(--red); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; }
+</style></head>
+<body data-page="featured" data-search="搜索讲座整理、读书会笔记、课程">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap">
+<div class="row between" style="margin:6px 0 16px"><div><h1 class="h-page">精选</h1><p class="muted" style="margin-top:2px">学社活动和读书会沉淀下来、经整理公开的内容，以及北大 AI 课程导航</p></div></div>
+<div class="row rel" style="gap:8px;margin-bottom:14px"><span class="mk" style="left:-8px;top:-8px">1</span><span class="chip on">全部</span><span class="chip">讲座整理</span><span class="chip">读书会笔记</span><span class="chip">活动回顾</span><span class="chip">工具教程</span><span class="chip">课程导航</span></div>
+<div class="cols">
+<div>
+  <div class="card hero rel"><span class="mk" style="left:-8px;top:-8px">2</span>
+    <div class="cover cv1"><div class="cv-k">讲座整理</div><div class="cv-t"><b>第一版产品怎么定范围</b><span>AI 产品从 0 到 1 · 分享会</span></div></div>
+    <div class="tx"><div class="row"><span class="tag t-red">讲座整理</span><span class="ai-tag"><i class="ic" data-i="LuSparkles"></i>AI 整理 · 人工审核</span></div>
+      <h2 style="font-size:20px;margin-top:10px">讲座整理｜第一版产品怎么定范围</h2>
+      <p class="small muted" style="margin-top:6px;line-height:1.7">嘉宾从三个真实项目出发，讲第一版只解决一个问题、先让三位真实用户独立走完核心流程，以及校园场景的冷启动方法。</p>
+      <div class="src"><i class="ic" data-i="LuLink"></i>来源：活动「AI 产品从 0 到 1」· 知识库活动档案</div>
+      <div class="row" style="margin-top:14px"><span class="btn btn-p">阅读全文</span><span class="btn"><i class="ic" data-i="LuMessageCircle"></i>去讨论 · 14</span></div></div>
+  </div>
+  <div class="ag rel"><span class="mk" style="left:-8px;top:-8px">3</span>
+    <div class="card ar"><div class="cover cv5"><div class="cv-k">READING</div></div><div class="tx"><div class="tt">读书会笔记｜Agent 与工作流的边界</div><div class="src"><i class="ic" data-i="LuLink"></i>读书会第 6 期</div></div></div>
+    <div class="card ar"><div class="cover cv3"><div class="cv-k">PAPER</div></div><div class="tx"><div class="tt">论文笔记｜RAG 在长文档上为什么会答偏</div><div class="src"><i class="ic" data-i="LuLink"></i>讨论 · 小许</div></div></div>
+    <div class="card ar"><div class="cover cv2"><div class="cv-k">WORKSHOP</div></div><div class="tx"><div class="tt">工具教程｜做一个自己的知识库助手</div><div class="src"><i class="ic" data-i="LuLink"></i>工作坊第 3 期</div></div></div>
+    <div class="card ar"><div class="cover cv4"><div class="cv-k">RECAP</div></div><div class="tx"><div class="tt">活动回顾｜AI for Campus 黑客松（2026 春）</div><div class="src"><i class="ic" data-i="LuLink"></i>活动档案</div></div></div>
+    <div class="card ar"><div class="cover cv6"><div class="cv-k" style="color:#8C1D24">TALK</div></div><div class="tx"><div class="tt">讲座整理｜AI + 人文社科的研究方法</div><div class="src"><i class="ic" data-i="LuLink"></i>分享会（示例）</div></div></div>
+    <div class="card ar"><div class="cover cv1" style="filter:saturate(.6)"><div class="cv-k">GUIDE</div></div><div class="tx"><div class="tt">入门｜非计算机专业的大模型应用学习顺序</div><div class="src"><i class="ic" data-i="LuLink"></i>讨论精华</div></div></div>
+  </div>
+</div>
+<div>
+  <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">4</span><div class="row between"><span class="h-sec">北大 AI 课程导航</span><span class="xs muted">链接官方入口</span></div>
+    <div class="cl"><div class="ci t-red"><i class="ic" data-i="LuGraduationCap"></i></div><div class="grow"><div class="b" style="font-size:13.5px">北大数智教育</div><div class="xs muted">学校官方：课程、工具与讲堂</div></div><i class="ic" data-i="LuExternalLink" style="color:var(--muted)"></i></div>
+    <div class="cl"><div class="ci t-blue"><i class="ic" data-i="LuBookOpen"></i></div><div class="grow"><div class="b" style="font-size:13.5px">AI 通识与基础课程</div><div class="xs muted">按院系、学期筛选（示例）</div></div><i class="ic" data-i="LuExternalLink" style="color:var(--muted)"></i></div>
+    <div class="cl"><div class="ci t-teal"><i class="ic" data-i="LuLanguages"></i></div><div class="grow"><div class="b" style="font-size:13.5px">AI + 学科课程</div><div class="xs muted">法学、经济、医学、人文等（示例）</div></div><i class="ic" data-i="LuExternalLink" style="color:var(--muted)"></i></div>
+    <div class="cl"><div class="ci t-violet"><i class="ic" data-i="LuPlay"></i></div><div class="grow"><div class="b" style="font-size:13.5px">公开课与讲座回放</div><div class="xs muted">MOOC、讲堂回放（示例）</div></div><i class="ic" data-i="LuExternalLink" style="color:var(--muted)"></i></div>
+  </div>
+  <div class="card pad rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">5</span><span class="h-sec">内容怎么进入精选</span>
+    <div class="flow"><div><span class="n">1</span>活动、读书会的资料归档到知识库</div><div><span class="n">2</span>AI 起草讲座整理或回顾</div><div><span class="n">3</span>负责人审核，标记“公开”</div><div><span class="n">4</span>发布到精选，标注来源与 AI 生成</div></div>
+  </div>
+</div>
+</div>
+</div></div></div></div>
+</body></html>

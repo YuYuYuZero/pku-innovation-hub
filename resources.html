@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>资源库 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css"><script src="assets/icons.js"></script><script src="assets/app.js"></script>
+<style>
+.cols { display: grid; grid-template-columns: 1fr 400px; gap: 18px; align-items: start; }
+.sbox { display: flex; gap: 10px; }
+.sbox .input { flex: 1; height: 48px; font-size: 15px; }
+.mode { display: inline-flex; background: #EFEDE9; border-radius: 10px; padding: 3px; }
+.mode a { padding: 0 12px; height: 42px; display: inline-flex; align-items: center; gap: 6px; border-radius: 8px; font-size: 13.5px; color: var(--muted); }
+.mode a.on { background: #fff; color: var(--red); font-weight: 600; box-shadow: var(--shadow-sm); }
+.res { padding: 16px 18px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; }
+.res:last-child { border-bottom: 0; }
+.res.sel { background: #FFFBFA; box-shadow: inset 3px 0 0 var(--red); }
+.res .nm { font-size: 15.5px; font-weight: 700; color: var(--ink); }
+.res .help { color: var(--ink); margin-top: 4px; font-size: 14px; }
+.res .why { margin-top: 8px; font-size: 12.5px; color: #7A4B1C; background: var(--gold-50); border-radius: 8px; padding: 5px 9px; display: inline-flex; gap: 6px; align-items: center; }
+.res .ft { margin-top: 8px; font-size: 12.5px; color: var(--muted); display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.ra { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.det { position: sticky; top: 76px; }
+.det .hd { padding: 20px 20px 16px; border-bottom: 1px solid var(--line); }
+.det .sec { padding: 14px 20px; border-bottom: 1px solid var(--line); }
+.det .sec:last-child { border-bottom: 0; }
+.det .st { font-size: 12.5px; color: var(--muted); font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.contact { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #FAF9F7; border: 1px solid var(--line); }
+.locked { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 10px; background: repeating-linear-gradient(135deg, #F6F5F2 0 8px, #F1EFEB 8px 16px); color: var(--muted); font-size: 13px; margin-top: 8px; }
+.log { font-size: 12.5px; color: var(--muted); display: flex; gap: 8px; padding: 4px 0; }
+.log b { color: var(--text); font-weight: 500; }
+</style></head>
+<body data-page="resources" data-search="在资源库中搜索">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap" style="max-width:1180px">
+<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">资源库</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>学社成员可见</span></div><p class="muted" style="margin-top:2px">学社对接过的人、机构和骨干，与资料、活动、对接记录连在一起。找到后联系学社对接人</p></div>
+<div class="row"><span class="btn"><i class="ic" data-i="LuListPlus"></i>我的清单 · 3</span><a class="btn" href="upload.html"><i class="ic" data-i="LuUpload"></i>批量导入</a><a class="btn btn-p" href="resource_new.html"><i class="ic" data-i="LuPlus"></i>录入资源</a></div></div>
+
+<div class="card pad rel" style="padding:14px 16px"><span class="mk" style="left:-8px;top:-8px">1</span>
+  <div class="sbox"><div class="mode"><a>关键词</a><a class="on"><i class="ic" data-i="LuSparkles"></i>AI 搜索</a></div><div class="input" style="color:var(--ink)"><i class="ic" data-i="LuSearch" style="color:var(--muted)"></i>想找做 AI 教育、可以来做分享或当评委的人</div><span class="btn btn-p btn-lg">搜索</span></div>
+  <div class="row wrap-x rel" style="gap:8px;margin-top:12px"><span class="mk" style="left:-10px;top:-6px">2</span><span class="small muted" style="margin-right:2px">类型</span><span class="chip on">全部</span><span class="chip">外部个人</span><span class="chip">机构资源</span><span class="chip">学社骨干</span><span class="chip">学社资料</span><span class="chip"><i class="ic" data-i="LuClock"></i>近期对接过</span><span class="grow"></span><span class="chip">领域：AI、教育 <i class="ic" data-i="LuChevronDown"></i></span><span class="chip">对接部门 <i class="ic" data-i="LuChevronDown"></i></span><span class="chip">更新时间 <i class="ic" data-i="LuChevronDown"></i></span></div>
+</div>
+
+<div class="row between" style="margin:14px 2px 10px"><div class="small muted"><span class="ai-tag"><i class="ic" data-i="LuSparkles"></i>AI 理解</span>&nbsp; 领域“AI + 教育”· 可提供“分享 / 评委”· 找到 <b class="b">3</b> 项资源</div><div class="small muted">最近更新优先 <i class="ic" data-i="LuChevronDown"></i></div></div>
+
+<div class="cols">
+<div class="card rel"><span class="mk" style="left:-8px;top:-8px">3</span>
+  <div class="res sel"><div class="ra t-red"><i class="ic" data-i="LuUser"></i></div><div class="grow"><div class="row"><span class="nm">示例人物 A</span><span class="muted small">某教育科技公司 · 产品负责人</span><span class="tag t-red">外部个人</span></div>
+    <div class="help">可交流 AI 教育产品开发经验；可做分享嘉宾，是否担任评委需另行确认。</div>
+    <div class="why"><i class="ic" data-i="LuSparkles"></i>匹配理由：领域含“AI、教育”，曾在学社分享会担任嘉宾</div>
+    <div class="ft"><span><i class="ic" data-i="LuHandshake"></i>学社对接人：同学 B（外联部）</span><span><i class="ic" data-i="LuFileText"></i>来源：活动交流记录</span><span>更新于 2026-10-24</span></div></div><div><span class="tag t-green">已审核</span></div></div>
+  <div class="res"><div class="ra t-blue"><i class="ic" data-i="LuBuilding2"></i></div><div class="grow"><div class="row"><span class="nm">示例机构 C</span><span class="muted small">教育公益基金会（示例）</span><span class="tag t-blue">机构资源</span></div>
+    <div class="help">关注 AI 与教育公平，可提供活动场地与小额赞助，曾支持校园黑客松。</div>
+    <div class="why"><i class="ic" data-i="LuSparkles"></i>匹配理由：方向“AI + 教育”，有活动支持记录</div>
+    <div class="ft"><span><i class="ic" data-i="LuHandshake"></i>学社对接人：同学 D（外联部）</span><span><i class="ic" data-i="LuFileText"></i>来源：合作资料</span><span>更新于 2026-10-12</span></div></div><div><span class="tag t-green">已审核</span></div></div>
+  <div class="res"><div class="ra t-teal"><i class="ic" data-i="LuBadgeCheck"></i></div><div class="grow"><div class="row"><span class="nm">林同学</span><span class="muted small">AI俱乐部 · 学社骨干</span><span class="tag t-teal">学社骨干</span></div>
+    <div class="help">做过两届 AI 教育黑客松的组织，熟悉评审流程，可协助邀请评委。</div>
+    <div class="why"><i class="ic" data-i="LuSparkles"></i>匹配理由：有黑客松评审组织经验</div>
+    <div class="ft"><span><i class="ic" data-i="LuHandshake"></i>本人即对接人</span><span>更新于 2026-09-30</span></div></div><div><span class="tag t-green">已审核</span></div></div>
+  <div class="pad small muted" style="text-align:center;border-top:1px solid var(--line)">没找到合适的？<a class="lnk">在社区发布需求</a> 或 <a class="lnk">问 AI 助手</a></div>
+</div>
+
+<div class="card det rel"><span class="mk" style="left:-8px;top:-8px">4</span>
+  <div class="hd"><div class="row between"><span class="tag t-red">外部个人</span><div class="row" style="gap:6px"><span class="btn btn-sm"><i class="ic" data-i="LuListPlus"></i>加入清单</span><a class="icon-btn" style="width:32px;height:32px" href="resource_detail.html"><i class="ic" data-i="LuArrowUpRight"></i></a></div></div>
+    <h2 style="font-size:21px;margin-top:10px">示例人物 A</h2><div class="muted" style="margin-top:2px">某教育科技公司 · 产品负责人</div>
+    <div class="row" style="gap:6px;margin-top:10px"><span class="tag">AI</span><span class="tag">教育</span><span class="tag">产品</span></div>
+    <div class="tabs" style="margin-top:12px;gap:18px"><a class="on">概览</a><a>关系 · 6</a><a>对接记录 · 3</a></div></div>
+  <div class="sec"><div class="st">可提供的帮助</div><div style="color:var(--ink)">可交流 AI 教育产品开发经验；可做分享嘉宾。是否担任评委需另行确认。</div><div class="small muted" style="margin-top:6px">待确认：时间偏好、是否可线上参与</div></div>
+  <div class="sec rel"><span class="mk" style="right:12px;top:10px">5</span><div class="st">学社对接人</div>
+    <div class="contact"><span class="av av-sm a3">B</span><div class="grow"><div class="b" style="font-size:13.5px">同学 B</div><div class="xs muted">外联部 · 最近对接 10-24</div></div><span class="btn btn-sm btn-p"><i class="ic" data-i="LuMessageCircle"></i>联系对接人</span></div>
+    <div class="locked"><i class="ic" data-i="LuEyeOff"></i>手机号、微信号仅维护人可见，请通过学社对接人联系</div></div>
+  <div class="sec rel"><span class="mk" style="right:12px;top:10px">6</span><div class="st"><i class="ic" data-i="LuNetwork"></i>关联</div>
+    <div class="row wrap-x" style="gap:6px"><span class="chip" style="height:28px"><i class="ic" data-i="LuBuilding2"></i>某教育科技公司</span><span class="chip" style="height:28px"><i class="ic" data-i="LuCalendarDays"></i>AI 产品分享会 · 嘉宾</span><span class="chip" style="height:28px"><i class="ic" data-i="LuFileText"></i>交流纪要.pdf</span><span class="chip" style="height:28px"><i class="ic" data-i="LuUser"></i>同机构 · 示例人物 K</span></div></div>
+  <div class="sec"><div class="st"><i class="ic" data-i="LuHistory"></i>最近对接</div>
+    <div class="log"><span>10-24</span><b>同学 B：分享会后交流，对方愿意下学期再来做工作坊</b></div>
+    <div class="log"><span>05-18</span><b>同学 B：邀请担任分享嘉宾，已完成</b></div>
+    <div class="row" style="margin-top:10px"><span class="btn btn-sm"><i class="ic" data-i="LuPlus"></i>记一笔对接</span><span class="btn btn-sm"><i class="ic" data-i="LuPenLine"></i>纠错</span></div></div>
+</div>
+</div>
+</div></div></div></div>
+</body></html>
