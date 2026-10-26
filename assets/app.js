@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261026b" alt="北京大学校徽">`;
+const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261026c" alt="北京大学校徽">`;
 
 const NAV = [
   { g: "", items: [
@@ -8,7 +8,7 @@ const NAV = [
   { g: "学社资产 · 成员可见", items: [
     ["resources", "资源库", "resources.html", "LuDatabase", 1],
     ["kb", "知识库", "kb.html", "LuLibrary", 1],
-    ["needs", "需求对接", "needs.html", "LuHandshake", 1],
+    ["needs", "资源对接", "needs.html", "LuHandshake", 1],
   ] },
   { g: "工具 · AI", items: [
     ["assistant", "AI 助手", "assistant.html", "LuSparkles"],
@@ -58,7 +58,7 @@ function renderIcons() {
 // 原型目录：所有页面与对应文件，便于在 GitHub Pages 上预览
 const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
-  ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档阅读", "kb_doc.html"], ["需求对接", "needs.html"],
+  ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档阅读", "kb_doc.html"], ["资源对接", "needs.html"],
   ["AI 助手", "assistant.html"], ["助手技能", "skills.html"], ["技能：会议纪要", "tool_minutes.html"], ["讨论", "community.html"],
   ["活动", "events.html"], ["精选", "featured.html"], ["审核与管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
 ];
