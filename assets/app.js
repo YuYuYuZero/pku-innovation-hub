@@ -1,14 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const LOGO = `<svg class="mark" viewBox="0 0 40 40" aria-label="创新学社">
-  <circle cx="20" cy="20" r="20" fill="#8C1D24"/>
-  <circle cx="20" cy="20" r="16.6" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width=".8"/>
-  <path d="M20 11.2 L12.4 24.4 L27.6 24.4 Z" fill="none" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
-  <circle cx="20" cy="11.2" r="3" fill="#fff"/>
-  <circle cx="12.4" cy="24.4" r="3" fill="#fff"/>
-  <circle cx="27.6" cy="24.4" r="3" fill="#fff"/>
-  <path d="M20 16.6 l1.1 2.5 2.5 1.1 -2.5 1.1 -1.1 2.5 -1.1 -2.5 -2.5 -1.1 2.5 -1.1z" fill="#E9C477"/>
-  <path d="M13.5 30.2 h13" stroke="#fff" stroke-opacity=".6" stroke-width="1" stroke-linecap="round"/>
-</svg>`;
+const LOGO = `<img class="mark" src="assets/pku-logo.svg" alt="北京大学校徽">`;
 
 const NAV = [
   { g: "", items: [
@@ -40,7 +31,7 @@ function renderShell() {
   const sb = document.getElementById("sb");
   if (sb) {
     sb.className = "sb";
-    sb.innerHTML = `<a class="brand" href="index.html">${LOGO}<div class="wm"><b>创新学社</b><span>资源 · 工具 · 社区</span></div></a>` +
+    sb.innerHTML = `<a class="brand" href="index.html">${LOGO}<div class="wm"><b>北大创新学社</b><span>资源 · 工具 · 社区</span></div></a>` +
       NAV.map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}</div>` : ""}` + g.items.map(([id, t, href, icon, lock, cnt]) =>
         `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${cnt ? `<span class="cnt">${cnt}</span>` : lock ? `<span class="lk">${ic("LuLock")}</span>` : ""}</a>`).join("") + `</div>`).join("") +
       `<a class="me" href="#"><span class="av av-sm a1">张</span><div class="who"><b>张同学</b><span>AI俱乐部 · 学社成员</span></div>${ic("LuSettings")}</a>`;
