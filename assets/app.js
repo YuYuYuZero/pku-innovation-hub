@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const LOGO = `<img class="mark" src="assets/pku-logo.svg" alt="北京大学校徽">`;
+const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261026b" alt="北京大学校徽">`;
 
 const NAV = [
   { g: "", items: [
