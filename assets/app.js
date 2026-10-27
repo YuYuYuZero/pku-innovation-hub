@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261026d" alt="北京大学校徽">`;
+const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261026e" alt="北京大学校徽">`;
 
 const NAV = [
   { g: "", items: [
@@ -14,12 +14,11 @@ const NAV = [
     ["assistant", "AI 助手", "assistant.html", "LuSparkles"],
     ["skills", "助手技能", "skills.html", "LuWandSparkles"],
   ] },
-  { g: "社区 · 创业与交流", items: [
-    ["projects", "项目", "projects.html", "LuRocket"],
-    ["investors", "投资人与机构", "investors.html", "LuBriefcase"],
-    ["events", "活动", "events.html", "LuCalendarDays"],
+  { g: "社区 · 北大同学", items: [
     ["community", "讨论", "community.html", "LuMessagesSquare"],
+    ["events", "活动", "events.html", "LuCalendarDays"],
     ["featured", "精选", "featured.html", "LuBookOpen"],
+    ["startup", "创业", "projects.html", "LuRocket"],
   ] },
   { g: "管理 · 维护人", items: [
     ["admin", "审核与管理", "admin.html", "LuShieldCheck", 1, 6],
@@ -61,8 +60,8 @@ function renderIcons() {
 const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
   ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档阅读", "kb_doc.html"], ["资源对接", "needs.html"],
-  ["AI 助手", "assistant.html"], ["助手技能", "skills.html"], ["技能：会议纪要", "tool_minutes.html"], ["项目", "projects.html"],
-  ["项目详情", "project_detail.html"], ["投资人与机构", "investors.html"], ["活动", "events.html"], ["讨论", "community.html"], ["精选", "featured.html"], ["审核与管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
+  ["AI 助手", "assistant.html"], ["助手技能", "skills.html"], ["技能：会议纪要", "tool_minutes.html"], ["讨论", "community.html"],
+  ["活动", "events.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"], ["审核与管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
 ];
 function renderProtoNav() {
   if (new URLSearchParams(location.search).has("shot")) return;
