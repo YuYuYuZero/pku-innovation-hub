@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>审核与管理 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261026c"><script src="assets/icons.js?v=20261026c"></script><script src="assets/app.js?v=20261026c"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261026d"><script src="assets/icons.js?v=20261026d"></script><script src="assets/app.js?v=20261026d"></script>
 <style>
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 .stats .card { padding: 16px 18px; display: flex; gap: 14px; align-items: center; }
@@ -17,23 +17,24 @@
 <body data-page="admin" data-search="搜索成员、待办、记录">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row between" style="margin:6px 0 16px"><div><div class="row"><h1 class="h-page">审核与管理</h1><span class="tag t-line"><i class="ic" data-i="LuShieldCheck"></i>维护人视图</span></div><p class="muted" style="margin-top:2px">资源、资料、经验和公开内容的审核，以及成员权限和维护提醒</p></div>
+<div class="row between" style="margin:6px 0 16px"><div><div class="row"><h1 class="h-page">审核与管理</h1><span class="tag t-line"><i class="ic" data-i="LuShieldCheck"></i>维护人视图</span></div><p class="muted" style="margin-top:2px">资源、资料、公开内容和机构入驻的审核，以及成员权限和维护提醒</p></div>
 <div class="tabs" style="border:0"><a class="on">审核</a><a>维护提醒</a><a>成员与权限</a><a>操作日志</a></div></div>
 <div class="stats rel"><span class="mk" style="left:-8px;top:-8px">1</span>
-  <div class="card"><div class="si t-red"><i class="ic" data-i="LuInbox"></i></div><div class="stat"><b>5</b><span>待审核</span></div></div>
+  <div class="card"><div class="si t-red"><i class="ic" data-i="LuInbox"></i></div><div class="stat"><b>6</b><span>待审核</span></div></div>
   <div class="card"><div class="si t-blue"><i class="ic" data-i="LuDatabase"></i></div><div class="stat"><b>412</b><span>资源总数</span></div></div>
   <div class="card"><div class="si t-teal"><i class="ic" data-i="LuLibrary"></i></div><div class="stat"><b>1,036</b><span>知识库文档</span></div></div>
   <div class="card"><div class="si t-gold"><i class="ic" data-i="LuClock"></i></div><div class="stat"><b>23</b><span>超过 6 个月未更新的资源</span></div></div>
 </div>
 <div class="cols">
   <div class="card rel"><span class="mk" style="left:-8px;top:-8px">2</span>
-    <div class="pad row between" style="padding-bottom:10px"><div class="seg"><a class="on">全部 5</a><a>资源 3</a><a>资料 1</a><a>公开内容 1</a></div><div class="row"><span class="btn btn-sm">驳回所选</span><span class="btn btn-sm btn-p"><i class="ic" data-i="LuCheck"></i>通过所选（2）</span></div></div>
+    <div class="pad row between" style="padding-bottom:10px"><div class="seg"><a class="on">全部 6</a><a>资源 3</a><a>资料 1</a><a>公开内容 1</a><a>入驻 1</a></div><div class="row"><span class="btn btn-sm">驳回所选</span><span class="btn btn-sm btn-p"><i class="ic" data-i="LuCheck"></i>通过所选（2）</span></div></div>
     <table class="tbl rv">
       <tr><th style="width:36px"></th><th>内容</th><th style="width:250px">AI 审核建议</th><th style="width:118px">提交</th><th style="width:96px"></th></tr>
       <tr><td><span class="ckb on"></span></td><td><div class="row"><span class="tag t-red">资源</span><span class="b">示例人物 E</span></div><div class="small muted" style="margin-top:4px">某 AI 医疗公司 · 可交流 AI 医疗落地经验</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuTriangleAlert"></i>与已有记录“示例人物 E”同名同机构，建议合并</div></td><td class="small">同学 F<br><span class="muted">10 分钟前</span></td><td><span class="btn btn-sm">查看</span></td></tr>
       <tr><td><span class="ckb on"></span></td><td><div class="row"><span class="tag t-blue">资源</span><span class="b">示例机构 F</span></div><div class="small muted" style="margin-top:4px">某孵化器 · 可提供路演场地</div></td><td><div class="sug n-teal"><i class="ic" data-i="LuCircleCheck"></i>必填项完整，未发现重复</div></td><td class="small">批量导入<br><span class="muted">1 小时前</span></td><td><span class="btn btn-sm">查看</span></td></tr>
       <tr><td><span class="ckb"></span></td><td><div class="row"><span class="tag t-teal">资料</span><span class="b">黑客松赞助方案.pdf</span></div><div class="small muted" style="margin-top:4px">申请可见范围：学社成员</div></td><td><div class="sug n-red"><i class="ic" data-i="LuEyeOff"></i>文中含 2 个手机号，建议改为“仅维护人”或打码</div></td><td class="small">同学 D<br><span class="muted">2 小时前</span></td><td><span class="btn btn-sm">查看</span></td></tr>
       <tr><td><span class="ckb"></span></td><td><div class="row"><span class="tag t-gold">精选</span><span class="b">讲座整理｜第一版产品怎么定范围</span></div><div class="small muted" style="margin-top:4px">AI 起草 · 申请公开到“精选”</div></td><td><div class="sug n-gray"><i class="ic" data-i="LuCircleAlert"></i>文中引用嘉宾原话 3 处，建议发布前请嘉宾过目</div></td><td class="small">同学 G<br><span class="muted">昨天</span></td><td><span class="btn btn-sm">查看</span></td></tr>
+      <tr><td><span class="ckb"></span></td><td><div class="row"><span class="tag t-violet">入驻</span><span class="b">示例资本 L</span><span class="xs muted">二期</span></div><div class="small muted" style="margin-top:4px">投资机构 · 申请入驻社区</div></td><td><div class="sug n-teal"><i class="ic" data-i="LuLink"></i>资源库已有该机构记录 O-0342，建议关联为同一条</div></td><td class="small">机构自行申请<br><span class="muted">今天</span></td><td><span class="btn btn-sm">查看</span></td></tr>
       <tr><td><span class="ckb"></span></td><td><div class="row"><span class="tag t-red">资源</span><span class="b">示例人物 H</span></div><div class="small muted" style="margin-top:4px">缺少“可提供的帮助”</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuTriangleAlert"></i>必填项缺失，建议退回补充</div></td><td class="small">同学 C<br><span class="muted">昨天</span></td><td><span class="btn btn-sm">查看</span></td></tr>
     </table>
   </div>
@@ -42,6 +43,7 @@
       <div class="m"><div class="mi t-blue"><i class="ic" data-i="LuUsers"></i></div><div class="grow"><div class="b" style="font-size:13.5px">成员与权限</div><div class="xs muted">与飞书组织同步，入社开通、退社收回</div></div><span class="lv lv0">沉淀</span></div>
       <div class="m"><div class="mi t-teal"><i class="ic" data-i="LuLayers"></i></div><div class="grow"><div class="b" style="font-size:13.5px">空间与可见范围</div><div class="xs muted">知识空间的默认可见范围和维护人</div></div><span class="lv lv0">沉淀</span></div>
       <div class="m"><div class="mi t-gold"><i class="ic" data-i="LuClock"></i></div><div class="grow"><div class="b" style="font-size:13.5px">维护提醒</div><div class="xs muted">长期未更新、疑似重复、缺字段</div></div><span class="lv lv1">提效</span></div>
+      <div class="m"><div class="mi t-violet"><i class="ic" data-i="LuBriefcase"></i></div><div class="grow"><div class="b" style="font-size:13.5px">入驻与社区内容</div><div class="xs muted">机构入驻、项目与活动发布、举报处理（二期）</div></div><span class="lv lv0">沉淀</span></div>
       <div class="m"><div class="mi" style="background:#F2F1EE;color:var(--muted)"><i class="ic" data-i="LuPlus"></i></div><div class="grow"><div class="b" style="font-size:13.5px;color:var(--muted)">内部运行流程</div><div class="xs muted">由综合管理部提出需求后，以技能形式接入</div></div></div>
     </div>
     <div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuHistory"></i><div>所有审核、修改和导出操作都会记录在操作日志中，可按人和时间查询。</div></div>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>项目详情 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css?v=20261026d"><script src="assets/icons.js?v=20261026d"></script><script src="assets/app.js?v=20261026d"></script>
+<style>
+.hdc { padding: 22px 24px; display: flex; gap: 18px; align-items: flex-start; }
+.hdc .lg { width: 68px; height: 68px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 30px; color: #fff; flex: none; background: linear-gradient(135deg, #1F766C, #4FA597); }
+.cols { display: grid; grid-template-columns: 1fr 370px; gap: 16px; margin-top: 16px; align-items: start; }
+.st { font-size: 12.5px; color: var(--muted); font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.stg { display: inline-flex; align-items: center; gap: 3px; font-size: 12px; color: var(--muted); }
+.stg i { width: 16px; height: 5px; border-radius: 3px; background: #E7E4DF; display: block; }
+.stg i.on { background: var(--teal); }
+.stg span { margin-left: 5px; color: var(--teal); font-weight: 600; }
+.pqa { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.pqa > div { background: #FAF9F7; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 13px; color: var(--ink); line-height: 1.65; }
+.pqa .k { font-size: 12px; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+.locked { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: repeating-linear-gradient(135deg, #F6F5F2 0 8px, #F1EFEB 8px 16px); font-size: 13px; margin-top: 12px; }
+.mem { display: flex; gap: 10px; align-items: center; padding: 8px 0; }
+.rolec { border: 1px solid var(--red-100); background: linear-gradient(180deg, #FFFCFB, #FBF4F4); border-radius: 12px; padding: 12px 14px; }
+.rolec .t { font-weight: 700; color: var(--red); font-size: 14px; display: flex; align-items: center; gap: 6px; }
+.rolec dl { display: grid; grid-template-columns: 64px 1fr; gap: 4px 8px; font-size: 12.5px; margin: 8px 0 10px; }
+.rolec dt { color: var(--muted); }
+.rolec dd { margin: 0; color: var(--ink); }
+.tl { position: relative; padding-left: 22px; }
+.tl::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+.tl .e { position: relative; padding: 0 0 14px; }
+.tl .e:last-child { padding-bottom: 0; }
+.tl .e::before { content: ""; position: absolute; left: -20px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--teal); }
+.tl .e.g::before { border-color: var(--gold); }
+.tl .e .d { font-size: 12px; color: var(--muted); }
+.tl .e .w { font-size: 13.5px; color: var(--ink); margin-top: 1px; }
+.sup { display: flex; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.sup:last-child { border-bottom: 0; }
+.sup .si { width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex: none; }
+.rec { padding: 11px 0; border-bottom: 1px solid var(--line); }
+.rec:last-of-type { border-bottom: 0; }
+.rec .why { font-size: 12px; color: var(--red-700); background: var(--red-50); border-radius: 8px; padding: 6px 8px; margin-top: 6px; line-height: 1.5; }
+.org { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex: none; }
+.prog { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.prog:last-of-type { border-bottom: 0; }
+</style></head>
+<body data-page="projects" data-search="搜索项目、方向、招募的角色">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap" style="max-width:1180px">
+<div class="row small muted" style="margin:4px 0 10px"><a href="projects.html">项目</a><i class="ic" data-i="LuChevronRight"></i><span>文献伴读</span></div>
+<div class="card hdc rel"><span class="mk" style="left:-8px;top:-8px">1</span>
+  <div class="lg">文</div>
+  <div class="grow"><div class="row"><h1 style="font-family:var(--serif);font-size:26px">文献伴读</h1><span class="tag t-red"><i class="ic" data-i="LuBadgeCheck"></i>学社成员发起</span><span class="tag t-line">你是发起人</span></div>
+    <div style="color:var(--text);margin-top:4px">帮研究生读论文、写综述的 AI 助手：上传文献后按问题定位原文、对比不同论文的观点，生成带引用的综述草稿</div>
+    <div class="row" style="gap:8px;margin-top:10px"><span class="stg"><i class="on"></i><i class="on"></i><i></i><i></i><span>原型 · 内测中</span></span><span class="tag">AI + 科研</span><span class="tag">Agent</span><span class="tag">检索增强</span><span class="xs muted" style="margin-left:6px">编号 P-0031 · 128 人关注</span></div></div>
+  <div class="row"><span class="btn"><i class="ic" data-i="LuShare2"></i>分享</span><span class="btn"><i class="ic" data-i="LuPenLine"></i>编辑项目</span><span class="btn btn-p"><i class="ic" data-i="LuMegaphone"></i>发布动态</span></div>
+</div>
+<div class="cols">
+  <div>
+    <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">2</span><div class="st"><i class="ic" data-i="LuLightbulb"></i>项目介绍</div>
+      <div class="pqa">
+        <div><div class="k">要解决的问题</div>研究生写综述时要读几十篇论文，很难记住哪篇说了什么、观点之间有什么分歧</div>
+        <div><div class="k">怎么做</div>按段落切分文献，回答和综述草稿的每一句都能点回原文；不确定的地方明确标出</div>
+        <div><div class="k">进展</div>内测用户 120 位，来自 9 个院系；每周约四成用户回来使用（示例）</div>
+      </div>
+      <div class="locked"><span class="tag t-gold" style="height:32px;width:32px;justify-content:center"><i class="ic" data-i="LuFileText"></i></span><div class="grow"><div class="b" style="font-size:13.5px">商业计划书（2026-10）.pdf</div><div class="xs muted">融资计划、用户数据</div></div><div class="seg"><a>公开</a><a class="on"><i class="ic" data-i="LuLock"></i> 认证投资人与机构</a><a>仅团队</a></div></div>
+    </div>
+    <div class="card pad rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">3</span>
+      <div class="row between"><div class="st" style="margin:0"><i class="ic" data-i="LuUsers"></i>团队与招募</div><span class="btn btn-sm btn-soft"><i class="ic" data-i="LuPlus"></i>新增招募</span></div>
+      <div class="grid g2" style="gap:6px 18px;margin-top:6px">
+        <div class="mem"><span class="av a1">张</span><div><div class="b" style="font-size:13.5px">张同学 · 发起人</div><div class="xs muted">AI俱乐部 · 产品与大模型应用</div></div></div>
+        <div class="mem"><span class="av a3">何</span><div><div class="b" style="font-size:13.5px">小何 · 算法</div><div class="xs muted">信科 · 25 级</div></div></div>
+      </div>
+      <div class="grid g2" style="gap:12px;margin-top:10px">
+        <div class="rolec"><div class="t"><i class="ic" data-i="LuCode"></i>技术合伙人 · 大模型与检索</div><dl><dt>希望你</dt><dd>做过检索增强或搜索系统</dd><dt>合作方式</dt><dd>合伙人，股权面谈</dd><dt>投入</dt><dd>每周 15 小时以上</dd></dl><div class="row between"><span class="xs muted">其他同学看到的是“申请加入”</span><span class="btn btn-sm btn-p">查看申请 · 3</span></div></div>
+        <div class="rolec"><div class="t"><i class="ic" data-i="LuMegaphone"></i>增长合伙人 · 校园推广</div><dl><dt>希望你</dt><dd>有社群或内容运营经验</dd><dt>合作方式</dt><dd>兼职起步</dd><dt>投入</dt><dd>每周 8 小时左右</dd></dl><div class="row between"><span class="xs muted">AI 推荐了 2 位人选</span><span class="btn btn-sm btn-p">查看申请 · 1</span></div></div>
+      </div>
+    </div>
+    <div class="card pad rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">4</span><div class="st"><i class="ic" data-i="LuHistory"></i>项目动态</div>
+      <div class="tl">
+        <div class="e"><div class="d">10-24</div><div class="w">发布 0.3 版：综述草稿里的每条引用都能核对原文</div></div>
+        <div class="e g"><div class="d">10-22 · 对接</div><div class="w">参加投资人开放日，与示例投资人 K 交流了一次</div></div>
+        <div class="e"><div class="d">09-15</div><div class="w">开放内测，首批 120 位研究生用户</div></div>
+        <div class="e g"><div class="d">05-18 · 比赛</div><div class="w">AI for Campus 黑客松（2026 春）二等奖，项目从这里开始</div></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">5</span><div class="st"><i class="ic" data-i="LuTarget"></i>寻求的支持</div>
+      <div class="sup"><div class="si t-gold"><i class="ic" data-i="LuCoins"></i></div><div class="grow"><div class="b" style="font-size:13.5px">天使轮</div><div class="xs muted">计划 2027 年春季</div></div><span class="tag t-amber">对接中</span></div>
+      <div class="sup"><div class="si t-blue"><i class="ic" data-i="LuBuilding2"></i></div><div class="grow"><div class="b" style="font-size:13.5px">孵化与场地</div><div class="xs muted">校内外孵化器均可</div></div><span class="tag t-amber">对接中</span></div>
+      <div class="sup"><div class="si t-teal"><i class="ic" data-i="LuCpu"></i></div><div class="grow"><div class="b" style="font-size:13.5px">算力额度</div><div class="xs muted">模型调用与向量检索</div></div><span class="tag">寻找中</span></div>
+      <div class="st" style="margin-top:12px"><i class="ic" data-i="LuHandshake"></i>对接进展</div>
+      <div class="prog"><span class="org t-gold">K</span><div class="grow"><div class="b" style="font-size:13px">示例投资人 K</div><div class="xs muted">已接受 · 已交换联系方式 · 10-22</div></div><span class="tag t-green">进行中</span></div>
+      <div class="prog"><span class="org t-blue">F</span><div class="grow"><div class="b" style="font-size:13px">示例孵化器 F</div><div class="xs muted">已发送 · 10-25</div></div><span class="tag">待回复</span></div>
+      <div class="xs muted" style="margin-top:8px">对接结果同步到资源库中该机构的对接记录，学社成员可见，换届不丢</div>
+    </div>
+    <div class="card pad rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">6</span>
+      <div class="row between"><div class="st" style="margin:0"><i class="ic" data-i="LuSparkles"></i>推荐对接</div><span class="ai-tag"><i class="ic" data-i="LuSparkles"></i>AI 推荐</span></div>
+      <div class="rec"><div class="row"><span class="org t-violet">L</span><div class="grow"><div class="b" style="font-size:13.5px">示例资本 L</div><div class="xs muted">投资机构 · 天使到 A 轮</div></div><span class="btn btn-sm btn-soft">发起对接</span></div><div class="why">关注 Agent 与科研工具；11 月 20 日开放日还有名额</div></div>
+      <div class="rec"><div class="row"><span class="org t-red">营</span><div class="grow"><div class="b" style="font-size:13.5px">AI 创业营 · 第 3 期</div><div class="xs muted">创业营 · 11 月 10 日截止</div></div><span class="btn btn-sm btn-soft">去申请</span></div><div class="why">面向原型阶段的 AI 项目，结营后对接入驻投资人</div></div>
+      <div class="xs muted" style="margin-top:8px"><i class="ic" data-i="LuEyeOff"></i> 推荐只对项目成员可见；申请由你确认后发送</div>
+    </div>
+  </div>
+</div>
+</div></div></div></div>
+</body></html>

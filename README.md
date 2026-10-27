@@ -1,6 +1,6 @@
 # 创新学社智能体系 · 产品原型
 
-北大创新学社智能体系的高保真产品原型：**学社资产（资源 + 知识）· 工具（AI 助手）· 社区（北大同学自由交流 AI）**。
+北大创新学社智能体系的高保真产品原型：**学社资产（资源 + 知识）· 工具（AI 助手）· 社区（以有创业需求的北大同学为核心，也供所有北大同学交流 AI）**。
 
 在线预览：https://yuyuyuzero.github.io/pku-innovation-hub/
 
@@ -19,8 +19,11 @@
 | AI 助手 | `assistant.html` |
 | 助手技能 | `skills.html` |
 | 技能示例：会议纪要 | `tool_minutes.html` |
-| 讨论 | `community.html` |
+| 项目 | `projects.html` |
+| 项目详情 | `project_detail.html` |
+| 投资人与机构 | `investors.html` |
 | 活动 | `events.html` |
+| 讨论 | `community.html` |
 | 精选 | `featured.html` |
 | 审核与管理 | `admin.html` |
 | 登录与身份 | `login.html` |
