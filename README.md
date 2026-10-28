@@ -15,7 +15,7 @@
 | 批量导入 | `upload.html` |
 | 知识库 | `kb.html` |
 | 文档阅读与问答 | `kb_doc.html` |
-| 资源对接 | `needs.html` |
+| 工作台 | `workbench.html` |
 | AI 助手 | `assistant.html` |
 | 助手技能 | `skills.html` |
 | 技能示例：会议纪要 | `tool_minutes.html` |

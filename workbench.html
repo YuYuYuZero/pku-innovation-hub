@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>工作台 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css?v=20261028a"><script src="assets/icons.js?v=20261028a"></script><script src="assets/app.js?v=20261028a"></script>
+<style>
+.cols { display: grid; grid-template-columns: 1fr 340px; gap: 16px; align-items: start; }
+.td { display: flex; gap: 12px; padding: 12px 20px; border-bottom: 1px solid var(--line); align-items: flex-start; }
+.td:last-child { border-bottom: 0; }
+.td .ckb { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--line-2); flex: none; margin-top: 2px; }
+.td .ckb.on { background: var(--red); border-color: var(--red); }
+.td .t { font-weight: 600; color: var(--ink); font-size: 14px; }
+.td .m { font-size: 12.5px; color: var(--muted); margin-top: 3px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.td .due { margin-left: auto; font-size: 12.5px; white-space: nowrap; }
+.stg { display: flex; gap: 3px; }
+.stg i { width: 22px; height: 6px; border-radius: 3px; background: #EFEDE9; }
+.stg i.d { background: var(--red); }
+.stg i.c { background: var(--red-200); }
+</style></head>
+<body data-page="workbench" data-search="搜索待办、活动">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap" style="max-width:1180px">
+<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">工作台</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干可见 · 按角色分级</span></div><p class="muted" style="margin-top:2px">骨干的日常入口：跟进待办、发起活动并走审批、上报工作。部长和会长可以在这里看全局进度</p></div>
+<div class="row"><span class="btn"><i class="ic" data-i="LuNotebookPen"></i>上报工作</span><span class="btn btn-p"><i class="ic" data-i="LuCalendarCheck"></i>发起活动</span></div></div>
+
+<div class="row between rel" style="margin-bottom:14px"><span class="mk" style="left:-8px;top:-8px">1</span>
+  <div class="row"><span class="small muted">视角</span><div class="seg"><a>骨干</a><a class="on">部长</a><a style="color:var(--faint)"><i class="ic" data-i="LuLock"></i> 会长</a></div><span class="small muted">骨干只看自己的待办；部长可看本部门全部；会长可看全社</span></div>
+  <span class="small muted">AI俱乐部 · 本学期</span>
+</div>
+
+<div class="cols">
+  <div>
+    <div class="card rel"><span class="mk" style="left:-8px;top:-8px">2</span>
+      <div class="pad row between" style="padding-bottom:8px"><div class="row"><span class="h-sec">待办</span><div class="seg"><a class="on">我的 5</a><a>部门 14</a><a>待我审批 3</a></div></div></div>
+      <div class="td"><span class="ckb"></span><div class="grow"><div class="t">审批：读书会第 4 期活动提议</div><div class="m"><span class="tag t-amber">审批</span>同学 C 提交 · 已按“活动策划”模板填写，AI 预检无缺项</div></div><span class="due err">今天</span></div>
+      <div class="td"><span class="ckb"></span><div class="grow"><div class="t">黑客松评委邀请：还差 2 位</div><div class="m"><span class="tag t-blue">活动筹备</span><span class="tag">活动 · AI for Campus 黑客松</span>评委 1 / 3 已确认</div></div><span class="due warn">10-30</span></div>
+      <div class="td"><span class="ckb"></span><div class="grow"><div class="t">确认组员上报的工作（3 条）</div><div class="m"><span class="tag t-violet">工作留痕</span>同学 B、同学 D 本周提交</div></div><span class="due warn">11-01</span></div>
+      <div class="td"><span class="ckb"></span><div class="grow"><div class="t">工作坊第 3 期：场地确认后发报名推送</div><div class="m"><span class="tag t-blue">活动筹备</span><span class="tag">活动 · 工作坊第 3 期</span>由审批通过后自动生成</div></div><span class="due muted">11-03</span></div>
+      <div class="td"><span class="ckb on"></span><div class="grow"><div class="t" style="color:var(--muted);text-decoration:line-through">上传黑客松赞助方案到知识库</div><div class="m"><span class="tag">知识库</span>已完成 · 10-26</div></div><span class="due muted">—</span></div>
+    </div>
+
+    <div class="card rel" style="margin-top:16px"><span class="mk" style="left:-8px;top:-8px">3</span>
+      <div class="pad row between" style="padding-bottom:10px"><div><span class="h-sec">活动进度</span><span class="small muted" style="margin-left:8px">提议 → 审批 → 筹备 → 执行 → 复盘归档</span></div><div class="row"><a class="btn btn-sm" href="kb.html"><i class="ic" data-i="LuLibrary"></i>活动 SOP</a><span class="btn btn-sm btn-soft"><i class="ic" data-i="LuSparkles"></i>生成给老师的进度汇报</span></div></div>
+      <table class="tbl">
+        <tr><th>活动</th><th style="width:130px">阶段</th><th style="width:150px">筹备待办</th><th style="width:96px">负责人</th></tr>
+        <tr><td><div class="b">AI for Campus 黑客松</div><div class="xs muted">12-07 · 评委 1 / 3 已确认</div></td><td><div class="stg"><i class="d"></i><i class="d"></i><i class="c"></i><i></i><i></i></div><div class="xs muted" style="margin-top:4px">筹备中</div></td><td><div class="progress"><i style="width:45%"></i></div><div class="xs muted" style="margin-top:4px">9 / 20</div></td><td class="small">张同学</td></tr>
+        <tr><td><div class="b">工作坊第 3 期</div><div class="xs muted">11-08 · 场地已找到</div></td><td><div class="stg"><i class="d"></i><i class="d"></i><i class="c"></i><i></i><i></i></div><div class="xs muted" style="margin-top:4px">筹备中</div></td><td><div class="progress"><i style="width:75%"></i></div><div class="xs muted" style="margin-top:4px">6 / 8</div></td><td class="small">同学 B</td></tr>
+        <tr><td><div class="b">读书会第 4 期</div><div class="xs muted">11-20 · 待部长审批</div></td><td><div class="stg"><i class="d"></i><i class="c"></i><i></i><i></i><i></i></div><div class="xs muted" style="margin-top:4px">审批中</div></td><td class="small muted">审批通过后生成</td><td class="small">同学 C</td></tr>
+        <tr><td><div class="b">AI 产品从 0 到 1 讲座</div><div class="xs muted">10-24 · 复盘未提交</div></td><td><div class="stg"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="c"></i></div><div class="xs muted" style="margin-top:4px">待复盘</div></td><td><div class="progress"><i style="width:100%"></i></div><div class="xs muted" style="margin-top:4px">12 / 12</div></td><td class="small">同学 D</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">4</span>
+      <div class="row between" style="margin-bottom:6px"><span class="h-sec">工作留痕</span><span class="tag t-line">本学期</span></div>
+      <div class="row" style="gap:20px"><div class="stat"><b>12</b><span>我已上报</span></div><div class="stat"><b>9</b><span>部长已确认</span></div></div>
+      <div class="sep" style="margin:12px 0"></div>
+      <div class="notice n-teal" style="padding:10px 12px"><i class="ic" data-i="LuSparkles"></i><div><span class="lv lv1">提效</span> AI 从你本周完成的待办和例会纪要里整理了 2 条，确认后提交给部长</div></div>
+      <div class="small" style="margin-top:10px"><div class="row between"><span>工作坊第 3 期场地协调（二教 305）</span><span class="btn btn-sm" style="height:26px;padding:0 10px">确认</span></div><div class="row between" style="margin-top:6px"><span>撰写分享会推送初稿</span><span class="btn btn-sm" style="height:26px;padding:0 10px">确认</span></div><div class="row between" style="margin-top:6px"><span class="muted">黑客松评委对接（联系 2 位）</span><span class="tag t-green">部长已确认</span></div></div>
+      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>现阶段只记录工作，不显示分数。积分规则定稿后会在这里公布。</div></div>
+    </div>
+  </div>
+</div>
+</div></div></div></div>
+</body></html>
