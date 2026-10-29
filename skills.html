@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>助手技能 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261028a"><script src="assets/icons.js?v=20261028a"></script><script src="assets/app.js?v=20261028a"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261029a"><script src="assets/icons.js?v=20261029a"></script><script src="assets/app.js?v=20261029a"></script>
 <style>
 .rule { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 16px; }
 .rule > div { padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; }
@@ -21,50 +21,38 @@
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
 <div class="row between" style="margin:6px 0 16px"><div><h1 class="h-page">助手技能</h1><p class="muted" style="margin-top:2px">“工具”不是一堆独立的小应用，而是学社助手的几项技能：读写同一套资源与知识，遵守同一套权限和确认规则</p></div>
-<div class="row"><span class="lv lv1">提效</span><span class="small muted">网页与飞书中均可使用</span></div></div>
+<div class="row"><span class="lv lv1">提效</span><span class="small muted">在网页中使用</span></div></div>
 <div class="rule rel"><span class="mk" style="left:-8px;top:-8px">1</span>
   <div class="card"><div class="ri t-teal"><i class="ic" data-i="LuEye"></i></div><div><div class="b">只看你有权限的内容</div><div class="small muted">技能检索资源和文档时，按你的身份和可见范围过滤</div></div></div>
-  <div class="card"><div class="ri t-gold"><i class="ic" data-i="LuPenLine"></i></div><div><div class="b">写入先生成草稿</div><div class="small muted">新建资源、纪要、文章都先进入待确认或待审核</div></div></div>
+  <div class="card"><div class="ri t-gold"><i class="ic" data-i="LuPenLine"></i></div><div><div class="b">写入先生成草稿</div><div class="small muted">新建资源、资料、活动都先进入待确认或待审核</div></div></div>
   <div class="card"><div class="ri t-red"><i class="ic" data-i="LuQuote"></i></div><div><div class="b">结果附出处、可追溯</div><div class="small muted">回答和提炼都标明来源，每次调用都有记录</div></div></div>
 </div>
 <div class="card rel" style="overflow:hidden"><span class="mk" style="left:-8px;top:-8px">2</span>
   <div class="sk">
     <div class="h">技能</div><div class="h">输入 → 输出</div><div class="h">读 / 写</div><div class="h">谁来确认</div><div class="h">级别 · 入口</div>
-    <div class="nm"><div class="si t-red"><i class="ic" data-i="LuMessageCircle"></i></div><div><b>问答</b><span class="xs muted">默认技能</span></div></div>
-    <div class="io">一个问题 <i class="ic" data-i="LuArrowRight"></i> 附出处的回答</div>
-    <div class="wr"><span><i class="ic" data-i="LuEye"></i>资源库、知识库、讨论、活动</span><span class="muted"><i class="ic" data-i="LuX"></i>不写入</span></div>
+    <div class="nm"><div class="si t-red"><i class="ic" data-i="LuMessageCircle"></i></div><div><b>找资源</b><span class="xs muted">默认技能</span></div></div>
+    <div class="io">一句话描述需求 <i class="ic" data-i="LuArrowRight"></i> 资源卡片 + 相关资料，附出处</div>
+    <div class="wr"><span><i class="ic" data-i="LuEye"></i>资源库、资料目录</span><span class="muted"><i class="ic" data-i="LuX"></i>不写入</span></div>
     <div>无需确认（只读）</div>
-    <div class="where"><span class="lv lv1">提效</span><span class="tag">网页</span><span class="tag">飞书</span></div>
-
-    <div class="nm"><div class="si t-red"><i class="ic" data-i="LuFileSearch"></i></div><div><b>资源录入</b><span class="xs muted">从文字或文件录入</span></div></div>
-    <div class="io">文字 / 文件 <i class="ic" data-i="LuArrowRight"></i> 资源条目 + 关联建议</div>
-    <div class="wr"><span><i class="ic" data-i="LuEye"></i>资源库（查重）</span><span><i class="ic" data-i="LuPenLine"></i>资源库 · 待审核</span></div>
-    <div>录入人确认字段，维护人审核</div>
-    <div class="where"><span class="lv lv1">提效</span><span class="tag">网页</span><span class="tag">飞书</span></div>
-
-    <div class="nm"><div class="si t-teal"><i class="ic" data-i="LuNotebookPen"></i></div><div><b>会议纪要</b><span class="xs muted">例会、活动、交流</span></div></div>
-    <div class="io">录音 / 逐字稿 / 妙记 <i class="ic" data-i="LuArrowRight"></i> 纪要 + 待办</div>
-    <div class="wr"><span><i class="ic" data-i="LuPenLine"></i>知识库 · 活动档案或部门手册</span><span><i class="ic" data-i="LuPenLine"></i>飞书任务</span></div>
-    <div>主持人确认后发布、分派</div>
-    <div class="where"><span class="lv lv1">提效</span><span class="tag">网页</span><span class="tag">飞书</span></div>
-
-    <div class="nm"><div class="si t-blue"><i class="ic" data-i="LuBookOpen"></i></div><div><b>文档整理</b><span class="xs muted">摘要 · 标签 · 经验</span></div></div>
-    <div class="io">新上传或同步的文档 <i class="ic" data-i="LuArrowRight"></i> 摘要、标签、补全的元数据、经验候选</div>
-    <div class="wr"><span><i class="ic" data-i="LuPenLine"></i>知识库元数据</span><span><i class="ic" data-i="LuPenLine"></i>经验 · 待确认</span></div>
-    <div>文档维护人确认</div>
-    <div class="where"><span class="lv lv1">提效</span><span class="tag">自动触发</span></div>
-
-    <div class="nm"><div class="si t-gold"><i class="ic" data-i="LuNewspaper"></i></div><div><b>内容整理</b><span class="xs muted">知识 → 精选</span></div></div>
-    <div class="io">活动档案 <i class="ic" data-i="LuArrowRight"></i> 讲座整理 / 活动回顾初稿</div>
-    <div class="wr"><span><i class="ic" data-i="LuEye"></i>知识库 · 活动档案</span><span><i class="ic" data-i="LuPenLine"></i>精选 · 待审核</span></div>
-    <div>活动负责人审核后公开</div>
     <div class="where"><span class="lv lv1">提效</span><span class="tag">网页</span></div>
 
-    <div class="nm"><div class="si t-violet"><i class="ic" data-i="LuHandshake"></i></div><div><b>对接推荐</b><span class="xs muted">活动找嘉宾、项目找人和机构</span></div></div>
-    <div class="io">对接需求或项目招募 <i class="ic" data-i="LuArrowRight"></i> 候选人、机构 + 理由</div>
-    <div class="wr"><span><i class="ic" data-i="LuEye"></i>资源库、知识库、项目与名片</span><span><i class="ic" data-i="LuPenLine"></i>候选列表</span></div>
-    <div>对接人或项目发起人决定联系谁</div>
-    <div class="where"><span class="lv lv1">提效</span><span class="tag">网页</span><span class="tag">飞书</span></div>
+    <div class="nm"><div class="si t-red"><i class="ic" data-i="LuFileSearch"></i></div><div><b>资源录入</b><span class="xs muted">从文字、文件或图片录入</span></div></div>
+    <div class="io">聊天记录 / 纪要 / 名片截图 <i class="ic" data-i="LuArrowRight"></i> 资源条目草稿</div>
+    <div class="wr"><span><i class="ic" data-i="LuEye"></i>资源库（查重）</span><span><i class="ic" data-i="LuPenLine"></i>资源库 · 待审核</span></div>
+    <div>录入人确认字段，维护人审核</div>
+    <div class="where"><span class="lv lv1">提效</span><span class="tag">网页</span></div>
+
+    <div class="nm"><div class="si t-blue"><i class="ic" data-i="LuBookOpen"></i></div><div><b>文档整理</b><span class="xs muted">上传时预填目录</span></div></div>
+    <div class="io">上传的文件 <i class="ic" data-i="LuArrowRight"></i> 标题、类型、来源、标签</div>
+    <div class="wr"><span><i class="ic" data-i="LuPenLine"></i>资料目录 · 待审核</span></div>
+    <div>上传人确认，维护人审核</div>
+    <div class="where"><span class="lv lv1">提效</span><span class="tag">自动触发</span></div>
+
+    <div class="nm"><div class="si t-teal"><i class="ic" data-i="LuCalendarDays"></i></div><div><b>活动录入</b><span class="xs muted">官方任务 3 · 调研中</span></div></div>
+    <div class="io">公众号推文 / 小助手转发的通知 <i class="ic" data-i="LuArrowRight"></i> 活动草稿（时间、地点、报名方式）</div>
+    <div class="wr"><span><i class="ic" data-i="LuEye"></i>活动（去重）</span><span><i class="ic" data-i="LuPenLine"></i>活动 · 待确认</span></div>
+    <div>人工确认后入库</div>
+    <div class="where"><span class="lv lv1">提效</span><span class="tag">定时抓取</span><span class="tag">转发</span></div>
   </div>
   <div class="row" style="padding:14px 16px;background:#FCFBFA;border-top:1px solid var(--line)"><i class="ic" data-i="LuPlus" style="color:var(--muted)"></i><span class="small"><b class="b">新增技能</b> 由各部门提出，按同样的格式写清“输入、输出、读写范围、谁来确认”，评审后上线。</span></div>
 </div>

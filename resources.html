@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>资源库 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261028a"><script src="assets/icons.js?v=20261028a"></script><script src="assets/app.js?v=20261028a"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261029a"><script src="assets/icons.js?v=20261029a"></script><script src="assets/app.js?v=20261029a"></script>
 <style>
 .cols { display: grid; grid-template-columns: 1fr 400px; gap: 18px; align-items: start; }
 .sbox { display: flex; gap: 10px; }
@@ -29,12 +29,12 @@
 <body data-page="resources" data-search="在资源库中搜索">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">资源库</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>学社成员可见</span></div><p class="muted" style="margin-top:2px">学社对接过的人、机构和骨干，与资料、活动、对接记录连在一起。找到后联系学社对接人</p></div>
-<div class="row"><span class="btn"><i class="ic" data-i="LuListPlus"></i>我的清单 · 3</span><a class="btn" href="upload.html"><i class="ic" data-i="LuUpload"></i>批量导入</a><a class="btn btn-p" href="resource_new.html"><i class="ic" data-i="LuPlus"></i>录入资源</a></div></div>
+<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">资源库</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>学社成员可见</span></div><p class="muted" style="margin-top:2px">学社对接过的人、机构和学社骨干，也能搜到资料目录。找到后联系学社对接人，外部个人的联系方式不直接展示</p></div>
+<div class="row"><a class="btn" href="upload.html"><i class="ic" data-i="LuUpload"></i>批量导入</a><a class="btn btn-p" href="resource_new.html"><i class="ic" data-i="LuPlus"></i>录入资源</a></div></div>
 
 <div class="card pad rel" style="padding:14px 16px"><span class="mk" style="left:-8px;top:-8px">1</span>
   <div class="sbox"><div class="mode"><a>关键词</a><a class="on"><i class="ic" data-i="LuSparkles"></i>AI 搜索</a></div><div class="input" style="color:var(--ink)"><i class="ic" data-i="LuSearch" style="color:var(--muted)"></i>想找做 AI 教育、可以来做分享或当评委的人</div><span class="btn btn-p btn-lg">搜索</span></div>
-  <div class="row wrap-x rel" style="gap:8px;margin-top:12px"><span class="mk" style="left:-10px;top:-6px">2</span><span class="small muted" style="margin-right:2px">类型</span><span class="chip on">全部</span><span class="chip">外部个人</span><span class="chip">机构资源</span><span class="chip">学社骨干</span><span class="chip">学社资料</span><span class="chip"><i class="ic" data-i="LuClock"></i>近期对接过</span><span class="grow"></span><span class="chip">领域：AI、教育 <i class="ic" data-i="LuChevronDown"></i></span><span class="chip">对接部门 <i class="ic" data-i="LuChevronDown"></i></span><span class="chip">更新时间 <i class="ic" data-i="LuChevronDown"></i></span></div>
+  <div class="row wrap-x rel" style="gap:8px;margin-top:12px"><span class="mk" style="left:-10px;top:-6px">2</span><span class="small muted" style="margin-right:2px">类型</span><span class="chip on">全部</span><span class="chip">外部个人</span><span class="chip">机构资源</span><span class="chip">学社骨干</span><span class="chip">学社资料</span><span class="grow"></span><span class="chip">领域：AI、教育 <i class="ic" data-i="LuChevronDown"></i></span><span class="chip">更新时间 <i class="ic" data-i="LuChevronDown"></i></span></div>
 </div>
 
 <div class="row between" style="margin:14px 2px 10px"><div class="small muted"><span class="ai-tag"><i class="ic" data-i="LuSparkles"></i>AI 理解</span>&nbsp; 领域“AI + 教育”· 可提供“分享 / 评委”· 找到 <b class="b">3</b> 项资源</div><div class="small muted">最近更新优先 <i class="ic" data-i="LuChevronDown"></i></div></div>
@@ -57,20 +57,14 @@
 </div>
 
 <div class="card det rel"><span class="mk" style="left:-8px;top:-8px">4</span>
-  <div class="hd"><div class="row between"><span class="tag t-red">外部个人</span><div class="row" style="gap:6px"><span class="btn btn-sm"><i class="ic" data-i="LuListPlus"></i>加入清单</span><a class="icon-btn" style="width:32px;height:32px" href="resource_detail.html"><i class="ic" data-i="LuArrowUpRight"></i></a></div></div>
+  <div class="hd"><div class="row between"><span class="tag t-red">外部个人</span><div class="row" style="gap:6px"><a class="icon-btn" style="width:32px;height:32px" href="resource_detail.html"><i class="ic" data-i="LuArrowUpRight"></i></a></div></div>
     <h2 style="font-size:21px;margin-top:10px">示例人物 A</h2><div class="muted" style="margin-top:2px">某教育科技公司 · 产品负责人</div>
-    <div class="row" style="gap:6px;margin-top:10px"><span class="tag">AI</span><span class="tag">教育</span><span class="tag">产品</span></div>
-    <div class="tabs" style="margin-top:12px;gap:18px"><a class="on">概览</a><a>关系 · 6</a><a>对接记录 · 3</a></div></div>
+    <div class="row" style="gap:6px;margin-top:10px"><span class="tag">AI</span><span class="tag">教育</span><span class="tag">产品</span></div></div>
   <div class="sec"><div class="st">可提供的帮助</div><div style="color:var(--ink)">可交流 AI 教育产品开发经验；可做分享嘉宾。是否担任评委需另行确认。</div><div class="small muted" style="margin-top:6px">待确认：时间偏好、是否可线上参与</div></div>
   <div class="sec rel"><span class="mk" style="right:12px;top:10px">5</span><div class="st">学社对接人</div>
-    <div class="contact"><span class="av av-sm a3">B</span><div class="grow"><div class="b" style="font-size:13.5px">同学 B</div><div class="xs muted">外联部 · 最近对接 10-24</div></div><span class="btn btn-sm btn-p"><i class="ic" data-i="LuMessageCircle"></i>联系对接人</span></div>
+    <div class="contact"><span class="av av-sm a3">B</span><div class="grow"><div class="b" style="font-size:13.5px">同学 B</div><div class="xs muted">外联部</div></div><span class="btn btn-sm btn-p"><i class="ic" data-i="LuMessageCircle"></i>联系对接人</span></div>
     <div class="locked"><i class="ic" data-i="LuEyeOff"></i>手机号、微信号仅维护人可见，请通过学社对接人联系</div></div>
-  <div class="sec rel"><span class="mk" style="right:12px;top:10px">6</span><div class="st"><i class="ic" data-i="LuNetwork"></i>关联</div>
-    <div class="row wrap-x" style="gap:6px"><span class="chip" style="height:28px"><i class="ic" data-i="LuBuilding2"></i>某教育科技公司</span><span class="chip" style="height:28px"><i class="ic" data-i="LuCalendarDays"></i>AI 产品分享会 · 嘉宾</span><span class="chip" style="height:28px"><i class="ic" data-i="LuFileText"></i>交流纪要.pdf</span><span class="chip" style="height:28px"><i class="ic" data-i="LuUser"></i>同机构 · 示例人物 K</span></div></div>
-  <div class="sec"><div class="st"><i class="ic" data-i="LuHistory"></i>最近对接</div>
-    <div class="log"><span>10-24</span><b>同学 B：分享会后交流，对方愿意下学期再来做工作坊</b></div>
-    <div class="log"><span>05-18</span><b>同学 B：邀请担任分享嘉宾，已完成</b></div>
-    <div class="row" style="margin-top:10px"><span class="btn btn-sm"><i class="ic" data-i="LuPlus"></i>记一笔对接</span><span class="btn btn-sm"><i class="ic" data-i="LuPenLine"></i>纠错</span></div></div>
+  <div class="sec"><div class="st">来源与状态</div><div class="small muted">来源：活动交流记录 · 更新于 2026-10-24 · 已审核</div></div>
 </div>
 </div>
 </div></div></div></div>

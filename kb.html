@@ -1,71 +1,44 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>知识库 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261028a"><script src="assets/icons.js?v=20261028a"></script><script src="assets/app.js?v=20261028a"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261029a"><script src="assets/icons.js?v=20261029a"></script><script src="assets/app.js?v=20261029a"></script>
 <style>
 .sbox { display: flex; gap: 10px; }
 .sbox .input { flex: 1; height: 48px; font-size: 15px; }
-.spaces { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 16px; }
+.spaces { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
 .spc { padding: 16px; display: flex; flex-direction: column; gap: 6px; }
 .spc .si { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
 .spc h3 { font-size: 15px; margin-top: 4px; }
 .spc p { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
 .spc .ft { display: flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 6px; font-size: 12px; color: var(--muted); }
-.cols { display: grid; grid-template-columns: 1fr 1fr 320px; gap: 14px; margin-top: 16px; align-items: start; }
-.lesson { padding: 12px 0; border-bottom: 1px solid var(--line); }
-.lesson:last-child { border-bottom: 0; }
-.lesson .t { font-weight: 600; color: var(--ink); font-size: 14px; }
-.lesson .s { font-size: 12px; color: var(--muted); margin-top: 4px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .tpl { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .tpl:last-child { border-bottom: 0; }
 .tpl .ti { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 17px; }
-.gap { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
-.gap:last-child { border-bottom: 0; }
-.gap .gi { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex: none; }
 </style></head>
-<body data-page="kb" data-search="搜索文档、经验、模板，或向知识库提问">
+<body data-page="kb" data-search="搜索文档、模板、往届资料">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1200px">
-<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">知识库</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>按空间分级可见</span></div><p class="muted" style="margin-top:2px">学社的知识资产：文档原件、提炼出的经验、可复用的模板和活动档案。与飞书知识库自动同步</p></div>
-<div class="row"><span class="btn"><i class="ic" data-i="LuExternalLink"></i>在飞书中打开</span><span class="btn"><i class="ic" data-i="LuStickyNote"></i>用模板新建</span><span class="btn btn-p"><i class="ic" data-i="LuUpload"></i>上传文件</span></div></div>
+<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">知识库</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>按分类分级可见</span></div><p class="muted" style="margin-top:2px">学社的工作文档、活动模板、往届资料和资源原件，只对学社内开放。按标题、类型、标签查找；原件可以是上传的文件，也可以是飞书文档链接</p></div>
+<div class="row"><span class="btn"><i class="ic" data-i="LuExternalLink"></i>在飞书中打开</span><span class="btn btn-p"><i class="ic" data-i="LuUpload"></i>上传文件</span></div></div>
 
 <div class="card pad rel" style="padding:14px 16px"><span class="mk" style="left:-8px;top:-8px">1</span>
-  <div class="sbox"><div class="input" style="color:var(--ink)"><i class="ic" data-i="LuSparkles" style="color:var(--red)"></i>往届黑客松是怎么找赞助的？</div><span class="btn btn-p btn-lg">提问</span><span class="btn btn-lg"><i class="ic" data-i="LuSearch"></i>全文搜索</span></div>
-  <div class="row small muted" style="margin-top:10px;gap:14px"><span>范围：</span><span class="chip on" style="height:28px">全部空间</span><span class="chip" style="height:28px">活动档案</span><span class="chip" style="height:28px">部门手册</span><span class="chip" style="height:28px">讲座与学习</span><span class="grow"></span><span>回答只引用你有权限看的文档</span></div>
+  <div class="sbox"><div class="input" style="color:var(--ink)"><i class="ic" data-i="LuSearch" style="color:var(--muted)"></i>黑客松 赞助方案</div><span class="btn btn-p btn-lg">搜索</span></div>
+  <div class="row small muted" style="margin-top:10px;gap:14px"><span>范围：</span><span class="chip on" style="height:28px">全部</span><span class="chip" style="height:28px">活动档案</span><span class="chip" style="height:28px">部门手册</span><span class="chip" style="height:28px">模板库</span><span class="chip" style="height:28px">往届归档</span><span class="grow"></span><span>只搜标题、类型和标签，不搜全文；只显示你有权限看的文档</span></div>
 </div>
 
 <div class="spaces rel"><span class="mk" style="left:-8px;top:-8px">2</span>
   <a class="card spc" href="kb_doc.html"><div class="si t-red"><i class="ic" data-i="LuFolderOpen"></i></div><h3>活动档案</h3><p>每场活动一个页面：策划、通知、纪要、PPT、照片、复盘</p><div class="ft">136 份 <span class="dotsep"></span>学社内</div></a>
   <div class="card spc"><div class="si t-blue"><i class="ic" data-i="LuBookOpen"></i></div><h3>部门手册</h3><p>各部门的职责、办事流程和经验，换届时整体交接</p><div class="ft">58 份 <span class="dotsep"></span>部门内 / 学社内</div></div>
-  <div class="card spc"><div class="si t-teal"><i class="ic" data-i="LuPresentation"></i></div><h3>讲座与学习</h3><p>讲座整理、读书会笔记、课程笔记、工具教程</p><div class="ft">71 份 <span class="dotsep"></span>部分公开到“精选”</div></div>
   <div class="card spc"><div class="si t-gold"><i class="ic" data-i="LuDatabase"></i></div><h3>资源资料</h3><p>资源库上传的原件：机构介绍、交流纪要、合作资料</p><div class="ft">94 份 <span class="dotsep"></span>默认仅维护人</div></div>
   <div class="card spc"><div class="si t-violet"><i class="ic" data-i="LuBuilding2"></i></div><h3>学社总览</h3><p>章程、组织架构、年度计划、品牌规范、对外介绍</p><div class="ft">24 份 <span class="dotsep"></span>学社内</div></div>
   <div class="card spc"><div class="si" style="background:#F2F1EE;color:var(--text)"><i class="ic" data-i="LuStickyNote"></i></div><h3>模板库</h3><p>活动 SOP、策划书、纪要、复盘等标准模板</p><div class="ft">12 个 <span class="dotsep"></span>学社内</div></div>
-  <div class="card spc"><div class="si" style="background:#F2F1EE;color:var(--text)"><i class="ic" data-i="LuInbox"></i></div><h3>往届归档</h3><p>往届资料只读保存，可检索、可提问</p><div class="ft">412 份 <span class="dotsep"></span>只读</div></div>
-  <div class="card spc" style="border-style:dashed;background:transparent;box-shadow:none"><div class="si" style="background:#fff;color:var(--muted);border:1px solid var(--line)"><i class="ic" data-i="LuPlus"></i></div><h3 style="color:var(--muted)">新建空间</h3><p>按部门或项目新建，设置默认可见范围</p></div>
+  <div class="card spc"><div class="si" style="background:#F2F1EE;color:var(--text)"><i class="ic" data-i="LuInbox"></i></div><h3>往届归档</h3><p>往届资料只读保存，可检索</p><div class="ft">412 份 <span class="dotsep"></span>只读</div></div>
 </div>
 
-<div class="cols">
-  <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">3</span>
-    <div class="row between"><div class="row"><span class="h-sec">经验</span><span class="lv lv1">提效</span></div><a class="lnk">全部 42 条 <i class="ic" data-i="LuChevronRight"></i></a></div>
-    <p class="xs muted" style="margin-top:2px">从复盘和纪要中提炼、经人确认的可复用经验，每条都能追溯到原文</p>
-    <div class="lesson"><div class="t">嘉宾时间至少提前两周确认</div><div class="s"><span class="tag">活动组织</span>来源：3 场活动复盘<span class="cite">1</span><span class="cite">2</span><span class="cite">3</span></div></div>
-    <div class="lesson"><div class="t">报名开放后的第一周贡献约七成报名</div><div class="s"><span class="tag">宣传</span>来源：2026 春分享会复盘<span class="cite">4</span></div></div>
-    <div class="lesson"><div class="t">黑客松评审标准要在开赛前公开</div><div class="s"><span class="tag">黑客松</span>来源：黑客松复盘（2026 春）<span class="cite">5</span></div></div>
-    <div class="lesson"><div class="t">赞助沟通先发一页方案，再约面谈</div><div class="s"><span class="tag">外联</span>来源：外联部手册<span class="cite">6</span></div></div>
-  </div>
-  <div class="card pad"><div class="row between"><span class="h-sec">最近更新</span><a class="lnk">全部 <i class="ic" data-i="LuChevronRight"></i></a></div>
+<div class="card pad" style="margin-top:16px"><div class="row between"><span class="h-sec">最近更新</span><a class="lnk">全部 <i class="ic" data-i="LuChevronRight"></i></a></div>
     <div class="tpl"><div class="ti t-red"><i class="ic" data-i="LuFileText"></i></div><div class="grow"><div class="b" style="font-size:13.5px">AI 产品分享会 · 活动纪要</div><div class="xs muted">活动档案 · 同学 B · 1 小时前</div></div></div>
-    <div class="tpl"><div class="ti t-teal"><i class="ic" data-i="LuPresentation"></i></div><div class="grow"><div class="b" style="font-size:13.5px">读书会第 6 期笔记：Agent 与工具调用</div><div class="xs muted">讲座与学习 · 小许 · 昨天</div></div></div>
     <div class="tpl"><div class="ti t-blue"><i class="ic" data-i="LuBookOpen"></i></div><div class="grow"><div class="b" style="font-size:13.5px">外联部手册：赞助沟通流程</div><div class="xs muted">部门手册 · 同学 D · 2 天前</div></div></div>
     <div class="tpl"><div class="ti t-gold"><i class="ic" data-i="LuFileSpreadsheet"></i></div><div class="grow"><div class="b" style="font-size:13.5px">机构介绍：示例机构 C</div><div class="xs muted">资源资料 · 仅维护人 · 3 天前</div></div></div>
     <div class="tpl"><div class="ti" style="background:#F2F1EE"><i class="ic" data-i="LuStickyNote"></i></div><div class="grow"><div class="b" style="font-size:13.5px">模板：活动复盘（2026 版）</div><div class="xs muted">模板库 · 综合管理部 · 1 周前</div></div></div>
   </div>
-  <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">4</span><div class="row between"><span class="h-sec">待整理</span><span class="ai-tag"><i class="ic" data-i="LuSparkles"></i>AI 检查</span></div>
-    <div class="gap"><div class="gi t-amber"><i class="ic" data-i="LuTriangleAlert"></i></div><div><b class="b">2 场活动还没有复盘</b><div class="xs muted">AI 产品分享会、工作坊第 2 期</div></div></div>
-    <div class="gap"><div class="gi t-amber"><i class="ic" data-i="LuTag"></i></div><div><b class="b">5 份文档缺少来源或时间</b><div class="xs muted">可让 AI 从正文补全，确认后保存</div></div></div>
-    <div class="gap"><div class="gi" style="background:#F2F1EE;color:var(--muted)"><i class="ic" data-i="LuClock"></i></div><div><b class="b">8 份手册超过一年未更新</b><div class="xs muted">已提醒对应维护人确认是否仍有效</div></div></div>
-    <div class="gap"><div class="gi t-red"><i class="ic" data-i="LuEyeOff"></i></div><div><b class="b">1 份资料含个人联系方式</b><div class="xs muted">建议改为仅维护人可见</div></div></div>
-  </div>
-</div>
 </div></div></div></div>
 </body></html>
