@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261029e" alt="北京大学校徽">`;
+const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261029f" alt="北京大学校徽">`;
 
 const NAV = [
   { g: "", items: [
@@ -20,8 +20,8 @@ const NAV = [
     ["featured", "精选", "featured.html", "LuBookOpen"],
     ["startup", "创业", "projects.html", "LuRocket"],
   ] },
-  { g: "管理 · 维护人与会长团", items: [
-    ["admin", "审核与管理", "admin.html", "LuShieldCheck", 1, 4],
+  { g: "管理 · 学社成员", items: [
+    ["admin", "审核与管理", "admin.html", "LuShieldCheck", 1, 5],
   ] },
 ];
 
@@ -73,9 +73,9 @@ function renderIcons() {
 // 原型目录：所有页面与对应文件，便于在 GitHub Pages 上预览
 const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
-  ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档阅读", "kb_doc.html"], ["工作台", "workbench.html"], ["活动申报审批", "activity_review.html"],
+  ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档阅读", "kb_doc.html"], ["工作台", "workbench.html"],
   ["AI 助手", "assistant.html"], ["助手技能", "skills.html"], ["录入活动", "event_new.html"], ["讨论", "community.html"],
-  ["活动", "events.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"], ["审核与管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
+  ["活动", "events.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"], ["审核与管理", "admin.html"], ["活动申报审批", "activity_review.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
 ];
 function renderProtoNav() {
   if (new URLSearchParams(location.search).has("shot")) return;

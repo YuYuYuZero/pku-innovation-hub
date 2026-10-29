@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>审核与管理 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261029e"><script src="assets/icons.js?v=20261029e"></script><script src="assets/app.js?v=20261029e"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261029f"><script src="assets/icons.js?v=20261029f"></script><script src="assets/app.js?v=20261029f"></script>
 <style>
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .stats .card { padding: 16px 18px; display: flex; gap: 14px; align-items: center; }
@@ -11,7 +11,7 @@
 .ckb { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--line-2); display: inline-block; }
 .ckb.on { background: var(--red); border-color: var(--red); }
 [data-panel][hidden] { display: none; }
-.tabs a { cursor: pointer; }
+.tabs a { cursor: pointer; white-space: nowrap; }
 .mem tr.on td { background: var(--red-50); }
 .grant { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .grant:last-child { border-bottom: 0; }
@@ -23,19 +23,20 @@
 <body data-page="admin">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row between" style="margin:6px 0 16px"><div><div class="row"><h1 class="h-page">审核与管理</h1><span class="tag t-line"><i class="ic" data-i="LuShieldCheck"></i>维护人与会长团</span></div><p class="muted" style="margin-top:2px">资源和资料审核、社区内容管理、成员身份与授权。日常工作和活动审批在工作台</p></div>
-<div class="tabs rel" id="tabs" style="border:0"><span class="mk" style="left:-14px;top:-8px">1</span><a class="on" data-t="review">审核</a><a data-t="content">内容管理</a><a data-t="members">成员与权限</a><a data-t="log">操作日志</a></div></div>
+<div class="row between" style="margin:6px 0 16px"><div><div class="row"><h1 class="h-page">审核与管理</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>学社成员可见 · 按权限显示</span></div><p class="muted" style="margin-top:2px">活动申报、资源和资料的审批都在这里，也能看到自己提交的进度；会长团在这里管理社区内容和成员权限</p></div>
+<div class="tabs rel" id="tabs" style="border:0"><span class="mk" style="left:-14px;top:-8px">1</span><a class="on" data-t="review">审批与审核</a><a data-t="content"><i class="ic" data-i="LuLock"></i> 内容管理</a><a data-t="members"><i class="ic" data-i="LuLock"></i> 成员与权限</a><a data-t="log">操作日志</a></div></div>
 
 <div data-panel="review">
 <div class="stats">
-  <div class="card"><div class="si t-red"><i class="ic" data-i="LuInbox"></i></div><div class="stat"><b>4</b><span>待审核</span></div></div>
-  <div class="card"><div class="si t-blue"><i class="ic" data-i="LuDatabase"></i></div><div class="stat"><b>412</b><span>资源总数</span></div></div>
-  <div class="card"><div class="si t-teal"><i class="ic" data-i="LuLibrary"></i></div><div class="stat"><b>1,036</b><span>知识库文档</span></div></div>
+  <div class="card"><div class="si t-red"><i class="ic" data-i="LuInbox"></i></div><div class="stat"><b>5</b><span>待我处理</span></div></div>
+  <div class="card"><div class="si t-gold"><i class="ic" data-i="LuCalendarCheck"></i></div><div class="stat"><b>1</b><span>活动申报（部长审批）</span></div></div>
+  <div class="card"><div class="si t-blue"><i class="ic" data-i="LuDatabase"></i></div><div class="stat"><b>4</b><span>资源与资料（维护人审核）</span></div></div>
 </div>
 <div class="card rel" style="margin-top:16px"><span class="mk" style="left:-8px;top:-8px">2</span>
-    <div class="pad row between" style="padding-bottom:10px"><div class="seg"><a class="on">全部 4</a><a>资源 3</a><a>资料 1</a></div><div class="row"><span class="btn btn-sm">驳回所选</span><span class="btn btn-sm btn-p"><i class="ic" data-i="LuCheck"></i>通过所选（2）</span></div></div>
+    <div class="pad row between" style="padding-bottom:10px"><div class="seg"><a class="on">待我处理 5</a><a>活动申报 1</a><a>资源 3</a><a>资料 1</a><a>我提交的 2</a></div><div class="row"><span class="btn btn-sm">驳回所选</span><span class="btn btn-sm btn-p"><i class="ic" data-i="LuCheck"></i>通过所选（2）</span></div></div>
     <table class="tbl rv">
-      <tr><th style="width:36px"></th><th>内容</th><th style="width:250px">检查结果</th><th style="width:118px">提交</th><th style="width:96px"></th></tr>
+      <tr><th style="width:36px"></th><th>内容</th><th style="width:250px">说明</th><th style="width:118px">提交</th><th style="width:96px"></th></tr>
+      <tr><td></td><td><div class="row"><span class="tag t-amber">活动申报</span><a class="b" href="activity_review.html">读书会第 4 期</a></div><div class="small muted" style="margin-top:4px">AI俱乐部 · 11-20 · 约 30 人</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuCalendarCheck"></i>部长审批（你）→ 会长团终审</div></td><td class="small">同学 C<br><span class="muted">10-27</span></td><td><a class="btn btn-sm btn-p" href="activity_review.html">去审批</a></td></tr>
       <tr><td><span class="ckb on"></span></td><td><div class="row"><span class="tag t-red">资源</span><span class="b">示例人物 E</span></div><div class="small muted" style="margin-top:4px">某 AI 医疗公司 · 可交流 AI 医疗落地经验</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuTriangleAlert"></i>与已有记录“示例人物 E”同名同机构，疑似重复</div></td><td class="small">同学 F<br><span class="muted">10 分钟前</span></td><td><span class="btn btn-sm">查看</span></td></tr>
       <tr><td><span class="ckb on"></span></td><td><div class="row"><span class="tag t-blue">资源</span><span class="b">示例机构 F</span></div><div class="small muted" style="margin-top:4px">某孵化器 · 可提供路演场地</div></td><td><div class="sug n-teal"><i class="ic" data-i="LuCircleCheck"></i>必填项完整，未发现重复</div></td><td class="small">批量导入<br><span class="muted">1 小时前</span></td><td><span class="btn btn-sm">查看</span></td></tr>
       <tr><td><span class="ckb"></span></td><td><div class="row"><span class="tag t-teal">资料</span><span class="b">黑客松赞助方案.pdf</span></div><div class="small muted" style="margin-top:4px">申请可见范围：学社成员</div></td><td><div class="sug n-teal"><i class="ic" data-i="LuCircleCheck"></i>必填项完整；申请从“仅维护人”改为学社成员可见</div></td><td class="small">同学 D<br><span class="muted">2 小时前</span></td><td><span class="btn btn-sm">查看</span></td></tr>
