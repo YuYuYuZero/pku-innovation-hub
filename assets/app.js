@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261029d" alt="北京大学校徽">`;
+const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261029e" alt="北京大学校徽">`;
 
 const NAV = [
   { g: "", items: [
@@ -29,7 +29,7 @@ function ic(n) { return `<i class="ic" data-i="${n}"></i>`; }
 
 // 通知：只推和自己有关、需要处理或需要知道结果的事
 const NOTES = [
-  ["待你审批：读书会第 4 期活动申报", "同学 C 申报 · 今天", "workbench.html", "LuCalendarCheck"],
+  ["待你审批：读书会第 4 期活动申报", "同学 C 申报 · 今天", "activity_review.html", "LuCalendarCheck"],
   ["2 条资源待审核", "外联部提交 · 含 1 条疑似重复", "admin.html", "LuInbox"],
   ["同学 C 有 1 项工作已逾期", "可以督办 · 昨天", "workbench.html", "LuClock"],
   ["你录入的资源已通过审核", "示例机构 F · 2 天前", "resource_detail.html", "LuCircleCheck"],
@@ -73,7 +73,7 @@ function renderIcons() {
 // 原型目录：所有页面与对应文件，便于在 GitHub Pages 上预览
 const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
-  ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档阅读", "kb_doc.html"], ["工作台", "workbench.html"],
+  ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档阅读", "kb_doc.html"], ["工作台", "workbench.html"], ["活动申报审批", "activity_review.html"],
   ["AI 助手", "assistant.html"], ["助手技能", "skills.html"], ["录入活动", "event_new.html"], ["讨论", "community.html"],
   ["活动", "events.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"], ["审核与管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
 ];
