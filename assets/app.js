@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261029b" alt="北京大学校徽">`;
+const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261029c" alt="北京大学校徽">`;
 
 const NAV = [
   { g: "", items: [
@@ -20,12 +20,20 @@ const NAV = [
     ["featured", "精选", "featured.html", "LuBookOpen"],
     ["startup", "创业", "projects.html", "LuRocket"],
   ] },
-  { g: "管理 · 维护人", items: [
+  { g: "管理 · 维护人与会长团", items: [
     ["admin", "审核与管理", "admin.html", "LuShieldCheck", 1, 4],
   ] },
 ];
 
 function ic(n) { return `<i class="ic" data-i="${n}"></i>`; }
+
+// 通知：只推和自己有关、需要处理或需要知道结果的事
+const NOTES = [
+  ["待你审批：读书会第 4 期活动申报", "同学 C 申报 · 今天", "workbench.html", "LuCalendarCheck"],
+  ["2 条资源待审核", "外联部提交 · 含 1 条疑似重复", "admin.html", "LuInbox"],
+  ["同学 C 有 1 项工作已逾期", "可以督办 · 昨天", "workbench.html", "LuClock"],
+  ["你录入的资源已通过审核", "示例机构 F · 2 天前", "resource_detail.html", "LuCircleCheck"],
+];
 
 function renderShell() {
   const page = document.body.dataset.page;
@@ -35,16 +43,26 @@ function renderShell() {
     sb.innerHTML = `<a class="brand" href="index.html">${LOGO}<div class="wm"><b>北大创新学社</b><span>资源 · 工具 · 社区</span></div></a>` +
       NAV.map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}</div>` : ""}` + g.items.map(([id, t, href, icon, lock, cnt]) =>
         `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${cnt ? `<span class="cnt">${cnt}</span>` : lock ? `<span class="lk">${ic("LuLock")}</span>` : ""}</a>`).join("") + `</div>`).join("") +
-      `<a class="me" href="#"><span class="av av-sm a1">张</span><div class="who"><b>张同学</b><span>AI俱乐部 · 学社成员</span></div>${ic("LuSettings")}</a>`;
+      `<a class="me" href="#"><span class="av av-sm a1">张</span><div class="who"><b>张同学</b><span>AI俱乐部 · 部长</span></div>${ic("LuSettings")}</a>`;
   }
   const tb = document.getElementById("tb");
   if (tb) {
     tb.className = "tb";
     const ph = document.body.dataset.search || "搜索资源、资料、项目、活动，或直接问 AI";
-    tb.innerHTML = `<div class="gsearch rel">${ic("LuSearch")}<span class="ph">${ph}</span><span class="kbd">⌘ K</span><a class="ask" href="assistant.html">${ic("LuSparkles")}问 AI</a></div>
-      <div class="sp"></div>
-      <a class="btn btn-p" href="#">${ic("LuPlus")}新建</a>
-      <a class="icon-btn" href="#">${ic("LuBell")}<span class="dot"></span></a>`;
+    // 首页中间已有大搜索框，顶栏不再重复放
+    const search = page === "home" ? "" : `<div class="gsearch rel">${ic("LuSearch")}<span class="ph">${ph}</span><span class="kbd">⌘ K</span><a class="ask" href="assistant.html">${ic("LuSparkles")}问 AI</a></div>`;
+    tb.innerHTML = `${search}<div class="sp"></div>
+      <div class="dd-wrap"><button class="icon-btn" data-dd="note">${ic("LuBell")}<span class="dot"></span></button>
+        <div class="dd dd-note" id="dd-note" hidden><div class="dd-h">通知<span>全部已读</span></div>${NOTES.map(([t, d, href, icon]) =>
+          `<a href="${href}">${ic(icon)}<div><b>${t}</b><span>${d}</span></div></a>`).join("")}</div></div>`;
+    tb.querySelectorAll("[data-dd]").forEach(btn => btn.onclick = (e) => {
+      e.stopPropagation();
+      const box = document.getElementById("dd-" + btn.dataset.dd);
+      const open = box.hidden;
+      tb.querySelectorAll(".dd").forEach(x => { x.hidden = true; });
+      box.hidden = !open;
+    });
+    document.addEventListener("click", () => tb.querySelectorAll(".dd").forEach(x => { x.hidden = true; }));
   }
 }
 

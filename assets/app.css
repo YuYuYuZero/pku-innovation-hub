@@ -259,3 +259,21 @@ body.anno .mk {
 .pn-panel a.on { background: var(--red-50); color: var(--red); font-weight: 600; }
 .pn-panel code { font-size: 11px; color: var(--muted); }
 .pn-anno { display: flex; gap: 8px; align-items: center; font-size: 13px; padding: 10px; border-top: 1px solid var(--line); margin-top: 6px; }
+
+.dd-wrap { position: relative; }
+.dd { position: absolute; right: 0; top: calc(100% + 8px); width: 300px; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 40px rgba(0,0,0,.14); padding: 8px; z-index: 40; }
+.dd-note { width: 340px; }
+.dd-h { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: var(--muted); padding: 6px 10px 8px; }
+.dd-h span { font-weight: 400; color: var(--red); }
+.dd a { display: flex; gap: 10px; align-items: flex-start; padding: 9px 10px; border-radius: 10px; color: var(--ink); }
+.dd a:hover { background: #F6F4F1; }
+.dd a .ic { font-size: 17px; color: var(--red); margin-top: 2px; }
+.dd a b { display: block; font-size: 13.5px; }
+.dd a span { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.mask { position: fixed; inset: 0; background: rgba(24, 22, 20, .42); display: flex; align-items: flex-start; justify-content: center; padding-top: 72px; z-index: 50; }
+.mask[hidden] { display: none; }
+.dlg { width: 560px; max-width: calc(100vw - 32px); background: #fff; border-radius: 18px; box-shadow: 0 24px 60px rgba(0,0,0,.22); }
+.dlg .hd { display: flex; align-items: center; gap: 8px; padding: 18px 22px 0; }
+.dlg .bd { padding: 14px 22px 18px; }
+.dlg .fd { display: flex; align-items: center; gap: 10px; padding: 14px 22px; border-top: 1px solid var(--line); background: #FCFBFA; border-radius: 0 0 18px 18px; }

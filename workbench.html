@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>工作台 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261029b"><script src="assets/icons.js?v=20261029b"></script><script src="assets/app.js?v=20261029b"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261029c"><script src="assets/icons.js?v=20261029c"></script><script src="assets/app.js?v=20261029c"></script>
 <style>
 .cols { display: grid; grid-template-columns: 1fr 340px; gap: 16px; align-items: start; }
 .td { display: flex; gap: 12px; padding: 12px 20px; border-bottom: 1px solid var(--line); align-items: flex-start; }
@@ -16,30 +16,31 @@
 .stg i.c { background: var(--red-200); }
 .mt th, .mt td { padding: 9px 6px; white-space: nowrap; }
 .mt .n { text-align: right; }
+[data-view][hidden] { display: none; }
 </style></head>
 <body data-page="workbench" data-search="搜索待办、活动">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
 <div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">工作台</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干可见 · 按角色分级</span></div><p class="muted" style="margin-top:2px">骨干提交和更新自己的工作、申报活动；部长查看本部门进度，分配、督办和审批；会长团查看全社并终审</p></div>
-<div class="row"><span class="btn"><i class="ic" data-i="LuNotebookPen"></i>提交工作</span><a class="btn" href="event_new.html"><i class="ic" data-i="LuSparkles"></i>录入活动</a><span class="btn btn-p"><i class="ic" data-i="LuCalendarCheck"></i>申报活动</span></div></div>
+<div class="row"><span class="btn" data-open="submit"><i class="ic" data-i="LuNotebookPen"></i>提交工作</span><a class="btn" href="event_new.html"><i class="ic" data-i="LuSparkles"></i>录入活动</a><span class="btn btn-p"><i class="ic" data-i="LuCalendarCheck"></i>申报活动</span></div></div>
 
 <div class="row between rel" style="margin-bottom:14px"><span class="mk" style="left:-8px;top:-8px">1</span>
-  <div class="row"><span class="small muted">视角</span><div class="seg"><a>骨干</a><a class="on">部长</a><a style="color:var(--faint)"><i class="ic" data-i="LuLock"></i> 会长团</a></div><span class="small muted">骨干只看自己的工作；部长可看本部门全部，并分配、督办；会长团可看全社</span></div>
+  <div class="row"><span class="small muted">视角</span><div class="seg" id="views"><a data-v="backbone">骨干</a><a class="on" data-v="minister">部长</a><a data-v="council" style="color:var(--faint)"><i class="ic" data-i="LuLock"></i> 会长团</a></div><span class="small muted" id="viewcap">部长：本部门全部工作，可以分配、督办、审批</span></div>
   <span class="small muted">AI俱乐部 · 本学期</span>
 </div>
 
-<div class="cols">
+<!-- 部长视角 -->
+<div class="cols" data-view="minister">
   <div>
     <div class="card rel"><span class="mk" style="left:-8px;top:-8px">2</span>
-      <div class="pad row between" style="padding-bottom:8px"><div class="row"><span class="h-sec">工作进展</span><div class="seg"><a class="on">我的 4</a><a>部门 14</a><a>待我审批 1</a></div></div><a class="lnk small"><i class="ic" data-i="LuUserPlus"></i> 分配任务</a></div>
+      <div class="pad row between" style="padding-bottom:8px"><div class="row"><span class="h-sec">工作进展</span><div class="seg"><a class="on">我的 4</a><a>部门 14</a><a>待我审批 1</a></div></div><a class="lnk small" data-open="assign"><i class="ic" data-i="LuUserPlus"></i> 分配任务</a></div>
       <div class="td"><span class="ckb"></span><div class="grow"><div class="t">审批：读书会第 4 期活动申报</div><div class="m"><span class="tag t-amber">待我审批</span>同学 C 申报 · 部长审批后提交会长团终审</div></div><span class="due err">今天</span></div>
       <div class="td"><span class="ckb"></span><div class="grow"><div class="t">黑客松评委邀请：还差 2 位</div><div class="m"><span class="tag t-blue">进行中</span><span class="tag">活动 · AI for Campus 黑客松</span>进展：评委 1 / 3 已确认</div></div><span class="due warn">10-30</span></div>
       <div class="td"><span class="ckb"></span><div class="grow"><div class="t">工作坊第 3 期：场地确认后发报名推送</div><div class="m"><span class="tag t-line">待办</span><span class="tag">活动 · 工作坊第 3 期</span>部长分配</div></div><span class="due muted">11-03</span></div>
       <div class="td"><span class="ckb on"></span><div class="grow"><div class="t" style="color:var(--muted);text-decoration:line-through">上传黑客松赞助方案到知识库</div><div class="m"><span class="tag t-green">已完成</span>10-26</div></div><span class="due muted">—</span></div>
     </div>
-
     <div class="card rel" style="margin-top:16px"><span class="mk" style="left:-8px;top:-8px">3</span>
-      <div class="pad" style="padding-bottom:10px"><span class="h-sec">活动进度</span><span class="small muted" style="margin-left:8px">申报 → 部长审批 → 会长团终审（通过后自动出现在活动页）→ 进行中 → 已完成</span></div>
+      <div class="pad" style="padding-bottom:10px"><span class="h-sec">本部门活动</span><span class="small muted" style="margin-left:8px">申报 → 部长审批 → 会长团终审（通过后自动出现在活动页）→ 进行中 → 已完成</span></div>
       <table class="tbl">
         <tr><th>活动</th><th style="width:130px">阶段</th><th style="width:150px">相关工作</th><th style="width:96px">负责人</th></tr>
         <tr><td><div class="b">AI for Campus 黑客松</div><div class="xs muted">12-07 · 评委 1 / 3 已确认</div></td><td><div class="stg"><i class="d"></i><i class="d"></i><i class="d"></i><i class="c"></i><i></i></div><div class="xs muted" style="margin-top:4px">进行中</div></td><td><div class="progress"><i style="width:45%"></i></div><div class="xs muted" style="margin-top:4px">9 / 20 已完成</div></td><td class="small">张同学</td></tr>
@@ -49,7 +50,6 @@
       </table>
     </div>
   </div>
-
   <div>
     <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">4</span>
       <div class="row between" style="margin-bottom:10px"><span class="h-sec">本部门成员进度</span><span class="tag t-line">本学期</span></div>
@@ -60,9 +60,108 @@
         <tr><td>同学 D</td><td class="n">1</td><td class="n">2</td><td class="n">5</td><td></td></tr>
         <tr><td>张同学</td><td class="n">2</td><td class="n">1</td><td class="n">9</td><td></td></tr>
       </table>
-      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>这些工作记录就是“工作留痕”，也是部长分配积分的依据。积分制度由综合管理部制定，定稿后在这里分配积分；骨干可以在自己的视角查看积分明细并申诉。</div></div>
+      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>这些工作记录就是“工作留痕”，也是部长分配积分的依据。积分制度由综合管理部制定，定稿后在这里分配积分。</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 骨干视角 -->
+<div class="cols" data-view="backbone" hidden>
+  <div>
+    <div class="card">
+      <div class="pad row between" style="padding-bottom:8px"><div class="row"><span class="h-sec">我的工作</span><div class="seg"><a class="on">进行中 3</a><a>已完成 9</a></div></div><a class="lnk small" data-open="submit"><i class="ic" data-i="LuPlus"></i> 提交工作</a></div>
+      <div class="td"><span class="ckb"></span><div class="grow"><div class="t">黑客松评委邀请：还差 2 位</div><div class="m"><span class="tag t-blue">进行中</span><span class="tag">活动 · AI for Campus 黑客松</span>部长分配 · 进展：评委 1 / 3 已确认</div></div><span class="due warn">10-30</span></div>
+      <div class="td"><span class="ckb"></span><div class="grow"><div class="t">工作坊第 3 期：场地确认后发报名推送</div><div class="m"><span class="tag t-line">待办</span><span class="tag">活动 · 工作坊第 3 期</span>部长分配</div></div><span class="due muted">11-03</span></div>
+      <div class="td"><span class="ckb"></span><div class="grow"><div class="t">整理黑客松赞助方案</div><div class="m"><span class="tag t-blue">进行中</span>自己提交 · 进展：已联系 2 家</div></div><span class="due muted">11-10</span></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="pad" style="padding-bottom:10px"><span class="h-sec">我申报的活动</span></div>
+      <table class="tbl">
+        <tr><th>活动</th><th style="width:130px">阶段</th><th style="width:220px">说明</th></tr>
+        <tr><td><div class="b">AI for Campus 黑客松</div><div class="xs muted">12-07</div></td><td><div class="stg"><i class="d"></i><i class="d"></i><i class="d"></i><i class="c"></i><i></i></div><div class="xs muted" style="margin-top:4px">进行中</div></td><td class="small muted">已出现在社区活动页</td></tr>
+      </table>
+    </div>
+  </div>
+  <div>
+    <div class="card pad">
+      <div class="row between" style="margin-bottom:10px"><span class="h-sec">我的工作记录</span><span class="tag t-line">本学期</span></div>
+      <div class="row" style="gap:20px"><div class="stat"><b>9</b><span>已完成</span></div><div class="stat"><b>3</b><span>进行中</span></div></div>
+      <div class="sep" style="margin:12px 0"></div>
+      <div class="small"><div class="row between"><span>上传黑客松赞助方案到知识库</span><span class="xs muted">10-26</span></div><div class="row between" style="margin-top:6px"><span>分享会签到与现场协调</span><span class="xs muted">10-24</span></div></div>
+      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>这些记录就是“工作留痕”。积分由部长按活动或任务分配，制度定稿后在这里看积分明细，有疑问可以申诉。</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 会长团视角（演示用户没有这个权限，显示为示意） -->
+<div data-view="council" hidden>
+  <div class="notice n-amber" style="margin-bottom:14px"><i class="ic" data-i="LuLock"></i><div>你没有会长团权限，下面是会长团看到的内容示意。会长团可以在审核与管理里给同学授予权限。</div></div>
+  <div class="cols">
+    <div>
+      <div class="card">
+        <div class="pad row between" style="padding-bottom:8px"><div class="row"><span class="h-sec">待终审</span><span class="tag t-amber" style="margin-left:6px">1</span></div></div>
+        <div class="td"><span class="ckb"></span><div class="grow"><div class="t">终审：AI 产品沙龙（第 2 期）</div><div class="m"><span class="tag t-amber">待终审</span>外联部申报 · 部长已通过</div></div><span class="due err">今天</span></div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <div class="pad" style="padding-bottom:10px"><span class="h-sec">全社活动</span></div>
+        <table class="tbl">
+          <tr><th>部门</th><th class="n" style="width:110px">审批中</th><th class="n" style="width:110px">进行中</th><th class="n" style="width:110px">本学期已完成</th></tr>
+          <tr><td>AI俱乐部</td><td class="n">1</td><td class="n">2</td><td class="n">4</td></tr>
+          <tr><td>外联部</td><td class="n">1</td><td class="n">1</td><td class="n">3</td></tr>
+          <tr><td>综合管理部</td><td class="n">0</td><td class="n">1</td><td class="n">2</td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="card pad">
+        <div class="row between" style="margin-bottom:10px"><span class="h-sec">各部门工作进度</span><span class="tag t-line">本学期</span></div>
+        <table class="tbl mt" style="font-size:13px">
+          <tr><th>部门</th><th class="n">待办</th><th class="n">进行中</th><th class="n">已完成</th><th class="n">逾期</th></tr>
+          <tr><td>AI俱乐部</td><td class="n">8</td><td class="n">4</td><td class="n">22</td><td class="n">1</td></tr>
+          <tr><td>外联部</td><td class="n">5</td><td class="n">3</td><td class="n">17</td><td class="n">0</td></tr>
+          <tr><td>综合管理部</td><td class="n">3</td><td class="n">2</td><td class="n">11</td><td class="n">0</td></tr>
+        </table>
+        <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>积分制度定稿后，这里加上各部门积分发放的总量、人均和分布，用于监督。</div></div>
+      </div>
     </div>
   </div>
 </div>
 </div></div></div></div>
+
+<div class="mask" id="mask" hidden>
+  <div class="dlg">
+    <div class="hd"><b style="font-size:16px" id="dlgtitle">提交工作</b><span class="grow"></span><span class="icon-btn" data-close style="width:32px;height:32px;font-size:20px;color:var(--muted)">×</span></div>
+    <div class="bd">
+      <p class="small muted" id="dlgdesc" style="margin-bottom:12px">记录自己正在做或做完的事，部长能在本部门进度里看到。</p>
+      <div class="field" id="f-assignee" hidden><div class="label">负责人 <span class="req">*</span></div><div class="input">同学 C（AI俱乐部）<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div></div>
+      <div class="field"><div class="label">工作内容 <span class="req">*</span></div><div class="input ph">如：联系黑客松赞助方</div></div>
+      <div class="grid g2">
+        <div class="field"><div class="label">关联活动</div><div class="input">AI for Campus 黑客松<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div></div>
+        <div class="field"><div class="label">截止日期</div><div class="input ph">选择日期</div></div>
+      </div>
+      <div class="field" id="f-status"><div class="label">状态</div><div class="seg"><a>待办</a><a class="on">进行中</a><a>已完成</a></div></div>
+      <div class="field"><div class="label">进展说明</div><div class="input ph textarea">可选</div></div>
+    </div>
+    <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-close id="dlgok">提交</span></div>
+  </div>
+</div>
+<script>
+const CAP = { backbone: "骨干：自己的工作、自己申报的活动、工作记录", minister: "部长：本部门全部工作，可以分配、督办、审批", council: "会长团：全社进度与终审（你没有这个权限，以下为示意）" };
+document.querySelectorAll("#views a").forEach(a => a.addEventListener("click", () => {
+  document.querySelectorAll("#views a").forEach(x => x.classList.toggle("on", x === a));
+  document.querySelectorAll("[data-view]").forEach(v => { v.hidden = v.dataset.view !== a.dataset.v; });
+  document.getElementById("viewcap").textContent = CAP[a.dataset.v];
+}));
+const DLG = {
+  submit: ["提交工作", "记录自己正在做或做完的事，部长能在本部门进度里看到。", "提交", false],
+  assign: ["分配任务", "把任务派给本部门的同学，对方会收到通知，状态从“待办”开始。", "分配", true],
+};
+document.querySelectorAll("[data-open]").forEach(el => el.addEventListener("click", () => {
+  const [t, d, ok, assign] = DLG[el.dataset.open];
+  document.getElementById("dlgtitle").textContent = t; document.getElementById("dlgdesc").textContent = d; document.getElementById("dlgok").textContent = ok;
+  document.getElementById("f-assignee").hidden = !assign; document.getElementById("f-status").hidden = assign;
+  document.getElementById("mask").hidden = false;
+}));
+document.querySelectorAll("[data-close]").forEach(el => el.addEventListener("click", () => { document.getElementById("mask").hidden = true; }));
+</script>
 </body></html>

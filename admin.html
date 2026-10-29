@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>审核与管理 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261029b"><script src="assets/icons.js?v=20261029b"></script><script src="assets/app.js?v=20261029b"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261029c"><script src="assets/icons.js?v=20261029c"></script><script src="assets/app.js?v=20261029c"></script>
 <style>
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .stats .card { padding: 16px 18px; display: flex; gap: 14px; align-items: center; }
 .stats .si { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-.cols { display: grid; grid-template-columns: 1fr 300px; gap: 16px; margin-top: 16px; align-items: start; }
+.cols { display: grid; grid-template-columns: 1fr 340px; gap: 16px; align-items: start; }
 .rv td { vertical-align: top; }
 .sug { font-size: 12px; border-radius: 8px; padding: 6px 9px; margin-top: 4px; display: flex; gap: 6px; align-items: flex-start; line-height: 1.5; }
 .ckb { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--line-2); display: inline-block; }
 .ckb.on { background: var(--red); border-color: var(--red); }
-.mods .m { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
-.mods .m:last-child { border-bottom: 0; }
-.mods .mi { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+[data-panel][hidden] { display: none; }
+.tabs a { cursor: pointer; }
+.mem tr.on td { background: var(--red-50); }
+.grant { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.grant:last-child { border-bottom: 0; }
+.grant .gb { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--line-2); flex: none; margin-top: 2px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; }
+.grant.on .gb { background: var(--red); border-color: var(--red); }
+.grant b { font-size: 13.5px; color: var(--ink); }
+.grant span { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
 </style></head>
 <body data-page="admin" data-search="搜索成员、待办、记录">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row between" style="margin:6px 0 16px"><div><div class="row"><h1 class="h-page">审核与管理</h1><span class="tag t-line"><i class="ic" data-i="LuShieldCheck"></i>维护人视图</span></div><p class="muted" style="margin-top:2px">资源和资料的审核，以及成员角色与权限</p></div>
-<div class="tabs" style="border:0"><a class="on">审核</a><a>成员与权限</a><a>操作日志</a></div></div>
-<div class="stats rel"><span class="mk" style="left:-8px;top:-8px">1</span>
+<div class="row between" style="margin:6px 0 16px"><div><div class="row"><h1 class="h-page">审核与管理</h1><span class="tag t-line"><i class="ic" data-i="LuShieldCheck"></i>维护人与会长团</span></div><p class="muted" style="margin-top:2px">资源和资料审核、社区内容管理、成员身份与授权。日常工作和活动审批在工作台</p></div>
+<div class="tabs rel" id="tabs" style="border:0"><span class="mk" style="left:-14px;top:-8px">1</span><a class="on" data-t="review">审核</a><a data-t="content">内容管理</a><a data-t="members">成员与权限</a><a data-t="log">操作日志</a></div></div>
+
+<div data-panel="review">
+<div class="stats">
   <div class="card"><div class="si t-red"><i class="ic" data-i="LuInbox"></i></div><div class="stat"><b>4</b><span>待审核</span></div></div>
   <div class="card"><div class="si t-blue"><i class="ic" data-i="LuDatabase"></i></div><div class="stat"><b>412</b><span>资源总数</span></div></div>
   <div class="card"><div class="si t-teal"><i class="ic" data-i="LuLibrary"></i></div><div class="stat"><b>1,036</b><span>知识库文档</span></div></div>
 </div>
-<div class="cols">
-  <div class="card rel"><span class="mk" style="left:-8px;top:-8px">2</span>
+<div class="card rel" style="margin-top:16px"><span class="mk" style="left:-8px;top:-8px">2</span>
     <div class="pad row between" style="padding-bottom:10px"><div class="seg"><a class="on">全部 4</a><a>资源 3</a><a>资料 1</a></div><div class="row"><span class="btn btn-sm">驳回所选</span><span class="btn btn-sm btn-p"><i class="ic" data-i="LuCheck"></i>通过所选（2）</span></div></div>
     <table class="tbl rv">
       <tr><th style="width:36px"></th><th>内容</th><th style="width:250px">检查结果</th><th style="width:118px">提交</th><th style="width:96px"></th></tr>
@@ -34,14 +41,71 @@
       <tr><td><span class="ckb"></span></td><td><div class="row"><span class="tag t-teal">资料</span><span class="b">黑客松赞助方案.pdf</span></div><div class="small muted" style="margin-top:4px">申请可见范围：学社成员</div></td><td><div class="sug n-teal"><i class="ic" data-i="LuCircleCheck"></i>必填项完整；申请从“仅维护人”改为学社成员可见</div></td><td class="small">同学 D<br><span class="muted">2 小时前</span></td><td><span class="btn btn-sm">查看</span></td></tr>
       <tr><td><span class="ckb"></span></td><td><div class="row"><span class="tag t-red">资源</span><span class="b">示例人物 H</span></div><div class="small muted" style="margin-top:4px">缺少“可提供的帮助”</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuTriangleAlert"></i>必填项缺失，建议退回补充</div></td><td class="small">同学 C<br><span class="muted">昨天</span></td><td><span class="btn btn-sm">查看</span></td></tr>
     </table>
+</div>
+</div>
+
+<div data-panel="content" hidden>
+<div class="card rel"><span class="mk" style="left:-8px;top:-8px">3</span>
+  <div class="pad row between" style="padding-bottom:10px"><div class="seg"><a class="on">全部</a><a>活动</a><a>讨论</a><a>精选</a></div><span class="small muted">下架后社区不再显示，可以恢复；删除要写原因，记入操作日志</span></div>
+  <table class="tbl rv">
+    <tr><th>内容</th><th style="width:150px">来源</th><th style="width:110px">状态</th><th style="width:150px"></th></tr>
+    <tr><td><div class="row"><span class="tag t-blue">活动</span><span class="b">AI Agent 工作坊（第 2 期）</span></div><div class="small muted" style="margin-top:4px">某 AI 社团 · 11 月 9 日</div></td><td class="small">工作台录入<br><span class="muted">同学 D</span></td><td><span class="tag t-green">展示中</span></td><td><span class="btn btn-sm">下架</span> <span class="btn btn-sm">删除</span></td></tr>
+    <tr><td><div class="row"><span class="tag t-blue">活动</span><span class="b">AI for Campus 黑客松</span></div><div class="small muted" style="margin-top:4px">AI俱乐部 · 12 月 6–7 日</div></td><td class="small">学社主办<br><span class="muted">审批通过后自动生成</span></td><td><span class="tag t-green">展示中</span></td><td><span class="btn btn-sm">下架</span></td></tr>
+    <tr><td><div class="row"><span class="tag t-violet">讨论</span><span class="b">求推荐靠谱的 AI 课程代写</span></div><div class="small muted" style="margin-top:4px">被 3 人举报</div></td><td class="small">北大同学<br><span class="muted">今天</span></td><td><span class="tag t-amber">待处理</span></td><td><span class="btn btn-sm">保留</span> <span class="btn btn-sm">删除</span></td></tr>
+    <tr><td><div class="row"><span class="tag t-gold">精选</span><span class="b">讲座整理｜第一版产品怎么定范围</span></div><div class="small muted" style="margin-top:4px">来自活动「AI 产品从 0 到 1」</div></td><td class="small">学社整理<br><span class="muted">同学 G</span></td><td><span class="tag t-green">展示中</span></td><td><span class="btn btn-sm">下架</span></td></tr>
+  </table>
+</div>
+</div>
+
+<div data-panel="members" hidden>
+<div class="cols">
+  <div class="card rel"><span class="mk" style="left:-8px;top:-8px">4</span>
+    <div class="pad row between" style="padding-bottom:10px"><div class="seg"><a class="on">全部 312</a><a>会长团</a><a>部长</a><a>骨干</a><a>会员</a><a>有额外授权 3</a></div><span class="small muted">名单：2026 秋招新表</span></div>
+    <table class="tbl mem">
+      <tr><th>姓名</th><th>部门</th><th>身份（招新表）</th><th>额外授权</th></tr>
+      <tr><td class="b">张同学</td><td>AI俱乐部</td><td>部长</td><td><span class="tag">维护人</span></td></tr>
+      <tr class="on"><td class="b">同学 E</td><td>综合管理部</td><td>骨干</td><td><span class="tag t-red">会长团权限</span> <span class="xs muted">至 2027-01-31</span></td></tr>
+      <tr><td class="b">同学 B</td><td>外联部</td><td>骨干</td><td><span class="tag">维护人</span></td></tr>
+      <tr><td class="b">同学 C</td><td>AI俱乐部</td><td>骨干</td><td class="muted">—</td></tr>
+      <tr><td class="b">同学 M</td><td>—</td><td>会员</td><td class="muted">—</td></tr>
+    </table>
   </div>
-  <div>
-    <div class="card pad rel mods"><span class="mk" style="left:-8px;top:-8px">3</span><div class="h-sec" style="margin-bottom:4px">管理</div>
-      <div class="m"><div class="mi t-blue"><i class="ic" data-i="LuUsers"></i></div><div class="grow"><div class="b" style="font-size:13.5px">成员与权限</div><div class="xs muted">会员、骨干、部长、会长团四级；招新表每学期导入一次，按手机号匹配；角色调整由会长团负责</div></div><span class="lv lv0">沉淀</span></div>
-      <div class="m"><div class="mi t-teal"><i class="ic" data-i="LuLayers"></i></div><div class="grow"><div class="b" style="font-size:13.5px">资料分类与可见范围</div><div class="xs muted">各类资料的默认可见范围和维护人</div></div><span class="lv lv0">沉淀</span></div>
+  <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">5</span>
+    <div class="row between"><span class="h-sec">授权 · 同学 E</span><span class="tag t-line">只有会长团能修改</span></div>
+    <div class="small muted" style="margin:8px 0 6px">基础身份来自招新表，每学期随名单更新</div>
+    <div class="input" style="background:#FAF9F7">综合管理部 · 骨干</div>
+    <div class="small b" style="margin:14px 0 2px">额外授权</div>
+    <div class="grant on"><span class="gb"><i class="ic" data-i="LuCheck"></i></span><div class="grow"><b>会长团权限</b><span>查看全社进度、活动终审、权限分配</span></div></div>
+    <div class="grant"><span class="gb"></span><div class="grow"><b>部门管理权限</b><span>按部长权限管理指定部门：查看进度、分配、审批</span></div></div>
+    <div class="grant"><span class="gb"></span><div class="grow"><b>维护人</b><span>审核资源和资料，查看“仅维护人可见”的联系方式</span></div></div>
+    <div class="grant"><span class="gb"></span><div class="grow"><b>内容管理</b><span>社区内容的下架和删除</span></div></div>
+    <div class="grid g2" style="margin-top:10px">
+      <div class="field"><div class="label">有效期至</div><div class="input">2027-01-31（学期末）</div></div>
+      <div class="field"><div class="label">原因</div><div class="input">协助会长团统筹积分方案</div></div>
     </div>
-    <div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuHistory"></i><div>所有审核、修改和导出操作都会记录在操作日志中，可按人和时间查询。</div></div>
+    <div class="row" style="margin-top:4px"><span class="xs muted grow">变更记入操作日志；到期自动失效，换届时重新授权</span><span class="btn btn-p btn-sm">保存</span></div>
   </div>
 </div>
+</div>
+
+<div data-panel="log" hidden>
+<div class="card">
+  <table class="tbl">
+    <tr><th style="width:150px">时间</th><th style="width:140px">操作人</th><th>操作</th></tr>
+    <tr><td class="small">10-29 09:12</td><td>会长团 · 同学 A</td><td class="small">授予同学 E 会长团权限，至 2027-01-31</td></tr>
+    <tr><td class="small">10-28 21:40</td><td>维护人 · 同学 B</td><td class="small">通过资源「示例机构 F」</td></tr>
+    <tr><td class="small">10-28 18:05</td><td>内容管理 · 同学 G</td><td class="small">下架讨论帖「求推荐靠谱的 AI 课程代写」：违反社区约定</td></tr>
+  </table>
+</div>
+</div>
+<script>
+const show = (t) => {
+  document.querySelectorAll("#tabs a").forEach(a => a.classList.toggle("on", a.dataset.t === t));
+  document.querySelectorAll("[data-panel]").forEach(p => { p.hidden = p.dataset.panel !== t; });
+};
+document.querySelectorAll("#tabs a").forEach(a => a.addEventListener("click", () => show(a.dataset.t)));
+const h = location.hash;
+if (h.includes("members")) show("members"); else if (h.includes("content")) show("content");
+</script>
 </div></div></div></div>
 </body></html>
