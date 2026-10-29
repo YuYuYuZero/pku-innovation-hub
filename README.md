@@ -20,6 +20,7 @@
 | 助手技能 | `skills.html` |
 | 讨论 | `community.html` |
 | 活动 | `events.html` |
+| 录入活动 | `event_new.html` |
 | 精选 | `featured.html` |
 | 创业 · 项目 | `projects.html` |
 | 创业 · 项目详情 | `project_detail.html` |

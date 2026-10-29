@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>录入活动 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css?v=20261029b"><script src="assets/icons.js?v=20261029b"></script><script src="assets/app.js?v=20261029b"></script>
+<style>
+.cols { display: grid; grid-template-columns: 420px 1fr; gap: 18px; align-items: start; }
+.cols.manual { grid-template-columns: 1fr; max-width: 820px; }
+.aip { background: linear-gradient(180deg, #FFFAF7 0, #fff 120px); }
+.src { margin-top: 12px; border: 1px solid var(--line-2); border-radius: 12px; padding: 10px 12px; background: #fff; font-size: 13px; color: var(--ink); word-break: break-all; }
+.art { display: flex; gap: 10px; align-items: center; margin-top: 12px; padding: 10px 12px; border-radius: 12px; background: #FAF9F7; border: 1px solid var(--line); }
+.art .th { width: 44px; height: 44px; border-radius: 9px; flex: none; background: linear-gradient(135deg, #2B2F45, #4E5BA6); }
+.steps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.steps span { font-size: 12px; color: var(--green); background: #EEF7F1; border-radius: 7px; padding: 3px 8px; display: inline-flex; gap: 4px; align-items: center; }
+.found { margin-top: 14px; }
+.fi { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); margin-top: 8px; background: #fff; }
+.fi.on { border-color: var(--red-200); background: var(--red-50); }
+.fi .ck { width: 18px; height: 18px; border-radius: 6px; border: 1.5px solid var(--line-2); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; }
+.fi.on .ck { background: var(--red); border-color: var(--red); }
+.form { padding: 22px 24px; }
+.conf { font-size: 11px; font-weight: 600; color: var(--green); margin-left: auto; }
+.conf.mid { color: var(--amber); }
+.manual .conf { display: none; }
+.manual .input.ai { background: #fff; border-color: var(--line-2); }
+.ft { display: flex; align-items: center; gap: 12px; padding: 16px 24px; border-top: 1px solid var(--line); background: #FCFBFA; border-radius: 0 0 var(--r) var(--r); }
+</style></head>
+<body data-page="events">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap" style="max-width:1180px">
+<div class="row small muted" style="margin:4px 0 6px"><a href="events.html">活动</a><i class="ic" data-i="LuChevronRight"></i><span>录入活动</span></div>
+<div class="row between" style="margin-bottom:16px"><div><div class="row"><h1 class="h-page">录入一场活动</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干可见</span></div><p class="muted" style="margin-top:2px">录入合作社团和校外的活动，确认后出现在活动列表。学社自己办的活动请在<a class="lnk" href="workbench.html">工作台</a>申报，终审通过后会自动出现。</p></div>
+<div class="seg rel" id="mode"><span class="mk" style="left:-10px;top:-10px">1</span><a data-m="manual">手动填写</a><a class="on" data-m="ai"><i class="ic" data-i="LuSparkles"></i>AI 录入</a></div></div>
+<div class="cols" id="cols">
+  <div class="card pad aip rel" id="aip"><span class="mk" style="left:-8px;top:-8px">2</span>
+    <div class="row between"><div class="row"><span class="ai-tag"><i class="ic" data-i="LuSparkles"></i>技能 · 活动录入</span><span class="lv lv1">提效</span></div><div class="seg"><a class="on">公众号链接</a><a>粘贴文字</a></div></div>
+    <div class="src">https://mp.weixin.qq.com/s/xxxxxxxx（示例）</div>
+    <div class="row" style="margin-top:12px"><span class="btn btn-p" style="flex:1"><i class="ic" data-i="LuSparkles"></i>AI 解析</span><span class="btn"><i class="ic" data-i="LuRefreshCw"></i></span></div>
+    <div class="art"><div class="th"></div><div class="grow"><div class="b" style="font-size:13.5px">AI Agent 工作坊与 Demo Day 报名开启（示例）</div><div class="xs muted">某 AI 社团（示例）· 10 月 27 日发布</div></div></div>
+    <div class="steps"><span><i class="ic" data-i="LuCheck"></i>正文已读取</span><span><i class="ic" data-i="LuCheck"></i>海报文字已识别</span><span><i class="ic" data-i="LuCheck"></i>报名二维码已解析</span></div>
+    <div class="found rel"><span class="mk" style="left:-10px;top:-6px">3</span><div class="small muted">识别到 2 场活动，逐场确认</div>
+      <div class="fi on"><span class="ck"><i class="ic" data-i="LuCheck"></i></span><div class="grow"><div class="b" style="font-size:13.5px">AI Agent 工作坊（第 2 期）</div><div class="xs muted">11 月 9 日 14:00 · 二教 305</div></div><span class="tag t-green">正在编辑</span></div>
+      <div class="fi"><span class="ck"></span><div class="grow"><div class="b" style="font-size:13.5px">AI 项目 Demo Day</div><div class="xs muted">11 月 23 日 19:00 · 线上</div></div><span class="tag">待确认</span></div>
+    </div>
+    <div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuShieldCheck"></i><div>AI 只填草稿，字段由你确认后才发布。原文只用来提取活动信息，活动列表里链接回原文，不转载全文。</div></div>
+  </div>
+  <div class="card rel" id="formcard"><span class="mk" style="left:-8px;top:-8px">4</span>
+    <div class="form">
+      <div class="notice n-amber" style="margin-bottom:18px"><i class="ic" data-i="LuTriangleAlert"></i><div><b>可能重复：</b>活动列表里已有“AI Agent 工作坊（第 2 期）· 11 月 9 日”，由同学 D 录入。<a class="lnk">查看已有活动</a> 或 继续录入。</div></div>
+      <div class="field"><div class="label">活动名称 <span class="req">*</span><span class="conf">AI · 高</span></div><div class="input ai">AI Agent 工作坊（第 2 期）</div></div>
+      <div class="grid g2">
+        <div class="field"><div class="label">类型 <span class="req">*</span><span class="conf">AI · 高</span></div><div class="input ai">工作坊<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div></div>
+        <div class="field"><div class="label">主办方 <span class="req">*</span><span class="conf">AI · 高</span></div><div class="input ai">某 AI 社团（示例）</div></div>
+        <div class="field"><div class="label">开始时间 <span class="req">*</span><span class="conf">AI · 高</span></div><div class="input ai">2026-11-09 14:00</div></div>
+        <div class="field"><div class="label">结束时间<span class="conf mid">AI · 中 · 请核对</span></div><div class="input ai">2026-11-09 17:00</div></div>
+        <div class="field"><div class="label">地点<span class="conf">AI · 高</span></div><div class="input ai">二教 305（示例）<span class="seg" style="margin-left:auto;padding:2px"><a class="on" style="padding:0 8px;font-size:11.5px">线下</a><a style="padding:0 8px;font-size:11.5px">线上</a></span></div></div>
+        <div class="field"><div class="label">报名截止<span class="conf mid">AI · 中 · 请核对</span></div><div class="input ai">2026-11-07</div></div>
+      </div>
+      <div class="field"><div class="label">报名方式<span class="conf">AI · 高</span></div><div class="input ai">扫码填写报名表，限 40 人</div></div>
+      <div class="grid g2">
+        <div class="field"><div class="label">报名链接<span class="conf">AI · 高</span></div><div class="input ai">https://www.wjx.top/vm/xxxx（来自海报二维码）</div></div>
+        <div class="field"><div class="label">来源</div><div class="input">公众号原文（自动关联）</div></div>
+      </div>
+      <div class="field"><div class="label">可见范围</div><div class="input">学社内<span class="xs muted" style="margin-left:8px">对外公开随社区在二期开放</span><i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div></div>
+    </div>
+    <div class="ft rel"><span class="mk" style="left:-8px;top:-8px">5</span><span class="small muted">确认后出现在活动列表；录入人和维护人可以修改或下架</span><span class="grow"></span><span class="btn btn-p">确认发布</span></div>
+  </div>
+</div>
+</div></div></div></div>
+<script>
+document.querySelectorAll("#mode a").forEach(a => a.addEventListener("click", () => {
+  const manual = a.dataset.m === "manual";
+  document.querySelectorAll("#mode a").forEach(x => x.classList.toggle("on", x === a));
+  document.getElementById("aip").hidden = manual;
+  document.getElementById("cols").classList.toggle("manual", manual);
+}));
+</script>
+</body></html>
