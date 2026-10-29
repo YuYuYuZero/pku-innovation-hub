@@ -277,3 +277,12 @@ body.anno .mk {
 .dlg .hd { display: flex; align-items: center; gap: 8px; padding: 18px 22px 0; }
 .dlg .bd { padding: 14px 22px 18px; }
 .dlg .fd { display: flex; align-items: center; gap: 10px; padding: 14px 22px; border-top: 1px solid var(--line); background: #FCFBFA; border-radius: 0 0 18px 18px; }
+
+.psearch { width: 280px; height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border: 1px solid var(--line-2); border-radius: 11px; background: #fff; color: var(--muted); font-size: 13.5px; }
+.psearch .ic { font-size: 16px; }
+
+.sb { position: sticky; }
+.sb-bell { position: absolute; top: 22px; right: 12px; }
+.sb-bell .icon-btn { width: 34px; height: 34px; border-radius: 10px; }
+.sb-bell .dd { left: 0; right: auto; }
+.page { padding-top: 28px; }

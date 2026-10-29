@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261029c" alt="北京大学校徽">`;
+const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261029d" alt="北京大学校徽">`;
 
 const NAV = [
   { g: "", items: [
@@ -45,25 +45,21 @@ function renderShell() {
         `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${cnt ? `<span class="cnt">${cnt}</span>` : lock ? `<span class="lk">${ic("LuLock")}</span>` : ""}</a>`).join("") + `</div>`).join("") +
       `<a class="me" href="#"><span class="av av-sm a1">张</span><div class="who"><b>张同学</b><span>AI俱乐部 · 部长</span></div>${ic("LuSettings")}</a>`;
   }
+  // 不再用顶栏：搜索放在首页和各板块内部，通知铃铛放在侧边栏 Logo 旁边
   const tb = document.getElementById("tb");
-  if (tb) {
-    tb.className = "tb";
-    const ph = document.body.dataset.search || "搜索资源、资料、项目、活动，或直接问 AI";
-    // 首页中间已有大搜索框，顶栏不再重复放
-    const search = page === "home" ? "" : `<div class="gsearch rel">${ic("LuSearch")}<span class="ph">${ph}</span><span class="kbd">⌘ K</span><a class="ask" href="assistant.html">${ic("LuSparkles")}问 AI</a></div>`;
-    tb.innerHTML = `${search}<div class="sp"></div>
-      <div class="dd-wrap"><button class="icon-btn" data-dd="note">${ic("LuBell")}<span class="dot"></span></button>
-        <div class="dd dd-note" id="dd-note" hidden><div class="dd-h">通知<span>全部已读</span></div>${NOTES.map(([t, d, href, icon]) =>
-          `<a href="${href}">${ic(icon)}<div><b>${t}</b><span>${d}</span></div></a>`).join("")}</div></div>`;
-    tb.querySelectorAll("[data-dd]").forEach(btn => btn.onclick = (e) => {
-      e.stopPropagation();
-      const box = document.getElementById("dd-" + btn.dataset.dd);
-      const open = box.hidden;
-      tb.querySelectorAll(".dd").forEach(x => { x.hidden = true; });
-      box.hidden = !open;
-    });
-    document.addEventListener("click", () => tb.querySelectorAll(".dd").forEach(x => { x.hidden = true; }));
+  if (tb) tb.remove();
+  if (sb) {
+    const bell = document.createElement("div");
+    bell.className = "dd-wrap sb-bell";
+    bell.innerHTML = `<button class="icon-btn">${ic("LuBell")}<span class="dot"></span></button>
+      <div class="dd dd-note" hidden><div class="dd-h">通知<span>全部已读</span></div>${NOTES.map(([t, d, href, icon]) =>
+        `<a href="${href}">${ic(icon)}<div><b>${t}</b><span>${d}</span></div></a>`).join("")}</div>`;
+    sb.querySelector(".brand").after(bell);
+    const box = bell.querySelector(".dd");
+    bell.querySelector("button").onclick = (e) => { e.stopPropagation(); box.hidden = !box.hidden; };
+    document.addEventListener("click", () => { box.hidden = true; });
   }
+
 }
 
 function renderIcons() {
