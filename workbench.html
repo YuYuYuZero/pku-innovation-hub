@@ -27,10 +27,10 @@
 <body data-page="workbench">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">工作台</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干可见 · 按角色分级</span></div><p class="muted" style="margin-top:2px">骨干提交和更新自己的工作、申报活动；部长查看本部门进度，分配和督办；部长和维护人在“审批”里处理活动申报、资源和资料</p></div>
+<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">工作台</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干可见 · 按角色分级</span></div><p class="muted" style="margin-top:2px">骨干提交和更新自己的工作、申报活动、看自己的积分；部长查看本部门进度，分配、督办、分配积分；部长和维护人在“审批”里处理活动申报、资源和资料</p></div>
 <div class="row"><span class="btn" data-open="submit"><i class="ic" data-i="LuNotebookPen"></i>提交工作</span><a class="btn" href="event_new.html"><i class="ic" data-i="LuSparkles"></i>录入活动</a><span class="btn btn-p" data-dlg="apply"><i class="ic" data-i="LuCalendarCheck"></i>申报活动</span></div></div>
 
-<div class="tabs" id="wbtabs" style="margin-bottom:16px"><a class="on" data-w="progress">工作进展</a><a data-w="review">审批 <span class="tag t-red" style="height:18px;padding:0 6px">5</span></a></div>
+<div class="tabs" id="wbtabs" style="margin-bottom:16px"><a class="on" data-w="progress">工作进展</a><a data-w="review">审批 <span class="tag t-red" style="height:18px;padding:0 6px">5</span></a><a data-w="points">骨干积分</a></div>
 
 <div data-wb="progress">
 <div class="row between rel" style="margin-bottom:14px"><span class="mk" style="left:-8px;top:-8px">1</span>
@@ -68,7 +68,7 @@
         <tr><td>同学 D</td><td class="n">1</td><td class="n">2</td><td class="n">5</td><td></td></tr>
         <tr><td>张同学</td><td class="n">2</td><td class="n">1</td><td class="n">9</td><td></td></tr>
       </table>
-      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>这些工作记录就是“工作留痕”，也是部长分配积分的依据。积分制度由综合管理部制定，定稿后在这里分配积分。</div></div>
+      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>这些工作记录就是“工作留痕”，也是部长分配积分的依据，积分在上方“骨干积分”标签里分配。</div></div>
     </div>
   </div>
 </div>
@@ -96,7 +96,7 @@
       <div class="row" style="gap:20px"><div class="stat"><b>9</b><span>已完成</span></div><div class="stat"><b>3</b><span>进行中</span></div></div>
       <div class="sep" style="margin:12px 0"></div>
       <div class="small"><div class="row between"><span>上传黑客松赞助方案到知识库</span><span class="xs muted">10-26</span></div><div class="row between" style="margin-top:6px"><span>分享会签到与现场协调</span><span class="xs muted">10-24</span></div></div>
-      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>这些记录就是“工作留痕”。积分由部长按活动或任务分配，制度定稿后在这里看积分明细，有疑问可以申诉。</div></div>
+      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>这些记录就是“工作留痕”。积分由部长按活动或任务分配，在上方“骨干积分”标签里看明细和申诉。</div></div>
     </div>
   </div>
 </div>
@@ -128,6 +128,42 @@
         </table>
         <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>积分制度定稿后，这里加上各部门积分发放的总量、人均和分布，用于监督。</div></div>
       </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 骨干积分：依据是工作进展和审批记录；部长在额度内分配，骨干看明细和申诉，会长团看发放情况 -->
+<div data-wb="points" hidden>
+<div class="notice n-amber rel" style="margin-bottom:14px"><span class="mk" style="left:-8px;top:-8px">6</span><i class="ic" data-i="LuTriangleAlert"></i><div>积分规则、分值和额度由综合管理部制定，<b>定稿前下面是示意</b>。积分由部长分配，系统不自动计算；每一条都要关联活动或任务事由。</div></div>
+<div class="cols">
+  <div>
+    <div class="card">
+      <div class="pad row between" style="padding-bottom:8px"><div class="row"><span class="h-sec">分配积分</span><span class="small muted">部长 · 活动：AI 产品从 0 到 1 讲座（已结束）</span></div><span class="small muted">本活动额度 <b class="b">40</b> · 已分配 <b class="b">26</b></span></div>
+      <div class="pad" style="padding-top:0"><div class="progress"><i style="width:65%"></i></div></div>
+      <table class="tbl">
+        <tr><th>成员</th><th>事由（来自工作进展）</th><th style="width:90px">分值</th></tr>
+        <tr><td>同学 D</td><td class="small">活动负责人：策划、嘉宾对接、现场统筹</td><td><div class="input" style="height:32px">10</div></td></tr>
+        <tr><td>同学 B</td><td class="small">签到与现场协调；纪要整理并归档到知识库</td><td><div class="input" style="height:32px">8</div></td></tr>
+        <tr><td>同学 C</td><td class="small">海报与推文</td><td><div class="input" style="height:32px">8</div></td></tr>
+      </table>
+      <div class="row" style="padding:14px 18px;border-top:1px solid var(--line);background:#FCFBFA;border-radius:0 0 var(--r) var(--r)"><span class="small muted grow">超出额度不能提交；提交后成员收到通知，可以申诉</span><span class="btn btn-p btn-sm" data-done="已分配 26 分，成员会收到通知">提交分配</span></div>
+    </div>
+  </div>
+  <div>
+    <div class="card pad">
+      <div class="row between" style="margin-bottom:8px"><span class="h-sec">我的积分</span><span class="tag t-line">本学期 · 骨干视角</span></div>
+      <div class="stat"><b>34</b><span>累计积分</span></div>
+      <div class="sep" style="margin:12px 0"></div>
+      <div class="small"><div class="row between"><span>AI 产品讲座 · 活动统筹</span><b class="b">+10</b></div><div class="xs muted">部长 张同学 · 10-26</div>
+        <div class="row between" style="margin-top:8px"><span>黑客松赞助方案</span><b class="b">+6</b></div><div class="xs muted">部长 张同学 · 10-20 · <span class="lnk" data-done="已提交申诉，部长会收到通知">申诉</span></div></div>
+    </div>
+    <div class="card pad" style="margin-top:14px">
+      <div class="row between" style="margin-bottom:8px"><span class="h-sec">各部门发放</span><span class="tag t-line">会长团视角</span></div>
+      <table class="tbl mt" style="font-size:13px"><tr><th>部门</th><th class="n">总量</th><th class="n">人均</th><th class="n">额度用量</th></tr>
+        <tr><td>AI俱乐部</td><td class="n">186</td><td class="n">15.5</td><td class="n">62%</td></tr>
+        <tr><td>外联部</td><td class="n">142</td><td class="n">14.2</td><td class="n">71%</td></tr>
+        <tr><td>综合管理部</td><td class="n">98</td><td class="n">12.3</td><td class="n">49%</td></tr></table>
     </div>
   </div>
 </div>
@@ -287,6 +323,6 @@ const wb = (w) => {
   document.querySelectorAll("[data-wb]").forEach(p => { p.hidden = p.dataset.wb !== w; });
 };
 document.querySelectorAll("#wbtabs a").forEach(a => a.addEventListener("click", () => wb(a.dataset.w)));
-if (location.hash.includes("review")) wb("review");
+if (location.hash.includes("review")) wb("review"); else if (location.hash.includes("points")) wb("points");
 </script>
 </body></html>
