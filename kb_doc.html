@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>知识库 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261029f"><script src="assets/icons.js?v=20261029f"></script><script src="assets/app.js?v=20261029f"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261030a"><script src="assets/icons.js?v=20261030a"></script><script src="assets/app.js?v=20261030a"></script>
 <style>
 .kb { display: grid; grid-template-columns: 250px 1fr 340px; gap: 14px; align-items: start; }
 .tree { padding: 12px 10px; }
@@ -28,7 +28,7 @@
 <div class="page"><div class="wrap" style="max-width:1220px">
 <div class="row small muted" style="margin:4px 0 6px"><a href="kb.html">知识库</a><i class="ic" data-i="LuChevronRight"></i><span>活动档案</span><i class="ic" data-i="LuChevronRight"></i><span>2026 秋</span></div>
 <div class="row between" style="margin:0 0 14px"><div><div class="row"><h1 class="h-page">AI 产品分享会</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>按分类分级可见</span></div><p class="muted" style="margin-top:2px">活动档案 · 原件和目录信息一起保存</p></div>
-<div class="row"><span class="btn btn-p"><i class="ic" data-i="LuDownload"></i>下载原件</span></div></div>
+<div class="row"><span class="btn" data-dlg="doc"><i class="ic" data-i="LuPenLine"></i>编辑信息（维护人）</span><span class="btn btn-p" data-done="已开始下载（签名链接 10 分钟内有效）"><i class="ic" data-i="LuDownload"></i>下载原件</span></div></div>
 <div class="kb">
   <div class="card tree rel"><span class="mk" style="left:-8px;top:-8px">1</span>
     <div class="small muted b" style="padding:4px 10px 8px;color:var(--muted)">分类</div>
@@ -41,7 +41,7 @@
     <div class="sp"><i class="ic" data-i="LuInbox"></i>往届归档<span class="c">只读</span></div>
   </div>
   <div class="card doc rel"><span class="mk" style="left:-8px;top:-8px">2</span>
-    <div class="bar"><div class="fi t-red" style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center"><i class="ic" data-i="LuFileText"></i></div><div class="grow"><div class="b">AI 产品分享会 · 活动纪要.pdf</div><div class="xs muted">活动档案 / 2026 秋 · 3 页 · 1.2 MB</div></div><span class="tag t-green">学社内可见</span><span class="icon-btn" style="width:32px;height:32px"><i class="ic" data-i="LuDownload"></i></span><span class="icon-btn" style="width:32px;height:32px"><i class="ic" data-i="LuEllipsis"></i></span></div>
+    <div class="bar"><div class="fi t-red" style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center"><i class="ic" data-i="LuFileText"></i></div><div class="grow"><div class="b">AI 产品分享会 · 活动纪要.pdf</div><div class="xs muted">活动档案 / 2026 秋 · 3 页 · 1.2 MB</div></div><span class="tag t-green">学社内可见</span><span class="icon-btn" style="width:32px;height:32px" data-done="已开始下载"><i class="ic" data-i="LuDownload"></i></span><span class="icon-btn" style="width:32px;height:32px" data-dlg="doc"><i class="ic" data-i="LuEllipsis"></i></span></div>
     <div class="viewer"><div class="pagex">
       <h3>AI 产品分享会 · 活动纪要</h3><div class="m">2026 年 10 月 24 日 · 理教 201 · 记录：同学 B</div>
       <h4>一、活动概况</h4><p>本次分享会邀请两位嘉宾，围绕“AI 产品从 0 到 1”展开，现场约 90 位同学参加，线上回放观看约 300 人次。</p>
@@ -58,4 +58,21 @@
   </div>
 </div>
 </div></div></div></div>
+
+<template id="dlg-doc"><div class="dlg dlg-lg">
+  <div class="hd"><b style="font-size:16px">资料信息 · AI 产品分享会 · 活动纪要</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <div class="grid g2" style="gap:12px">
+      <div class="field"><div class="label">标题</div><div class="input">AI 产品分享会 · 活动纪要</div></div>
+      <div class="field"><div class="label">分类</div><div class="input">活动档案 / 2026 秋</div></div>
+      <div class="field"><div class="label">维护人</div><div class="input">同学 B<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div></div>
+      <div class="field"><div class="label">可见范围</div><div class="seg"><a>仅维护人</a><a>部门内</a><a class="on">学社成员</a></div></div>
+    </div>
+    <div class="field"><div class="label">标签</div><div class="input"><span class="tag">活动纪要</span><span class="tag">AI 产品</span></div></div>
+    <div class="field"><div class="label">原件</div><div class="row"><span class="small grow">AI 产品分享会 · 活动纪要.pdf · 1.2 MB · v2</span><span class="btn btn-sm"><i class="ic" data-i="LuUpload"></i>替换为新版本</span><span class="btn btn-sm"><i class="ic" data-i="LuHistory"></i>历史版本</span></div></div>
+    <div class="sep"></div>
+    <div class="row"><span class="small muted grow">归档后只读，仍可检索；删除需要写原因</span><span class="btn btn-sm" data-done="已移入往届归档">归档</span><span class="btn btn-sm" style="color:#C2413B" data-done="已删除，记入操作日志">删除</span></div>
+  </div>
+  <div class="fd"><span class="xs muted grow">改为更大的可见范围需要再次审核</span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已保存">保存</span></div>
+</div></template>
 </body></html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>工作台 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261029f"><script src="assets/icons.js?v=20261029f"></script><script src="assets/app.js?v=20261029f"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261030a"><script src="assets/icons.js?v=20261030a"></script><script src="assets/app.js?v=20261030a"></script>
 <style>
 .cols { display: grid; grid-template-columns: 1fr 340px; gap: 16px; align-items: start; }
 .td { display: flex; gap: 12px; padding: 12px 20px; border-bottom: 1px solid var(--line); align-items: flex-start; }
@@ -14,6 +14,12 @@
 .stg i { width: 22px; height: 6px; border-radius: 3px; background: #EFEDE9; }
 .stg i.d { background: var(--red); }
 .stg i.c { background: var(--red-200); }
+.rv td { vertical-align: top; }
+.sug { font-size: 12px; border-radius: 8px; padding: 6px 9px; margin-top: 4px; display: flex; gap: 6px; align-items: flex-start; line-height: 1.5; }
+.ckb { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--line-2); display: inline-block; }
+.ckb.on { background: var(--red); border-color: var(--red); }
+#wbtabs a { cursor: pointer; display: inline-flex; gap: 6px; align-items: center; }
+[data-wb][hidden] { display: none; }
 .mt th, .mt td { padding: 9px 6px; white-space: nowrap; }
 .mt .n { text-align: right; }
 [data-view][hidden] { display: none; }
@@ -21,9 +27,12 @@
 <body data-page="workbench">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">工作台</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干可见 · 按角色分级</span></div><p class="muted" style="margin-top:2px">骨干提交和更新自己的工作、申报活动；部长查看本部门进度，分配和督办；会长团查看全社进度。审批统一在<a class="lnk" href="admin.html">审核与管理</a></p></div>
-<div class="row"><span class="btn" data-open="submit"><i class="ic" data-i="LuNotebookPen"></i>提交工作</span><a class="btn" href="event_new.html"><i class="ic" data-i="LuSparkles"></i>录入活动</a><span class="btn btn-p"><i class="ic" data-i="LuCalendarCheck"></i>申报活动</span></div></div>
+<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">工作台</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干可见 · 按角色分级</span></div><p class="muted" style="margin-top:2px">骨干提交和更新自己的工作、申报活动；部长查看本部门进度，分配和督办；部长和维护人在“审批”里处理活动申报、资源和资料</p></div>
+<div class="row"><span class="btn" data-open="submit"><i class="ic" data-i="LuNotebookPen"></i>提交工作</span><a class="btn" href="event_new.html"><i class="ic" data-i="LuSparkles"></i>录入活动</a><span class="btn btn-p" data-dlg="apply"><i class="ic" data-i="LuCalendarCheck"></i>申报活动</span></div></div>
 
+<div class="tabs" id="wbtabs" style="margin-bottom:16px"><a class="on" data-w="progress">工作进展</a><a data-w="review">审批 <span class="tag t-red" style="height:18px;padding:0 6px">5</span></a></div>
+
+<div data-wb="progress">
 <div class="row between rel" style="margin-bottom:14px"><span class="mk" style="left:-8px;top:-8px">1</span>
   <div class="row"><span class="small muted">视角</span><div class="seg" id="views"><a data-v="backbone">骨干</a><a class="on" data-v="minister">部长</a><a data-v="council" style="color:var(--faint)"><i class="ic" data-i="LuLock"></i> 会长团</a></div><span class="small muted" id="viewcap">部长：本部门全部工作，可以分配、督办</span></div>
   <span class="small muted">AI俱乐部 · 本学期</span>
@@ -34,7 +43,7 @@
   <div>
     <div class="card rel"><span class="mk" style="left:-8px;top:-8px">2</span>
       <div class="pad row between" style="padding-bottom:8px"><div class="row"><span class="h-sec">工作进展</span><div class="seg"><a class="on">我的 3</a><a>部门 14</a></div></div><a class="lnk small" data-open="assign"><i class="ic" data-i="LuUserPlus"></i> 分配任务</a></div>
-      <div class="td"><span class="ckb"></span><div class="grow"><div class="t">黑客松评委邀请：还差 2 位</div><div class="m"><span class="tag t-blue">进行中</span><span class="tag">活动 · AI for Campus 黑客松</span>进展：评委 1 / 3 已确认</div></div><span class="due warn">10-30</span></div>
+      <div class="td" data-dlg="task" style="cursor:pointer"><span class="ckb"></span><div class="grow"><div class="t">黑客松评委邀请：还差 2 位</div><div class="m"><span class="tag t-blue">进行中</span><span class="tag">活动 · AI for Campus 黑客松</span>进展：评委 1 / 3 已确认</div></div><span class="due warn">10-30</span></div>
       <div class="td"><span class="ckb"></span><div class="grow"><div class="t">工作坊第 3 期：场地确认后发报名推送</div><div class="m"><span class="tag t-line">待办</span><span class="tag">活动 · 工作坊第 3 期</span>部长分配</div></div><span class="due muted">11-03</span></div>
       <div class="td"><span class="ckb on"></span><div class="grow"><div class="t" style="color:var(--muted);text-decoration:line-through">上传黑客松赞助方案到知识库</div><div class="m"><span class="tag t-green">已完成</span>10-26</div></div><span class="due muted">—</span></div>
     </div>
@@ -55,7 +64,7 @@
       <table class="tbl mt" style="font-size:13px">
         <tr><th>成员</th><th class="n">待办</th><th class="n">进行中</th><th class="n">已完成</th><th></th></tr>
         <tr><td>同学 B</td><td class="n">2</td><td class="n">1</td><td class="n">6</td><td></td></tr>
-        <tr><td>同学 C<div class="xs" style="color:var(--red)">1 项逾期</div></td><td class="n">3</td><td class="n">0</td><td class="n">2</td><td class="n"><span class="btn btn-sm" style="height:26px;padding:0 10px">督办</span></td></tr>
+        <tr><td>同学 C<div class="xs" style="color:var(--red)">1 项逾期</div></td><td class="n">3</td><td class="n">0</td><td class="n">2</td><td class="n"><span class="btn btn-sm" style="height:26px;padding:0 10px" data-dlg="urge">督办</span></td></tr>
         <tr><td>同学 D</td><td class="n">1</td><td class="n">2</td><td class="n">5</td><td></td></tr>
         <tr><td>张同学</td><td class="n">2</td><td class="n">1</td><td class="n">9</td><td></td></tr>
       </table>
@@ -69,7 +78,7 @@
   <div>
     <div class="card">
       <div class="pad row between" style="padding-bottom:8px"><div class="row"><span class="h-sec">我的工作</span><div class="seg"><a class="on">进行中 3</a><a>已完成 9</a></div></div><a class="lnk small" data-open="submit"><i class="ic" data-i="LuPlus"></i> 提交工作</a></div>
-      <div class="td"><span class="ckb"></span><div class="grow"><div class="t">黑客松评委邀请：还差 2 位</div><div class="m"><span class="tag t-blue">进行中</span><span class="tag">活动 · AI for Campus 黑客松</span>部长分配 · 进展：评委 1 / 3 已确认</div></div><span class="due warn">10-30</span></div>
+      <div class="td" data-dlg="task" style="cursor:pointer"><span class="ckb"></span><div class="grow"><div class="t">黑客松评委邀请：还差 2 位</div><div class="m"><span class="tag t-blue">进行中</span><span class="tag">活动 · AI for Campus 黑客松</span>部长分配 · 进展：评委 1 / 3 已确认</div></div><span class="due warn">10-30</span></div>
       <div class="td"><span class="ckb"></span><div class="grow"><div class="t">工作坊第 3 期：场地确认后发报名推送</div><div class="m"><span class="tag t-line">待办</span><span class="tag">活动 · 工作坊第 3 期</span>部长分配</div></div><span class="due muted">11-03</span></div>
       <div class="td"><span class="ckb"></span><div class="grow"><div class="t">整理黑客松赞助方案</div><div class="m"><span class="tag t-blue">进行中</span>自己提交 · 进展：已联系 2 家</div></div><span class="due muted">11-10</span></div>
     </div>
@@ -94,10 +103,10 @@
 
 <!-- 会长团视角（演示用户没有这个权限，显示为示意） -->
 <div data-view="council" hidden>
-  <div class="notice n-amber" style="margin-bottom:14px"><i class="ic" data-i="LuLock"></i><div>你没有会长团权限，下面是会长团看到的内容示意。会长团可以在审核与管理里给同学授予权限。</div></div>
+  <div class="notice n-amber" style="margin-bottom:14px"><i class="ic" data-i="LuLock"></i><div>你没有会长团权限，下面是会长团看到的内容示意。会长团可以在平台管理里给同学授予权限。</div></div>
   <div class="cols">
     <div>
-      <div class="notice n-gray"><i class="ic" data-i="LuCalendarCheck"></i><div>有 1 个活动待会长团终审，在<a class="lnk" href="admin.html">审核与管理</a>处理。</div></div>
+      <div class="notice n-gray"><i class="ic" data-i="LuCalendarCheck"></i><div>有 1 个活动待会长团终审，在上方“审批”里处理。</div></div>
       <div class="card" style="margin-top:16px">
         <div class="pad" style="padding-bottom:10px"><span class="h-sec">全社活动</span></div>
         <table class="tbl">
@@ -121,6 +130,23 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+
+<!-- 审批：部长审批活动申报，维护人审核资源和资料，会长团终审 -->
+<div data-wb="review" hidden>
+<div class="card rel"><span class="mk" style="left:-8px;top:-8px">5</span>
+    <div class="pad row between" style="padding-bottom:10px"><div class="seg pick"><a class="on">待我处理 5</a><a>活动申报 1</a><a>资源 3</a><a>资料 1</a><a>我提交的 2</a></div><div class="row"><span class="btn btn-sm" data-dlg="reject">驳回所选</span><span class="btn btn-sm btn-p" data-done="已通过 2 条，提交人会收到通知"><i class="ic" data-i="LuCheck"></i>通过所选（2）</span></div></div>
+    <table class="tbl rv">
+      <tr><th style="width:36px"></th><th>内容</th><th style="width:250px">说明</th><th style="width:118px">提交</th><th style="width:96px"></th></tr>
+      <tr><td></td><td><div class="row"><span class="tag t-amber">活动申报</span><a class="b" href="activity_review.html">读书会第 4 期</a></div><div class="small muted" style="margin-top:4px">AI俱乐部 · 11-20 · 约 30 人</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuCalendarCheck"></i>部长审批（你）→ 会长团终审</div></td><td class="small">同学 C<br><span class="muted">10-27</span></td><td><a class="btn btn-sm btn-p" href="activity_review.html">去审批</a></td></tr>
+      <tr><td><span class="ckb on"></span></td><td><div class="row"><span class="tag t-red">资源</span><span class="b">示例人物 E</span></div><div class="small muted" style="margin-top:4px">某 AI 医疗公司 · 可交流 AI 医疗落地经验</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuTriangleAlert"></i>与已有记录“示例人物 E”同名同机构，疑似重复</div></td><td class="small">同学 F<br><span class="muted">10 分钟前</span></td><td><span class="btn btn-sm" data-dlg="dup">对比</span></td></tr>
+      <tr><td><span class="ckb on"></span></td><td><div class="row"><span class="tag t-blue">资源</span><span class="b">示例机构 F</span></div><div class="small muted" style="margin-top:4px">某孵化器 · 可提供路演场地</div></td><td><div class="sug n-teal"><i class="ic" data-i="LuCircleCheck"></i>必填项完整，未发现重复</div></td><td class="small">批量导入<br><span class="muted">1 小时前</span></td><td><span class="btn btn-sm" data-dlg="rv">查看</span></td></tr>
+      <tr><td><span class="ckb"></span></td><td><div class="row"><span class="tag t-teal">资料</span><span class="b">黑客松赞助方案.pdf</span></div><div class="small muted" style="margin-top:4px">申请可见范围：学社成员</div></td><td><div class="sug n-teal"><i class="ic" data-i="LuCircleCheck"></i>必填项完整；申请从“仅维护人”改为学社成员可见</div></td><td class="small">同学 D<br><span class="muted">2 小时前</span></td><td><span class="btn btn-sm" data-dlg="rvdoc">查看</span></td></tr>
+      <tr><td><span class="ckb"></span></td><td><div class="row"><span class="tag t-red">资源</span><span class="b">示例人物 H</span></div><div class="small muted" style="margin-top:4px">缺少“可提供的帮助”</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuTriangleAlert"></i>必填项缺失，建议退回补充</div></td><td class="small">同学 C<br><span class="muted">昨天</span></td><td><span class="btn btn-sm" data-dlg="reject">退回</span></td></tr>
+    </table>
+</div>
+<div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuCircleAlert"></i><div>只显示你有权处理的：部长处理本部门活动申报，维护人处理资源和资料，会长团处理终审。每一步记入操作日志。</div></div>
 </div>
 </div></div></div></div>
 
@@ -159,5 +185,108 @@ document.querySelectorAll("[data-open]").forEach(el => el.addEventListener("clic
   document.getElementById("mask").hidden = false;
 }));
 document.querySelectorAll("[data-close]").forEach(el => el.addEventListener("click", () => { document.getElementById("mask").hidden = true; }));
+</script>
+
+<template id="dlg-apply"><div class="dlg dlg-lg">
+  <div class="hd"><b style="font-size:16px">申报活动</b><span class="tag t-amber">字段待综管部细化</span><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <p class="small muted" style="margin-bottom:12px">提交后先由本部门部长审批，再由会长团终审；终审通过后自动出现在社区活动页。</p>
+    <div class="field"><div class="label">活动名称 <span class="req">*</span></div><div class="input ph">如：读书会第 5 期 · 多模态论文</div></div>
+    <div class="grid g2">
+      <div class="field"><div class="label">时间 <span class="req">*</span></div><div class="input ph">11-27 19:00 – 21:00</div></div>
+      <div class="field"><div class="label">地点 <span class="req">*</span></div><div class="input ph">如：理教 201 / 线上</div></div>
+      <div class="field"><div class="label">预计规模</div><div class="input ph">约 30 人</div></div>
+      <div class="field"><div class="label">主办部门</div><div class="input">AI俱乐部<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div></div>
+    </div>
+    <div class="field"><div class="label">活动目的与内容 <span class="req">*</span></div><div class="input ph textarea">面向谁、讲什么、希望产出什么</div></div>
+    <div class="field"><div class="label">对外可见范围</div><div class="seg"><a class="on">学社内</a><a>北大校内</a></div></div>
+    <div class="field" style="margin-bottom:0"><div class="label">附件</div><div class="drop"><i class="ic" data-i="LuUpload"></i>策划书、海报（可选），PDF / DOCX / 图片</div></div>
+  </div>
+  <div class="fd"><span class="xs muted grow">可以先存草稿；驳回后能否修改重提，待综管部确认</span><span class="btn" data-done="已存为草稿">存草稿</span><span class="btn btn-p" data-done="已提交，等待部长审批">提交申报</span></div>
+</div></template>
+
+<template id="dlg-urge"><div class="dlg">
+  <div class="hd"><b style="font-size:16px">督办 · 同学 C</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <div class="notice n-amber" style="margin-bottom:12px"><i class="ic" data-i="LuClock"></i><div><b>逾期 1 项：</b>读书会第 4 期场地预订（截止 10-28）</div></div>
+    <div class="field"><div class="label">提醒内容</div><div class="input textarea">场地预订已经逾期，今天能确认吗？有困难直接说，我来协调。</div></div>
+    <div class="field" style="margin-bottom:0"><div class="label">新截止日期（可选）</div><div class="input">10-31</div></div>
+  </div>
+  <div class="fd"><span class="xs muted grow">对方收到站内通知；督办时间记入工作记录</span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已督办，同学 C 会收到通知">发送督办</span></div>
+</div></template>
+
+<template id="dlg-task"><div class="dlg">
+  <div class="hd"><b style="font-size:16px">黑客松评委邀请：还差 2 位</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <dl class="kv" style="margin:0 0 14px"><dt>关联活动</dt><dd>AI for Campus 黑客松</dd><dt>来源</dt><dd>部长分配 · 10-20</dd><dt>截止</dt><dd>10-30</dd></dl>
+    <div class="field"><div class="label">状态</div><div class="seg"><a>待办</a><a class="on">进行中</a><a>已完成</a></div></div>
+    <div class="field"><div class="label">更新进展</div><div class="input textarea">评委 1 / 3 已确认；第二位明天回复</div></div>
+    <div class="small b" style="margin-bottom:6px">历史</div>
+    <div class="small muted">10-26 · 进展：评委 1 / 3 已确认<br>10-20 · 张同学分配</div>
+  </div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="进展已更新">保存</span></div>
+</div></template>
+
+<template id="dlg-rv"><div class="dlg dlg-lg">
+  <div class="hd"><span class="tag t-blue">资源</span><b style="font-size:16px">示例机构 F</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <div class="grid g2" style="gap:12px">
+      <div class="field"><div class="label">名称</div><div class="input">示例机构 F</div></div>
+      <div class="field"><div class="label">机构</div><div class="input">某孵化器</div></div>
+    </div>
+    <div class="field"><div class="label">可以提供什么帮助</div><div class="input textarea">可提供路演场地（约 80 人），工作日晚间可用</div></div>
+    <div class="grid g2" style="gap:12px">
+      <div class="field"><div class="label">学社对接人</div><div class="input">同学 D（外联部）</div></div>
+      <div class="field"><div class="label">来源</div><div class="input">批量导入 · 外联资源名单_2026秋.xlsx 第 7 行</div></div>
+    </div>
+    <div class="notice n-teal"><i class="ic" data-i="LuCircleCheck"></i><div>必填项完整，未发现重复。可以直接改字段后通过，修改记入操作日志。</div></div>
+  </div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-dlg="reject">驳回</span><span class="btn btn-p" data-done="已通过，成员现在可以检索到这条资源">通过</span></div>
+</div></template>
+
+<template id="dlg-rvdoc"><div class="dlg">
+  <div class="hd"><span class="tag t-teal">资料</span><b style="font-size:16px">黑客松赞助方案.pdf</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <dl class="kv" style="margin:0 0 12px"><dt>类型</dt><dd>活动档案 · 赞助方案</dd><dt>上传</dt><dd>同学 D · 2 小时前</dd><dt>当前可见</dt><dd>仅维护人</dd><dt>申请改为</dt><dd><b>学社成员</b></dd></dl>
+    <div class="notice n-amber"><i class="ic" data-i="LuTriangleAlert"></i><div>请确认文件里没有外部个人的手机号、微信号，以及不便公开的报价。</div></div>
+    <div class="row" style="margin-top:12px"><span class="btn btn-sm"><i class="ic" data-i="LuEye"></i>预览原件</span></div>
+  </div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-done="已保持“仅维护人可见”">保持仅维护人</span><span class="btn btn-p" data-done="已改为学社成员可见">同意公开</span></div>
+</div></template>
+
+<template id="dlg-dup"><div class="dlg dlg-lg">
+  <div class="hd"><b style="font-size:16px">疑似重复：示例人物 E</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <div class="cmp">
+      <div class="h">字段</div><div class="h">已有记录 R-0188（同学 G · 2026-06）</div><div class="h">新提交（同学 F · 10 分钟前）</div>
+      <div>机构</div><div>某 AI 医疗公司</div><div>某 AI 医疗公司</div>
+      <div>职位</div><div>算法工程师</div><div class="d">算法负责人</div>
+      <div>可提供的帮助</div><div>可交流医学影像算法</div><div class="d">可交流 AI 医疗落地经验；可做分享，时间待确认</div>
+      <div>对接人</div><div>同学 G（已离任）</div><div class="d">同学 F</div>
+    </div>
+    <div class="opts" style="margin-top:14px">
+      <div class="on"><div><b>合并到已有记录</b><span>用新提交的内容更新 R-0188，对接人改为同学 F；保留原录入历史</span></div></div>
+      <div><div><b>作为新资源通过</b><span>确认是两个人，只是同名同机构</span></div></div>
+      <div><div><b>驳回</b><span>完全重复，告诉提交人已有记录</span></div></div>
+    </div>
+  </div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已合并到 R-0188">确认</span></div>
+</div></template>
+
+<template id="dlg-reject"><div class="dlg">
+  <div class="hd"><b style="font-size:16px">驳回</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <div class="field"><div class="label">原因 <span class="req">*</span></div><div class="opts"><div class="on"><div><b>信息不完整</b><span>请补充后重新提交</span></div></div><div><div><b>与已有记录重复</b></div></div><div><div><b>不适合收录</b></div></div></div></div>
+    <div class="field" style="margin-bottom:0"><div class="label">补充说明</div><div class="input ph textarea">如：请补充“可以提供什么帮助”</div></div>
+  </div>
+  <div class="fd"><span class="xs muted grow">提交人会收到通知，可以修改后重新提交</span><span class="btn" data-close>取消</span><span class="btn btn-danger" data-done="已驳回，提交人会收到通知">驳回</span></div>
+</div></template>
+<script>
+const wb = (w) => {
+  document.querySelectorAll("#wbtabs a").forEach(a => a.classList.toggle("on", a.dataset.w === w));
+  document.querySelectorAll("[data-wb]").forEach(p => { p.hidden = p.dataset.wb !== w; });
+};
+document.querySelectorAll("#wbtabs a").forEach(a => a.addEventListener("click", () => wb(a.dataset.w)));
+if (location.hash.includes("review")) wb("review");
 </script>
 </body></html>

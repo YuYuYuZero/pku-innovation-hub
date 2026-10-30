@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>批量导入 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261029f"><script src="assets/icons.js?v=20261029f"></script><script src="assets/app.js?v=20261029f"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261030a"><script src="assets/icons.js?v=20261030a"></script><script src="assets/app.js?v=20261030a"></script>
 <style>
 .stepper { display: flex; align-items: center; gap: 14px; padding: 16px 20px; }
 .step { display: flex; align-items: center; gap: 10px; }
@@ -48,21 +48,47 @@ tr.dup td { background: #FFFBF1; }
       <tr><td>2</td><td><div class="b">示例人物 A</div><div class="sub">某科技公司</div></td><td>外部个人</td><td>同学 B</td><td><span class="tag">AI</span> <span class="tag">产品</span></td><td class="ok"><i class="ic" data-i="LuCircleCheck"></i> 可导入</td></tr>
       <tr class="bad"><td>3</td><td><div class="b">示例机构 B</div><div class="sub">某基金会</div></td><td>机构资源</td><td class="err">未填写</td><td><span class="tag">教育</span></td><td><span class="err"><i class="ic" data-i="LuCircleAlert"></i> 缺少对接人</span></td></tr>
       <tr><td>4</td><td><div class="b">示例同学 C</div><div class="sub">AI俱乐部</div></td><td>学社骨干</td><td>本人</td><td><span class="tag">开发</span></td><td class="ok"><i class="ic" data-i="LuCircleCheck"></i> 可导入</td></tr>
-      <tr class="dup"><td>5</td><td><div class="b">示例人物 D</div><div class="sub">某 AI 公司</div></td><td>外部个人</td><td>同学 E</td><td><span class="tag">AI</span></td><td><span class="warn"><i class="ic" data-i="LuTriangleAlert"></i> 同名同机构</span><br><span class="fix"><i class="ic" data-i="LuEye"></i>对比已有记录</span></td></tr>
+      <tr class="dup"><td>5</td><td><div class="b">示例人物 D</div><div class="sub">某 AI 公司</div></td><td>外部个人</td><td>同学 E</td><td><span class="tag">AI</span></td><td><span class="warn"><i class="ic" data-i="LuTriangleAlert"></i> 同名同机构</span><br><span class="fix" data-dlg="dup"><i class="ic" data-i="LuEye"></i>对比已有记录</span></td></tr>
       <tr class="bad"><td>6</td><td><div class="b">（空）</div><div class="sub">某研究院</div></td><td>机构资源</td><td>同学 B</td><td>—</td><td><span class="err"><i class="ic" data-i="LuCircleAlert"></i> 缺少名称、可提供的帮助</span></td></tr>
       <tr><td>7</td><td><div class="b">示例机构 F</div><div class="sub">某孵化器</div></td><td>机构资源</td><td>同学 D</td><td><span class="tag">创业</span></td><td class="ok"><i class="ic" data-i="LuCircleCheck"></i> 可导入</td></tr>
     </table>
-    <div class="row" style="padding:16px 18px;border-top:1px solid var(--line);background:#FCFBFA;border-radius:0 0 var(--r) var(--r)"><span class="small muted">错误行保留行号，可下载错误报告修改后重新上传</span><span class="grow"></span><span class="btn"><i class="ic" data-i="LuDownload"></i>下载错误报告</span><span class="btn btn-p">导入 3 行有效记录</span></div>
+    <div class="row" style="padding:16px 18px;border-top:1px solid var(--line);background:#FCFBFA;border-radius:0 0 var(--r) var(--r)"><span class="small muted">错误行保留行号，可下载错误报告修改后重新上传</span><span class="grow"></span><span class="btn" data-done="已下载 错误报告_外联资源名单_2026秋.xlsx"><i class="ic" data-i="LuDownload"></i>下载错误报告</span><span class="btn btn-p" data-dlg="done">导入 3 行有效记录</span></div>
   </div>
   <div>
     <div class="card pad"><div class="h-sec" style="margin-bottom:10px">当前文件</div>
       <div class="file"><div class="fi t-green"><i class="ic" data-i="LuFileSpreadsheet"></i></div><div class="grow"><div class="b" style="font-size:13.5px">外联资源名单_2026秋.xlsx</div><div class="xs muted">6 行 · 9 列 · 已匹配模板</div></div><i class="ic" data-i="LuRefreshCw" style="color:var(--muted)"></i></div>
-      <div class="row" style="margin-top:12px"><span class="btn btn-sm" style="flex:1"><i class="ic" data-i="LuDownload"></i>下载 CSV 模板</span><span class="btn btn-sm" style="flex:1"><i class="ic" data-i="LuUpload"></i>重新上传</span></div>
+      <div class="row" style="margin-top:12px"><span class="btn btn-sm" style="flex:1" data-done="已下载 资源导入模板.xlsx"><i class="ic" data-i="LuDownload"></i>下载模板</span><span class="btn btn-sm" style="flex:1"><i class="ic" data-i="LuUpload"></i>重新上传</span></div>
     </div>
     <div class="card pad rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">3</span><div class="h-sec">导入规则</div>
-      <ul class="rule small" style="padding-left:18px;margin:8px 0 0;color:var(--text)"><li>首行为列名，一行一项资源，不合并单元格</li><li>多个标签用顿号分隔</li><li>必填：资源类型、名称、可提供的帮助、学社对接人</li><li>名称 + 机构相同视为疑似重复，不覆盖原记录</li><li>导入结果需审核后才对成员开放</li></ul>
+      <ul class="rule small" style="padding-left:18px;margin:8px 0 0;color:var(--text)"><li>首行为列名，一行一项资源，不合并单元格</li><li>多个标签用顿号分隔</li><li>必填：资源类型、名称、可提供的帮助、学社对接人</li><li>模板里没有手机号、微信号列；原表里有这两列会被忽略，不导入</li><li>名称 + 机构相同视为疑似重复，不覆盖原记录</li><li>导入结果需审核后才对成员开放</li></ul>
     </div>
   </div>
 </div>
 </div></div></div></div>
+
+<template id="dlg-dup"><div class="dlg dlg-lg">
+  <div class="hd"><b style="font-size:16px">第 5 行 · 示例人物 D</b><span class="tag t-amber">同名同机构</span><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <div class="cmp">
+      <div class="h">字段</div><div class="h">已有记录 R-0102</div><div class="h">表格第 5 行</div>
+      <div>机构</div><div>某 AI 公司</div><div>某 AI 公司</div>
+      <div>可提供的帮助</div><div>可做技术分享</div><div class="d">可做技术分享；可提供实习机会</div>
+      <div>对接人</div><div>同学 E</div><div>同学 E</div>
+    </div>
+    <div class="opts" style="margin-top:14px">
+      <div class="on"><div><b>跳过这一行</b><span>保留已有记录不变</span></div></div>
+      <div><div><b>作为对已有记录的修改提交</b><span>导入后由维护人审核差异</span></div></div>
+      <div><div><b>作为新资源导入</b><span>确认不是同一个人</span></div></div>
+    </div>
+  </div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="第 5 行已设为：跳过">确定</span></div>
+</div></template>
+<template id="dlg-done"><div class="dlg">
+  <div class="hd"><b style="font-size:16px">确认导入</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <dl class="kv" style="margin:0 0 12px"><dt>导入</dt><dd><b>3 行</b>（第 2、4、7 行）</dd><dt>跳过</dt><dd>2 行需补全（第 3、6 行）· 1 行重复（第 5 行）</dd><dt>导入后</dt><dd>进入待审核，外联部维护人审核后对成员开放</dd></dl>
+    <div class="notice n-gray"><i class="ic" data-i="LuHistory"></i><div>本次导入记为一个批次，导入错了可以在 24 小时内整批撤销。</div></div>
+  </div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已导入 3 行，等待维护人审核">导入</span></div>
+</div></template>
 </body></html>

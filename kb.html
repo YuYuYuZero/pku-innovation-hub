@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>知识库 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261029f"><script src="assets/icons.js?v=20261029f"></script><script src="assets/app.js?v=20261029f"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261030a"><script src="assets/icons.js?v=20261030a"></script><script src="assets/app.js?v=20261030a"></script>
 <style>
 .sbox { display: flex; gap: 10px; }
 .sbox .input { flex: 1; height: 48px; font-size: 15px; }
@@ -18,20 +18,20 @@
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1200px">
 <div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">知识库</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>按分类分级可见</span></div><p class="muted" style="margin-top:2px">学社的工作文档、活动模板、往届资料和资源原件，只对学社内开放。按标题、类型、标签查找；原件可以是上传的文件，也可以是飞书文档链接</p></div>
-<div class="row"><span class="btn"><i class="ic" data-i="LuLink"></i>登记飞书文档</span><span class="btn btn-p"><i class="ic" data-i="LuUpload"></i>上传文件</span></div></div>
+<div class="row"><span class="btn" data-dlg="feishu"><i class="ic" data-i="LuLink"></i>登记飞书文档</span><span class="btn btn-p" data-dlg="upload"><i class="ic" data-i="LuUpload"></i>上传文件</span></div></div>
 
 <div class="card pad rel" style="padding:14px 16px"><span class="mk" style="left:-8px;top:-8px">1</span>
-  <div class="sbox"><div class="input" style="color:var(--ink)"><i class="ic" data-i="LuSearch" style="color:var(--muted)"></i>黑客松 赞助方案</div><span class="btn btn-p btn-lg">搜索</span></div>
+  <div class="sbox"><div class="input" style="color:var(--ink)"><i class="ic" data-i="LuSearch" style="color:var(--muted)"></i>黑客松 赞助方案</div><span class="btn btn-p btn-lg" data-done="找到 4 份资料">搜索</span></div>
   <div class="row small muted" style="margin-top:10px;gap:14px"><span>范围：</span><span class="chip on" style="height:28px">全部</span><span class="chip" style="height:28px">活动档案</span><span class="chip" style="height:28px">部门手册</span><span class="chip" style="height:28px">模板库</span><span class="chip" style="height:28px">往届归档</span><span class="grow"></span><span>只搜标题、类型和标签，不搜全文；只显示你有权限看的文档</span></div>
 </div>
 
 <div class="spaces rel"><span class="mk" style="left:-8px;top:-8px">2</span>
   <a class="card spc" href="kb_doc.html"><div class="si t-red"><i class="ic" data-i="LuFolderOpen"></i></div><h3>活动档案</h3><p>每场活动一个页面：策划、通知、纪要、PPT、照片、复盘</p><div class="ft">136 份 <span class="dotsep"></span>学社内</div></a>
-  <div class="card spc"><div class="si t-blue"><i class="ic" data-i="LuBookOpen"></i></div><h3>部门手册</h3><p>各部门的职责、办事流程和经验，换届时整体交接</p><div class="ft">58 份 <span class="dotsep"></span>部门内 / 学社内</div></div>
-  <div class="card spc"><div class="si t-gold"><i class="ic" data-i="LuDatabase"></i></div><h3>资源资料</h3><p>资源库上传的原件：机构介绍、交流纪要、合作资料</p><div class="ft">94 份 <span class="dotsep"></span>默认仅维护人</div></div>
-  <div class="card spc"><div class="si t-violet"><i class="ic" data-i="LuBuilding2"></i></div><h3>学社总览</h3><p>章程、组织架构、年度计划、品牌规范、对外介绍</p><div class="ft">24 份 <span class="dotsep"></span>学社内</div></div>
-  <div class="card spc"><div class="si" style="background:#F2F1EE;color:var(--text)"><i class="ic" data-i="LuStickyNote"></i></div><h3>模板库</h3><p>活动 SOP、策划书、纪要、复盘等标准模板</p><div class="ft">12 个 <span class="dotsep"></span>学社内</div></div>
-  <div class="card spc"><div class="si" style="background:#F2F1EE;color:var(--text)"><i class="ic" data-i="LuInbox"></i></div><h3>往届归档</h3><p>往届资料只读保存，可检索</p><div class="ft">412 份 <span class="dotsep"></span>只读</div></div>
+  <a class="card spc" href="kb_doc.html"><div class="si t-blue"><i class="ic" data-i="LuBookOpen"></i></div><h3>部门手册</h3><p>各部门的职责、办事流程和经验，换届时整体交接</p><div class="ft">58 份 <span class="dotsep"></span>部门内 / 学社内</div></a>
+  <a class="card spc" href="kb_doc.html"><div class="si t-gold"><i class="ic" data-i="LuDatabase"></i></div><h3>资源资料</h3><p>资源库上传的原件：机构介绍、交流纪要、合作资料</p><div class="ft">94 份 <span class="dotsep"></span>默认仅维护人</div></a>
+  <a class="card spc" href="kb_doc.html"><div class="si t-violet"><i class="ic" data-i="LuBuilding2"></i></div><h3>学社总览</h3><p>章程、组织架构、年度计划、品牌规范、对外介绍</p><div class="ft">24 份 <span class="dotsep"></span>学社内</div></a>
+  <a class="card spc" href="kb_doc.html"><div class="si" style="background:#F2F1EE;color:var(--text)"><i class="ic" data-i="LuStickyNote"></i></div><h3>模板库</h3><p>活动 SOP、策划书、纪要、复盘等标准模板</p><div class="ft">12 个 <span class="dotsep"></span>学社内</div></a>
+  <a class="card spc" href="kb_doc.html"><div class="si" style="background:#F2F1EE;color:var(--text)"><i class="ic" data-i="LuInbox"></i></div><h3>往届归档</h3><p>往届资料只读保存，可检索</p><div class="ft">412 份 <span class="dotsep"></span>只读</div></a>
 </div>
 
 <div class="card pad" style="margin-top:16px"><div class="row between"><span class="h-sec">最近更新</span><a class="lnk">全部 <i class="ic" data-i="LuChevronRight"></i></a></div>
@@ -41,4 +41,40 @@
     <div class="tpl"><div class="ti" style="background:#F2F1EE"><i class="ic" data-i="LuStickyNote"></i></div><div class="grow"><div class="b" style="font-size:13.5px">模板：活动复盘（2026 版）</div><div class="xs muted">模板库 · 综合管理部 · 1 周前</div></div></div>
   </div>
 </div></div></div></div>
+
+<template id="dlg-upload"><div class="dlg dlg-lg">
+  <div class="hd"><b style="font-size:16px">上传资料</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <div class="drop" style="padding:12px;text-align:left;display:flex;gap:12px;align-items:center"><i class="ic" data-i="LuFileText" style="margin:0;font-size:28px"></i><div class="grow"><div class="b" style="font-size:13.5px">黑客松2026春_复盘.docx</div><div class="xs muted">1.4 MB · 已上传 · AI 已读取前 3 页并预填下面的信息</div></div><span class="lnk small">更换</span></div>
+    <div class="xs muted" style="margin:6px 0 14px">支持 PDF、DOCX、TXT、MD，单个文件不超过 20 MB；可以一次选多个</div>
+    <div class="grid g2" style="gap:12px">
+      <div class="field"><div class="label">标题 <span class="req">*</span></div><div class="input ai">AI for Campus 黑客松（2026 春）复盘</div></div>
+      <div class="field"><div class="label">分类 <span class="req">*</span></div><div class="input ai">活动档案 / 黑客松</div></div>
+      <div class="field"><div class="label">类型</div><div class="input ai">复盘</div></div>
+      <div class="field"><div class="label">来源</div><div class="input ai">活动整理 · AI俱乐部</div></div>
+    </div>
+    <div class="field"><div class="label">标签</div><div class="input ai"><span class="tag">黑客松</span><span class="tag">赞助</span><span class="tag">评委</span><span class="tag">复盘</span></div></div>
+    <div class="field"><div class="label">摘要（用于搜索和 AI 问答）</div><div class="input ai textarea">48 小时黑客松，32 支队伍；评委邀请提前 4 周；赞助两家；问题：场地网络、报名表字段过多。</div></div>
+    <div class="grid g2" style="gap:12px">
+      <div class="field"><div class="label">维护人 <span class="req">*</span></div><div class="input">张同学（我）</div></div>
+      <div class="field"><div class="label">可见范围</div><div class="seg"><a class="on">仅维护人</a><a>部门内</a><a>学社成员</a></div></div>
+    </div>
+    <div class="notice n-amber"><i class="ic" data-i="LuTriangleAlert"></i><div>AI 发现第 2 页有 1 个手机号。公开前请删掉，或保持“仅维护人可见”。</div></div>
+  </div>
+  <div class="fd"><span class="xs muted grow">选“部门内”或“学社成员”需维护人审核；审核前只有你能看到</span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已上传，等待维护人审核">上传</span></div>
+</div></template>
+<template id="dlg-feishu"><div class="dlg">
+  <div class="hd"><b style="font-size:16px">登记飞书文档</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <p class="small muted" style="margin-bottom:12px">还在飞书里多人编辑的文档，登记链接即可，不用上传。平台只保存目录信息，打开时跳转飞书。</p>
+    <div class="field"><div class="label">飞书文档链接 <span class="req">*</span></div><div class="input">https://xxx.feishu.cn/docx/AbC…（示例）</div><div class="xs muted" style="margin-top:6px"><i class="ic" data-i="LuCircleCheck" style="color:var(--green)"></i> 已识别标题：外联部手册 · 赞助沟通流程</div></div>
+    <div class="grid g2" style="gap:12px">
+      <div class="field"><div class="label">分类 <span class="req">*</span></div><div class="input">部门手册 / 外联部</div></div>
+      <div class="field"><div class="label">维护人 <span class="req">*</span></div><div class="input">张同学（我）</div></div>
+    </div>
+    <div class="field"><div class="label">标签</div><div class="input ph">输入后回车</div></div>
+    <div class="notice n-gray"><i class="ic" data-i="LuCircleAlert"></i><div>平台不读取飞书文档的内容，只能按标题、分类和标签搜到；没加入学社飞书的同学打不开。需要人人可看、可被 AI 检索的定稿，请导出后上传。</div></div>
+  </div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已登记">登记</span></div>
+</div></template>
 </body></html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>资源库 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261029f"><script src="assets/icons.js?v=20261029f"></script><script src="assets/app.js?v=20261029f"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261030a"><script src="assets/icons.js?v=20261030a"></script><script src="assets/app.js?v=20261030a"></script>
 <style>
 .cols { display: grid; grid-template-columns: 1fr 400px; gap: 18px; align-items: start; }
 .sbox { display: flex; gap: 10px; }
@@ -29,11 +29,11 @@
 <body data-page="resources">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">资源库</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>学社成员可见</span></div><p class="muted" style="margin-top:2px">学社对接过的人、机构和学社骨干，也能搜到资料目录。找到后联系学社对接人，外部个人的联系方式不直接展示</p></div>
+<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">资源库</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>学社成员可见</span></div><p class="muted" style="margin-top:2px">学社对接过的人、机构和学社骨干，也能搜到资料目录。找到后联系学社对接人；外部个人的联系方式不在平台登记</p></div>
 <div class="row"><a class="btn" href="upload.html"><i class="ic" data-i="LuUpload"></i>批量导入</a><a class="btn btn-p" href="resource_new.html"><i class="ic" data-i="LuPlus"></i>录入资源</a></div></div>
 
 <div class="card pad rel" style="padding:14px 16px"><span class="mk" style="left:-8px;top:-8px">1</span>
-  <div class="sbox"><div class="mode"><a>关键词</a><a class="on"><i class="ic" data-i="LuSparkles"></i>AI 搜索</a></div><div class="input" style="color:var(--ink)"><i class="ic" data-i="LuSearch" style="color:var(--muted)"></i>想找做 AI 教育、可以来做分享或当评委的人</div><span class="btn btn-p btn-lg">搜索</span></div>
+  <div class="sbox"><div class="mode"><a>关键词</a><a class="on"><i class="ic" data-i="LuSparkles"></i>AI 搜索</a></div><div class="input" style="color:var(--ink)"><i class="ic" data-i="LuSearch" style="color:var(--muted)"></i>想找做 AI 教育、可以来做分享或当评委的人</div><span class="btn btn-p btn-lg" data-done="找到 3 项资源">搜索</span></div>
   <div class="row wrap-x rel" style="gap:8px;margin-top:12px"><span class="mk" style="left:-10px;top:-6px">2</span><span class="small muted" style="margin-right:2px">类型</span><span class="chip on">全部</span><span class="chip">外部个人</span><span class="chip">机构资源</span><span class="chip">学社骨干</span><span class="chip">学社资料</span><span class="grow"></span><span class="chip">领域：AI、教育 <i class="ic" data-i="LuChevronDown"></i></span><span class="chip">更新时间 <i class="ic" data-i="LuChevronDown"></i></span></div>
 </div>
 
@@ -53,7 +53,7 @@
     <div class="help">做过两届 AI 教育黑客松的组织，熟悉评审流程，可协助邀请评委。</div>
     <div class="why"><i class="ic" data-i="LuSparkles"></i>匹配理由：有黑客松评审组织经验</div>
     <div class="ft"><span><i class="ic" data-i="LuHandshake"></i>本人即对接人</span><span>更新于 2026-09-30</span></div></div><div><span class="tag t-green">已审核</span></div></div>
-  <div class="pad small muted" style="text-align:center;border-top:1px solid var(--line)">没找到合适的？<a class="lnk" href="assistant.html">问 AI 助手</a></div>
+  <div class="pad small muted" style="text-align:center;border-top:1px solid var(--line)">没找到合适的？<a class="lnk" href="assistant.html">问 AI 助手</a> 或 <a class="lnk" data-dlg="need">发一条资源需求</a></div>
 </div>
 
 <div class="card det rel"><span class="mk" style="left:-8px;top:-8px">4</span>
@@ -62,10 +62,32 @@
     <div class="row" style="gap:6px;margin-top:10px"><span class="tag">AI</span><span class="tag">教育</span><span class="tag">产品</span></div></div>
   <div class="sec"><div class="st">可提供的帮助</div><div style="color:var(--ink)">可交流 AI 教育产品开发经验；可做分享嘉宾。是否担任评委需另行确认。</div><div class="small muted" style="margin-top:6px">待确认：时间偏好、是否可线上参与</div></div>
   <div class="sec rel"><span class="mk" style="right:12px;top:10px">5</span><div class="st">学社对接人</div>
-    <div class="contact"><span class="av av-sm a3">B</span><div class="grow"><div class="b" style="font-size:13.5px">同学 B</div><div class="xs muted">外联部</div></div><span class="btn btn-sm btn-p"><i class="ic" data-i="LuMessageCircle"></i>联系对接人</span></div>
-    <div class="locked"><i class="ic" data-i="LuEyeOff"></i>手机号、微信号仅维护人可见，请通过学社对接人联系</div></div>
+    <div class="contact"><span class="av av-sm a3">B</span><div class="grow"><div class="b" style="font-size:13.5px">同学 B</div><div class="xs muted">外联部</div></div><span class="btn btn-sm btn-p" data-dlg="contact"><i class="ic" data-i="LuMessageCircle"></i>联系对接人</span></div>
+    <div class="locked"><i class="ic" data-i="LuEyeOff"></i>平台不登记外部个人的手机号、微信号，请通过学社对接人联系</div></div>
   <div class="sec"><div class="st">来源与状态</div><div class="small muted">来源：活动交流记录 · 更新于 2026-10-24 · 已审核</div></div>
 </div>
 </div>
 </div></div></div></div>
+
+<template id="dlg-contact"><div class="dlg">
+  <div class="hd"><b style="font-size:16px">联系对接人 · 同学 B</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <div class="row" style="padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#FAF9F7;margin-bottom:14px"><span class="av av-sm a3">B</span><div class="grow"><div class="b" style="font-size:13.5px">同学 B · 外联部</div><div class="xs muted">示例人物 A 的学社对接人 · 通常 1 天内回复</div></div></div>
+    <div class="field"><div class="label">想请对方做什么 <span class="req">*</span></div><div class="opts" style="grid-template-columns:1fr 1fr"><div class="on"><div><b>分享嘉宾</b></div></div><div><div><b>比赛评委</b></div></div><div><div><b>交流请教</b></div></div><div><div><b>其他</b></div></div></div></div>
+    <div class="field"><div class="label">说明 <span class="req">*</span></div><div class="input textarea">11 月下旬想办一场 AI + 教育分享会（约 80 人），想邀请示例人物 A 讲 20 分钟“AI 教育产品从 0 到 1”。</div></div>
+    <div class="grid g2"><div class="field"><div class="label">期望时间</div><div class="input">11-20 至 11-28</div></div><div class="field"><div class="label">关联活动</div><div class="input ph">选择（可选）</div></div></div>
+    <div class="notice n-gray"><i class="ic" data-i="LuShieldCheck"></i><div>外部个人的联系方式不在平台登记。对接人收到请求后，由他去联系对方，并在这里回复你结果。</div></div>
+  </div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已发给同学 B，回复会出现在通知里">发送请求</span></div>
+</div></template>
+
+<template id="dlg-need"><div class="dlg">
+  <div class="hd"><b style="font-size:16px">发一条资源需求</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <p class="small muted" style="margin-bottom:12px">资源库里没找到时，把需求发给外联部维护人，他们会在自己的人脉里问一圈。</p>
+    <div class="field"><div class="label">需要什么 <span class="req">*</span></div><div class="input textarea">想找做 AI 教育、可以来做分享或当评委的人</div></div>
+    <div class="grid g2"><div class="field"><div class="label">什么时候要</div><div class="input">11 月下旬</div></div><div class="field"><div class="label">关联活动</div><div class="input ph">选择（可选）</div></div></div>
+  </div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已发给外联部维护人">发送</span></div>
+</div></template>
 </body></html>

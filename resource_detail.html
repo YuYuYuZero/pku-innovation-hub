@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>资源详情 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261029f"><script src="assets/icons.js?v=20261029f"></script><script src="assets/app.js?v=20261029f"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261030a"><script src="assets/icons.js?v=20261030a"></script><script src="assets/app.js?v=20261030a"></script>
 <style>
 .hdc { padding: 22px 24px; display: flex; gap: 18px; align-items: flex-start; }
 .hdc .ra { width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 30px; flex: none; }
@@ -17,19 +17,19 @@
   <div class="grow"><div class="row"><h1 style="font-family:var(--serif);font-size:26px">示例人物 A</h1><span class="tag t-red">外部个人</span><span class="tag t-green">已审核</span></div>
     <div class="muted" style="margin-top:2px">某教育科技公司 · 产品负责人</div>
     <div class="row" style="gap:6px;margin-top:10px"><span class="tag">AI</span><span class="tag">教育</span><span class="tag">产品</span><span class="xs muted" style="margin-left:6px">编号 R-0217 · 学社成员可见</span></div></div>
-  <div class="row"><span class="btn"><i class="ic" data-i="LuPenLine"></i>编辑（维护人）</span><span class="btn btn-p"><i class="ic" data-i="LuMessageCircle"></i>联系对接人 · 同学 B</span></div>
+  <div class="row"><span class="btn" data-dlg="edit"><i class="ic" data-i="LuPenLine"></i>编辑（维护人）</span><span class="btn btn-p" data-dlg="contact"><i class="ic" data-i="LuMessageCircle"></i>联系对接人 · 同学 B</span></div>
 </div>
 <div class="cols">
   <div>
     <div class="card pad"><div class="grid g2" style="gap:22px">
       <div><div class="st">可提供的帮助</div><div style="color:var(--ink)">可交流 AI 教育产品开发经验；可做分享嘉宾。是否担任评委需另行确认。</div></div>
-      <div><div class="st">待确认</div><div style="color:var(--ink)">时间偏好；是否可以线上参与</div><div class="st" style="margin-top:12px">联系方式</div><div class="locked"><i class="ic" data-i="LuEyeOff"></i>仅维护人可见，请通过学社对接人联系</div></div>
+      <div><div class="st">待确认</div><div style="color:var(--ink)">时间偏好；是否可以线上参与</div><div class="st" style="margin-top:12px">联系方式</div><div class="locked"><i class="ic" data-i="LuEyeOff"></i>平台不登记，请通过学社对接人联系</div></div>
     </div></div>
   </div>
   <div>
     <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">2</span><div class="st"><i class="ic" data-i="LuUsers"></i>学社对接人</div>
       <div class="row"><span class="av av-sm a3">B</span><div class="grow"><div class="b" style="font-size:13.5px">同学 B</div><div class="xs muted">外联部 · 对接人即维护人</div></div></div>
-      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuShieldCheck"></i><div class="small">凡涉及外部个人的联系，都经过学社对接人。对接人换届时，资源整体移交给接任者。</div></div>
+      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuShieldCheck"></i><div class="small">外部个人的联系方式由对接人自己保管，不录入平台；凡涉及外部个人的联系，都经过对接人。对接人离任时，在“编辑”里把资源移交给接任者。</div></div>
     </div>
     <div class="card pad rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">3</span><div class="st"><i class="ic" data-i="LuHistory"></i>维护信息</div>
       <dl class="kv" style="margin:0;font-size:13px"><dt>录入</dt><dd>同学 G · 2026-04-02</dd><dt>审核</dt><dd>维护人 · 2026-04-03</dd><dt>最近更新</dt><dd>同学 B · 2026-10-24</dd><dt>来源</dt><dd>企业参访记录、活动交流记录</dd></dl>
@@ -37,4 +37,34 @@
   </div>
 </div>
 </div></div></div></div>
+
+<template id="dlg-contact"><div class="dlg">
+  <div class="hd"><b style="font-size:16px">联系对接人 · 同学 B</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <div class="row" style="padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#FAF9F7;margin-bottom:14px"><span class="av av-sm a3">B</span><div class="grow"><div class="b" style="font-size:13.5px">同学 B · 外联部</div><div class="xs muted">示例人物 A 的学社对接人 · 通常 1 天内回复</div></div></div>
+    <div class="field"><div class="label">想请对方做什么 <span class="req">*</span></div><div class="opts" style="grid-template-columns:1fr 1fr"><div class="on"><div><b>分享嘉宾</b></div></div><div><div><b>比赛评委</b></div></div><div><div><b>交流请教</b></div></div><div><div><b>其他</b></div></div></div></div>
+    <div class="field"><div class="label">说明 <span class="req">*</span></div><div class="input textarea">11 月下旬想办一场 AI + 教育分享会（约 80 人），想邀请示例人物 A 讲 20 分钟“AI 教育产品从 0 到 1”。</div></div>
+    <div class="grid g2"><div class="field"><div class="label">期望时间</div><div class="input">11-20 至 11-28</div></div><div class="field"><div class="label">关联活动</div><div class="input ph">选择（可选）</div></div></div>
+    <div class="notice n-gray"><i class="ic" data-i="LuShieldCheck"></i><div>外部个人的联系方式不在平台登记。对接人收到请求后，由他去联系对方，并在这里回复你结果。</div></div>
+  </div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已发给同学 B，回复会出现在通知里">发送请求</span></div>
+</div></template>
+
+<template id="dlg-edit"><div class="dlg dlg-lg">
+  <div class="hd"><b style="font-size:16px">编辑资源 · 示例人物 A</b><span class="xs muted">R-0217</span><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <div class="grid g2" style="gap:12px">
+      <div class="field"><div class="label">姓名或资源名称 <span class="req">*</span></div><div class="input">示例人物 A</div></div>
+      <div class="field"><div class="label">所属机构与职位</div><div class="input">某教育科技公司 · 产品负责人</div></div>
+    </div>
+    <div class="field"><div class="label">可以提供什么帮助 <span class="req">*</span></div><div class="input textarea">可交流 AI 教育产品开发经验；可做分享嘉宾。是否担任评委需另行确认。</div></div>
+    <div class="grid g2" style="gap:12px">
+      <div class="field"><div class="label">领域标签</div><div class="input"><span class="tag">AI</span><span class="tag">教育</span><span class="tag">产品</span></div></div>
+      <div class="field"><div class="label">待确认</div><div class="input">时间偏好；是否可以线上参与</div></div>
+    </div>
+    <div class="field"><div class="label">学社对接人 <span class="req">*</span></div><div class="input">同学 B（外联部）<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div><div class="xs muted" style="margin-top:6px"><i class="ic" data-i="LuArrowLeftRight"></i> 更换对接人即移交：新对接人会收到通知，需要从原对接人那里拿到联系方式</div></div>
+    <div class="field" style="margin-bottom:0"><div class="label">状态</div><div class="seg"><a class="on">正常</a><a>暂不可用</a><a>已失联</a></div></div>
+  </div>
+  <div class="fd"><span class="xs muted grow">维护人修改直接生效，记入操作日志</span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已保存">保存</span></div>
+</div></template>
 </body></html>

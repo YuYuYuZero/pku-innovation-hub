@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>录入资源 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261029f"><script src="assets/icons.js?v=20261029f"></script><script src="assets/app.js?v=20261029f"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261030a"><script src="assets/icons.js?v=20261030a"></script><script src="assets/app.js?v=20261030a"></script>
 <style>
 .cols { display: grid; grid-template-columns: 420px 1fr; gap: 18px; align-items: start; }
 .aip { background: linear-gradient(180deg, #FFFAF7 0, #fff 120px); }
@@ -27,7 +27,7 @@
 <div class="seg"><a class="on">单条录入</a><a href="upload.html">批量导入</a></div></div>
 <div class="cols">
   <div class="card pad aip rel"><span class="mk" style="left:-8px;top:-8px">1</span>
-    <div class="row between"><div class="row"><span class="ai-tag"><i class="ic" data-i="LuSparkles"></i>技能 · 资源录入</span><span class="lv lv1">提效</span></div><div class="seg"><a class="on">粘贴文字</a><a>上传文件</a></div></div>
+    <div class="row between"><div class="row"><span class="ai-tag"><i class="ic" data-i="LuSparkles"></i>技能 · 资源录入</span><span class="lv lv1">提效</span></div><div class="seg pick"><a class="on">粘贴文字</a><a>上传文件</a></div></div>
     <div class="paste">【活动交流纪要 · 10 月 24 日】今晚分享会结束后和 <mark>示例人物 E</mark> 聊了一会儿，她现在是 <mark>某 AI 医疗公司的算法负责人</mark>，之前在医学部做过影像相关的研究。她说 <mark>可以和同学交流 AI 医疗落地经验</mark>，如果时间合适也愿意来做一次分享，但具体时间要等她确认。另外她提到 <mark>所在公司</mark> 也愿意支持学生的 AI 医疗项目……对接人是我（同学 F，外联部）。</div>
     <div class="row" style="margin-top:12px"><span class="btn btn-p" style="flex:1"><i class="ic" data-i="LuSparkles"></i>AI 提取字段</span><span class="btn"><i class="ic" data-i="LuRefreshCw"></i></span></div>
     <div class="found rel"><span class="mk" style="left:-10px;top:-6px">2</span><div class="small muted">识别到 2 项资源，选择后填入右侧表单</div>
@@ -38,25 +38,43 @@
   </div>
   <div class="card rel"><span class="mk" style="left:-8px;top:-8px">3</span>
     <div class="form">
-      <div class="notice n-amber rel" style="margin-bottom:18px"><span class="mk" style="right:-10px;top:-10px">4</span><i class="ic" data-i="LuTriangleAlert"></i><div><b>可能重复：</b>资源库里已有“示例人物 E（某 AI 医疗公司）”，由同学 G 于 2026-06 录入。<a class="lnk">查看已有记录</a> 或 继续新建。</div></div>
+      <div class="notice n-amber rel" style="margin-bottom:18px"><span class="mk" style="right:-10px;top:-10px">4</span><i class="ic" data-i="LuTriangleAlert"></i><div><b>可能重复：</b>资源库里已有“示例人物 E（某 AI 医疗公司）”，由同学 G 于 2026-06 录入。<a class="lnk" data-dlg="dup">对比已有记录</a> 或 继续新建。</div></div>
       <div class="grid g2">
         <div class="field"><div class="label">资源类型 <span class="req">*</span></div><div class="input">外部个人<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div></div>
         <div class="field"><div class="label">姓名或资源名称 <span class="req">*</span><span class="conf">AI · 高</span></div><div class="input ai">示例人物 E</div></div>
         <div class="field"><div class="label">所属机构或部门<span class="xs muted" style="margin-left:6px;font-weight:400">学社骨干必填部门</span><span class="conf">AI · 高</span></div><div class="input ai">某 AI 医疗公司 · 算法负责人</div></div>
         <div class="field"><div class="label">领域标签<span class="conf">AI · 高</span></div><div class="input ai"><span class="tag">AI</span><span class="tag">医疗</span><span class="tag">算法</span></div></div>
       </div>
-      <div class="field"><div class="label">可以提供什么帮助 <span class="req">*</span><span class="conf mid">AI · 中 · 请核对</span></div><div class="input ai textarea">可交流 AI 医疗落地经验；可做分享嘉宾，<b style="color:var(--amber)">时间待确认</b>。</div></div>
+      <div class="field"><div class="label">可以提供什么帮助 <span class="req">*</span><span class="conf mid">AI · 中 · 请核对</span></div><div class="input ai textarea">可交流 AI 医疗落地经验；可做分享嘉宾，<b style="color:var(--amber)">时间待确认</b>。</div><div class="xs muted" style="margin-top:6px">AI 只从原文里提取，原文里出现的手机号、微信号会自动略去</div></div>
       <div class="grid g2">
-        <div class="field"><div class="label">学社对接人 <span class="req">*</span><span class="conf">AI · 高</span></div><div class="input ai"><span class="av av-sm a4" style="width:22px;height:22px;font-size:10px">F</span>同学 F（外联部）</div></div>
+        <div class="field"><div class="label">学社对接人 <span class="req">*</span><span class="conf">AI · 高</span></div><div class="input ai"><span class="av av-sm a4" style="width:22px;height:22px;font-size:10px">F</span>同学 F（外联部）</div><div class="xs muted" style="margin-top:6px"><i class="ic" data-i="LuEyeOff"></i> 不录入对方的手机号、微信号，由对接人自己保管</div></div>
         <div class="field"><div class="label">资料来源</div><div class="input">活动交流纪要（10 月 24 日）</div></div>
-        <div class="field"><div class="label">联系方式 <i class="ic" data-i="LuEyeOff" style="color:var(--teal)"></i><div class="seg" style="margin-left:auto;padding:2px"><a class="on" style="padding:0 8px;font-size:11.5px">仅自己可见</a><a style="padding:0 8px;font-size:11.5px">仅维护人可见</a></div></div><div class="input ph">手机号 / 微信号（选填）</div></div>
+        <div class="field"><div class="label">待确认</div><div class="input ai">分享时间</div></div>
         <div class="field"><div class="label">审核后的可见范围</div><div class="input">学社成员<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div></div>
       </div>
       <div class="field"><div class="label">补充说明</div><div class="input ph">如：对方偏好线上交流</div></div>
       <div class="check rel"><span class="mk" style="left:-34px;top:-2px">5</span><span class="bx"><i class="ic" data-i="LuCheck"></i></span><div>我确认对方知道学社会记录这些信息，且信息来源合规；我只录入有权向学社提供的内容。</div></div>
     </div>
-    <div class="ft"><span class="small muted">提交失败时已填内容会保留，重复点击不会重复创建</span><span class="grow"></span><span class="btn btn-p">提交审核</span></div>
+    <div class="ft"><span class="small muted">提交失败时已填内容会保留，重复点击不会重复创建</span><span class="grow"></span><span class="btn" data-done="已存为草稿">存草稿</span><span class="btn btn-p" data-done="已提交，等待外联部维护人审核">提交审核</span></div>
   </div>
 </div>
 </div></div></div></div>
+
+<template id="dlg-dup"><div class="dlg dlg-lg">
+  <div class="hd"><b style="font-size:16px">已有记录：示例人物 E</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <div class="cmp">
+      <div class="h">字段</div><div class="h">已有记录 R-0188（同学 G · 2026-06）</div><div class="h">你正在录入</div>
+      <div>机构</div><div>某 AI 医疗公司</div><div>某 AI 医疗公司</div>
+      <div>职位</div><div>算法工程师</div><div class="d">算法负责人</div>
+      <div>可提供的帮助</div><div>可交流医学影像算法</div><div class="d">可交流 AI 医疗落地经验；可做分享，时间待确认</div>
+      <div>对接人</div><div>同学 G（已离任）</div><div class="d">同学 F</div>
+    </div>
+    <div class="opts" style="margin-top:14px">
+      <div class="on"><div><b>补充到已有记录</b><span>提交为对 R-0188 的修改，并申请把对接人换成你；由维护人审核</span></div></div>
+      <div><div><b>不是同一个人，继续新建</b><span>审核时维护人会看到这条提示</span></div></div>
+    </div>
+  </div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已改为补充 R-0188">确定</span></div>
+</div></template>
 </body></html>

@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261029f" alt="北京大学校徽">`;
+const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261030a" alt="北京大学校徽">`;
 
 const NAV = [
   { g: "", items: [
@@ -8,20 +8,18 @@ const NAV = [
   { g: "学社资产 · 成员可见", items: [
     ["resources", "资源库", "resources.html", "LuDatabase", 1],
     ["kb", "知识库", "kb.html", "LuLibrary", 1],
-    ["workbench", "工作台", "workbench.html", "LuTarget", 1],
+    ["workbench", "工作台", "workbench.html", "LuTarget", 1, 5],
   ] },
   { g: "工具 · AI", items: [
     ["assistant", "AI 助手", "assistant.html", "LuSparkles"],
     ["skills", "助手技能", "skills.html", "LuWandSparkles"],
   ] },
-  { g: "社区 · 北大同学", items: [
+  { g: "社区 · 内测版", items: [
     ["community", "讨论", "community.html", "LuMessagesSquare"],
     ["events", "活动", "events.html", "LuCalendarDays"],
-    ["featured", "精选", "featured.html", "LuBookOpen"],
-    ["startup", "创业", "projects.html", "LuRocket"],
   ] },
-  { g: "管理 · 学社成员", items: [
-    ["admin", "审核与管理", "admin.html", "LuShieldCheck", 1, 5],
+  { g: "管理 · 会长团权限", items: [
+    ["admin", "平台管理", "admin.html", "LuShieldCheck", 1],
   ] },
 ];
 
@@ -30,7 +28,7 @@ function ic(n) { return `<i class="ic" data-i="${n}"></i>`; }
 // 通知：只推和自己有关、需要处理或需要知道结果的事
 const NOTES = [
   ["待你审批：读书会第 4 期活动申报", "同学 C 申报 · 今天", "activity_review.html", "LuCalendarCheck"],
-  ["2 条资源待审核", "外联部提交 · 含 1 条疑似重复", "admin.html", "LuInbox"],
+  ["2 条资源待审核", "外联部提交 · 含 1 条疑似重复", "workbench.html#review", "LuInbox"],
   ["同学 C 有 1 项工作已逾期", "可以督办 · 昨天", "workbench.html", "LuClock"],
   ["你录入的资源已通过审核", "示例机构 F · 2 天前", "resource_detail.html", "LuCircleCheck"],
 ];
@@ -74,8 +72,9 @@ function renderIcons() {
 const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
   ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档阅读", "kb_doc.html"], ["工作台", "workbench.html"],
-  ["AI 助手", "assistant.html"], ["助手技能", "skills.html"], ["录入活动", "event_new.html"], ["讨论", "community.html"],
-  ["活动", "events.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"], ["审核与管理", "admin.html"], ["活动申报审批", "activity_review.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
+  ["AI 助手", "assistant.html"], ["助手技能", "skills.html"], ["录入活动", "event_new.html"], ["活动申报审批", "activity_review.html"], ["讨论", "community.html"],
+  ["活动", "events.html"], ["平台管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
+  ["—— 暂不开放 ——"], ["精选（后续开放）", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"],
 ];
 function renderProtoNav() {
   if (new URLSearchParams(location.search).has("shot")) return;
@@ -83,7 +82,7 @@ function renderProtoNav() {
   const box = document.createElement("div");
   box.className = "proto-nav";
   box.innerHTML = `<div class="pn-panel"><div class="pn-h">原型页面</div>` +
-    PAGES.map(([t, f]) => `<a class="${f === cur ? "on" : ""}" href="${f}${document.body.classList.contains("anno") ? "#anno" : ""}"><span>${t}</span><code>${f}</code></a>`).join("") +
+    PAGES.map(([t, f]) => !f ? `<div class="pn-h">${t}</div>` : `<a class="${f === cur ? "on" : ""}" href="${f}${document.body.classList.contains("anno") ? "#anno" : ""}"><span>${t}</span><code>${f}</code></a>`).join("") +
     `<label class="pn-anno"><input type="checkbox" ${document.body.classList.contains("anno") ? "checked" : ""}> 显示编号标注</label></div><button class="pn-btn">原型目录</button>`;
   document.body.appendChild(box);
   box.querySelector(".pn-btn").onclick = () => box.classList.toggle("open");
@@ -94,9 +93,48 @@ function renderProtoNav() {
   };
 }
 
+// 通用弹窗：点击 [data-dlg="x"] 打开 <template id="dlg-x">；[data-close] 关闭；[data-done="提示"] 关闭并提示
+function openDlg(id) {
+  const tpl = document.getElementById("dlg-" + id);
+  if (!tpl) return;
+  let mask = document.getElementById("gmask");
+  if (!mask) {
+    mask = document.createElement("div");
+    mask.className = "mask"; mask.id = "gmask";
+    mask.addEventListener("click", (e) => { if (e.target === mask) closeDlg(); });
+    document.body.appendChild(mask);
+  }
+  mask.innerHTML = "";
+  mask.appendChild(tpl.content.cloneNode(true));
+  mask.hidden = false;
+  renderIcons();
+}
+function closeDlg() { const m = document.getElementById("gmask"); if (m) m.hidden = true; }
+function toast(msg) {
+  const t = document.createElement("div");
+  t.className = "toast"; t.innerHTML = `<i class="ic" data-i="LuCircleCheck"></i><span>${msg}</span>`;
+  document.body.appendChild(t); renderIcons();
+  setTimeout(() => t.remove(), 2600);
+}
+document.addEventListener("click", (e) => {
+  const open = e.target.closest("[data-dlg]");
+  if (open) { e.preventDefault(); openDlg(open.dataset.dlg); return; }
+  const done = e.target.closest("[data-done]");
+  if (done) { closeDlg(); toast(done.dataset.done); return; }
+  if (e.target.closest("#gmask [data-close]")) closeDlg();
+  // 弹窗里的分段选择、单选卡片可以点
+  const seg = e.target.closest("#gmask .seg a, .seg.pick a");
+  if (seg) seg.parentElement.querySelectorAll("a").forEach(a => a.classList.toggle("on", a === seg));
+  const opt = e.target.closest(".opts > div");
+  if (opt) opt.parentElement.querySelectorAll(":scope > div").forEach(o => o.classList.toggle("on", o === opt));
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   renderShell();
   renderIcons();
   if (location.hash.includes("anno")) document.body.classList.add("anno");
   renderProtoNav();
+  // 地址后加 #dlg-xxx 直接打开对应弹窗，便于截图和文档引用
+  const m = location.hash.match(/dlg-([\w-]+)/);
+  if (m) openDlg(m[1]);
 });

@@ -286,3 +286,30 @@ body.anno .mk {
 .sb-bell .icon-btn { width: 34px; height: 34px; border-radius: 10px; }
 .sb-bell .dd { left: 0; right: auto; }
 .page { padding-top: 28px; }
+
+/* 通用弹窗补充 */
+.dlg-lg { width: 680px; }
+.dlg .hd .x { width: 32px; height: 32px; font-size: 20px; color: var(--muted); cursor: pointer; }
+.dlg .bd { max-height: calc(100vh - 220px); overflow: auto; }
+.btn-danger { background: #C2413B; border-color: #C2413B; color: #fff; }
+.drop { border: 1.5px dashed var(--line-2); border-radius: 12px; padding: 18px; text-align: center; color: var(--muted); font-size: 13px; background: #FCFBFA; }
+.drop .ic { font-size: 26px; color: var(--red); display: block; margin: 0 auto 6px; }
+.opts { display: grid; gap: 8px; }
+.opts > div { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; font-size: 13px; }
+.opts > div::before { content: ""; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--line-2); flex: none; margin-top: 3px; }
+.opts > div.on { border-color: var(--red-200); background: var(--red-50); }
+.opts > div.on::before { border-color: var(--red); background: var(--red); box-shadow: inset 0 0 0 3px #fff; }
+.opts b { display: block; color: var(--ink); font-size: 13.5px; }
+.opts span { color: var(--muted); font-size: 12px; }
+.cmp { display: grid; grid-template-columns: 90px 1fr 1fr; font-size: 13px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.cmp > div { padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.cmp > div:nth-last-child(-n+3) { border-bottom: 0; }
+.cmp .h { background: #FAF9F7; font-weight: 600; color: var(--muted); font-size: 12px; }
+.cmp .d { background: var(--amber-50); }
+.toast { position: fixed; left: 50%; top: 24px; transform: translateX(-50%); z-index: 200; display: flex; gap: 8px; align-items: center; padding: 10px 16px; border-radius: 12px; background: var(--ink); color: #fff; font-size: 13.5px; box-shadow: var(--shadow-lg); }
+.toast .ic { color: #7FD3A0; font-size: 17px; }
+.menu { position: absolute; right: 0; top: calc(100% + 6px); width: 200px; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 18px 40px rgba(0,0,0,.14); padding: 6px; z-index: 40; }
+.menu a { display: flex; gap: 8px; align-items: center; padding: 8px 10px; border-radius: 8px; font-size: 13px; color: var(--ink); cursor: pointer; }
+.menu a:hover { background: #F6F4F1; }
+.menu a.dg { color: #C2413B; }
+[data-dlg], [data-done] { cursor: pointer; }
