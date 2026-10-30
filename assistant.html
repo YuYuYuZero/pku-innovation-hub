@@ -1,88 +1,86 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>AI 助手 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261030a"><script src="assets/icons.js?v=20261030a"></script><script src="assets/app.js?v=20261030a"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261030b"><script src="assets/icons.js?v=20261030b"></script><script src="assets/app.js?v=20261030b"></script>
 <style>
-.chat { display: grid; grid-template-columns: 236px 1fr 300px; gap: 14px; height: calc(100vh - 88px); }
-.hist { padding: 12px; overflow: hidden; }
-.hist .it { padding: 8px 10px; border-radius: 9px; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hist .it.on { background: var(--red-50); color: var(--red); font-weight: 600; }
-.hist .gt { font-size: 11.5px; color: var(--faint); padding: 10px 10px 4px; }
-.conv { display: flex; flex-direction: column; overflow: hidden; }
-.msgs { flex: 1; padding: 18px 28px; overflow: hidden; }
-.me-m { display: flex; justify-content: flex-end; }
-.me-m div { background: var(--ink); color: #fff; border-radius: 16px 16px 4px 16px; padding: 10px 14px; max-width: 70%; font-size: 14px; }
-.bot { display: flex; gap: 12px; margin-top: 18px; }
-.bot .logo { width: 34px; height: 34px; flex: none; }
-.bot .body { flex: 1; font-size: 14px; color: var(--ink); line-height: 1.75; }
-.steps { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
-.steps span { font-size: 12px; color: var(--muted); background: #F4F3F0; border-radius: 7px; padding: 3px 9px; display: inline-flex; align-items: center; gap: 5px; }
-.steps .ic { color: var(--green); }
-.rc { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
-.rc > div { border: 1px solid var(--line); border-radius: 12px; padding: 11px 13px; background: #fff; }
-.rc .n { font-weight: 700; font-size: 14px; }
-.acts { display: flex; gap: 6px; margin-top: 12px; }
-.composer { margin: 0 20px 18px; border: 1px solid var(--line-2); border-radius: 16px; background: #fff; box-shadow: var(--shadow); padding: 12px 14px; }
-.composer .ph { color: var(--faint); font-size: 14.5px; min-height: 44px; }
-.composer .bar { display: flex; align-items: center; gap: 8px; }
-.scope { display: inline-flex; gap: 4px; }
-.scope span { white-space: nowrap; font-size: 12.5px; padding: 4px 10px; border-radius: 8px; color: var(--muted); border: 1px solid var(--line); }
-.scope span.on { background: var(--red-50); color: var(--red); border-color: var(--red-100); font-weight: 600; }
-.srcp { padding: 14px; overflow: hidden; }
-.src { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin-top: 10px; font-size: 12.5px; }
-.src .row { gap: 6px; }
-.src p { color: var(--text); margin-top: 6px; line-height: 1.6; }
+.cols { display: grid; grid-template-columns: 1fr 330px; gap: 16px; align-items: start; }
+.drop-in { padding: 18px 20px; background: linear-gradient(180deg, #FFFAF7 0, #fff 140px); }
+.paste { margin-top: 12px; border: 1px dashed #E3C4C6; border-radius: 12px; padding: 12px 14px; background: #fff; font-size: 13px; line-height: 1.8; color: var(--text); }
+.paste .who { color: var(--muted); }
+.paste mark { background: #FBE7C9; color: var(--ink); border-radius: 3px; padding: 0 2px; }
+.paste s { color: var(--faint); }
+.found { padding: 14px 16px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 38px 1fr auto; gap: 12px; align-items: start; }
+.found:last-child { border-bottom: 0; }
+.found .fi { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.found .kv2 { font-size: 12.5px; color: var(--text); margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.found .kv2 b { color: var(--muted); font-weight: 500; margin-right: 4px; }
+.to { font-size: 12px; color: var(--muted); display: inline-flex; gap: 4px; align-items: center; }
+.dr { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); align-items: center; }
+.dr:last-child { border-bottom: 0; }
+.big { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1.1; }
+.can li { margin: 6px 0; display: flex; gap: 8px; align-items: flex-start; }
+.can li .ic { color: var(--red); margin-top: 3px; flex: none; }
+ul.can { list-style: none; padding: 0; margin: 8px 0 0; font-size: 12.5px; }
 </style></head>
 <body data-page="assistant">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
-<div class="page" style="padding-bottom:0"><div class="chat">
-  <div class="card hist rel"><span class="mk" style="left:-8px;top:-8px">1</span>
-    <span class="btn btn-soft" style="width:100%"><i class="ic" data-i="LuPlus"></i>新对话</span>
-    <div class="gt">今天</div><div class="it on">找 AI 教育方向的分享嘉宾</div><div class="it">往届黑客松的赞助方案在哪</div>
-    <div class="gt">本周</div><div class="it">录入一位嘉宾的交流纪要</div><div class="it">收录工作坊的活动通知</div>
-    <div class="gt">更早</div><div class="it">找能提供活动场地的机构</div>
+<div class="page"><div class="wrap" style="max-width:1180px">
+<div class="row between" style="margin:6px 0 14px"><div><h1 class="h-page">AI 助手</h1><p class="muted" style="margin-top:2px">手头有什么就丢进来：群聊记录、名片截图、公众号链接、活动纪要、策划书。助手判断它是资源、活动还是资料，生成草稿，你点确认就进入对应板块。不用再对着表单一格一格填</p></div></div>
+
+<div class="cols">
+<div>
+  <div class="card drop-in rel"><span class="mk" style="left:-8px;top:-8px">1</span>
+    <div class="row between"><span class="h-sec">丢进来</span><div class="seg pick"><a class="on">粘贴文字</a><a>链接</a><a>文件或截图</a></div></div>
+    <div class="paste"><span class="who">【外联部工作群 · 10 月 24 日】</span><br>
+      同学 F：今晚分享会后和 <mark>示例人物 E</mark> 聊了，她是 <mark>某 AI 医疗公司的算法负责人</mark>，<mark>可以交流 AI 医疗落地，愿意来做分享</mark>，时间要她再确认。电话 <s>138****5678</s><br>
+      同学 D：<mark>下周日 11/2 下午两点</mark>某 AI 社团在 <mark>二教 305</mark> 办 <mark>大模型应用工作坊第 3 期</mark>，推文 https://mp.weixin.qq.com/s/… 可以转给大家<br>
+      同学 F：<span class="tag" style="height:20px"><i class="ic" data-i="LuPaperclip"></i>交流纪要_1024.docx</span></div>
+    <div class="row" style="margin-top:12px"><span class="small muted grow">也可以直接把文件、截图拖到这里；一次可以丢多样东西</span><span class="btn btn-p" data-done="识别到 3 项，请逐项确认"><i class="ic" data-i="LuSparkles"></i>识别</span></div>
   </div>
-  <div class="card conv">
-    <div class="msgs">
-      <div class="me-m"><div>下个月想办一场 AI + 教育的分享会，帮我找 2–3 位合适的嘉宾，再找找以前类似活动的资料。</div></div>
-      <div class="bot rel"><span class="mk" style="left:-14px;top:-4px">2</span>
-        <img class="logo" src="assets/pku-logo.svg?v=20261030a" alt="学社助手">
-        <div class="body">
-          <div class="steps"><span><i class="ic" data-i="LuCircleCheck"></i>检索资源库 12 条</span><span><i class="ic" data-i="LuCircleCheck"></i>检索资料目录 2 份</span></div>
-          资源库里有 3 项比较匹配的资源。外部嘉宾的联系方式不直接展示，需要通过学社对接人联系：
-          <div class="rc rel"><span class="mk" style="right:-10px;top:-10px">3</span>
-            <div><div class="row between"><span class="n">示例人物 A</span><span class="tag t-red">外部个人</span></div><div class="xs muted">某教育科技公司 · 产品负责人</div><div class="small" style="margin-top:6px">可交流 AI 教育产品经验，做过学社分享嘉宾<span class="cite">1</span></div><div class="xs muted" style="margin-top:6px">对接人：同学 B</div></div>
-            <div><div class="row between"><span class="n">示例机构 C</span><span class="tag t-blue">机构资源</span></div><div class="xs muted">教育公益基金会</div><div class="small" style="margin-top:6px">关注 AI 与教育公平，可提供场地与小额赞助<span class="cite">2</span></div><div class="xs muted" style="margin-top:6px">对接人：同学 D</div></div>
-          </div>
-          相关资料：2026 春分享会复盘<span class="cite">3</span>、活动 SOP 模板<span class="cite">4</span>，点开可以查看原件。
-          <div class="acts"><span class="btn btn-sm"><i class="ic" data-i="LuCopy"></i>复制</span><span class="btn btn-sm"><i class="ic" data-i="LuThumbsUp"></i></span><span class="btn btn-sm"><i class="ic" data-i="LuRefreshCw"></i>重新生成</span></div>
-        </div>
-      </div>
-      <div class="me-m" style="margin-top:18px"><div><span class="tag" style="background:rgba(255,255,255,.14);color:#fff;margin-right:6px"><i class="ic" data-i="LuPaperclip"></i>交流纪要.docx</span>这是上周和一位嘉宾的交流纪要，帮我录进资源库</div></div>
-      <div class="bot rel"><span class="mk" style="left:-14px;top:-4px">6</span>
-        <img class="logo" src="assets/pku-logo.svg?v=20261030a" alt="学社助手">
-        <div class="body"><div class="row" style="margin-bottom:6px"><span class="ai-tag"><i class="ic" data-i="LuFileSearch"></i>技能 · 资源录入</span><span class="xs muted">已识别 1 项资源，确认后进入待审核</span></div>
-          <div style="border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff">
-            <div class="row between"><span class="b" style="font-size:14.5px">示例人物 E</span><span class="tag t-red">外部个人</span></div>
-            <div class="small muted" style="margin-top:2px">某 AI 医疗公司 · 算法负责人 · 对接人：同学 F</div>
-            <div class="small" style="margin-top:6px">可交流 AI 医疗落地经验；可做分享，时间待确认</div>
-            <div class="row" style="gap:6px;margin-top:8px"><span class="tag t-amber"><i class="ic" data-i="LuTriangleAlert"></i>资源库已有同名同机构记录</span></div>
-            <div class="row" style="margin-top:10px"><span class="btn btn-sm btn-p">确认并提交审核</span><span class="btn btn-sm">在表单中修改</span></div>
-          </div>
-        </div>
-      </div>
+
+  <div class="card rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">2</span>
+    <div class="pad row between" style="padding-bottom:6px"><span class="h-sec">识别到 3 项</span><span class="xs muted"><i class="ic" data-i="LuEyeOff"></i> 已略去 1 个手机号：外部个人的联系方式不入库</span></div>
+    <div class="found"><div class="fi t-red"><i class="ic" data-i="LuUser"></i></div>
+      <div><div class="row"><span class="b">示例人物 E</span><span class="tag t-red">资源 · 外部个人</span><span class="tag t-amber"><i class="ic" data-i="LuTriangleAlert"></i>资源库已有同名同机构记录</span></div>
+        <div class="kv2"><span><b>机构</b>某 AI 医疗公司 · 算法负责人</span><span><b>可提供</b>交流 AI 医疗落地；可做分享（时间待确认）</span><span><b>对接人</b>同学 F</span></div>
+        <div class="to" style="margin-top:6px"><i class="ic" data-i="LuArrowRight"></i>确认后进入 资源库 · 待维护人审核</div></div>
+      <div class="row" style="gap:6px"><a class="btn btn-sm" href="resource_new.html">修改</a><span class="btn btn-sm btn-p" data-done="已提交，等待维护人审核">确认</span></div></div>
+    <div class="found"><div class="fi t-teal"><i class="ic" data-i="LuCalendarDays"></i></div>
+      <div><div class="row"><span class="b">大模型应用工作坊（第 3 期）</span><span class="tag t-teal">活动</span></div>
+        <div class="kv2"><span><b>时间</b>11-02（周日）14:00</span><span><b>地点</b>二教 305</span><span><b>主办</b>某 AI 社团</span><span><b>报名</b>见推文（已抓取）</span></div>
+        <div class="to" style="margin-top:6px"><i class="ic" data-i="LuArrowRight"></i>确认后发布到 活动页</div></div>
+      <div class="row" style="gap:6px"><a class="btn btn-sm" href="event_new.html">修改</a><span class="btn btn-sm btn-p" data-done="已发布到活动页">确认</span></div></div>
+    <div class="found"><div class="fi t-blue"><i class="ic" data-i="LuFileText"></i></div>
+      <div><div class="row"><span class="b">交流纪要_1024.docx</span><span class="tag t-blue">资料</span></div>
+        <div class="kv2"><span><b>标题</b>示例人物 E 交流纪要（10-24）</span><span><b>分类</b>资源资料</span><span><b>可见</b>仅维护人</span><span><b>标签</b>AI、医疗</span></div>
+        <div class="to" style="margin-top:6px"><i class="ic" data-i="LuArrowRight"></i>确认后存入 知识库 · 资源资料，挂在示例人物 E 名下</div></div>
+      <div class="row" style="gap:6px"><span class="btn btn-sm" data-done="已打开资料信息">修改</span><span class="btn btn-sm btn-p" data-done="已存入知识库">确认</span></div></div>
+  </div>
+</div>
+
+<div>
+  <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">3</span>
+    <div class="row between"><span class="h-sec">待我确认</span><span class="tag t-red">4</span></div>
+    <div style="margin-top:4px">
+      <div class="dr"><i class="ic" data-i="LuUser" style="color:var(--red)"></i><div class="grow small"><b class="b">示例机构 K</b><div class="xs muted">资源 · 来自名片截图 · 昨天</div></div><span class="lnk small">确认</span></div>
+      <div class="dr"><i class="ic" data-i="LuCalendarDays" style="color:var(--teal)"></i><div class="grow small"><b class="b">AI 创业分享夜 · 2 场</b><div class="xs muted">活动 · 来自公众号链接 · 昨天</div></div><span class="lnk small">确认</span></div>
+      <div class="dr"><i class="ic" data-i="LuFileText" style="color:var(--blue)"></i><div class="grow small"><b class="b">黑客松复盘.docx</b><div class="xs muted">资料 · 上传 · 2 天前</div></div><span class="lnk small">确认</span></div>
+      <div class="dr"><i class="ic" data-i="LuCalendarCheck" style="color:var(--gold)"></i><div class="grow small"><b class="b">读书会第 5 期 · 申报草稿</b><div class="xs muted">来自策划书 · 3 天前</div></div><a class="lnk small" href="workbench.html#dlg-apply">确认</a></div>
     </div>
-    <div class="composer rel"><span class="mk" style="left:-10px;top:-10px">4</span>
-      <div class="ph">继续提问，或输入 / 调用技能（如 /录入、/活动）</div>
-      <div class="bar"><div class="scope"><span class="on">全部</span><span>资源库</span><span>资料目录</span></div><span class="grow"></span><span class="icon-btn" style="width:34px;height:34px"><i class="ic" data-i="LuPaperclip"></i></span><span class="icon-btn" style="width:34px;height:34px"><i class="ic" data-i="LuMic"></i></span><span class="btn btn-p btn-sm"><i class="ic" data-i="LuSend"></i>发送</span></div>
-    </div>
   </div>
-  <div class="card srcp rel"><span class="mk" style="left:-8px;top:-8px">5</span>
-    <div class="row between"><span class="h-sec">引用来源</span><span class="xs muted">4 条</span></div>
-    <div class="src"><div class="row"><span class="cite">1</span><i class="ic" data-i="LuDatabase" style="color:var(--red)"></i><b class="b">资源 · 示例人物 A</b></div><p>可交流 AI 教育产品开发经验；可做分享嘉宾……</p></div>
-    <div class="src"><div class="row"><span class="cite">2</span><i class="ic" data-i="LuDatabase" style="color:var(--red)"></i><b class="b">资源 · 示例机构 C</b></div><p>关注 AI 与教育公平，可提供活动场地与小额赞助……</p></div>
-    <div class="src"><div class="row"><span class="cite">3</span><i class="ic" data-i="LuFileText" style="color:var(--blue)"></i><b class="b">资料 · 2026 春分享会复盘</b></div><p>活动档案 · 按标题和标签匹配</p></div>
-    <div class="src"><div class="row"><span class="cite">4</span><i class="ic" data-i="LuFileText" style="color:var(--blue)"></i><b class="b">资料 · 活动 SOP 模板</b></div><p>模板库 · 按标题和标签匹配</p></div>
-    <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuShieldCheck"></i><div class="xs">只检索你有权限查看的内容；AI 回答可能有误，重要信息请核对原文。</div></div>
+  <div class="card pad rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">4</span>
+    <div class="h-sec">本周</div>
+    <div class="row" style="gap:22px;margin-top:10px"><div><div class="big">43</div><div class="xs muted">全社新增条目</div></div><div><div class="big">35<span style="font-size:14px"> 秒</span></div><div class="xs muted">平均每条录入</div></div><div><div class="big">82<span style="font-size:14px">%</span></div><div class="xs muted">草稿原样采纳</div></div></div>
+    <div class="xs muted" style="margin-top:10px">资源 18 · 活动 9 · 资料 16。草稿被改得越少，说明识别越准</div>
   </div>
+  <div class="card pad" style="margin-top:14px">
+    <div class="h-sec">也可以问</div>
+    <div class="psearch" style="width:100%;margin-top:10px"><i class="ic" data-i="LuSearch"></i>找做 AI 教育、能来分享的人</div>
+    <ul class="can">
+      <li><i class="ic" data-i="LuSparkles"></i>在你有权限的资源、资料、活动里找，附匹配理由和出处</li>
+      <li><i class="ic" data-i="LuShieldCheck"></i>助手只出草稿和答案，不会自己提交、审批或对外发消息</li>
+    </ul>
+  </div>
+</div>
+</div>
 </div></div></div></div>
 </body></html>

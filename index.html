@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>首页 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261030a"><script src="assets/icons.js?v=20261030a"></script><script src="assets/app.js?v=20261030a"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261030b"><script src="assets/icons.js?v=20261030b"></script><script src="assets/app.js?v=20261030b"></script>
 <style>
 .hero { border-radius: 20px; padding: 30px 32px 26px; color: #fff; position: relative; overflow: hidden;
   background: radial-gradient(70% 120% at 100% 0%, #B8414A 0, transparent 60%), radial-gradient(60% 90% at 0% 100%, #6E1A20 0, transparent 70%), #8C1D24; }
@@ -31,6 +31,11 @@
 .hot .n { width: 20px; height: 20px; border-radius: 6px; background: #F2F1EE; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 2px; }
 .hot li:nth-child(-n+3) .n { background: var(--red); color: #fff; }
 ul { list-style: none; margin: 0; padding: 0; }
+.feed { padding: 0 8px 8px; }
+.fd-i { display: flex; gap: 12px; align-items: center; padding: 11px 12px; border-radius: 10px; }
+.fd-i:hover { background: #F7F5F2; }
+.fd-i .fi { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex: none; }
+.fd-i .b { font-size: 13.5px; }
 </style></head>
 <body data-page="home">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
@@ -40,39 +45,29 @@ ul { list-style: none; margin: 0; padding: 0; }
   <span class="mk" style="left:10px;top:10px">1</span>
   <div class="k">北大创新学社 · 资源 · 工具 · 社区</div>
   <h1>早上好，张同学</h1>
-  <p>找资源、查资料、问问题、看大家在聊什么，都从这里开始。</p>
-  <div class="askbox rel"><span class="mk" style="left:-10px;top:-10px">2</span><i class="ic" data-i="LuSparkles"></i><span class="ph">问学社助手，或搜索资源、资料、活动和讨论</span><span class="kbd">Enter</span><a class="btn btn-p">提问</a></div>
+  <p>找资源、查资料、看活动，或者把手头的东西丢给助手入库，都从这里开始。</p>
+  <div class="askbox rel"><span class="mk" style="left:-10px;top:-10px">2</span><i class="ic" data-i="LuSparkles"></i><span class="ph">把群聊、链接、文件丢给助手，或搜索资源、资料、活动</span><span class="kbd">Enter</span><a class="btn btn-p" href="assistant.html">交给助手</a></div>
   <div class="qchips"><span>上学期黑客松的复盘在哪</span><span>有没有做 AI 教育的嘉宾可以请</span><span>活动 SOP 模板在哪</span><span>最近有哪些黑客松可以报名</span></div>
 </section>
 
 <div class="pillars rel">
   <span class="mk" style="left:-8px;top:-8px">3</span>
   <div class="card pillar"><div class="pi t-red"><i class="ic" data-i="LuDatabase"></i></div><div><h3>学社资产 <span class="tag t-line" style="vertical-align:2px"><i class="ic" data-i="LuLock"></i>学社成员</span></h3><p>资源（人与机构）、资料（工作文档、模板、往届资料）和工作台</p><div class="lks"><span class="tag">资源库</span><span class="tag">知识库</span><span class="tag">工作台</span></div></div></div>
-  <div class="card pillar"><div class="pi t-gold"><i class="ic" data-i="LuSparkles"></i></div><div><h3>工具 · AI 助手</h3><p>在你有权限的范围内找资源、查资料，回答附出处；录入和整理交给助手</p><div class="lks"><span class="tag">找资源</span><span class="tag">资源录入</span><span class="tag">文档整理</span><span class="tag">活动录入</span></div></div></div>
-  <div class="card pillar"><div class="pi t-teal"><i class="ic" data-i="LuMessagesSquare"></i></div><div><h3>社区 <span class="tag t-amber" style="vertical-align:2px">内测版</span></h3><p>学社同学交流 AI、看近期活动；帖子审核后展示。精选和创业板块后续开放</p><div class="lks"><span class="tag">讨论</span><span class="tag">活动</span></div></div></div>
+  <div class="card pillar"><div class="pi t-gold"><i class="ic" data-i="LuSparkles"></i></div><div><h3>工具 · AI 助手</h3><p>丢进来就入库：群聊、截图、公众号链接、文件，自动变成资源、活动、资料草稿；也能一句话找</p><div class="lks"><span class="tag">丢进来</span><span class="tag">一句话找</span></div></div></div>
+  <div class="card pillar"><div class="pi t-teal"><i class="ic" data-i="LuCalendarDays"></i></div><div><h3>社区 <span class="tag t-amber" style="vertical-align:2px">内测版</span></h3><p>近期活动：学社主办的活动终审后自动出现，合作社团和校外活动由骨干录入。讨论、精选后续开放</p><div class="lks"><span class="tag">活动</span></div></div></div>
 </div>
 
 <div class="cols">
   <div>
     <div class="card rel">
       <span class="mk" style="left:-8px;top:-8px">4</span>
-      <div class="pad row between" style="padding-bottom:6px"><div class="row" style="gap:18px"><span class="h-sec">社区最新</span><div class="seg"><a class="on">全部</a><a>讨论</a><a>活动</a></div></div><a class="lnk" href="community.html">进入社区 <i class="ic" data-i="LuChevronRight"></i></a></div>
-      <div class="post">
-        <div class="hd"><span class="av a3">许</span><div class="grow"><span class="nm">小许</span> <span class="meta">信科 · 博士生 · 40 分钟前</span></div><span class="tag t-violet">学术</span></div>
-        <div class="bd">读了一篇关于“检索增强生成在长文档上为什么会答偏”的论文，作者的结论是检索切片太碎比模型能力更关键。整理了一页笔记，周四读书会上可以展开聊。<span class="topic">#RAG</span> <span class="topic">#论文笔记</span></div>
-        <div class="act"><span><i class="ic" data-i="LuHeart"></i>52</span><span><i class="ic" data-i="LuMessageCircle"></i>14</span><span><i class="ic" data-i="LuBookmark"></i>收藏</span><span><i class="ic" data-i="LuQuote"></i>引用</span></div>
-      </div>
-      <div class="post">
-        <div class="hd"><span class="av a1">创</span><div class="grow"><span class="nm">北大创新学社</span> <span class="meta">官方 · 1 小时前</span></div><span class="tag t-red">活动</span></div>
-        <div class="bd">周四晚「AI 产品从 0 到 1」分享会开放报名，结束后纪要归档到知识库“活动档案”。
-          <div class="embed"><div class="cover cv1" style="height:92px"><div class="cv-k">TALK</div></div><div class="tx"><div class="b">AI 产品从 0 到 1 · 分享会（示例）</div><div class="small muted" style="margin-top:4px"><i class="ic" data-i="LuClock"></i> 10 月 30 日 19:00 <span class="dotsep"></span><i class="ic" data-i="LuMapPin"></i> 理教 201（示例）<span class="dotsep"></span>限 120 人</div><div style="margin-top:8px"><span class="btn btn-sm btn-soft">去报名</span></div></div></div>
-        </div>
-        <div class="act"><span><i class="ic" data-i="LuHeart"></i>42</span><span><i class="ic" data-i="LuMessageCircle"></i>11</span><span><i class="ic" data-i="LuBookmark"></i>收藏</span><span><i class="ic" data-i="LuShare2"></i>分享</span></div>
-      </div>
-      <div class="post">
-        <div class="hd"><span class="av a2">周</span><div class="grow"><span class="nm">阿周</span> <span class="meta">光华 · 23 级 · 3 小时前</span></div><span class="tag">交流</span></div>
-        <div class="bd">做课程笔记助手两周的体会：删掉一半功能后，留存反而上去了。想听听大家第一版都砍了什么。</div>
-        <div class="act"><span><i class="ic" data-i="LuHeart"></i>31</span><span><i class="ic" data-i="LuMessageCircle"></i>9</span><span><i class="ic" data-i="LuBookmark"></i>收藏</span><span><i class="ic" data-i="LuShare2"></i>分享</span></div>
+      <div class="pad row between" style="padding-bottom:6px"><div class="row" style="gap:18px"><span class="h-sec">学社动态</span><div class="seg pick"><a class="on">全部</a><a>资源</a><a>资料</a><a>活动</a></div></div><span class="xs muted">只显示你有权限看的</span></div>
+      <div class="feed">
+        <a class="fd-i" href="resource_detail.html"><span class="fi t-red"><i class="ic" data-i="LuUser"></i></span><div class="grow"><div class="b">示例机构 F 加入资源库</div><div class="xs muted">机构资源 · 可提供路演场地 · 同学 D 录入，维护人已审核 · 1 小时前</div></div><span class="tag t-red">资源</span></a>
+        <a class="fd-i" href="kb_doc.html"><span class="fi t-blue"><i class="ic" data-i="LuFileText"></i></span><div class="grow"><div class="b">AI 产品分享会 · 活动纪要</div><div class="xs muted">活动档案 · 同学 B 上传 · 3 小时前</div></div><span class="tag t-blue">资料</span></a>
+        <a class="fd-i" href="events.html"><span class="fi t-teal"><i class="ic" data-i="LuCalendarDays"></i></span><div class="grow"><div class="b">读书会第 4 期 已通过终审</div><div class="xs muted">AI俱乐部 · 11-20 · 已出现在活动页 · 今天</div></div><span class="tag t-teal">活动</span></a>
+        <a class="fd-i" href="events.html"><span class="fi t-teal"><i class="ic" data-i="LuCalendarDays"></i></span><div class="grow"><div class="b">大模型应用工作坊（第 3 期）</div><div class="xs muted">某 AI 社团 · 11-02 · 同学 D 从公众号链接录入 · 昨天</div></div><span class="tag t-teal">活动</span></a>
+        <a class="fd-i" href="kb_doc.html"><span class="fi t-blue"><i class="ic" data-i="LuFileText"></i></span><div class="grow"><div class="b">模板：活动复盘（2026 版）</div><div class="xs muted">模板库 · 综合管理部 · 1 周前</div></div><span class="tag t-blue">资料</span></a>
       </div>
     </div>
   </div>
@@ -95,12 +90,12 @@ ul { list-style: none; margin: 0; padding: 0; }
     </div>
     <div class="card pad rel" style="margin-top:14px">
       <span class="mk" style="left:-8px;top:-8px">6</span>
-      <div class="row between"><span class="h-sec">本周热议</span><a class="lnk" href="community.html">讨论 <i class="ic" data-i="LuChevronRight"></i></a></div>
-      <ul class="hot" style="margin-top:4px">
-        <li><span class="n">1</span><div><div class="b" style="font-size:13.5px">Agent 和工作流的边界在哪？</div><div class="xs muted">交流 · 46 条讨论</div></div></li>
-        <li><span class="n">2</span><div><div class="b" style="font-size:13.5px">RAG 在长文档上为什么会答偏</div><div class="xs muted">学术 · 33 条讨论</div></div></li>
-        <li><span class="n">3</span><div><div class="b" style="font-size:13.5px">非 CS 专业怎么入门大模型应用</div><div class="xs muted">问答 · 29 条讨论</div></div></li>
-      </ul>
+      <div class="row between"><span class="h-sec">AI 草稿待我确认</span><a class="lnk" href="assistant.html">AI 助手 <i class="ic" data-i="LuChevronRight"></i></a></div>
+      <div style="margin-top:6px" class="small">
+        <div class="evt" style="padding:9px 0"><i class="ic" data-i="LuUser" style="color:var(--red);margin-top:3px"></i><div class="grow"><b class="b">示例机构 K</b><div class="xs muted">资源 · 来自名片截图</div></div></div>
+        <div class="evt" style="padding:9px 0"><i class="ic" data-i="LuCalendarDays" style="color:var(--teal);margin-top:3px"></i><div class="grow"><b class="b">AI 创业分享夜 · 2 场</b><div class="xs muted">活动 · 来自公众号链接</div></div></div>
+        <div class="evt" style="padding:9px 0"><i class="ic" data-i="LuFileText" style="color:var(--blue);margin-top:3px"></i><div class="grow"><b class="b">黑客松复盘.docx</b><div class="xs muted">资料 · 上传</div></div></div>
+      </div>
     </div>
   </div>
 </div>
