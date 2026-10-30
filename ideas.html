@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>想法共建 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css?v=20261031a"><script src="assets/icons.js?v=20261031a"></script><script src="assets/app.js?v=20261031a"></script>
+<style>
+.idea { display: flex; gap: 14px; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+.idea:last-child { border-bottom: 0; }
+.vote { width: 46px; height: 52px; border: 1px solid var(--line); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); flex: none; font-size: 14px; }
+.vote.on { border-color: var(--red); color: var(--red); background: var(--red-50); }
+</style></head>
+<body data-page="ideas">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap">
+<div class="row between" style="margin:6px 0 16px"><div><h1 class="h-page">想法共建</h1><p class="muted" style="margin-top:2px">有什么重复、费时的事想交给 AI？写清谁、在什么场景、给它什么、想要什么。大家投票，票多的优先做成工具箱里的工具</p></div><span class="btn btn-p" data-done="已提交，大家可以投票了"><i class="ic" data-i="LuPlus"></i>提一个想法</span></div>
+<div class="seg pick" style="margin-bottom:14px"><a class="on">全部</a><a>想法</a><a>评审中</a><a>已排期</a><a>开发中</a><a>已上线</a></div>
+<div class="card rel"><span class="mk" style="left:-8px;top:-8px">1</span>
+  <div class="idea"><div class="vote on"><b style="font-size:11px">▲</b>3</div><div class="grow"><div class="row"><span class="b">办活动助手</span><span class="tag t-amber">评审中</span></div><div class="small" style="margin-top:4px">骨干准备办一场活动时，先看往届怎么办的</div><div class="xs muted" style="margin-top:2px">给它：一句话描述活动想法 → 得到：往届复盘、可请嘉宾和对接人、模板、申报表草稿</div><div class="xs muted" style="margin-top:4px">张同学 · 来自 技术文档 · AI 二期</div></div></div>
+  <div class="idea"><div class="vote"><b style="font-size:11px">▲</b>2</div><div class="grow"><div class="row"><span class="b">会议纪要整理</span><span class="tag">想法</span></div><div class="small" style="margin-top:4px">部门例会、对接会结束后整理纪要和待办</div><div class="xs muted" style="margin-top:2px">给它：会议文字记录 → 得到：纪要、决议、待办；待办可一键建成工作台任务</div><div class="xs muted" style="margin-top:4px">同学 C · 来自 研讨会（元宝纪要）</div></div></div>
+  <div class="idea"><div class="vote"><b style="font-size:11px">▲</b>1</div><div class="grow"><div class="row"><span class="b">表格批量处理</span><span class="tag">想法</span></div><div class="small" style="margin-top:4px">报名表、问卷导出后要逐行分类、打标签、写摘要</div><div class="xs muted" style="margin-top:2px">给它：一张 Excel + 一句处理要求 → 得到：多出一列 AI 结果，可导出</div></div></div>
+  <div class="idea"><div class="vote"><b style="font-size:11px">▲</b>1</div><div class="grow"><div class="row"><span class="b">换届交接包</span><span class="tag t-blue">已排期</span></div><div class="small" style="margin-top:4px">换届时离任和接任同学交接</div><div class="xs muted" style="margin-top:2px">给它：离任同学名下的资源、资料、进行中工作 → 得到：交接清单和摘要</div></div></div>
+  <div class="idea"><div class="vote"><b style="font-size:11px">▲</b>0</div><div class="grow"><div class="row"><span class="b">推文与通知生成</span><span class="tag">想法</span></div><div class="small" style="margin-top:4px">宣传和活动负责人写推文、群通知</div><div class="xs muted" style="margin-top:2px">给它：活动信息或申报表 → 得到：推文初稿、群通知、海报文案</div></div></div>
+</div>
+</div></div></div></div>
+</body></html>
