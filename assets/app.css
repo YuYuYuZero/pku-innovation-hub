@@ -313,3 +313,16 @@ body.anno .mk {
 .menu a:hover { background: #F6F4F1; }
 .menu a.dg { color: #C2413B; }
 [data-dlg], [data-done] { cursor: pointer; }
+
+/* 右上角：想法共建入口与右侧抽屉 */
+.main { position: relative; }
+.ideas-btn { position: absolute; top: 16px; right: 28px; z-index: 30; border-radius: 999px; }
+.ideas-btn .ic { color: var(--gold); }
+.page { padding-top: 60px; }
+.mask.right { padding-top: 0; justify-content: flex-end; align-items: stretch; }
+.drawer { width: 560px; max-width: 100vw; height: 100vh; background: #fff; box-shadow: -12px 0 40px rgba(0,0,0,.18); display: flex; flex-direction: column; }
+.drawer .dr-h { display: flex; align-items: center; padding: 18px 22px; border-bottom: 1px solid var(--line); font-size: 16px; }
+.drawer .dr-b { padding: 16px 22px; overflow: auto; }
+.drawer .idea { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.drawer .vote { width: 46px; height: 52px; border: 1px solid var(--line); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); flex: none; font-size: 14px; }
+.drawer .vote.on { border-color: var(--red); color: var(--red); background: var(--red-50); }

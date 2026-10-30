@@ -1,24 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>AI 工具箱 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261031a"><script src="assets/icons.js?v=20261031a"></script><script src="assets/app.js?v=20261031a"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261031b"><script src="assets/icons.js?v=20261031b"></script><script src="assets/app.js?v=20261031b"></script>
 <style>
-.tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.tool { padding: 18px 20px; display: block; }
-.tool h3 { margin: 10px 0 6px; font-size: 17px; } .tool p { font-size: 13px; color: var(--text); line-height: 1.7; }
-.tool.off { background: #FCFBFA; }
-.used { margin-top: 10px; font-size: 12px; color: var(--muted); }
+.cols { display: grid; grid-template-columns: 460px 1fr; gap: 16px; align-items: start; }
+.fr { display: grid; grid-template-columns: 1fr 90px 92px 50px; gap: 6px; align-items: center; padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 13px; }
+.fr .input { height: 32px; font-size: 13px; }
+.sub { margin-left: 18px; padding-left: 10px; border-left: 2px solid var(--red-100); }
+.paste { border: 1px solid var(--line-2); border-radius: 12px; padding: 12px 14px; background: #fff; font-size: 13px; line-height: 1.8; min-height: 150px; }
+.tool { display: inline-flex; flex-direction: column; padding: 10px 16px; border: 1px solid var(--red); border-radius: 12px; background: var(--red-50); min-width: 160px; margin-bottom: 14px; }
+.tool b { color: var(--red); font-size: 14.5px; } .tool span { font-size: 12px; color: var(--muted); }
 </style></head>
 <body data-page="assistant">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
-<div class="page"><div class="wrap">
-<div style="margin:6px 0 16px"><h1 class="h-page">AI 工具箱</h1><p class="muted" style="margin-top:2px">通用的 AI 能力：不绑定某个业务，谁都能拿来处理手上的文字和表格。结果由你核对后再用，AI 不会替你提交或对外发消息</p></div>
-<div class="tools rel"><span class="mk" style="left:-8px;top:-8px">1</span>
-  <a class="card tool" href="extract.html"><span class="tag t-green">可用</span><h3>结构化解析</h3><p>配置要提取的字段（支持列表、对象），把通知、接龙、聊天记录、名片文字解析成表格，导出 JSON、Excel、CSV。模板可以共享。</p><div class="used">已在用：活动录入的 AI 解析、知识库上传的 AI 预填</div></a>
-  <a class="card tool" href="ideas.html"><span class="tag t-blue">共建</span><h3>想法共建</h3><p>想把什么事交给 AI？写清谁、在什么场景、给它什么、想要什么。大家投票，票多的由 AI 部做成新工具放到这里。</p><div class="used">已讨论过、还没排期的需求也放在这里</div></a>
-  <div class="card tool off"><span class="tag t-amber">评审中</span><h3>办活动助手</h3><p>一句话描述活动想法，得到往届类似活动的复盘、可请的嘉宾和对接人、模板、申报表草稿。</p></div>
-  <div class="card tool off"><span class="tag t-amber">已排期</span><h3>换届交接包</h3><p>离任同学名下的资源、资料、进行中工作，生成交接清单和摘要。</p></div>
-  <div class="card tool off"><span class="tag">想法</span><h3>表格批量处理</h3><p>一张 Excel + 一句处理要求（分类、打标签、写摘要），多出一列 AI 结果。</p></div>
-  <div class="card tool off"><span class="tag">想法</span><h3>会议纪要整理</h3><p>会议文字记录 → 纪要、决议、待办；待办一键建成工作台任务。</p></div>
+<div class="page"><div class="wrap" style="max-width:1240px">
+<div style="margin:6px 0 14px"><h1 class="h-page">AI 工具箱</h1><p class="muted" style="margin-top:2px">通用的 AI 能力：谁都能拿来处理自己手上的文字和表格。结果由你核对后再用，AI 不会替你提交或对外发消息</p></div>
+<div class="tool rel"><span class="mk" style="left:-8px;top:-8px">1</span><b>结构化解析</b><span>文字 → 表格</span></div>
+<p class="muted small" style="margin-bottom:14px">配置要提取的字段（支持列表、对象），粘贴一段文字，AI 按字段解析成表格，导出 JSON、Excel 或 CSV。适合整理接龙名单、活动通知、名片、聊天记录；平台里的活动录入、资料预填用的也是它</p>
+<div class="cols">
+  <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">2</span>
+    <div class="row"><div class="input grow">活动信息<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div><span class="btn btn-sm">新建</span></div>
+    <p class="xs muted" style="margin:8px 0">共享模板 · 从推文或通知里提取活动，一篇可能有多场</p>
+    <div class="row" style="margin-bottom:6px"><span class="small b">解析成</span><div class="seg pick"><a>一条（对象）</a><a class="on">多条（列表）</a></div></div>
+    <div class="fr"><div class="input">活动名称 · title</div><div class="input">文本</div><span class="small">必填</span><i class="ic" data-i="LuX" style="color:var(--muted)"></i></div>
+    <div class="fr"><div class="input">开始时间 · starts_at</div><div class="input">日期时间</div><span class="small">必填</span><i class="ic" data-i="LuX" style="color:var(--muted)"></i></div>
+    <div class="fr"><div class="input">地点 · place</div><div class="input">文本</div><span></span><i class="ic" data-i="LuX" style="color:var(--muted)"></i></div>
+    <div class="fr"><div class="input">报名方式 · signup</div><div class="input">文本</div><span></span><i class="ic" data-i="LuX" style="color:var(--muted)"></i></div>
+    <div class="fr"><div class="input">嘉宾 · guests</div><div class="input">列表 · 对象</div><span></span><i class="ic" data-i="LuX" style="color:var(--muted)"></i></div>
+    <div class="sub">
+      <div class="fr"><div class="input">姓名 · name</div><div class="input">文本</div><span></span><i class="ic" data-i="LuX" style="color:var(--muted)"></i></div>
+      <div class="fr"><div class="input">单位 · org</div><div class="input">文本</div><span></span><i class="ic" data-i="LuX" style="color:var(--muted)"></i></div>
+    </div>
+    <div class="row" style="margin-top:10px"><span class="lnk small"><i class="ic" data-i="LuPlus"></i> 加字段</span><span class="grow"></span><span class="btn btn-sm">查看 JSON Schema</span><span class="btn btn-sm" data-done="已另存为共享模板">另存为模板</span></div>
+  </div>
+  <div>
+    <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">2</span>
+      <div class="paste">【下周活动汇总】<br>1. 大模型应用工作坊（第 3 期）：11 月 2 日 14:00，二教 305，嘉宾张三（某 AI 公司），报名见推文<br>2. 论文读书会：11 月 5 日 20:00，线上飞书会议，嘉宾李四（信科）、王五（光华）</div>
+      <div class="row" style="margin-top:10px"><span class="btn btn-p" data-done="解析完成：2 条"><i class="ic" data-i="LuSparkles"></i>解析</span><span class="small muted">AI 只根据原文填写，原文没有的留空；结果请核对后再用</span></div>
+    </div>
+    <div class="card rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">3</span>
+      <div class="pad row between" style="padding-bottom:8px"><span class="h-sec">结果 · 2 条</span><div class="row"><span class="btn btn-sm" data-done="已下载 活动信息_2026-10-31.xlsx（嘉宾单独一张表）"><i class="ic" data-i="LuDownload"></i>Excel</span><span class="btn btn-sm" data-done="已下载 CSV">CSV</span><span class="btn btn-sm" data-done="已下载 JSON">JSON</span></div></div>
+      <table class="tbl"><tr><th>#</th><th>活动名称</th><th>开始时间</th><th>地点</th><th>报名方式</th><th>嘉宾</th></tr>
+        <tr><td>1</td><td class="b">大模型应用工作坊（第 3 期）</td><td>2026-11-02 14:00</td><td>二教 305</td><td>见推文</td><td>张三 / 某 AI 公司</td></tr>
+        <tr><td>2</td><td class="b">论文读书会</td><td>2026-11-05 20:00</td><td>线上飞书会议</td><td>—</td><td>2 条</td></tr></table>
+    </div>
+  </div>
 </div>
 </div></div></div></div>
 </body></html>

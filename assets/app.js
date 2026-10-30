@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261031a" alt="北京大学校徽">`;
+const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261031b" alt="北京大学校徽">`;
 
 const NAV = [
   { g: "", items: [
@@ -11,9 +11,7 @@ const NAV = [
     ["workbench", "工作台", "workbench.html", "LuTarget", 1, 5],
   ] },
   { g: "工具 · AI", items: [
-    ["assistant", "AI 工具箱", "assistant.html", "LuLayoutGrid"],
-    ["extract", "结构化解析", "extract.html", "LuWandSparkles"],
-    ["ideas", "想法共建", "ideas.html", "LuLightbulb"],
+    ["assistant", "AI 工具箱", "assistant.html", "LuWandSparkles"],
   ] },
   { g: "社区 · 内测版", items: [
     ["events", "活动", "events.html", "LuCalendarDays"],
@@ -60,6 +58,27 @@ function renderShell() {
 
 }
 
+// 想法共建：每个页面右上角的入口，点开是右侧抽屉（不放在导航里）
+const IDEAS = `<div class="drawer"><div class="dr-h"><b>想法共建</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="dr-b"><div class="row" style="margin-bottom:12px"><p class="small muted grow">有什么重复、费时的事想交给 AI，或者对平台有什么想法？写清谁、在什么场景、给它什么、想要什么。大家投票，票多的优先做</p><span class="btn btn-p btn-sm" data-done="已提交，大家可以投票了">提一个想法</span></div>
+  <div class="seg pick" style="margin-bottom:10px"><a class="on">全部</a><a>想法</a><a>评审中</a><a>已排期</a><a>已上线</a></div>
+  ${`<div>
+  <div class="idea"><div class="vote on"><b style="font-size:11px">▲</b>3</div><div class="grow"><div class="row"><span class="b">办活动助手</span><span class="tag t-amber">评审中</span></div><div class="small" style="margin-top:4px">骨干准备办一场活动时，先看往届怎么办的</div><div class="xs muted" style="margin-top:2px">给它：一句话描述活动想法 → 得到：往届复盘、可请嘉宾和对接人、模板、申报表草稿</div><div class="xs muted" style="margin-top:4px">张同学 · 来自 技术文档 · AI 二期</div></div></div>
+  <div class="idea"><div class="vote"><b style="font-size:11px">▲</b>2</div><div class="grow"><div class="row"><span class="b">会议纪要整理</span><span class="tag">想法</span></div><div class="small" style="margin-top:4px">部门例会、对接会结束后整理纪要和待办</div><div class="xs muted" style="margin-top:2px">给它：会议文字记录 → 得到：纪要、决议、待办；待办可一键建成工作台任务</div><div class="xs muted" style="margin-top:4px">同学 C · 来自 研讨会（元宝纪要）</div></div></div>
+  <div class="idea"><div class="vote"><b style="font-size:11px">▲</b>1</div><div class="grow"><div class="row"><span class="b">表格批量处理</span><span class="tag">想法</span></div><div class="small" style="margin-top:4px">报名表、问卷导出后要逐行分类、打标签、写摘要</div><div class="xs muted" style="margin-top:2px">给它：一张 Excel + 一句处理要求 → 得到：多出一列 AI 结果，可导出</div></div></div>
+  <div class="idea"><div class="vote"><b style="font-size:11px">▲</b>1</div><div class="grow"><div class="row"><span class="b">换届交接包</span><span class="tag t-blue">已排期</span></div><div class="small" style="margin-top:4px">换届时离任和接任同学交接</div><div class="xs muted" style="margin-top:2px">给它：离任同学名下的资源、资料、进行中工作 → 得到：交接清单和摘要</div></div></div>
+  <div class="idea"><div class="vote"><b style="font-size:11px">▲</b>0</div><div class="grow"><div class="row"><span class="b">推文与通知生成</span><span class="tag">想法</span></div><div class="small" style="margin-top:4px">宣传和活动负责人写推文、群通知</div><div class="xs muted" style="margin-top:2px">给它：活动信息或申报表 → 得到：推文初稿、群通知、海报文案</div></div></div>
+</div>`}</div></div>`;
+function renderIdeas() {
+  const main = document.querySelector(".main");
+  if (!main || !document.getElementById("sb")) return;
+  const btn = document.createElement("span");
+  btn.className = "btn btn-sm ideas-btn"; btn.innerHTML = `${ic("LuLightbulb")}想法共建`;
+  main.appendChild(btn);
+  const tpl = document.createElement("template"); tpl.id = "dlg-ideas"; tpl.innerHTML = IDEAS; document.body.appendChild(tpl);
+  btn.onclick = () => openDlg("ideas");
+}
+
 function renderIcons() {
   document.querySelectorAll("i.ic[data-i]").forEach(el => {
     const svg = (window.ICONS || {})[el.dataset.i];
@@ -72,7 +91,7 @@ function renderIcons() {
 const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
   ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档阅读", "kb_doc.html"], ["工作台", "workbench.html"],
-  ["AI 工具箱", "assistant.html"], ["结构化解析", "extract.html"], ["想法共建", "ideas.html"], ["录入活动", "event_new.html"], ["活动申报审批", "activity_review.html"],
+  ["AI 工具箱", "assistant.html"], ["录入活动", "event_new.html"], ["活动申报审批", "activity_review.html"],
   ["活动", "events.html"], ["平台管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
   ["—— 暂不开放 ——"], ["AI 能力说明", "skills.html"], ["讨论", "community.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"],
 ];
@@ -107,9 +126,10 @@ function openDlg(id) {
   mask.innerHTML = "";
   mask.appendChild(tpl.content.cloneNode(true));
   mask.hidden = false;
+  mask.classList.toggle("right", id === "ideas");   // 想法共建从右侧滑出
   renderIcons();
 }
-function closeDlg() { const m = document.getElementById("gmask"); if (m) m.hidden = true; }
+function closeDlg() { const m = document.getElementById("gmask"); if (m) { m.hidden = true; m.classList.remove("right"); } }
 function toast(msg) {
   const t = document.createElement("div");
   t.className = "toast"; t.innerHTML = `<i class="ic" data-i="LuCircleCheck"></i><span>${msg}</span>`;
@@ -131,6 +151,7 @@ document.addEventListener("click", (e) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderShell();
+  renderIdeas();
   renderIcons();
   if (location.hash.includes("anno")) document.body.classList.add("anno");
   renderProtoNav();
