@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>AI 搜索（内测） · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css?v=20261031c"><script src="assets/icons.js?v=20261031c"></script><script src="assets/app.js?v=20261031c"></script>
+<style>
+.beta { font-size: 11px; font-weight: 600; line-height: 1; padding: 3px 8px; border-radius: 999px; color: var(--gold); background: var(--gold-50); border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent); vertical-align: middle; margin-left: 8px; }
+.ask { min-height: 54px; border: 1px solid var(--line-2); border-radius: 12px; padding: 12px 14px; background: #fff; font-size: 15px; color: var(--ink); }
+.samples { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.samples a { font-size: 12.5px; color: var(--ink); padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; background: #fff; cursor: pointer; }
+.samples a:hover { border-color: var(--red); color: var(--red); }
+.answer { white-space: pre-wrap; line-height: 1.85; font-size: 14.5px; color: var(--text); }
+.cite { font-size: 11px; font-weight: 600; vertical-align: super; line-height: 1; margin: 0 1px; padding: 1px 4px; border-radius: 5px; color: var(--red); background: var(--red-50); text-decoration: none; }
+.sources { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); }
+.src { display: flex; align-items: center; gap: 8px; padding: 8px 10px; margin-bottom: 6px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); text-decoration: none; }
+.src:hover { border-color: var(--red); background: var(--red-50); }
+.src b { color: var(--red); font-size: 12px; flex: none; }
+.src .t { flex: 1; min-width: 0; }
+.src .tag2 { flex: none; font-size: 11px; color: var(--muted); padding: 2px 8px; border-radius: 999px; background: var(--faint); }
+</style></head>
+<body data-page="ai_search">
+<div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
+<div class="page"><div class="wrap" style="max-width:860px">
+<div style="margin:6px 0 14px"><h1 class="h-page" style="display:inline">AI 搜索</h1><span class="beta">内测</span>
+  <p class="muted" style="margin-top:4px">用一句话提问，AI 在你有权限看到的学社资料里检索并作答，答案附出处。仅作参考，请核对原文后再用。</p></div>
+
+<div class="card pad">
+  <div class="ask">活动复盘应该包含哪些部分？</div>
+  <div class="row" style="margin-top:10px"><span class="btn btn-p" data-done="已基于你有权限的资料作答"><i class="ic" data-i="LuSparkles"></i>提问</span>
+    <span class="muted small">⌘ / Ctrl + Enter 发送 · 只检索你有权限的资料</span></div>
+  <div class="samples">
+    <a>赞助沟通的流程是什么？</a><a>活动复盘应该包含哪些部分？</a><a>黑客松赞助有哪些权益档位？</a><a>AI 产品分享会讲了什么？</a>
+  </div>
+</div>
+
+<div class="card pad" style="margin-top:14px">
+  <div class="row between" style="margin-bottom:8px"><span class="h-sec"><i class="ic" data-i="LuSearch"></i> 回答</span><span class="muted small">0.6 s</span></div>
+  <div class="answer">学社的活动复盘建议包含五个部分：
+- 目标达成：对照活动最初设定的目标，看完成情况 <a class="cite" href="kb_doc.html">D4</a>
+- 数据指标：参与人数、报名转化、满意度等关键数据 <a class="cite" href="kb_doc.html">D4</a>
+- 预算决算：实际花费与预算的对比 <a class="cite" href="kb_doc.html">D4</a>
+- 亮点与问题：做得好的地方，以及踩过的坑 <a class="cite" href="kb_doc.html">D4</a>
+- 改进项与负责人：下次要改什么、谁来跟进 <a class="cite" href="kb_doc.html">D4</a>
+建议活动结束后三天内填写并归档，供下届参考。</div>
+  <div class="sources">
+    <div class="small muted" style="margin-bottom:6px">出处（1）· 能否点开取决于你的权限</div>
+    <a class="src" href="kb_doc.html"><i class="ic" data-i="LuFileText"></i><b>D4</b><span class="t">活动复盘模板（2026 版）</span><span class="tag2">模板库 · 模板</span></a>
+  </div>
+</div>
+
+<p class="muted small" style="margin-top:16px">AI 只根据学社已归档、且你有权限查看的资料作答，不访问外部网络，也看不到你无权查看的内容。问题越具体，答案越准。</p>
+</div></div></div></div>
+</body></html>
