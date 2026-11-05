@@ -18,7 +18,7 @@
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1200px">
 <div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">知识库</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>按分类分级可见</span></div><p class="muted" style="margin-top:2px">学社的工作文档、活动模板、往届资料和资源原件，只对学社内开放。按标题、类型、标签查找；原件可以是上传的文件，也可以是飞书文档链接</p></div>
-<div class="row"><span class="btn" data-dlg="feishu"><i class="ic" data-i="LuLink"></i>收录飞书文档</span><span class="btn btn-p" data-dlg="upload"><i class="ic" data-i="LuUpload"></i>上传文件</span></div></div>
+<div class="row"><span class="btn" data-dlg="feishu"><i class="ic" data-i="LuLink"></i>登记飞书文档</span><span class="btn btn-p" data-dlg="upload"><i class="ic" data-i="LuUpload"></i>上传文件</span></div></div>
 
 <div class="card pad rel" style="padding:14px 16px"><span class="mk" style="left:-8px;top:-8px">1</span>
   <div class="sbox"><div class="input" style="color:var(--ink)"><i class="ic" data-i="LuSearch" style="color:var(--muted)"></i>黑客松 赞助方案</div><span class="btn btn-p btn-lg" data-done="找到 4 份资料">搜索</span></div>
@@ -64,23 +64,17 @@
   <div class="fd"><span class="xs muted grow">选“部门内”或“学社成员”需维护人审核；审核前只有你能看到</span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已上传，等待维护人审核">上传</span></div>
 </div></template>
 <template id="dlg-feishu"><div class="dlg">
-  <div class="hd"><b style="font-size:16px">收录飞书文档</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="hd"><b style="font-size:16px">登记飞书文档</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
   <div class="bd">
-    <p class="small muted" style="margin-bottom:12px">粘贴飞书「新版文档」链接，点「读取正文」平台会把正文收进来、自动生成摘要；之后没飞书账号的同学也能在平台里读，AI 搜索也能搜到。</p>
-    <div class="field"><div class="label">飞书文档链接 <span class="req">*</span></div><div class="input">https://xxx.feishu.cn/docx/AbC…（示例）</div></div>
-    <div class="row" style="margin-bottom:12px"><span class="btn btn-sm" data-done="已读取正文 1860 字，摘要已自动生成"><i class="ic" data-i="LuSparkles"></i>读取正文</span><span class="xs muted">把飞书正文收进平台，没飞书账号的同学也能读，并自动生成摘要</span></div>
+    <p class="small muted" style="margin-bottom:12px">还在飞书里多人编辑的文档，登记链接即可，不用上传。平台只保存目录信息，打开时跳转飞书。</p>
+    <div class="field"><div class="label">飞书文档链接 <span class="req">*</span></div><div class="input">https://xxx.feishu.cn/docx/AbC…（示例）</div><div class="xs muted" style="margin-top:6px"><i class="ic" data-i="LuCircleCheck" style="color:var(--green)"></i> 已识别标题：外联部手册 · 赞助沟通流程</div></div>
     <div class="grid g2" style="gap:12px">
-      <div class="field"><div class="label">标题 <span class="req">*</span></div><div class="input ai-field">外联部手册 · 赞助沟通流程</div></div>
-      <div class="field"><div class="label">分类 <span class="req">*</span></div><div class="input">部门手册</div></div>
+      <div class="field"><div class="label">分类 <span class="req">*</span></div><div class="input">部门手册 / 外联部</div></div>
+      <div class="field"><div class="label">维护人 <span class="req">*</span></div><div class="input">张同学（我）</div></div>
     </div>
     <div class="field"><div class="label">标签</div><div class="input ph">输入后回车</div></div>
-    <div class="field"><div class="label">摘要（用于搜索）</div><div class="input ai-field" style="height:auto;min-height:44px;white-space:normal;line-height:1.6;padding:8px 12px">外联部对接赞助的标准流程：先评估商家契合度与预算区间，再按模板发邀约、确认后签约并登记台账。</div></div>
-    <div class="grid g2" style="gap:12px">
-      <div class="field"><div class="label">维护人 <span class="req">*</span></div><div class="input">张同学（我）</div></div>
-      <div class="field"><div class="label">可见范围</div><div class="seg pick"><a class="on">仅维护人</a><a>部门内</a><a>学社成员</a></div></div>
-    </div>
-    <div class="notice n-gray"><i class="ic" data-i="LuCircleAlert"></i><div>收进平台的是正文快照，飞书原文若有改动，重新收录可更新。打开飞书原件仍需有该文档权限的飞书账号。</div></div>
+    <div class="notice n-gray"><i class="ic" data-i="LuCircleAlert"></i><div>平台不读取飞书文档的内容，只能按标题、分类和标签搜到；没加入学社飞书的同学打不开。需要人人可看、可被 AI 检索的定稿，请导出后上传。</div></div>
   </div>
-  <div class="fd"><span class="xs muted grow">选“部门内”或“学社成员”需维护人审核</span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已收录">收录</span></div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已登记">登记</span></div>
 </div></template>
 </body></html>
