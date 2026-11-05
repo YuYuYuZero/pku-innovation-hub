@@ -7,15 +7,21 @@
 .fr .input { height: 32px; font-size: 13px; }
 .sub { margin-left: 18px; padding-left: 10px; border-left: 2px solid var(--red-100); }
 .paste { border: 1px solid var(--line-2); border-radius: 12px; padding: 12px 14px; background: #fff; font-size: 13px; line-height: 1.8; min-height: 150px; }
-.tool { display: inline-flex; flex-direction: column; padding: 10px 16px; border: 1px solid var(--red); border-radius: 12px; background: var(--red-50); min-width: 160px; margin-bottom: 14px; }
+.tool { display: inline-flex; flex-direction: column; padding: 10px 16px; border: 1px solid var(--red); border-radius: 12px; background: var(--red-50); min-width: 160px; }
 .tool b { color: var(--red); font-size: 14.5px; } .tool span { font-size: 12px; color: var(--muted); }
+.tool.soon { border-color: var(--line); border-style: dashed; background: var(--faint); }
+.tool.soon b { color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+.tool.soon .soon-tag { font-size: 10px; font-weight: 600; color: var(--muted); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 1px 6px; }
 </style></head>
 <body data-page="assistant">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1240px">
 <div style="margin:6px 0 14px"><h1 class="h-page">AI 工具箱</h1><p class="muted" style="margin-top:2px">通用的 AI 能力：谁都能拿来处理自己手上的文字和表格。结果由你核对后再用，AI 不会替你提交或对外发消息</p></div>
-<div class="tool rel"><span class="mk" style="left:-8px;top:-8px">1</span><b>结构化解析</b><span>文字 → 表格</span></div>
-<p class="muted small" style="margin-bottom:14px">配置要提取的字段（支持列表、对象），粘贴一段文字，AI 按字段解析成表格，导出 JSON、Excel 或 CSV。适合整理接龙名单、活动通知、名片、聊天记录；平台里的活动录入、资料预填用的也是它</p>
+<div class="row" style="gap:10px;flex-wrap:wrap;margin-bottom:12px">
+  <div class="tool rel"><span class="mk" style="left:-8px;top:-8px">1</span><b>文本转表格</b><span>名单 / 通知 / 名片 → 表格</span></div>
+  <div class="tool soon" data-done="敬请期待，欢迎去「想法共建」提需求或投票"><b>更多工具 <span class="soon-tag">敬请期待</span></b><span>按大家的需求陆续接入</span></div>
+</div>
+<p class="muted small" style="margin-bottom:14px">同一套解析引擎，平台处处在用：<b>活动录入、资源录入、资料预填</b>都是它配好的预设模板。你也能自己配字段，粘贴一段文字，AI 就按字段解析成表格，导出 JSON、Excel 或 CSV——适合整理接龙名单、活动通知、名片、聊天记录。</p>
 <div class="cols">
   <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">2</span>
     <div class="row"><div class="input grow">活动信息<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div><span class="btn btn-sm">新建</span></div>
