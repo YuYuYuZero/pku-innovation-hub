@@ -73,6 +73,8 @@
     <div class="bd">
       <div class="seg rel" id="srcmode" style="margin-bottom:10px"><span class="mk" style="left:-10px;top:-10px">6</span><a class="on" data-s="link">公众号链接</a><a data-s="text">粘贴文字</a></div>
       <div class="row" style="gap:8px"><div class="src grow" id="src-link">https://mp.weixin.qq.com/s/xxxxxxxx（示例）</div><div class="src txt grow" id="src-text" hidden>把群里的活动通知粘贴到这里，可以一次粘贴多场……</div><span class="btn btn-p"><i class="ic" data-i="LuSparkles"></i>解析</span></div>
+      <div class="img-pick" id="src-imgs" hidden><div class="thumb"><img src="assets/demo-qr.png" alt="海报"></div><span class="btn btn-sm" data-done="已添加图片（自动压缩）"><i class="ic" data-i="LuImage"></i>上传海报图片</span><span class="xs muted">可直接 Ctrl+V 粘贴截图；海报里的文字和二维码也能识别，最多 10 张</span></div>
+      <div class="xs muted" id="src-tip" style="margin-top:6px">微信偶尔会拦截抓取，失败时会自动切到「粘贴文字」，复制文字并上传海报图片即可</div>
       <div class="art"><div class="th"></div><div class="grow"><div class="b" style="font-size:13.5px">AI Agent 工作坊与 Demo Day 报名开启（示例）</div><div class="xs muted">某 AI 社团（示例）· 10 月 27 日发布</div></div></div>
       <div class="steps"><span><i class="ic" data-i="LuCheck"></i>按原顺序读取正文和配图</span><span><i class="ic" data-i="LuCheck"></i>海报文字已识别</span><span><i class="ic" data-i="LuCheck"></i>报名二维码已识别</span><span><i class="ic" data-i="LuCheck"></i>已识别活动信息</span></div>
       <div class="rel" style="margin-top:14px"><span class="mk" style="left:-10px;top:-6px">7</span><div class="small muted">识别到 2 场活动，选择要填入的</div>
@@ -100,6 +102,7 @@ document.querySelectorAll("#evtabs a[data-i]").forEach(a => a.addEventListener("
 document.querySelectorAll("#srcmode a").forEach(a => a.addEventListener("click", () => {
   document.querySelectorAll("#srcmode a").forEach(x => x.classList.toggle("on", x === a));
   $("src-link").hidden = a.dataset.s !== "link"; $("src-text").hidden = a.dataset.s !== "text";
+  $("src-imgs").hidden = a.dataset.s !== "text"; $("src-tip").hidden = a.dataset.s !== "link";
 }));
 document.querySelectorAll(".fi").forEach(f => f.addEventListener("click", () => {
   f.classList.toggle("on");
