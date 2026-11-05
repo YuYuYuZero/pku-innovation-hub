@@ -12,7 +12,6 @@ const NAV = [
   ] },
   { g: "工具 · AI", items: [
     ["assistant", "AI 工具箱", "assistant.html", "LuWandSparkles"],
-    ["ai_search", "AI 搜索", "ai_search.html", "LuSearch", 1, 0, "内测"],
   ] },
   { g: "社区 · 内测版", items: [
     ["events", "活动", "events.html", "LuCalendarDays"],
@@ -38,8 +37,8 @@ function renderShell() {
   if (sb) {
     sb.className = "sb";
     sb.innerHTML = `<a class="brand" href="index.html">${LOGO}<div class="wm"><b>北大创新学社</b><span>资源 · 工具 · 社区</span></div></a>` +
-      NAV.map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}</div>` : ""}` + g.items.map(([id, t, href, icon, lock, cnt, tag]) =>
-        `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${tag ? `<span class="nav-tag">${tag}</span>` : ""}${cnt ? `<span class="cnt">${cnt}</span>` : lock ? `<span class="lk">${ic("LuLock")}</span>` : ""}</a>`).join("") + `</div>`).join("") +
+      NAV.map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}</div>` : ""}` + g.items.map(([id, t, href, icon, lock, cnt]) =>
+        `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${cnt ? `<span class="cnt">${cnt}</span>` : lock ? `<span class="lk">${ic("LuLock")}</span>` : ""}</a>`).join("") + `</div>`).join("") +
       `<a class="me" href="#"><span class="av av-sm a1">张</span><div class="who"><b>张同学</b><span>AI俱乐部 · 部长</span></div>${ic("LuSettings")}</a>`;
   }
   // 不再用顶栏：搜索放在首页和各板块内部，通知铃铛放在侧边栏 Logo 旁边
@@ -92,7 +91,7 @@ function renderIcons() {
 const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
   ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档阅读", "kb_doc.html"], ["工作台", "workbench.html"],
-  ["AI 工具箱", "assistant.html"], ["AI 搜索（内测）", "ai_search.html"], ["录入活动", "event_new.html"], ["活动申报审批", "activity_review.html"],
+  ["AI 工具箱", "assistant.html"], ["录入活动", "event_new.html"], ["活动申报审批", "activity_review.html"],
   ["活动", "events.html"], ["审核与管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
   ["—— 暂不开放 ——"], ["AI 能力说明", "skills.html"], ["讨论", "community.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"],
 ];
