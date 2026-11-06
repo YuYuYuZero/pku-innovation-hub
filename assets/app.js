@@ -5,8 +5,9 @@ const NAV = [
   { g: "", items: [
     ["home", "首页", "index.html", "LuHouse"],
   ] },
-  { g: "学社资产 · 成员可见", items: [
+  { g: "学社资产", items: [
     ["resources", "资源库", "resources.html", "LuDatabase", 1],
+    ["kb", "知识库", "kb.html", "LuLibrary"],
     ["workbench", "工作台", "workbench.html", "LuTarget", 1, 5],
   ] },
   { g: "工具 · AI", items: [
@@ -30,6 +31,7 @@ const NOTES = [
   ["你录入的资源已通过审核", "示例机构 F · 2 天前", "resource_detail.html", "LuCircleCheck"],
   ["你的想法「表格批量处理」：已排期", "想法共建 · 3 天前", "index.html#my-ideas", "LuLightbulb"],
   ["新想法：报名表自动分组", "想法共建 · 同学 M 提出", "admin.html#ideas", "LuLightbulb"],
+  ["同学 B 把文档「AI 产品分享会 · 活动纪要」共享给你", "知识库 · 1 小时前", "kb_doc.html", "LuLibrary"],
 ];
 
 function renderShell() {
@@ -93,7 +95,7 @@ function renderIcons() {
 // 原型目录：所有页面与对应文件，便于在 GitHub Pages 上预览
 const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
-  ["批量导入", "upload.html"], ["知识库（暂缓）", "kb.html"], ["文档阅读（暂缓）", "kb_doc.html"], ["工作台", "workbench.html"],
+  ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档详情与版本", "kb_doc.html"], ["工作台", "workbench.html"],
   ["AI 工具箱", "assistant.html"], ["录入活动", "event_new.html"], ["活动申报审批", "activity_review.html"],
   ["活动", "events.html"], ["审核与管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
   ["—— 暂不开放 ——"], ["AI 能力说明", "skills.html"], ["讨论", "community.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"],
