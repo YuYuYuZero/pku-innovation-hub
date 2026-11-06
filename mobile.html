@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>移动端与飞书 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261107c"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107c"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261107d"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107d"></script>
 <style>
 body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%), radial-gradient(50% 60% at 100% 100%, #F1E9DC 0, transparent 60%), #F6F5F2; }
 .stage { display: flex; gap: 34px; padding: 40px 48px; align-items: flex-start; }
@@ -38,16 +38,16 @@ body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%)
       <div class="row between" style="margin-top:6px"><div class="row" style="gap:8px"><span id="ml" style="width:30px;height:30px;display:inline-block"></span><span class="b" style="font-family:var(--serif);font-size:17px">北大创新学社</span></div><span class="icon-btn" style="width:34px;height:34px"><i class="ic" data-i="LuBell"></i></span></div>
       <div class="m-h" style="margin-top:14px">晚上好，<span data-demo-name>同学 B</span></div>
       <div class="m-ask"><i class="ic" data-i="LuSearch"></i>搜索资源、资料、活动</div>
-      <div class="m-grid">
+      <div class="m-grid" data-need="member">
         <div data-need="backbone"><div class="gi t-red"><i class="ic" data-i="LuDatabase"></i></div>资源库</div><div><div class="gi t-blue"><i class="ic" data-i="LuLibrary"></i></div>知识库</div><div><div class="gi t-gold"><i class="ic" data-i="LuCalendarDays"></i></div>活动</div><div><div class="gi t-teal"><i class="ic" data-i="LuSparkles"></i></div>AI 工具</div>
       </div>
-      <div class="m-card"><div class="cover cv1" style="height:96px;border-radius:0"><div class="cv-k">THIS THURSDAY</div><div class="cv-t"><b style="font-size:16px">AI 产品从 0 到 1</b></div></div><div style="padding:10px 14px" class="row between"><span class="small muted">10/30 19:00 · 理教 201</span><span class="btn btn-sm btn-p">去报名</span></div></div>
-      <div class="m-card" style="padding:12px 14px"><div class="row"><i class="ic" data-i="LuSparkles" style="color:var(--red)"></i><span class="b" style="font-size:13px">结构化解析</span></div><div style="font-size:13px;color:var(--ink);margin-top:6px">粘贴接龙名单，整理成表格导出 Excel</div></div>
+      <div class="m-card" data-need="member"><div class="cover cv1" style="height:96px;border-radius:0"><div class="cv-k">THIS THURSDAY</div><div class="cv-t"><b style="font-size:16px">AI 产品从 0 到 1</b></div></div><div style="padding:10px 14px" class="row between"><span class="small muted">10/30 19:00 · 理教 201</span><span class="btn btn-sm btn-p">去报名</span></div></div>
+      <div class="m-card" data-need="member" style="padding:12px 14px"><div class="row"><i class="ic" data-i="LuSparkles" style="color:var(--red)"></i><span class="b" style="font-size:13px">结构化解析</span></div><div style="font-size:13px;color:var(--ink);margin-top:6px">粘贴接龙名单，整理成表格导出 Excel</div></div>
     </div>
-    <div class="tabbar"><a class="on"><i class="ic" data-i="LuHouse"></i>首页</a><a><i class="ic" data-i="LuCalendarDays"></i>活动</a><a><span class="fab"><i class="ic" data-i="LuPlus"></i></span></a><a><i class="ic" data-i="LuSparkles"></i>AI</a><a><i class="ic" data-i="LuUser"></i>我的</a></div>
+    <div class="tabbar"><a class="on"><i class="ic" data-i="LuHouse"></i>首页</a><a data-need="member"><i class="ic" data-i="LuCalendarDays"></i>活动</a><a data-need="member"><span class="fab"><i class="ic" data-i="LuPlus"></i></span></a><a data-need="member"><i class="ic" data-i="LuSparkles"></i>AI</a><a><i class="ic" data-i="LuUser"></i>我的</a></div>
   </div></div><div class="cap">手机首页<span>搜索、四个常用入口、活动与 AI 工具</span></div></div>
 
-  <div><div class="phone"><div class="scr"><div class="notch"></div><div class="status"><span>9:41</span><span>●●● 5G</span></div>
+  <div data-need="backbone"><div class="phone"><div class="scr"><div class="notch"></div><div class="status"><span>9:41</span><span>●●● 5G</span></div>
     <div class="m-pad">
       <div class="row" style="margin-top:6px"><i class="ic" data-i="LuChevronRight" style="transform:rotate(180deg);font-size:20px"></i><span class="b" style="font-size:16px">资源库</span><span class="grow"></span><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干</span></div>
       <div class="input" style="margin-top:12px;color:var(--ink)"><i class="ic" data-i="LuSparkles" style="color:var(--red)"></i>做 AI 教育的分享嘉宾</div>
@@ -59,10 +59,10 @@ body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%)
         <div class="m-res"><div class="row between"><span class="b">同学 B</span><span class="tag t-teal">学社骨干</span></div><div class="xs muted">AI俱乐部</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">熟悉黑客松评审流程，可协助邀请评委</div></div>
       </div>
     </div>
-    <div class="tabbar"><a><i class="ic" data-i="LuHouse"></i>首页</a><a><i class="ic" data-i="LuCalendarDays"></i>活动</a><a><span class="fab"><i class="ic" data-i="LuPlus"></i></span></a><a><i class="ic" data-i="LuSparkles"></i>AI</a><a class="on"><i class="ic" data-i="LuUser"></i>我的</a></div>
+    <div class="tabbar"><a><i class="ic" data-i="LuHouse"></i>首页</a><a data-need="member"><i class="ic" data-i="LuCalendarDays"></i>活动</a><a data-need="member"><span class="fab"><i class="ic" data-i="LuPlus"></i></span></a><a data-need="member"><i class="ic" data-i="LuSparkles"></i>AI</a><a class="on"><i class="ic" data-i="LuUser"></i>我的</a></div>
   </div></div><div class="cap">手机搜资源<span>关键词搜索，联系方式经对接人</span></div></div>
 
-  <div><div class="phone"><div class="scr"><div class="notch"></div><div class="status"><span>9:41</span><span>●●● 5G</span></div>
+  <div data-need="member"><div class="phone"><div class="scr"><div class="notch"></div><div class="status"><span>9:41</span><span>●●● 5G</span></div>
     <div class="m-pad">
       <div class="row" style="margin-top:6px"><span class="b" style="font-size:16px">AI 助手</span><span class="grow"></span><span class="tag t-red">全部范围</span></div>
       <div style="margin-top:16px"><div class="bub-me">上学期黑客松的赞助方案在哪？</div>
