@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>登录 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261107b"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107b"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261107c"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107c"></script>
 <style>
 body { background: var(--bg); }
 .lg { display: grid; grid-template-columns: 1fr 560px; min-height: 100vh; }
@@ -39,8 +39,18 @@ body { background: var(--bg); }
   <div class="right"><div class="box rel"><span class="mk" style="left:-34px;top:0">1</span>
     <h2>登录</h2><p class="muted" style="margin-top:4px">选择适合你的方式</p>
     <div class="opt pri"><div class="oi t-gold"><i class="ic" data-i="LuIdCard"></i></div><div class="grow"><div class="b">手机号登录</div><div class="xs muted">用招新登记的手机号收验证码，按招新表自动匹配部门与角色，每学期更新</div></div><i class="ic" data-i="LuChevronRight"></i></div>
-    <div class="opt" style="opacity:.55"><div class="oi t-red"><i class="ic" data-i="LuGraduationCap"></i></div><div class="grow"><div class="b">北大邮箱验证码</div><div class="xs muted">备选：短信通道验证不通过时启用</div></div></div>
+    <div class="opt" data-feature="email-login" hidden style="opacity:.55"><div class="oi t-red"><i class="ic" data-i="LuGraduationCap"></i></div><div class="grow"><div class="b">北大邮箱验证码</div><div class="xs muted">备选：短信通道验证不通过时启用</div></div></div>
     <div class="row small" style="margin-top:14px;justify-content:center"><span class="muted">目前只对招新名单里的学社成员开放；不在名单里请联系所在部门部长</span></div>
+    <div class="card pad" style="margin-top:16px"><b class="small">演示身份 · 虚构数据，不发送短信</b>
+      <div style="display:grid;gap:8px;margin-top:10px">
+        <a href="index.html?role=president">13800000001　会长团 · 同学 A</a>
+        <a href="index.html?role=minister">13800000002　部长 · 同学 B</a>
+        <a href="index.html?role=backbone">13800000003　骨干 · 同学 C</a>
+        <a href="index.html?role=maintainer">13800000004　维护人 · 同学 D</a>
+        <a href="index.html?role=member">13800000005　会员 · 同学 E</a>
+        <a href="index.html?role=outsider">13800000006　未入名单 · 同学 F</a>
+      </div>
+    </div>
     <div class="lvls rel"><span class="mk" style="right:8px;top:6px">2</span>
       <div class="r" style="background:#FAF9F7"><b>身份</b><b>可以做什么</b></div>
       <div class="r"><b>学社会员</b><span>浏览活动（报名跳转活动推文）、使用 AI 工具箱和知识库（按文档范围开放）</span></div>

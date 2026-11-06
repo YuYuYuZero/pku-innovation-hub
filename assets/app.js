@@ -21,6 +21,29 @@ const NAV = [
   ] },
 ];
 
+// 演示身份仅用于展示；真实授权由 app 的后端负责。
+const DEMO_ROLES = {
+  president: { name: "同学 A", title: "会长团", backbone: true, admin: true },
+  minister: { name: "同学 B", title: "AI俱乐部 · 部长", backbone: true, admin: true },
+  backbone: { name: "同学 C", title: "AI俱乐部 · 骨干", backbone: true },
+  maintainer: { name: "同学 D", title: "外联部 · 维护人", backbone: true },
+  member: { name: "同学 E", title: "会员" },
+  outsider: { name: "同学 F", title: "未入名单" },
+};
+const PAGE_NEEDS = { resources: "backbone", kb: "member", workbench: "backbone", assistant: "member", events: "member", admin: "admin" };
+function demoRole() { return DEMO_ROLES[new URLSearchParams(location.search).get("role")] || DEMO_ROLES.minister; }
+function demoAllowed(id, role = demoRole()) {
+  const need = PAGE_NEEDS[id];
+  return !need || (need === "member" ? role !== DEMO_ROLES.outsider : !!role[need]);
+}
+function demoVisible(id, role = demoRole()) { return demoAllowed(id, role) || !!role.backbone; }
+function pageId(file) {
+  if (/^(resource|upload)/.test(file)) return 'resources';
+  if (/^kb/.test(file)) return 'kb';
+  if (/^(workbench|event_new|activity_review|needs)/.test(file)) return 'workbench';
+  return file.replace(/\.html$/, '');
+}
+
 function ic(n) { return `<i class="ic" data-i="${n}"></i>`; }
 
 // 通知：只推和自己有关、需要处理或需要知道结果的事
@@ -30,8 +53,8 @@ const NOTES = [
   ["同学 C 有 1 项工作已逾期", "可以督办 · 昨天", "workbench.html", "LuClock"],
   ["你录入的资源已通过审核", "示例机构 F · 2 天前", "resource_detail.html", "LuCircleCheck"],
   ["你的想法「表格批量处理」：已排期", "想法共建 · 3 天前", "index.html#my-ideas", "LuLightbulb"],
-  ["新想法：报名表自动分组", "想法共建 · 同学 M 提出", "admin.html#ideas", "LuLightbulb"],
-  ["同学 B 把文档「AI 产品分享会 · 活动纪要」共享给你", "知识库 · 1 小时前", "kb_doc.html", "LuLibrary"],
+  ["新想法：报名表自动分组", "想法共建 · 同学 E 提出", "admin.html#ideas", "LuLightbulb"],
+  ["同学 D 把文档「AI 产品分享会 · 活动纪要」共享给你", "知识库 · 1 小时前", "kb_doc.html", "LuLibrary"],
 ];
 
 function renderShell() {
@@ -40,18 +63,18 @@ function renderShell() {
   if (sb) {
     sb.className = "sb";
     sb.innerHTML = `<a class="brand" href="index.html">${LOGO}<div class="wm"><b>北大创新学社</b><span>资源 · 工具 · 社区</span></div></a>` +
-      NAV.map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}${g.internal ? `<span class="asset-lock" title="学社内部：资源库、工作台限骨干；知识库按文档范围开放" aria-label="学社内部资产">${ic("LuLock")}</span>` : ""}</div>` : ""}` + g.items.map(([id, t, href, icon, lock, cnt]) =>
-        `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${cnt ? `<span class="cnt">${cnt}</span>` : lock ? `<span class="lk">${ic("LuLock")}</span>` : ""}</a>`).join("") + `</div>`).join("") +
-      `<a class="me" href="#"><span class="av av-sm a1">张</span><div class="who"><b>张同学</b><span>AI俱乐部 · 部长</span></div>${ic("LuChevronDown")}</a>`;
+      NAV.filter(g => g.items.some(([id]) => demoVisible(id))).map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}${g.internal && demoRole().backbone ? `<span class="asset-lock" title="学社内部：资源库、工作台限骨干；知识库按文档范围开放" aria-label="学社内部资产">${ic("LuLock")}</span>` : ""}</div>` : ""}` + g.items.filter(([id]) => demoVisible(id)).map(([id, t, href, icon, lock, cnt]) =>
+        demoAllowed(id) ? `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${cnt ? `<span class="cnt">${cnt}</span>` : ""}</a>` : `<span class="nav-i off" aria-disabled="true" title="当前身份没有权限">${ic(icon)}<span>${t}</span>${!g.internal ? `<span class="lk">${ic("LuLock")}</span>` : ""}</span>`).join("") + `</div>`).join("") +
+      `<a class="me" href="login.html"><span class="av av-sm a1">${demoRole().name.slice(-1)}</span><div class="who"><b>${demoRole().name}</b><span>${demoRole().title}</span></div>${ic("LuChevronDown")}</a>`;
   }
   // 不再用顶栏：搜索放在首页和各板块内部，通知铃铛放在侧边栏 Logo 旁边
   const tb = document.getElementById("tb");
   if (tb) tb.remove();
-  if (sb) {
+  if (sb && demoRole() !== DEMO_ROLES.outsider) {
     const bell = document.createElement("div");
     bell.className = "dd-wrap sb-bell";
     bell.innerHTML = `<button class="icon-btn">${ic("LuBell")}<span class="dot"></span></button>
-      <div class="dd dd-note" hidden><div class="dd-h">通知<span>全部已读</span></div>${NOTES.map(([t, d, href, icon]) =>
+      <div class="dd dd-note" hidden><div class="dd-h">通知<span>全部已读</span></div>${NOTES.filter(([, , href]) => demoAllowed(pageId(href.split('#')[0]))).map(([t, d, href, icon]) =>
         `<a href="${href}">${ic(icon)}<div><b>${t}</b><span>${d}</span></div></a>`).join("")}</div>`;
     sb.querySelector(".brand").after(bell);
     const box = bell.querySelector(".dd");
@@ -68,14 +91,14 @@ const IDEAS = `<div class="drawer"><div class="dr-h"><b>想法共建</b><span cl
   <div class="h-sec" style="margin-bottom:4px">我提的想法</div>
   ${IDEA_ROW("办活动助手", "评估中", "t-amber", 2, `<div class="small" style="margin-top:8px">骨干准备办一场活动时，先看往届怎么办的</div><div class="xs muted" style="margin-top:2px">给它：一句话描述活动想法 → 得到：往届复盘、可请嘉宾和对接人、模板、申报表草稿</div>
     <div class="thread"><div class="reply"><span class="av av-sm a2">A</span><div class="grow"><div class="xs muted">同学 A（处理人）· 昨天</div><div class="small">方向很好。想先确认：往届复盘现在都在飞书里，你希望它直接读飞书文档，还是先由各部门整理一份复盘清单？</div></div></div>
-    <div class="reply"><span class="av av-sm a1">张</span><div class="grow"><div class="xs muted">张同学（提出人）· 3 小时前</div><div class="small">先用清单就行，读飞书的以后再说。</div></div></div>
+    <div class="reply"><span class="av av-sm a1">B</span><div class="grow"><div class="xs muted">同学 B（提出人）· 3 小时前</div><div class="small">先用清单就行，读飞书的以后再说。</div></div></div>
     <div class="row" style="margin-top:4px"><div class="input ph grow">补充说明或回复处理人</div><span class="btn btn-p btn-sm" data-done="已回复">回复</span></div></div>`)}
   ${IDEA_ROW("部门周报", "待处理", "", 0)}
   ${IDEA_ROW("表格批量处理", "已排期", "t-blue", 1)}
 </div></div>`;
 function renderIdeas() {
   const main = document.querySelector(".main");
-  if (!main || !document.getElementById("sb")) return;
+  if (!main || !document.getElementById("sb") || demoRole() === DEMO_ROLES.outsider) return;
   const btn = document.createElement("span");
   btn.className = "btn btn-sm ideas-btn"; btn.innerHTML = `${ic("LuLightbulb")}想法共建`;
   main.appendChild(btn);
@@ -106,7 +129,7 @@ function renderProtoNav() {
   const box = document.createElement("div");
   box.className = "proto-nav";
   box.innerHTML = `<div class="pn-panel"><div class="pn-h">原型页面</div>` +
-    PAGES.map(([t, f]) => !f ? `<div class="pn-h">${t}</div>` : `<a class="${f === cur ? "on" : ""}" href="${f}${document.body.classList.contains("anno") ? "#anno" : ""}"><span>${t}</span><code>${f}</code></a>`).join("") +
+    PAGES.filter(([, f]) => !f || demoAllowed(pageId(f))).map(([t, f]) => !f ? `<div class="pn-h">${t}</div>` : `<a class="${f === cur ? "on" : ""}" href="${f}${document.body.classList.contains("anno") ? "#anno" : ""}"><span>${t}</span><code>${f}</code></a>`).join("") +
     `<label class="pn-anno"><input type="checkbox" ${document.body.classList.contains("anno") ? "checked" : ""}> 显示编号标注</label></div><button class="pn-btn">原型目录</button>`;
   document.body.appendChild(box);
   box.querySelector(".pn-btn").onclick = () => box.classList.toggle("open");
@@ -124,6 +147,29 @@ function renderStorageState() {
   document.querySelectorAll("[data-storage-upload]").forEach(el => {
     el.setAttribute("aria-disabled", String(unavailable));
     if (unavailable) el.title = "文件存储暂不可用";
+  });
+}
+
+function renderRoleState() {
+  const role = demoRole();
+  const roleKey = Object.keys(DEMO_ROLES).find(key => DEMO_ROLES[key] === role);
+  document.querySelectorAll("[data-demo-name]").forEach(el => { el.textContent = role.name; });
+  document.querySelectorAll("[data-need]").forEach(el => {
+    const need = el.dataset.need;
+    el.hidden = need === "member" ? role === DEMO_ROLES.outsider : !role[need];
+  });
+  const page = document.body.dataset.page;
+  if (page && !demoAllowed(page, role)) {
+    const main = document.querySelector(".main");
+    if (main) main.innerHTML = `<div class="card pad"><h2>当前身份没有权限</h2><p>请联系所在部门部长确认身份。</p><a href="index.html">返回首页</a></div>`;
+  }
+  // 原型目录允许查看不同页面，普通页面链接保留正在演示的身份。
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!/^[\w-]+\.html(?:[?#]|$)/.test(href)) return;
+    const url = new URL(href, location.href);
+    if (!url.searchParams.has('role')) url.searchParams.set('role', roleKey);
+    a.setAttribute('href', url.pathname.split('/').pop() + url.search + url.hash);
   });
 }
 
@@ -173,6 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderIcons();
   if (location.hash.includes("anno")) document.body.classList.add("anno");
   renderProtoNav();
+  renderRoleState();
   // 地址后加 #dlg-xxx 直接打开对应弹窗，便于截图和文档引用
   const m = location.hash.match(/dlg-([\w-]+)/);
   if (m) openDlg(m[1]);

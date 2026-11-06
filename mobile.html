@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>移动端与飞书 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261107b"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107b"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261107c"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107c"></script>
 <style>
 body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%), radial-gradient(50% 60% at 100% 100%, #F1E9DC 0, transparent 60%), #F6F5F2; }
 .stage { display: flex; gap: 34px; padding: 40px 48px; align-items: flex-start; }
@@ -36,10 +36,10 @@ body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%)
   <div><div class="phone"><div class="scr"><div class="notch"></div><div class="status"><span>9:41</span><span>●●● 5G</span></div>
     <div class="m-pad">
       <div class="row between" style="margin-top:6px"><div class="row" style="gap:8px"><span id="ml" style="width:30px;height:30px;display:inline-block"></span><span class="b" style="font-family:var(--serif);font-size:17px">北大创新学社</span></div><span class="icon-btn" style="width:34px;height:34px"><i class="ic" data-i="LuBell"></i></span></div>
-      <div class="m-h" style="margin-top:14px">晚上好，张同学</div>
+      <div class="m-h" style="margin-top:14px">晚上好，<span data-demo-name>同学 B</span></div>
       <div class="m-ask"><i class="ic" data-i="LuSearch"></i>搜索资源、资料、活动</div>
       <div class="m-grid">
-        <div><div class="gi t-red"><i class="ic" data-i="LuDatabase"></i></div>资源库</div><div><div class="gi t-blue"><i class="ic" data-i="LuLibrary"></i></div>知识库</div><div><div class="gi t-gold"><i class="ic" data-i="LuCalendarDays"></i></div>活动</div><div><div class="gi t-teal"><i class="ic" data-i="LuSparkles"></i></div>AI 工具</div>
+        <div data-need="backbone"><div class="gi t-red"><i class="ic" data-i="LuDatabase"></i></div>资源库</div><div><div class="gi t-blue"><i class="ic" data-i="LuLibrary"></i></div>知识库</div><div><div class="gi t-gold"><i class="ic" data-i="LuCalendarDays"></i></div>活动</div><div><div class="gi t-teal"><i class="ic" data-i="LuSparkles"></i></div>AI 工具</div>
       </div>
       <div class="m-card"><div class="cover cv1" style="height:96px;border-radius:0"><div class="cv-k">THIS THURSDAY</div><div class="cv-t"><b style="font-size:16px">AI 产品从 0 到 1</b></div></div><div style="padding:10px 14px" class="row between"><span class="small muted">10/30 19:00 · 理教 201</span><span class="btn btn-sm btn-p">去报名</span></div></div>
       <div class="m-card" style="padding:12px 14px"><div class="row"><i class="ic" data-i="LuSparkles" style="color:var(--red)"></i><span class="b" style="font-size:13px">结构化解析</span></div><div style="font-size:13px;color:var(--ink);margin-top:6px">粘贴接龙名单，整理成表格导出 Excel</div></div>
@@ -54,9 +54,9 @@ body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%)
       <div class="row" style="gap:6px;margin-top:10px;overflow:hidden"><span class="chip on" style="height:28px">全部</span><span class="chip" style="height:28px">外部个人</span><span class="chip" style="height:28px">机构</span><span class="chip" style="height:28px">骨干</span></div>
       <div class="small muted" style="margin-top:12px">找到 3 项资源</div>
       <div class="m-card">
-        <div class="m-res"><div class="row between"><span class="b">示例人物 A</span><span class="tag t-red">外部个人</span></div><div class="xs muted">某教育科技公司 · 产品负责人</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">可交流 AI 教育产品经验，可做分享嘉宾</div><div class="row between" style="margin-top:8px"><span class="xs muted">对接人：同学 B</span><span class="btn btn-sm btn-soft">联系对接人</span></div></div>
-        <div class="m-res"><div class="row between"><span class="b">示例机构 C</span><span class="tag t-blue">机构资源</span></div><div class="xs muted">教育公益基金会</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">可提供活动场地与小额赞助</div><div class="row between" style="margin-top:8px"><span class="xs muted">对接人：同学 D</span><span class="btn btn-sm btn-soft">联系对接人</span></div></div>
-        <div class="m-res"><div class="row between"><span class="b">张同学</span><span class="tag t-teal">学社骨干</span></div><div class="xs muted">AI俱乐部</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">熟悉黑客松评审流程，可协助邀请评委</div></div>
+        <div class="m-res"><div class="row between"><span class="b">示例人物 A</span><span class="tag t-red">外部个人</span></div><div class="xs muted">某教育科技公司 · 产品负责人</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">可交流 AI 教育产品经验，可做分享嘉宾</div><div class="row between" style="margin-top:8px"><span class="xs muted">对接人：同学 D</span><span class="btn btn-sm btn-soft">联系对接人</span></div></div>
+        <div class="m-res"><div class="row between"><span class="b">示例机构 C</span><span class="tag t-blue">机构资源</span></div><div class="xs muted">教育公益基金会</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">可提供活动场地与小额赞助</div><div class="row between" style="margin-top:8px"><span class="xs muted">对接人：同学 G</span><span class="btn btn-sm btn-soft">联系对接人</span></div></div>
+        <div class="m-res"><div class="row between"><span class="b">同学 B</span><span class="tag t-teal">学社骨干</span></div><div class="xs muted">AI俱乐部</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">熟悉黑客松评审流程，可协助邀请评委</div></div>
       </div>
     </div>
     <div class="tabbar"><a><i class="ic" data-i="LuHouse"></i>首页</a><a><i class="ic" data-i="LuCalendarDays"></i>活动</a><a><span class="fab"><i class="ic" data-i="LuPlus"></i></span></a><a><i class="ic" data-i="LuSparkles"></i>AI</a><a class="on"><i class="ic" data-i="LuUser"></i>我的</a></div>

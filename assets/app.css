@@ -345,3 +345,7 @@ body.anno .mk {
 .asset-lock { display: inline-flex; align-items: center; margin-left: 6px; vertical-align: middle; font-size: 12px; }
 [data-storage-upload][aria-disabled="true"] { opacity: .45; cursor: not-allowed; }
 [data-storage-warning][hidden] { display: none; }
+
+/* 权限和功能开关：不留空白入口。 */
+[hidden] { display: none !important; }
+.nav-i.off { opacity: .45; cursor: not-allowed; }

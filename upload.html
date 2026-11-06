@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>批量导入 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261107b"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107b"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261107c"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107c"></script>
 <style>
 .stepper { display: flex; align-items: center; gap: 14px; padding: 16px 20px; }
 .step { display: flex; align-items: center; gap: 10px; }
@@ -45,12 +45,12 @@ tr.dup td { background: #FFFBF1; }
     </div>
     <table class="tbl">
       <tr><th style="width:56px">行号</th><th>名称</th><th>资源类型</th><th>学社对接人</th><th>领域</th><th style="width:190px">校验结果</th></tr>
-      <tr><td>2</td><td><div class="b">示例人物 A</div><div class="sub">某科技公司</div></td><td>外部个人</td><td>同学 B</td><td><span class="tag">AI</span> <span class="tag">产品</span></td><td class="ok"><i class="ic" data-i="LuCircleCheck"></i> 可导入</td></tr>
+      <tr><td>2</td><td><div class="b">示例人物 A</div><div class="sub">某科技公司</div></td><td>外部个人</td><td>同学 D</td><td><span class="tag">AI</span> <span class="tag">产品</span></td><td class="ok"><i class="ic" data-i="LuCircleCheck"></i> 可导入</td></tr>
       <tr class="bad"><td>3</td><td><div class="b">示例机构 B</div><div class="sub">某基金会</div></td><td>机构资源</td><td class="err">未填写</td><td><span class="tag">教育</span></td><td><span class="err"><i class="ic" data-i="LuCircleAlert"></i> 缺少对接人</span></td></tr>
       <tr><td>4</td><td><div class="b">示例同学 C</div><div class="sub">AI俱乐部</div></td><td>学社骨干</td><td>本人</td><td><span class="tag">开发</span></td><td class="ok"><i class="ic" data-i="LuCircleCheck"></i> 可导入</td></tr>
       <tr class="dup"><td>5</td><td><div class="b">示例人物 D</div><div class="sub">某 AI 公司</div></td><td>外部个人</td><td>同学 E</td><td><span class="tag">AI</span></td><td><span class="warn"><i class="ic" data-i="LuTriangleAlert"></i> 同名同机构</span><br><span class="fix" data-dlg="dup"><i class="ic" data-i="LuEye"></i>对比已有记录</span></td></tr>
-      <tr class="bad"><td>6</td><td><div class="b">（空）</div><div class="sub">某研究院</div></td><td>机构资源</td><td>同学 B</td><td>—</td><td><span class="err"><i class="ic" data-i="LuCircleAlert"></i> 缺少名称、可提供的帮助</span></td></tr>
-      <tr><td>7</td><td><div class="b">示例机构 F</div><div class="sub">某孵化器</div></td><td>机构资源</td><td>同学 D</td><td><span class="tag">创业</span></td><td class="ok"><i class="ic" data-i="LuCircleCheck"></i> 可导入</td></tr>
+      <tr class="bad"><td>6</td><td><div class="b">（空）</div><div class="sub">某研究院</div></td><td>机构资源</td><td>同学 D</td><td>—</td><td><span class="err"><i class="ic" data-i="LuCircleAlert"></i> 缺少名称、可提供的帮助</span></td></tr>
+      <tr><td>7</td><td><div class="b">示例机构 F</div><div class="sub">某孵化器</div></td><td>机构资源</td><td>同学 G</td><td><span class="tag">创业</span></td><td class="ok"><i class="ic" data-i="LuCircleCheck"></i> 可导入</td></tr>
     </table>
     <div class="row" style="padding:16px 18px;border-top:1px solid var(--line);background:#FCFBFA;border-radius:0 0 var(--r) var(--r)"><span class="small muted">错误行保留行号，可下载错误报告修改后重新上传</span><span class="grow"></span><span class="btn" data-done="已下载 错误报告_外联资源名单_2026秋.xlsx"><i class="ic" data-i="LuDownload"></i>下载错误报告</span><span class="btn btn-p" data-dlg="done">导入 3 行有效记录</span></div>
   </div>

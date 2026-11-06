@@ -44,3 +44,21 @@ test('存储不可用场景显示提示、禁用上传；默认场景恢复可�
   assert.equal(warning.hidden, true)
   assert.equal(upload.attrs['aria-disabled'], 'false')
 })
+
+test('会员与未入名单隐藏无权限入口，骨干保留锁定管理入口', () => {
+  const roles = runInNewContext(source + '\nDEMO_ROLES', { document: { addEventListener() {} } })
+  const check = (expression) => runInNewContext(source + '\n' + expression, { document: { addEventListener() {} } })
+  assert.equal(roles.member.name, '同学 E')
+  for (const page of ['resources', 'workbench', 'admin']) assert.equal(check(`demoVisible('${page}', DEMO_ROLES.member)`), false)
+  assert.equal(check("demoAllowed('kb', DEMO_ROLES.member)"), true)
+  assert.equal(check("demoAllowed('kb', DEMO_ROLES.outsider)"), false)
+  assert.equal(check("demoVisible('admin', DEMO_ROLES.backbone)"), true)
+  assert.equal(check("demoAllowed('admin', DEMO_ROLES.backbone)"), false)
+})
+
+test('登录页使用 A–F 演示身份，邮箱入口保持隐藏', () => {
+  const html = readFileSync(join(root, 'login.html'), 'utf8')
+  for (const letter of 'ABCDEF') assert.ok(html.includes(`同学 ${letter}`))
+  assert.match(html, /data-feature="email-login" hidden/)
+  assert.doesNotMatch(html, /张同学|同学 M/)
+})
