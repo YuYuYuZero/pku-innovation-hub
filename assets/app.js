@@ -7,7 +7,6 @@ const NAV = [
   ] },
   { g: "学社资产 · 成员可见", items: [
     ["resources", "资源库", "resources.html", "LuDatabase", 1],
-    ["kb", "知识库", "kb.html", "LuLibrary", 1],
     ["workbench", "工作台", "workbench.html", "LuTarget", 1, 5],
   ] },
   { g: "工具 · AI", items: [
@@ -66,8 +65,8 @@ const IDEAS = `<div class="drawer"><div class="dr-h"><b>想法共建</b><span cl
   <div class="dr-b"><div class="row" style="margin-bottom:12px"><p class="small muted grow">有什么重复、费时的事想交给 AI，或者对平台有什么想法？写清谁、在什么场景、给它什么、想要什么。想法只有你和处理人（会长团、AI俱乐部部长）能看到，回复和进展会通过通知告诉你。</p><span class="btn btn-p btn-sm" data-done="已提交，处理后会通知你">提一个想法</span></div>
   <div class="h-sec" style="margin-bottom:4px">我提的想法</div>
   ${IDEA_ROW("办活动助手", "评估中", "t-amber", 2, `<div class="small" style="margin-top:8px">骨干准备办一场活动时，先看往届怎么办的</div><div class="xs muted" style="margin-top:2px">给它：一句话描述活动想法 → 得到：往届复盘、可请嘉宾和对接人、模板、申报表草稿</div>
-    <div class="thread"><div class="reply"><span class="av av-sm a2">A</span><div class="grow"><div class="xs muted">同学 A（处理人）· 昨天</div><div class="small">方向很好。想先确认：往届复盘现在大多在飞书里，你希望它直接读飞书，还是先从知识库里已上传的资料做？</div></div></div>
-    <div class="reply"><span class="av av-sm a1">张</span><div class="grow"><div class="xs muted">张同学（提出人）· 3 小时前</div><div class="small">先从知识库做就行，飞书的以后再说。</div></div></div>
+    <div class="thread"><div class="reply"><span class="av av-sm a2">A</span><div class="grow"><div class="xs muted">同学 A（处理人）· 昨天</div><div class="small">方向很好。想先确认：往届复盘现在都在飞书里，你希望它直接读飞书文档，还是先由各部门整理一份复盘清单？</div></div></div>
+    <div class="reply"><span class="av av-sm a1">张</span><div class="grow"><div class="xs muted">张同学（提出人）· 3 小时前</div><div class="small">先用清单就行，读飞书的以后再说。</div></div></div>
     <div class="row" style="margin-top:4px"><div class="input ph grow">补充说明或回复处理人</div><span class="btn btn-p btn-sm" data-done="已回复">回复</span></div></div>`)}
   ${IDEA_ROW("部门周报", "待处理", "", 0)}
   ${IDEA_ROW("表格批量处理", "已排期", "t-blue", 1)}
@@ -94,7 +93,7 @@ function renderIcons() {
 // 原型目录：所有页面与对应文件，便于在 GitHub Pages 上预览
 const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
-  ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档阅读", "kb_doc.html"], ["工作台", "workbench.html"],
+  ["批量导入", "upload.html"], ["知识库（暂缓）", "kb.html"], ["文档阅读（暂缓）", "kb_doc.html"], ["工作台", "workbench.html"],
   ["AI 工具箱", "assistant.html"], ["录入活动", "event_new.html"], ["活动申报审批", "activity_review.html"],
   ["活动", "events.html"], ["审核与管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
   ["—— 暂不开放 ——"], ["AI 能力说明", "skills.html"], ["讨论", "community.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"],

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>工作台 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261106a"><script src="assets/icons.js?v=20261106a"></script><script src="assets/app.js?v=20261106a"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261106b"><script src="assets/icons.js?v=20261106b"></script><script src="assets/app.js?v=20261106b"></script>
 <style>
 .cols { display: grid; grid-template-columns: 1fr 340px; gap: 16px; align-items: start; }
 .td { display: flex; gap: 12px; padding: 12px 20px; border-bottom: 1px solid var(--line); align-items: flex-start; }
@@ -27,7 +27,7 @@
 <body data-page="workbench">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">工作台</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干可见 · 按角色分级</span></div><p class="muted" style="margin-top:2px">骨干提交和更新自己的工作、申报活动、看自己的积分；部长查看本部门进度，分配、督办、分配积分；部长和维护人在“审批”里处理活动申报、资源和资料</p></div>
+<div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">工作台</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干可见 · 按角色分级</span></div><p class="muted" style="margin-top:2px">骨干提交和更新自己的工作、申报活动、看自己的积分；部长查看本部门进度，分配、督办、分配积分；部长和维护人在“审批”里处理活动申报、资源</p></div>
 <div class="row"><span class="btn" data-open="submit"><i class="ic" data-i="LuNotebookPen"></i>提交工作</span><a class="btn" href="event_new.html"><i class="ic" data-i="LuSparkles"></i>录入活动</a><span class="btn btn-p" data-dlg="apply"><i class="ic" data-i="LuCalendarCheck"></i>申报活动</span></div></div>
 
 <div class="tabs" id="wbtabs" style="margin-bottom:16px"><a class="on" data-w="progress">工作进展</a><a data-w="review">审批 <span class="tag t-red" style="height:18px;padding:0 6px">5</span></a></div>
@@ -45,7 +45,7 @@
       <div class="pad row between" style="padding-bottom:8px"><div class="row"><span class="h-sec">工作进展</span><div class="seg"><a class="on">我的 3</a><a>部门 14</a></div></div><a class="lnk small" data-open="assign"><i class="ic" data-i="LuUserPlus"></i> 分配任务</a></div>
       <div class="td" data-dlg="task" style="cursor:pointer"><span class="ckb"></span><div class="grow"><div class="t">黑客松评委邀请：还差 2 位</div><div class="m"><span class="tag t-blue">进行中</span><span class="tag">活动 · AI for Campus 黑客松</span>进展：评委 1 / 3 已确认</div></div><span class="due warn">10-30</span></div>
       <div class="td"><span class="ckb"></span><div class="grow"><div class="t">工作坊第 3 期：场地确认后发报名推送</div><div class="m"><span class="tag t-line">待办</span><span class="tag">活动 · 工作坊第 3 期</span>部长分配</div></div><span class="due muted">11-03</span></div>
-      <div class="td"><span class="ckb on"></span><div class="grow"><div class="t" style="color:var(--muted);text-decoration:line-through">上传黑客松赞助方案到知识库</div><div class="m"><span class="tag t-green">已完成</span>10-26</div></div><span class="due muted">—</span></div>
+      <div class="td"><span class="ckb on"></span><div class="grow"><div class="t" style="color:var(--muted);text-decoration:line-through">整理黑客松赞助方案</div><div class="m"><span class="tag t-green">已完成</span>10-26</div></div><span class="due muted">—</span></div>
     </div>
     <div class="card rel" style="margin-top:16px"><span class="mk" style="left:-8px;top:-8px">3</span>
       <div class="pad" style="padding-bottom:10px"><span class="h-sec">本部门活动</span><span class="small muted" style="margin-left:8px">申报 → 部长审批 → 会长团终审（通过后自动出现在活动页）→ 进行中 → 已完成</span></div>
@@ -95,7 +95,7 @@
       <div class="row between" style="margin-bottom:10px"><span class="h-sec">我的工作记录</span><span class="tag t-line">本学期</span></div>
       <div class="row" style="gap:20px"><div class="stat"><b>9</b><span>已完成</span></div><div class="stat"><b>3</b><span>进行中</span></div></div>
       <div class="sep" style="margin:12px 0"></div>
-      <div class="small"><div class="row between"><span>上传黑客松赞助方案到知识库</span><span class="xs muted">10-26</span></div><div class="row between" style="margin-top:6px"><span>分享会签到与现场协调</span><span class="xs muted">10-24</span></div></div>
+      <div class="small"><div class="row between"><span>整理黑客松赞助方案</span><span class="xs muted">10-26</span></div><div class="row between" style="margin-top:6px"><span>分享会签到与现场协调</span><span class="xs muted">10-24</span></div></div>
       <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>这些记录就是“工作留痕”，积分制度定稿后作为部长分配积分的依据。</div></div>
     </div>
   </div>
@@ -145,7 +145,7 @@
       <table class="tbl">
         <tr><th>成员</th><th>事由（来自工作进展）</th><th style="width:90px">分值</th></tr>
         <tr><td>同学 D</td><td class="small">活动负责人：策划、嘉宾对接、现场统筹</td><td><div class="input" style="height:32px">10</div></td></tr>
-        <tr><td>同学 B</td><td class="small">签到与现场协调；纪要整理并归档到知识库</td><td><div class="input" style="height:32px">8</div></td></tr>
+        <tr><td>同学 B</td><td class="small">签到与现场协调；纪要整理</td><td><div class="input" style="height:32px">8</div></td></tr>
         <tr><td>同学 C</td><td class="small">海报与推文</td><td><div class="input" style="height:32px">8</div></td></tr>
       </table>
       <div class="row" style="padding:14px 18px;border-top:1px solid var(--line);background:#FCFBFA;border-radius:0 0 var(--r) var(--r)"><span class="small muted grow">超出额度不能提交；提交后成员收到通知，可以申诉</span><span class="btn btn-p btn-sm" data-done="已分配 26 分，成员会收到通知">提交分配</span></div>
@@ -170,20 +170,19 @@
 </div>
 </div>
 
-<!-- 审批：部长审批活动申报，维护人审核资源和资料，会长团终审 -->
+<!-- 审批：部长审批活动申报，维护人审核资源，会长团终审 -->
 <div data-wb="review" hidden>
 <div class="card rel"><span class="mk" style="left:-8px;top:-8px">5</span>
-    <div class="pad row between" style="padding-bottom:10px"><div class="seg pick"><a class="on">待我处理 5</a><a>活动申报 1</a><a>资源 3</a><a>资料 1</a><a>我提交的 2</a></div><div class="row"><span class="btn btn-sm" data-dlg="reject">驳回所选</span><span class="btn btn-sm btn-p" data-done="已通过 2 条，提交人会收到通知"><i class="ic" data-i="LuCheck"></i>通过所选（2）</span></div></div>
+    <div class="pad row between" style="padding-bottom:10px"><div class="seg pick"><a class="on">待我处理 4</a><a>活动申报 1</a><a>资源 3</a><a>我提交的 2</a></div><div class="row"><span class="btn btn-sm" data-dlg="reject">驳回所选</span><span class="btn btn-sm btn-p" data-done="已通过 2 条，提交人会收到通知"><i class="ic" data-i="LuCheck"></i>通过所选（2）</span></div></div>
     <table class="tbl rv">
       <tr><th style="width:36px"></th><th>内容</th><th style="width:250px">说明</th><th style="width:118px">提交</th><th style="width:96px"></th></tr>
       <tr><td></td><td><div class="row"><span class="tag t-amber">活动申报</span><a class="b" href="activity_review.html">读书会第 4 期</a></div><div class="small muted" style="margin-top:4px">AI俱乐部 · 11-20 · 约 30 人</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuCalendarCheck"></i>部长审批（你）→ 会长团终审</div></td><td class="small">同学 C<br><span class="muted">10-27</span></td><td><a class="btn btn-sm btn-p" href="activity_review.html">去审批</a></td></tr>
       <tr><td><span class="ckb on"></span></td><td><div class="row"><span class="tag t-red">资源</span><span class="b">示例人物 E</span></div><div class="small muted" style="margin-top:4px">某 AI 医疗公司 · 可交流 AI 医疗落地经验</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuTriangleAlert"></i>与已有记录“示例人物 E”同名同机构，疑似重复</div></td><td class="small">同学 F<br><span class="muted">10 分钟前</span></td><td><span class="btn btn-sm" data-dlg="dup">对比</span></td></tr>
       <tr><td><span class="ckb on"></span></td><td><div class="row"><span class="tag t-blue">资源</span><span class="b">示例机构 F</span></div><div class="small muted" style="margin-top:4px">某孵化器 · 可提供路演场地</div></td><td><div class="sug n-teal"><i class="ic" data-i="LuCircleCheck"></i>必填项完整，未发现重复</div></td><td class="small">批量导入<br><span class="muted">1 小时前</span></td><td><span class="btn btn-sm" data-dlg="rv">查看</span></td></tr>
-      <tr><td><span class="ckb"></span></td><td><div class="row"><span class="tag t-teal">资料</span><span class="b">黑客松赞助方案.pdf</span></div><div class="small muted" style="margin-top:4px">申请可见范围：学社成员</div></td><td><div class="sug n-teal"><i class="ic" data-i="LuCircleCheck"></i>必填项完整；申请从“仅维护人”改为学社成员可见</div></td><td class="small">同学 D<br><span class="muted">2 小时前</span></td><td><span class="btn btn-sm" data-dlg="rvdoc">查看</span></td></tr>
       <tr><td><span class="ckb"></span></td><td><div class="row"><span class="tag t-red">资源</span><span class="b">示例人物 H</span></div><div class="small muted" style="margin-top:4px">缺少“可提供的帮助”</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuTriangleAlert"></i>必填项缺失，建议退回补充</div></td><td class="small">同学 C<br><span class="muted">昨天</span></td><td><span class="btn btn-sm" data-dlg="reject">退回</span></td></tr>
     </table>
 </div>
-<div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuCircleAlert"></i><div>只显示你有权处理的：部长处理本部门活动申报，维护人处理资源和资料，会长团处理终审。每一步记入操作日志。</div></div>
+<div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuCircleAlert"></i><div>只显示你有权处理的：部长处理本部门活动申报，维护人处理资源，会长团处理终审。每一步记入操作日志。</div></div>
 </div>
 </div></div></div></div>
 
