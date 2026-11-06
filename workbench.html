@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>工作台 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261031c"><script src="assets/icons.js?v=20261031c"></script><script src="assets/app.js?v=20261031c"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261106a"><script src="assets/icons.js?v=20261106a"></script><script src="assets/app.js?v=20261106a"></script>
 <style>
 .cols { display: grid; grid-template-columns: 1fr 340px; gap: 16px; align-items: start; }
 .td { display: flex; gap: 12px; padding: 12px 20px; border-bottom: 1px solid var(--line); align-items: flex-start; }
@@ -30,7 +30,7 @@
 <div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">工作台</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干可见 · 按角色分级</span></div><p class="muted" style="margin-top:2px">骨干提交和更新自己的工作、申报活动、看自己的积分；部长查看本部门进度，分配、督办、分配积分；部长和维护人在“审批”里处理活动申报、资源和资料</p></div>
 <div class="row"><span class="btn" data-open="submit"><i class="ic" data-i="LuNotebookPen"></i>提交工作</span><a class="btn" href="event_new.html"><i class="ic" data-i="LuSparkles"></i>录入活动</a><span class="btn btn-p" data-dlg="apply"><i class="ic" data-i="LuCalendarCheck"></i>申报活动</span></div></div>
 
-<div class="tabs" id="wbtabs" style="margin-bottom:16px"><a class="on" data-w="progress">工作进展</a><a data-w="review">审批 <span class="tag t-red" style="height:18px;padding:0 6px">5</span></a><a data-w="points">骨干积分</a></div>
+<div class="tabs" id="wbtabs" style="margin-bottom:16px"><a class="on" data-w="progress">工作进展</a><a data-w="review">审批 <span class="tag t-red" style="height:18px;padding:0 6px">5</span></a></div>
 
 <div data-wb="progress">
 <div class="row between rel" style="margin-bottom:14px"><span class="mk" style="left:-8px;top:-8px">1</span>
@@ -68,7 +68,7 @@
         <tr><td>同学 D</td><td class="n">1</td><td class="n">2</td><td class="n">5</td><td></td></tr>
         <tr><td>张同学</td><td class="n">2</td><td class="n">1</td><td class="n">9</td><td></td></tr>
       </table>
-      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>这些工作记录就是“工作留痕”，也是部长分配积分的依据，积分在上方“骨干积分”标签里分配。</div></div>
+      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>这些工作记录就是“工作留痕”，积分制度定稿后作为部长分配积分的依据。</div></div>
     </div>
   </div>
 </div>
@@ -96,7 +96,7 @@
       <div class="row" style="gap:20px"><div class="stat"><b>9</b><span>已完成</span></div><div class="stat"><b>3</b><span>进行中</span></div></div>
       <div class="sep" style="margin:12px 0"></div>
       <div class="small"><div class="row between"><span>上传黑客松赞助方案到知识库</span><span class="xs muted">10-26</span></div><div class="row between" style="margin-top:6px"><span>分享会签到与现场协调</span><span class="xs muted">10-24</span></div></div>
-      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>这些记录就是“工作留痕”。积分由部长按活动或任务分配，在上方“骨干积分”标签里看明细和申诉。</div></div>
+      <div class="notice n-gray" style="margin-top:12px"><i class="ic" data-i="LuCircleAlert"></i><div>这些记录就是“工作留痕”，积分制度定稿后作为部长分配积分的依据。</div></div>
     </div>
   </div>
 </div>
@@ -134,6 +134,7 @@
 </div>
 
 <!-- 骨干积分：依据是工作进展和审批记录；部长在额度内分配，骨干看明细和申诉，会长团看发放情况 -->
+<!-- 骨干积分：规则定稿前不开放入口（与平台一致），下面保留设计示意 -->
 <div data-wb="points" hidden>
 <div class="notice n-amber rel" style="margin-bottom:14px"><span class="mk" style="left:-8px;top:-8px">6</span><i class="ic" data-i="LuTriangleAlert"></i><div>积分规则、分值和额度由综合管理部制定，<b>定稿前下面是示意</b>。积分由部长分配，系统不自动计算；每一条都要关联活动或任务事由。</div></div>
 <div class="cols">
@@ -323,6 +324,6 @@ const wb = (w) => {
   document.querySelectorAll("[data-wb]").forEach(p => { p.hidden = p.dataset.wb !== w; });
 };
 document.querySelectorAll("#wbtabs a").forEach(a => a.addEventListener("click", () => wb(a.dataset.w)));
-if (location.hash.includes("review")) wb("review"); else if (location.hash.includes("points")) wb("points");
+if (location.hash.includes("review")) wb("review"); 
 </script>
 </body></html>

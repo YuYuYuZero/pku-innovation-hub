@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>审核与管理 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261031c"><script src="assets/icons.js?v=20261031c"></script><script src="assets/app.js?v=20261031c"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261106a"><script src="assets/icons.js?v=20261106a"></script><script src="assets/app.js?v=20261106a"></script>
 <style>
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .stats .card { padding: 16px 18px; display: flex; gap: 14px; align-items: center; }
@@ -24,10 +24,10 @@
 <body data-page="admin">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row between" style="margin:6px 0 16px"><div><div class="row"><h1 class="h-page">审核与管理</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>会长团权限</span></div><p class="muted" style="margin-top:2px">活动页内容管理、成员与权限、操作日志。拥有会长团权限（含额外授予）的同学可见；活动申报、资源和资料的审批在<a class="lnk" href="workbench.html#review">工作台 · 审批</a></p></div>
-<div class="tabs rel" id="tabs" style="border:0"><span class="mk" style="left:-14px;top:-8px">1</span><a class="on" data-t="content">内容管理</a><a data-t="members">成员与权限</a><a data-t="log">操作日志</a></div></div>
+<div class="row between" style="margin:6px 0 16px"><div><div class="row"><h1 class="h-page">审核与管理</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>会长团权限</span></div><p class="muted" style="margin-top:2px">活动页内容管理、成员与权限、想法共建、操作日志。拥有会长团权限（含额外授予）的同学可见，AI俱乐部部长可见“想法共建”；活动申报、资源和资料的审批在<a class="lnk" href="workbench.html#review">工作台 · 审批</a></p></div>
+<div class="tabs rel" id="tabs" style="border:0"><span class="mk" style="left:-14px;top:-8px">1</span><a class="on" data-t="content">内容管理</a><a data-t="members">成员与权限</a><a data-t="ideas">想法共建</a><a data-t="log">操作日志</a></div></div>
 
-<div class="notice n-amber" style="margin-bottom:14px"><i class="ic" data-i="LuLock"></i><div>演示用户（部长）没有会长团权限，在正式系统中看不到这个页面。下面是会长团看到的内容示意。</div></div>
+<div class="notice n-amber" style="margin-bottom:14px"><i class="ic" data-i="LuLock"></i><div>演示用户是 AI俱乐部部长：在正式系统中只能看到“想法共建”（想法的处理人是会长团和 AI俱乐部部长）。其他标签是会长团看到的内容示意。</div></div>
 
 <div data-panel="content">
 <div class="card rel"><span class="mk" style="left:-8px;top:-8px">3</span>
@@ -65,10 +65,38 @@
     <div class="grant"><span class="gb"></span><div class="grow"><b>内容管理</b><span>活动页内容的下架和删除（不含成员权限）</span></div></div>
     <div class="grid g2" style="margin-top:10px">
       <div class="field"><div class="label">有效期至 <span class="req">*</span></div><div class="input">2027-01-31（学期末）</div></div>
-      <div class="field"><div class="label">原因</div><div class="input">协助会长团统筹积分方案</div></div>
+      <div class="field"><div class="label">原因</div><div class="input">协助会长团审核活动内容</div></div>
     </div>
     <div class="row" style="margin-top:4px"><span class="xs muted grow">变更记入操作日志；到期自动失效，换届时重新授权</span><span class="btn btn-p btn-sm" data-done="已保存，同学 E 下次登录生效">保存</span></div>
   </div>
+</div>
+</div>
+
+<div data-panel="ideas" hidden>
+<div class="cols" style="grid-template-columns:1fr 420px">
+<div class="card">
+  <div class="pad" style="padding-bottom:10px"><div class="seg pick"><a class="on">全部 7</a><a>待处理 2</a><a>评估中</a><a>已排期</a><a>开发中</a><a>已上线</a><a>暂不做</a></div></div>
+  <table class="tbl mem">
+    <tr><th>想法</th><th style="width:100px">提出人</th><th style="width:90px">状态</th><th style="width:100px">最近更新</th></tr>
+    <tr class="on"><td><div class="b">办活动助手</div><div class="xs muted">2 条回复</div></td><td>张同学</td><td><span class="tag t-amber">评估中</span></td><td class="small">今天 09:12</td></tr>
+    <tr class=""><td><div class="b">报名表自动分组</div><div class="xs muted">未回复</div></td><td>同学 M</td><td><span class="tag ">待处理</span></td><td class="small">今天 08:40</td></tr>
+    <tr class=""><td><div class="b">会议纪要整理</div><div class="xs muted">未回复</div></td><td>同学 C</td><td><span class="tag ">待处理</span></td><td class="small">昨天</td></tr>
+    <tr class=""><td><div class="b">表格批量处理</div><div class="xs muted">1 条回复</div></td><td>张同学</td><td><span class="tag t-blue">已排期</span></td><td class="small">3 天前</td></tr>
+    <tr class=""><td><div class="b">换届交接包</div><div class="xs muted">3 条回复</div></td><td>同学 A</td><td><span class="tag t-blue">已排期</span></td><td class="small">上周</td></tr>
+  </table>
+</div>
+<div class="card pad">
+  <div class="row between"><span class="h-sec">办活动助手</span><div class="seg pick"><a>待处理</a><a class="on">评估中</a><a>已排期</a><a>暂不做</a></div></div>
+  <div class="small" style="margin-top:8px">骨干准备办一场活动时，先看往届怎么办的</div>
+  <div class="xs muted" style="margin-top:4px">给它：一句话描述活动想法 → 得到：往届复盘、可请嘉宾和对接人、模板、申报表草稿</div>
+  <div class="xs muted" style="margin-top:4px">张同学 · 3 天前提出</div>
+  <div class="thread">
+    <div class="reply"><span class="av av-sm a2">A</span><div class="grow"><div class="xs muted">同学 A（处理人）· 昨天</div><div class="small">方向很好。想先确认：往届复盘现在大多在飞书里，你希望它直接读飞书，还是先从知识库里已上传的资料做？</div></div></div>
+    <div class="reply"><span class="av av-sm a1">张</span><div class="grow"><div class="xs muted">张同学（提出人）· 3 小时前</div><div class="small">先从知识库做就行，飞书的以后再说。</div></div></div>
+    <div class="row" style="margin-top:4px"><div class="input ph grow">回复提出人：进展、需要补充的信息、为什么暂不做</div><span class="btn btn-p btn-sm" data-done="已回复，提出人会收到通知">回复</span></div>
+  </div>
+  <div class="xs muted" style="margin-top:10px">改状态、回复都会通知提出人；提出人回复后，回复过的处理人会收到通知</div>
+</div>
 </div>
 </div>
 
@@ -89,7 +117,7 @@ const show = (t) => {
 };
 document.querySelectorAll("#tabs a").forEach(a => a.addEventListener("click", () => show(a.dataset.t)));
 const h = location.hash;
-if (h.includes("members")) show("members"); else if (h.includes("content")) show("content");
+if (h.includes("members")) show("members"); else if (h.includes("ideas")) show("ideas"); else if (h.includes("content")) show("content");
 document.querySelectorAll(".grant").forEach(g => g.addEventListener("click", () => g.classList.toggle("on")));
 </script>
 </div></div></div></div>

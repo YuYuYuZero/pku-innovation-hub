@@ -17,7 +17,7 @@ const NAV = [
     ["events", "活动", "events.html", "LuCalendarDays"],
   ] },
   { g: "管理 · 平台管理", items: [
-    ["admin", "审核与管理", "admin.html", "LuShieldCheck", 1],
+    ["admin", "审核与管理", "admin.html", "LuShieldCheck"],
   ] },
 ];
 
@@ -29,6 +29,8 @@ const NOTES = [
   ["2 条资源待审核", "外联部提交 · 含 1 条疑似重复", "workbench.html#review", "LuInbox"],
   ["同学 C 有 1 项工作已逾期", "可以督办 · 昨天", "workbench.html", "LuClock"],
   ["你录入的资源已通过审核", "示例机构 F · 2 天前", "resource_detail.html", "LuCircleCheck"],
+  ["你的想法「表格批量处理」：已排期", "想法共建 · 3 天前", "index.html#my-ideas", "LuLightbulb"],
+  ["新想法：报名表自动分组", "想法共建 · 同学 M 提出", "admin.html#ideas", "LuLightbulb"],
 ];
 
 function renderShell() {
@@ -39,7 +41,7 @@ function renderShell() {
     sb.innerHTML = `<a class="brand" href="index.html">${LOGO}<div class="wm"><b>北大创新学社</b><span>资源 · 工具 · 社区</span></div></a>` +
       NAV.map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}</div>` : ""}` + g.items.map(([id, t, href, icon, lock, cnt]) =>
         `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${cnt ? `<span class="cnt">${cnt}</span>` : lock ? `<span class="lk">${ic("LuLock")}</span>` : ""}</a>`).join("") + `</div>`).join("") +
-      `<a class="me" href="#"><span class="av av-sm a1">张</span><div class="who"><b>张同学</b><span>AI俱乐部 · 部长</span></div>${ic("LuSettings")}</a>`;
+      `<a class="me" href="#"><span class="av av-sm a1">张</span><div class="who"><b>张同学</b><span>AI俱乐部 · 部长</span></div>${ic("LuChevronDown")}</a>`;
   }
   // 不再用顶栏：搜索放在首页和各板块内部，通知铃铛放在侧边栏 Logo 旁边
   const tb = document.getElementById("tb");
@@ -58,17 +60,18 @@ function renderShell() {
 
 }
 
-// 想法共建：每个页面右上角的入口，点开是右侧抽屉（不放在导航里）
+// 想法共建：每个页面右上角的入口，点开是右侧抽屉（不放在导航里）。想法只有提出人和处理人（会长团、AI俱乐部部长）能看
+const IDEA_ROW = (t, st, tone, n, open) => `<div class="idea"><div class="grow"><div class="row"><span class="b grow">${t}</span>${n ? `<span class="xs muted">${n} 条回复</span>` : ""}<span class="tag ${tone}">${st}</span></div>${open || ""}</div></div>`;
 const IDEAS = `<div class="drawer"><div class="dr-h"><b>想法共建</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
-  <div class="dr-b"><div class="row" style="margin-bottom:12px"><p class="small muted grow">有什么重复、费时的事想交给 AI，或者对平台有什么想法？写清谁、在什么场景、给它什么、想要什么。大家投票，票多的优先做</p><span class="btn btn-p btn-sm" data-done="已提交，大家可以投票了">提一个想法</span></div>
-  <div class="seg pick" style="margin-bottom:10px"><a class="on">全部</a><a>想法</a><a>评审中</a><a>已排期</a><a>已上线</a></div>
-  ${`<div>
-  <div class="idea"><div class="vote on"><b style="font-size:11px">▲</b>3</div><div class="grow"><div class="row"><span class="b">办活动助手</span><span class="tag t-amber">评审中</span></div><div class="small" style="margin-top:4px">骨干准备办一场活动时，先看往届怎么办的</div><div class="xs muted" style="margin-top:2px">给它：一句话描述活动想法 → 得到：往届复盘、可请嘉宾和对接人、模板、申报表草稿</div><div class="xs muted" style="margin-top:4px">张同学 · 来自 技术文档 · AI 二期</div></div></div>
-  <div class="idea"><div class="vote"><b style="font-size:11px">▲</b>2</div><div class="grow"><div class="row"><span class="b">会议纪要整理</span><span class="tag">想法</span></div><div class="small" style="margin-top:4px">部门例会、对接会结束后整理纪要和待办</div><div class="xs muted" style="margin-top:2px">给它：会议文字记录 → 得到：纪要、决议、待办；待办可一键建成工作台任务</div><div class="xs muted" style="margin-top:4px">同学 C · 来自 研讨会（元宝纪要）</div></div></div>
-  <div class="idea"><div class="vote"><b style="font-size:11px">▲</b>1</div><div class="grow"><div class="row"><span class="b">表格批量处理</span><span class="tag">想法</span></div><div class="small" style="margin-top:4px">报名表、问卷导出后要逐行分类、打标签、写摘要</div><div class="xs muted" style="margin-top:2px">给它：一张 Excel + 一句处理要求 → 得到：多出一列 AI 结果，可导出</div></div></div>
-  <div class="idea"><div class="vote"><b style="font-size:11px">▲</b>1</div><div class="grow"><div class="row"><span class="b">换届交接包</span><span class="tag t-blue">已排期</span></div><div class="small" style="margin-top:4px">换届时离任和接任同学交接</div><div class="xs muted" style="margin-top:2px">给它：离任同学名下的资源、资料、进行中工作 → 得到：交接清单和摘要</div></div></div>
-  <div class="idea"><div class="vote"><b style="font-size:11px">▲</b>0</div><div class="grow"><div class="row"><span class="b">推文与通知生成</span><span class="tag">想法</span></div><div class="small" style="margin-top:4px">宣传和活动负责人写推文、群通知</div><div class="xs muted" style="margin-top:2px">给它：活动信息或申报表 → 得到：推文初稿、群通知、海报文案</div></div></div>
-</div>`}</div></div>`;
+  <div class="dr-b"><div class="row" style="margin-bottom:12px"><p class="small muted grow">有什么重复、费时的事想交给 AI，或者对平台有什么想法？写清谁、在什么场景、给它什么、想要什么。想法只有你和处理人（会长团、AI俱乐部部长）能看到，回复和进展会通过通知告诉你。</p><span class="btn btn-p btn-sm" data-done="已提交，处理后会通知你">提一个想法</span></div>
+  <div class="h-sec" style="margin-bottom:4px">我提的想法</div>
+  ${IDEA_ROW("办活动助手", "评估中", "t-amber", 2, `<div class="small" style="margin-top:8px">骨干准备办一场活动时，先看往届怎么办的</div><div class="xs muted" style="margin-top:2px">给它：一句话描述活动想法 → 得到：往届复盘、可请嘉宾和对接人、模板、申报表草稿</div>
+    <div class="thread"><div class="reply"><span class="av av-sm a2">A</span><div class="grow"><div class="xs muted">同学 A（处理人）· 昨天</div><div class="small">方向很好。想先确认：往届复盘现在大多在飞书里，你希望它直接读飞书，还是先从知识库里已上传的资料做？</div></div></div>
+    <div class="reply"><span class="av av-sm a1">张</span><div class="grow"><div class="xs muted">张同学（提出人）· 3 小时前</div><div class="small">先从知识库做就行，飞书的以后再说。</div></div></div>
+    <div class="row" style="margin-top:4px"><div class="input ph grow">补充说明或回复处理人</div><span class="btn btn-p btn-sm" data-done="已回复">回复</span></div></div>`)}
+  ${IDEA_ROW("部门周报", "待处理", "", 0)}
+  ${IDEA_ROW("表格批量处理", "已排期", "t-blue", 1)}
+</div></div>`;
 function renderIdeas() {
   const main = document.querySelector(".main");
   if (!main || !document.getElementById("sb")) return;
@@ -77,6 +80,7 @@ function renderIdeas() {
   main.appendChild(btn);
   const tpl = document.createElement("template"); tpl.id = "dlg-ideas"; tpl.innerHTML = IDEAS; document.body.appendChild(tpl);
   btn.onclick = () => openDlg("ideas");
+  if (location.hash === "#my-ideas") openDlg("ideas");   // 通知跳转过来时直接打开
 }
 
 function renderIcons() {

@@ -324,8 +324,8 @@ body.anno .mk {
 .drawer .dr-h { display: flex; align-items: center; padding: 18px 22px; border-bottom: 1px solid var(--line); font-size: 16px; }
 .drawer .dr-b { padding: 16px 22px; overflow: auto; }
 .drawer .idea { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); }
-.drawer .vote { width: 46px; height: 52px; border: 1px solid var(--line); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); flex: none; font-size: 14px; }
-.drawer .vote.on { border-color: var(--red); color: var(--red); background: var(--red-50); }
+.thread { margin-top: 10px; padding: 10px 12px; background: #FAF9F7; border: 1px solid var(--line); border-radius: 10px; display: flex; flex-direction: column; gap: 10px; }
+.reply { display: flex; gap: 8px; align-items: flex-start; }
 
 /* 二维码展示（与 app 的 QrView 一致） */
 .qr-view { display: flex; gap: 10px; align-items: flex-start; }
