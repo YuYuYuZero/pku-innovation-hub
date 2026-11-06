@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>知识库 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261108a"><script src="assets/icons.js?v=20261108a"></script><script src="assets/app.js?v=20261108a"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261109a"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261109a"></script>
 <style>
 .sbox { display: flex; gap: 10px; }
 .sbox .input { flex: 1; height: 48px; font-size: 15px; }
@@ -30,17 +30,16 @@
 <div class="page"><div class="wrap" style="max-width:1240px">
 <div class="row between" style="margin:6px 0 4px"><div><h1 class="h-page">知识库</h1><p class="muted" style="margin-top:2px">学社的工作文档、模板和往届资料。每份文档有自己的可读、读写范围，默认全体成员可读、你和会长团可读写；每次上传新版本都留有记录</p></div>
 <div class="row rel"><span class="mk" style="left:-10px;top:-8px">1</span><span class="btn" data-dlg="folder"><i class="ic" data-i="LuPlus"></i>新建文件夹</span><span class="btn btn-p" data-dlg="upload"><i class="ic" data-i="LuUpload"></i>上传文件</span></div></div>
-<div class="xs muted" style="margin-bottom:12px">今天还能上传文件 3 次、新建文件夹 3 次（每天 3 次，部长和会长团不限）</div>
+<div style="margin-bottom:12px"></div>
 
 <div class="card pad" style="padding:14px 16px">
-  <div class="sbox"><div class="input ph"><i class="ic" data-i="LuSearch" style="color:var(--muted)"></i>搜索名称、说明、标签，如：复盘 模板</div><span class="btn btn-p btn-lg" data-done="找到 2 份文档">搜索</span></div>
+  <div class="sbox"><div class="input ph"><i class="ic" data-i="LuSearch" style="color:var(--muted)"></i>搜索名称、备注、标签，如：复盘 模板</div><span class="btn btn-p btn-lg" data-done="找到 2 份文档">搜索</span></div>
 </div>
 
 <div class="kb-cols">
   <div class="card tree rel"><span class="mk" style="left:-8px;top:-8px">2</span>
     <div class="sp on"><i class="ic" data-i="LuLibrary"></i>全部</div>
     <div class="sp"><i class="ic" data-i="LuUser"></i>我上传的</div>
-    <div class="sp"><i class="ic" data-i="LuShare2"></i>指定共享给我的</div>
     <div class="sep"></div>
     <div class="sp"><i class="ic" data-i="LuFolder" style="color:var(--red)"></i>学社总览<span class="c">4</span></div>
     <div class="sp"><i class="ic" data-i="LuFolder" style="color:var(--red)"></i>部门手册<span class="c">9</span></div>
@@ -71,7 +70,7 @@
   </div>
 </div>
 
-<div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuCircleAlert"></i><div>① 新建、上传放到当前文件夹（有读写权限时）；② 左侧切换全部、我上传的、指定共享给我的；③ 内置 6 个文件夹谁都能往里放，不能改名和删除；④ 每行右侧“…”：编辑信息 / 移动（读写）、可读 / 读写范围（所有者）、删除（会长团）。</div></div>
+<div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuCircleAlert"></i><div>① 新建、上传放到当前文件夹（有读写权限时）；② 左侧切换全部、我上传的（能看到的都是你有权限的）；③ 内置 6 个文件夹谁都能往里放，不能改名和删除；④ 每行右侧“…”：编辑信息 / 移动（读写）、可读 / 读写范围（所有者）、删除（会长团）。</div></div>
 </div></div></div></div>
 
 <template id="dlg-upload"><div class="dlg dlg-lg">
@@ -80,7 +79,7 @@
     <div class="drop" style="padding:12px;text-align:left;display:flex;gap:12px;align-items:center"><i class="ic" data-i="LuFileText" style="margin:0;font-size:28px;color:var(--blue)"></i><div class="grow"><div class="b" style="font-size:13.5px">黑客松2026春_复盘.docx</div><div class="xs muted">1.4 MB · 点击更换</div></div></div>
     <div class="xs muted" style="margin:6px 0 14px">支持 Word、Excel、PPT、WPS、PDF、Markdown、TXT、CSV、OpenDocument、Pages/Numbers/Keynote、图片、压缩包等，单个不超过 50 MB</div>
     <div class="field"><div class="label">名称 <span class="req">*</span></div><div class="input">黑客松2026春_复盘</div></div>
-    <div class="field"><div class="label">说明</div><div class="input ph textarea">一两句话，方便别人搜到、看懂</div></div>
+    <div class="field"><div class="label">备注</div><div class="input ph textarea">一两句话，方便别人搜到、看懂；以后有读写权限的人可以修改，留编辑记录</div></div>
     <div class="field"><div class="label">标签</div><div class="input"><span class="tag">黑客松</span><span class="tag">复盘</span></div></div>
     <div class="row small" style="gap:8px"><span class="muted">权限</span><span class="tag t-green"><i class="ic" data-i="LuUsers"></i>可读 · 全体成员</span><span class="tag t-line">读写 · 会长团</span><a class="lnk" onclick="this.closest('.bd').querySelector('.acl-more').hidden=false;this.parentNode.hidden=true">调整</a></div>
     <div class="acl-more" hidden>
@@ -90,16 +89,16 @@
       <div class="xs muted">可读写的人自动可读；你始终可读写，只有你能改这两项；删除只有会长团能操作。</div>
     </div>
   </div>
-  <div class="fd"><span class="xs muted grow">今天还能上传文件 3 次（每天 3 次，部长和会长团不限）</span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已上传">上传</span></div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已上传">上传</span></div>
 </div></template>
 <template id="dlg-folder"><div class="dlg">
   <div class="hd"><b style="font-size:16px">新建文件夹</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
   <div class="bd">
     <div class="field"><div class="label">名称 <span class="req">*</span></div><div class="input ph">如：2026 秋季读书会</div></div>
-    <div class="field"><div class="label">说明</div><div class="input ph textarea">一两句话，方便别人搜到、看懂</div></div>
+    <div class="field"><div class="label">备注</div><div class="input ph textarea">一两句话，方便别人搜到、看懂；以后有读写权限的人可以修改，留编辑记录</div></div>
     <div class="row small" style="gap:8px"><span class="muted">权限</span><span class="tag t-green"><i class="ic" data-i="LuUsers"></i>可读 · 全体成员</span><span class="tag t-line">读写 · 会长团</span><a class="lnk">调整</a></div>
     <div class="xs muted" style="margin-top:8px">文件夹的范围只管文件夹本身（看到它、往里放东西）；里面每份文档各有自己的范围。</div>
   </div>
-  <div class="fd"><span class="xs muted grow">今天还能新建文件夹 3 次</span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已新建文件夹">新建</span></div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已新建文件夹">新建</span></div>
 </div></template>
 </body></html>

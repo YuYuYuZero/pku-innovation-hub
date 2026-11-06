@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>知识库 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261108a"><script src="assets/icons.js?v=20261108a"></script><script src="assets/app.js?v=20261108a"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261109a"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261109a"></script>
 <style>
 .kb { display: grid; grid-template-columns: 240px 1fr 330px; gap: 14px; align-items: start; }
 .tree { padding: 10px 8px; }
@@ -20,7 +20,8 @@
 .ver { display: flex; gap: 8px; align-items: flex-start; padding: 10px 8px; margin: 0 -8px; border-radius: 8px; border-bottom: 1px solid var(--line); }
 .ver:last-child { border-bottom: 0; }
 .ver.on { background: var(--red-50); }
-.menu { position: relative; }
+.rlog { margin-top: 8px; padding: 8px 10px; background: #FAF9F7; border: 1px solid var(--line); border-radius: 8px; display: flex; flex-direction: column; gap: 8px; }
+.rlog[hidden] { display: none; }
 @media (max-width: 1080px) { .kb { grid-template-columns: 1fr; } .tree { display: none; } }
 </style></head>
 <body data-page="kb">
@@ -54,8 +55,14 @@
   </div>
   <div>
     <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">3</span>
+      <div class="row between"><span class="small b">备注</span><a class="lnk small" data-dlg="remark">编辑</a></div>
+      <p class="small" style="margin:6px 0 4px">嘉宾分享要点和问答整理；问答部分以录音为准</p>
+      <div class="xs muted">最新：张同学 · 11-06 15:20</div>
+      <a class="lnk xs" onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">编辑记录 · 2</a>
+      <div class="rlog" hidden><div><div class="xs muted">张同学 · 11-06 15:20</div><div class="small">嘉宾分享要点和问答整理；问答部分以录音为准</div></div><div><div class="xs muted">同学 B · 10-24 21:10</div><div class="small">嘉宾分享要点和问答整理</div></div></div>
+    </div>
+    <div class="card pad" style="margin-top:14px">
       <div class="small b" style="margin-bottom:8px">文件信息</div>
-      <p class="small" style="margin-bottom:10px">嘉宾分享要点和问答整理</p>
       <dl class="kv"><dt>所有者</dt><dd>同学 B</dd><dt>位置</dt><dd>活动档案</dd><dt>可读</dt><dd>AI俱乐部、外联部、综合管理部</dd><dt>读写</dt><dd>同学 B、张同学（所有者始终可读写）</dd><dt>创建</dt><dd>10-24 21:10</dd><dt>最近修改</dt><dd>11-06 14:02 · 同学 B</dd></dl>
     </div>
     <div class="card pad rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">4</span>
@@ -66,7 +73,7 @@
     </div>
   </div>
 </div>
-<div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuCircleAlert"></i><div>① 有读写权限才看到“上传新版本”；“…”里：编辑信息 / 移动（读写）、可读 / 读写范围（所有者）、删除文档（会长团）。② PDF 内嵌预览，文本和图片直接显示，Word、Excel、PPT 等下载后打开。③ 文件信息含所有者、位置、可读 / 读写范围、创建和最近修改时间。④ 版本记录：谁在什么时候上传了哪一版、改了什么。</div></div>
+<div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuCircleAlert"></i><div>① 有读写权限才看到“上传新版本”；“…”里：编辑信息 / 移动（读写）、可读 / 读写范围（所有者）、删除文档（会长团）。② PDF 内嵌预览，文本和图片直接显示，Word、Excel、PPT 等下载后打开。③ 备注：有读写权限的人可以编辑，显示最新修改人和时间，留编辑记录；文件信息含所有者、位置、可读 / 读写范围、创建和最近修改时间。④ 版本记录：谁在什么时候上传了哪一版、改了什么。</div></div>
 </div></div></div></div>
 
 <template id="dlg-version"><div class="dlg">
@@ -75,7 +82,12 @@
     <div class="drop"><i class="ic" data-i="LuUpload"></i>拖到这里或点击选择文件</div>
     <div class="field" style="margin-top:14px"><div class="label">这一版改了什么</div><div class="input ph">如：补充了问答部分</div><div class="xs muted" style="margin-top:4px">会显示在版本记录里；所有者会收到通知</div></div>
   </div>
-  <div class="fd"><span class="xs muted grow">今天还能上传文件 3 次（每天 3 次，部长和会长团不限）</span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已上传 v3">上传为 v3</span></div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已上传 v3">上传为 v3</span></div>
+</div></template>
+<template id="dlg-remark"><div class="dlg">
+  <div class="hd"><b style="font-size:16px">编辑备注</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd"><div class="input textarea" style="min-height:90px">嘉宾分享要点和问答整理；问答部分以录音为准</div></div>
+  <div class="fd"><span class="xs muted grow">保存后记入编辑记录，显示你是最新修改人</span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已保存备注">保存</span></div>
 </div></template>
 <template id="dlg-acl"><div class="dlg">
   <div class="hd"><b style="font-size:16px">可读 / 读写范围</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>

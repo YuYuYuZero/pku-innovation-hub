@@ -13,7 +13,7 @@ const NAV = [
   { g: "工具 · AI", items: [
     ["assistant", "AI 工具箱", "assistant.html", "LuWandSparkles"],
   ] },
-  { g: "社区 · 内测版", items: [
+  { g: "社区 · 活动广场", items: [
     ["events", "活动", "events.html", "LuCalendarDays"],
   ] },
   { g: "管理 · 平台管理", items: [

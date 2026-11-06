@@ -337,3 +337,7 @@ body.anno .mk {
 .img-pick { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
 .img-pick .thumb { width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
 .img-pick .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.img-pick .thumb.poster { background: linear-gradient(160deg, #8F1D22, #C2413B); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; }
+.img-pick .thumb.poster b { color: #fff; font-size: 10px; letter-spacing: .1em; }
+/* 侧边栏是 sticky（自成层叠上下文），通知弹层打开时把整个侧边栏提到最上层，避免被页面内容盖住 */
+.sb:has(.dd:not([hidden])) { z-index: 80; }

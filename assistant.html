@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>AI 工具箱 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261108a"><script src="assets/icons.js?v=20261108a"></script><script src="assets/app.js?v=20261108a"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261109a"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261109a"></script>
 <style>
 .cols { display: grid; grid-template-columns: 460px 1fr; gap: 16px; align-items: start; }
 .fr { display: grid; grid-template-columns: 1fr 90px 92px 50px; gap: 6px; align-items: center; padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 13px; }
@@ -9,19 +9,18 @@
 .paste { border: 1px solid var(--line-2); border-radius: 12px; padding: 12px 14px; background: #fff; font-size: 13px; line-height: 1.8; min-height: 150px; }
 .tool { display: inline-flex; flex-direction: column; padding: 10px 16px; border: 1px solid var(--red); border-radius: 12px; background: var(--red-50); min-width: 160px; }
 .tool b { color: var(--red); font-size: 14.5px; } .tool span { font-size: 12px; color: var(--muted); }
-.tool.soon { border-color: var(--line); border-style: dashed; background: #fff; opacity: .7; }
+.tool.soon { border-color: var(--line); border-style: dashed; background: #fff; cursor: pointer; }
 .tool.soon b { color: var(--faint); font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
-.tool.soon .soon-tag { font-size: 10px; font-weight: 600; color: var(--faint); background: var(--faint); border: none; border-radius: 999px; padding: 1px 6px; }
 </style></head>
 <body data-page="assistant">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1240px">
 <div style="margin:6px 0 14px"><h1 class="h-page">AI 工具箱</h1><p class="muted" style="margin-top:2px">通用的 AI 能力：谁都能拿来处理自己手上的文字和表格。结果由你核对后再用，AI 不会替你提交或对外发消息</p></div>
 <div class="row" style="gap:10px;flex-wrap:wrap;margin-bottom:12px">
-  <div class="tool rel"><span class="mk" style="left:-8px;top:-8px">1</span><b>文本转表格</b><span>名单 / 通知 / 长文本 → 表格 / JSON</span></div>
-  <div class="tool soon" data-done="敬请期待，欢迎去「想法共建」提需求"><b>更多工具 <span class="soon-tag">敬请期待</span></b><span>按大家的需求陆续接入</span></div>
+  <div class="tool rel"><span class="mk" style="left:-8px;top:-8px">1</span><b>结构化解析</b><span>名单 / 通知 / 长文本 → 表格 / JSON</span></div>
+  <div class="tool soon" onclick="document.querySelector('.ideas-btn').click()"><b><i class="ic" data-i="LuLightbulb"></i>更多工具</b><span>敬请期待，欢迎去「想法共建」提需求</span></div>
 </div>
-<p class="muted small" style="margin-bottom:14px">同一套解析引擎，平台处处在用：<b>活动录入、资源录入、资料预填</b>都是它配好的预设模板。你也能自己配字段，粘贴一段文字，AI 就按字段解析成表格，导出 JSON、Excel 或 CSV——适合整理接龙名单、活动通知、名片、聊天记录。</p>
+<p class="muted small" style="margin-bottom:14px"><b>录入活动</b>用的就是它的内置模板「活动信息」。你也能自己配字段，粘贴一段文字，AI 就按字段解析成表格，导出 JSON、Excel 或 CSV——适合整理接龙名单、活动通知、名片、聊天记录。</p>
 <div class="cols">
   <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">2</span>
     <div class="row"><div class="input grow">活动信息<i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div><span class="btn btn-sm">新建</span></div>
@@ -44,7 +43,7 @@
       <div class="seg pick" style="margin-bottom:8px"><a class="on">粘贴文字</a><a>公众号链接</a></div>
       <div class="paste">【下周活动汇总】<br>1. 大模型应用工作坊（第 3 期）：11 月 2 日 14:00，二教 305，嘉宾张三（某 AI 公司），报名见推文<br>2. 论文读书会：11 月 5 日 20:00，线上飞书会议，嘉宾李四（信科）、王五（光华）</div>
       <div class="row" style="margin-top:10px"><span class="btn btn-p" data-done="解析完成：2 条"><i class="ic" data-i="LuSparkles"></i>解析</span><span class="small muted">AI 只根据原文填写，原文没有的留空；结果请核对后再用</span></div>
-      <div class="img-pick"><div class="thumb"><img src="assets/demo-qr.png" alt="海报"></div><span class="btn btn-sm" data-done="已添加图片（自动压缩）"><i class="ic" data-i="LuImage"></i>上传海报图片</span><span class="xs muted">可直接 Ctrl+V 粘贴截图；海报里的文字和二维码也能识别，最多 10 张</span></div>
+      <div class="img-pick"><div class="thumb poster" title="已添加的海报（示意）"><b>海报</b></div><span class="btn btn-sm" data-done="已添加图片（自动压缩）"><i class="ic" data-i="LuImage"></i>上传海报图片</span><span class="xs muted">可直接 Ctrl+V 粘贴截图；海报里的文字和二维码也能识别，最多 10 张</span></div>
       <p class="xs muted" style="margin:8px 0 0">也可以切到「公众号链接」直接粘贴文章链接：会按原顺序读取正文和配图（海报里的时间、地点、报名方式也能识别），最多 10 张图</p>
     </div>
     <div class="card rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">3</span>
