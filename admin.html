@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>审核与管理 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261107d"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107d"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261107e"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107e"></script>
 <style>
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .stats .card { padding: 16px 18px; display: flex; gap: 14px; align-items: center; }
@@ -24,7 +24,7 @@
 <body data-page="admin">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row between" style="margin:6px 0 16px"><div><div class="row"><h1 class="h-page">审核与管理</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>会长团权限</span></div><p class="muted" style="margin-top:2px">活动页内容管理、成员与权限、想法共建、操作日志。拥有会长团权限（含额外授予）的同学可见，AI俱乐部部长可见“想法共建”；活动申报、资源和资料的审批在<a class="lnk" href="workbench.html#review">工作台 · 审批</a></p></div>
+<div class="row between" style="margin:6px 0 16px"><div><div class="row"><h1 class="h-page">审核与管理</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>会长团权限</span></div><p class="muted" style="margin-top:2px">活动页内容管理、成员与权限、想法共建、操作日志。拥有会长团权限（含额外授予）的同学可见，AI俱乐部部长可见“想法共建”；资源信息核对在<a class="lnk" href="resource_review.html">资源审核</a></p></div>
 <div class="tabs rel" id="tabs" style="border:0"><span class="mk" style="left:-14px;top:-8px">1</span><a class="on" data-t="content">内容管理</a><a data-t="members">成员与权限</a><a data-t="ideas">想法共建</a><a data-t="log">操作日志</a></div></div>
 
 <div class="notice n-amber" style="margin-bottom:14px"><i class="ic" data-i="LuLock"></i><div>演示用户是 AI俱乐部部长：在正式系统中只能看到“想法共建”（想法的处理人是会长团和 AI俱乐部部长）。其他标签是会长团看到的内容示意。</div></div>
@@ -34,8 +34,8 @@
   <div class="pad row between" style="padding-bottom:10px"><div class="seg pick"><a class="on">展示中</a><a>已下架</a></div><span class="small muted">下架后活动页不再显示，可以恢复；删除要写原因，记入操作日志</span></div>
   <table class="tbl rv">
     <tr><th>内容</th><th style="width:150px">来源</th><th style="width:110px">状态</th><th style="width:150px"></th></tr>
-    <tr><td><div class="row"><span class="tag t-blue">活动</span><span class="b">AI Agent 工作坊（第 2 期）</span></div><div class="small muted" style="margin-top:4px">某 AI 社团 · 11 月 9 日</div></td><td class="small">工作台录入<br><span class="muted">同学 G</span></td><td><span class="tag t-green">展示中</span></td><td><span class="btn btn-sm" data-done="已下架，可在“已下架”里恢复">下架</span> <span class="btn btn-sm" data-dlg="del">删除</span></td></tr>
-    <tr><td><div class="row"><span class="tag t-blue">活动</span><span class="b">AI for Campus 黑客松</span></div><div class="small muted" style="margin-top:4px">AI俱乐部 · 12 月 6–7 日</div></td><td class="small">学社主办<br><span class="muted">审批通过后自动生成</span></td><td><span class="tag t-green">展示中</span></td><td><span class="btn btn-sm" data-done="已下架，可在“已下架”里恢复">下架</span></td></tr>
+    <tr><td><div class="row"><span class="tag t-blue">活动</span><span class="b">AI Agent 工作坊（第 2 期）</span></div><div class="small muted" style="margin-top:4px">某 AI 社团 · 11 月 9 日</div></td><td class="small">活动页录入<br><span class="muted">同学 G</span></td><td><span class="tag t-green">展示中</span></td><td><span class="btn btn-sm" data-done="已下架，可在“已下架”里恢复">下架</span> <span class="btn btn-sm" data-dlg="del">删除</span></td></tr>
+    <tr><td><div class="row"><span class="tag t-blue">活动</span><span class="b">AI for Campus 黑客松</span></div><div class="small muted" style="margin-top:4px">AI俱乐部 · 12 月 6–7 日</div></td><td class="small">学社主办<br><span class="muted">已收录的活动信息</span></td><td><span class="tag t-green">展示中</span></td><td><span class="btn btn-sm" data-done="已下架，可在“已下架”里恢复">下架</span></td></tr>
     
   </table>
 </div>
@@ -59,8 +59,8 @@
     <div class="small muted" style="margin:8px 0 6px">基础身份来自招新表，每学期随名单更新</div>
     <div class="input" style="background:#FAF9F7">综合管理部 · 骨干</div>
     <div class="small b" style="margin:14px 0 2px">额外授权</div>
-    <div class="grant on"><span class="gb"><i class="ic" data-i="LuCheck"></i></span><div class="grow"><b>会长团权限</b><span>查看全社进度、活动终审、权限分配</span></div></div>
-    <div class="grant"><span class="gb"></span><div class="grow"><b>部门管理权限</b><span>按部长权限管理指定部门：查看进度、分配、审批</span></div></div>
+    <div class="grant on"><span class="gb"><i class="ic" data-i="LuCheck"></i></span><div class="grow"><b>会长团权限</b><span>管理活动内容、成员与权限、知识库和操作日志</span></div></div>
+    <div class="grant"><span class="gb"></span><div class="grow"><b>部门管理权限</b><span>按部长身份访问指定部门资料与相应工具</span></div></div>
     <div class="grant"><span class="gb"></span><div class="grow"><b>维护人</b><span>审核资源和资料，查看“仅维护人可见”的联系方式</span></div></div>
     <div class="grant"><span class="gb"></span><div class="grow"><b>内容管理</b><span>活动页内容的下架和删除（不含成员权限）</span></div></div>
     <div class="grid g2" style="margin-top:10px">
@@ -88,7 +88,7 @@
 <div class="card pad">
   <div class="row between"><span class="h-sec">办活动助手</span><div class="seg pick"><a>待处理</a><a class="on">评估中</a><a>已排期</a><a>暂不做</a></div></div>
   <div class="small" style="margin-top:8px">骨干准备办一场活动时，先看往届怎么办的</div>
-  <div class="xs muted" style="margin-top:4px">给它：一句话描述活动想法 → 得到：往届复盘、可请嘉宾和对接人、模板、申报表草稿</div>
+  <div class="xs muted" style="margin-top:4px">给它：一句话描述活动想法 → 得到：往届复盘、可请嘉宾和对接人、模板、活动策划草稿</div>
   <div class="xs muted" style="margin-top:4px">同学 B · 3 天前提出</div>
   <div class="thread">
     <div class="reply"><span class="av av-sm a2">A</span><div class="grow"><div class="xs muted">同学 A（处理人）· 昨天</div><div class="small">方向很好。想先确认：往届复盘现在都在飞书里，你希望它直接读飞书文档，还是先由各部门整理一份复盘清单？</div></div></div>

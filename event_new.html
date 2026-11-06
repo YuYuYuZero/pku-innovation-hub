@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>录入活动 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261107d"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107d"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261107e"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107e"></script>
 <style>
 .wrap.narrow { max-width: 900px; }
 .bar { display: flex; align-items: center; gap: 8px; padding: 14px 24px 0; }
@@ -26,11 +26,11 @@
 .fi .ck { width: 18px; height: 18px; border-radius: 6px; border: 1.5px solid var(--line-2); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; flex: none; }
 .fi.on .ck { background: var(--red); border-color: var(--red); }
 </style></head>
-<body data-page="workbench">
+<body data-page="event_new">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap narrow">
-<div class="row small muted" style="margin:4px 0 6px"><a href="workbench.html">工作台</a><i class="ic" data-i="LuChevronRight"></i><span>录入活动</span></div>
-<div style="margin-bottom:16px"><div class="row"><h1 class="h-page">录入活动</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干可见</span></div><p class="muted" style="margin-top:2px">录入合作社团和校外的活动，发布后出现在社区的<a class="lnk" href="events.html">活动页</a>。学社自己办的活动请用“申报活动”，终审通过后会自动出现。</p></div>
+<div class="row small muted" style="margin:4px 0 6px"><a href="events.html">活动</a><i class="ic" data-i="LuChevronRight"></i><span>录入活动</span></div>
+<div style="margin-bottom:16px"><div class="row"><h1 class="h-page">录入活动</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干可见</span></div><p class="muted" style="margin-top:2px">录入已确认的学社、合作社团和校外活动，发布后出现在<a class="lnk" href="events.html">活动页</a>。活动申报、审批和组织安排沿用现有协作方式；这里仅整理活动信息与报名入口。</p></div>
 
 <div class="card">
   <div class="bar rel"><span class="mk" style="left:-8px;top:-8px">2</span>
@@ -47,6 +47,7 @@
     <div class="notice n-amber" style="margin-bottom:18px"><i class="ic" data-i="LuTriangleAlert"></i><div><b>可能重复：</b>活动列表里已有同名活动（11 月 9 日），由同学 G 录入。<a class="lnk">查看已有活动</a> 或 继续录入。</div></div>
     <div class="rel"><span class="mk" style="left:-34px;top:-2px">4</span>
     <div class="field"><div class="label">活动名称 <span class="req">*</span><span class="conf">AI · 高</span></div><div class="input ai" id="f-title">AI Agent 工作坊（第 2 期）</div></div>
+    <div class="field"><div class="label">活动来源</div><div class="seg pick"><a>学社主办</a><a class="on">合作 / 校外收录</a></div></div>
     <div class="grid g2">
       <div class="field"><div class="label">类型<span class="conf">AI · 高</span></div><div class="input ai"><span id="f-kind">工作坊</span><i class="ic" data-i="LuChevronDown" style="margin-left:auto;color:var(--muted)"></i></div></div>
       <div class="field"><div class="label">主办方<span class="conf">AI · 高</span></div><div class="input ai">某 AI 社团（示例）</div></div>
