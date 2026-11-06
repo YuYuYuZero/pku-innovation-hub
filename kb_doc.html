@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>知识库 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261109a"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261109a"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261107b"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107b"></script>
 <style>
 .kb { display: grid; grid-template-columns: 240px 1fr 330px; gap: 14px; align-items: start; }
 .tree { padding: 10px 8px; }
@@ -32,8 +32,9 @@
   <div class="row" style="gap:12px"><div class="ti t-blue" style="width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px"><i class="ic" data-i="LuFileText"></i></div>
     <div><h1 class="h-page" style="font-size:24px">AI 产品分享会 · 活动纪要</h1>
     <div class="row" style="gap:6px;margin-top:4px"><span class="tag t-line">v2</span><span class="tag t-blue"><i class="ic" data-i="LuUsers"></i>可读 · AI俱乐部、外联部、综合管理部</span><span class="tag t-line">读写 · 同学 B、张同学</span><span class="tag">纪要</span><span class="tag">AI 产品</span></div></div></div>
-  <div class="row rel"><span class="mk" style="left:-10px;top:-8px">1</span><span class="btn" data-dlg="version"><i class="ic" data-i="LuUpload"></i>上传新版本</span><span class="btn btn-p" data-done="已开始下载（链接 10 分钟内有效）"><i class="ic" data-i="LuDownload"></i>下载</span><span class="btn" data-dlg="acl" title="可读 / 读写范围（所有者）"><i class="ic" data-i="LuEllipsis"></i></span></div>
+  <div class="row rel"><span class="mk" style="left:-10px;top:-8px">1</span><span class="btn" data-storage-upload data-dlg="version"><i class="ic" data-i="LuUpload"></i>上传新版本</span><span class="btn btn-p" data-done="已开始下载（链接 10 分钟内有效）"><i class="ic" data-i="LuDownload"></i>下载</span><span class="btn" data-dlg="info" title="编辑信息 / 移动（读写）"><i class="ic" data-i="LuEllipsis"></i></span></div>
 </div>
+<div class="notice n-amber" data-storage-warning hidden>文件存储暂不可用，请稍后重试或联系平台负责人。</div>
 <div class="kb">
   <div class="card tree">
     <div class="sp"><i class="ic" data-i="LuFolder" style="color:var(--red)"></i>学社总览<span class="c">4</span></div>
@@ -66,28 +67,33 @@
       <dl class="kv"><dt>所有者</dt><dd>同学 B</dd><dt>位置</dt><dd>活动档案</dd><dt>可读</dt><dd>AI俱乐部、外联部、综合管理部</dd><dt>读写</dt><dd>同学 B、张同学（所有者始终可读写）</dd><dt>创建</dt><dd>10-24 21:10</dd><dt>最近修改</dt><dd>11-06 14:02 · 同学 B</dd></dl>
     </div>
     <div class="card pad rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">4</span>
-      <div class="row between" style="margin-bottom:6px"><span class="small b">版本记录 · 2</span><a class="lnk small" data-dlg="version">上传新版本</a></div>
+      <div class="row between" style="margin-bottom:6px"><span class="small b">版本记录 · 2</span><a class="lnk small" data-storage-upload data-dlg="version">上传新版本</a></div>
       <div class="ver on"><div class="grow"><div class="row" style="gap:6px"><b>v2</b><span class="tag t-green">当前</span><span class="xs muted">1.2 MB</span></div><div class="small" style="margin-top:2px">补充问答部分</div><div class="xs muted" style="margin-top:2px">同学 B · 11-06 14:02</div></div><i class="ic" data-i="LuEllipsis" style="color:var(--muted)"></i></div>
       <div class="ver"><div class="grow"><div class="row" style="gap:6px"><b>v1</b><span class="xs muted">0.9 MB</span></div><div class="small" style="margin-top:2px">初稿</div><div class="xs muted" style="margin-top:2px">同学 B · 10-24 21:10</div></div><span class="btn btn-sm" data-done="已把 v1 设为当前版本">设为当前</span></div>
       <div class="xs muted" style="margin-top:8px">每个版本的“…”：预览、下载、设为当前、修改说明、删除（唯一的版本不能删）</div>
     </div>
   </div>
 </div>
-<div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuCircleAlert"></i><div>① 有读写权限才看到“上传新版本”；“…”里：编辑信息 / 移动（读写）、可读 / 读写范围（所有者）、删除文档（会长团）。② PDF 内嵌预览，文本和图片直接显示，Word、Excel、PPT 等下载后打开。③ 备注：有读写权限的人可以编辑，显示最新修改人和时间，留编辑记录；文件信息含所有者、位置、可读 / 读写范围、创建和最近修改时间。④ 版本记录：谁在什么时候上传了哪一版、改了什么。</div></div>
+<div class="notice n-gray" style="margin-top:14px"><i class="ic" data-i="LuCircleAlert"></i><div>① 有读写权限才看到“上传新版本”；“…”里：编辑信息 / 移动（读写）、可读 / 读写范围（所有者）、删除文档（会长团）。② PDF 内嵌预览，文本和图片直接显示，Word、Excel、PPT 等下载后打开；预览失败时可重新打开或下载查看。③ 备注：有读写权限的人可以编辑，显示最新修改人和时间，留编辑记录；文件信息含所有者、位置、可读 / 读写范围、创建和最近修改时间。④ 版本记录：谁在什么时候上传了哪一版、改了什么。</div></div>
 </div></div></div></div>
 
 <template id="dlg-version"><div class="dlg">
   <div class="hd"><b style="font-size:16px">上传新版本 · AI 产品分享会 · 活动纪要</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
   <div class="bd">
-    <div class="drop"><i class="ic" data-i="LuUpload"></i>拖到这里或点击选择文件</div>
+    <div class="drop"><i class="ic" data-i="LuUpload"></i>拖到这里或点击选择文件</div><p class="xs muted" style="margin-top:6px">支持常见办公文档、PDF、文本、图片与压缩包，单个不超过 50 MB；不能上传空文件。</p>
     <div class="field" style="margin-top:14px"><div class="label">这一版改了什么</div><div class="input ph">如：补充了问答部分</div><div class="xs muted" style="margin-top:4px">会显示在版本记录里；所有者会收到通知</div></div>
   </div>
-  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已上传 v3">上传为 v3</span></div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-storage-upload data-done="已上传 v3">上传为 v3</span></div>
 </div></template>
 <template id="dlg-remark"><div class="dlg">
   <div class="hd"><b style="font-size:16px">编辑备注</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
   <div class="bd"><div class="input textarea" style="min-height:90px">嘉宾分享要点和问答整理；问答部分以录音为准</div></div>
   <div class="fd"><span class="xs muted grow">保存后记入编辑记录，显示你是最新修改人</span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已保存备注">保存</span></div>
+</div></template>
+<template id="dlg-info"><div class="dlg">
+  <div class="hd"><b style="font-size:16px">编辑信息 / 移动</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd"><div class="field"><div class="label">名称</div><div class="input">AI 产品分享会 · 活动纪要</div></div><div class="field"><div class="label">所在文件夹</div><div class="input">活动档案</div></div><p class="xs muted">张同学有读写权限，可以编辑信息和版本；可读 / 读写范围只有所有者同学 B 能修改。</p></div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已保存">保存</span></div>
 </div></template>
 <template id="dlg-acl"><div class="dlg">
   <div class="hd"><b style="font-size:16px">可读 / 读写范围</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>

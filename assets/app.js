@@ -5,10 +5,10 @@ const NAV = [
   { g: "", items: [
     ["home", "首页", "index.html", "LuHouse"],
   ] },
-  { g: "学社资产", items: [
-    ["resources", "资源库", "resources.html", "LuDatabase", 1],
+  { g: "学社资产", internal: true, items: [
+    ["resources", "资源库", "resources.html", "LuDatabase"],
     ["kb", "知识库", "kb.html", "LuLibrary"],
-    ["workbench", "工作台", "workbench.html", "LuTarget", 1, 5],
+    ["workbench", "工作台", "workbench.html", "LuTarget", 0, 5],
   ] },
   { g: "工具 · AI", items: [
     ["assistant", "AI 工具箱", "assistant.html", "LuWandSparkles"],
@@ -40,7 +40,7 @@ function renderShell() {
   if (sb) {
     sb.className = "sb";
     sb.innerHTML = `<a class="brand" href="index.html">${LOGO}<div class="wm"><b>北大创新学社</b><span>资源 · 工具 · 社区</span></div></a>` +
-      NAV.map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}</div>` : ""}` + g.items.map(([id, t, href, icon, lock, cnt]) =>
+      NAV.map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}${g.internal ? `<span class="asset-lock" title="学社内部：资源库、工作台限骨干；知识库按文档范围开放" aria-label="学社内部资产">${ic("LuLock")}</span>` : ""}</div>` : ""}` + g.items.map(([id, t, href, icon, lock, cnt]) =>
         `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${cnt ? `<span class="cnt">${cnt}</span>` : lock ? `<span class="lk">${ic("LuLock")}</span>` : ""}</a>`).join("") + `</div>`).join("") +
       `<a class="me" href="#"><span class="av av-sm a1">张</span><div class="who"><b>张同学</b><span>AI俱乐部 · 部长</span></div>${ic("LuChevronDown")}</a>`;
   }
@@ -117,6 +117,16 @@ function renderProtoNav() {
   };
 }
 
+// 知识库原型可用 ?storage=unavailable 演示文件后端不可用，文件夹仍能创建。
+function renderStorageState() {
+  const unavailable = new URLSearchParams(location.search).get("storage") === "unavailable";
+  document.querySelectorAll("[data-storage-warning]").forEach(el => { el.hidden = !unavailable; });
+  document.querySelectorAll("[data-storage-upload]").forEach(el => {
+    el.setAttribute("aria-disabled", String(unavailable));
+    if (unavailable) el.title = "文件存储暂不可用";
+  });
+}
+
 // 通用弹窗：点击 [data-dlg="x"] 打开 <template id="dlg-x">；[data-close] 关闭；[data-done="提示"] 关闭并提示
 function openDlg(id) {
   const tpl = document.getElementById("dlg-" + id);
@@ -131,6 +141,7 @@ function openDlg(id) {
   mask.innerHTML = "";
   mask.appendChild(tpl.content.cloneNode(true));
   mask.hidden = false;
+  renderStorageState();
   mask.classList.toggle("right", id === "ideas");   // 想法共建从右侧滑出
   renderIcons();
 }
@@ -142,6 +153,7 @@ function toast(msg) {
   setTimeout(() => t.remove(), 2600);
 }
 document.addEventListener("click", (e) => {
+  if (e.target.closest('[aria-disabled="true"]')) { e.preventDefault(); return; }
   const open = e.target.closest("[data-dlg]");
   if (open) { e.preventDefault(); openDlg(open.dataset.dlg); return; }
   const done = e.target.closest("[data-done]");
@@ -156,6 +168,7 @@ document.addEventListener("click", (e) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderShell();
+  renderStorageState();
   renderIdeas();
   renderIcons();
   if (location.hash.includes("anno")) document.body.classList.add("anno");

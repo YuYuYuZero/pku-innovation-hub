@@ -341,3 +341,7 @@ body.anno .mk {
 .img-pick .thumb.poster b { color: #fff; font-size: 10px; letter-spacing: .1em; }
 /* 侧边栏是 sticky（自成层叠上下文），通知弹层打开时把整个侧边栏提到最上层，避免被页面内容盖住 */
 .sb:has(.dd:not([hidden])) { z-index: 80; }
+
+.asset-lock { display: inline-flex; align-items: center; margin-left: 6px; vertical-align: middle; font-size: 12px; }
+[data-storage-upload][aria-disabled="true"] { opacity: .45; cursor: not-allowed; }
+[data-storage-warning][hidden] { display: none; }

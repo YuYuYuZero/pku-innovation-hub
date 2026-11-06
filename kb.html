@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>知识库 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261109a"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261109a"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261107b"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107b"></script>
 <style>
 .sbox { display: flex; gap: 10px; }
 .sbox .input { flex: 1; height: 48px; font-size: 15px; }
@@ -29,8 +29,9 @@
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1240px">
 <div class="row between" style="margin:6px 0 4px"><div><h1 class="h-page">知识库</h1><p class="muted" style="margin-top:2px">学社的工作文档、模板和往届资料。每份文档有自己的可读、读写范围，默认全体成员可读、你和会长团可读写；每次上传新版本都留有记录</p></div>
-<div class="row rel"><span class="mk" style="left:-10px;top:-8px">1</span><span class="btn" data-dlg="folder"><i class="ic" data-i="LuPlus"></i>新建文件夹</span><span class="btn btn-p" data-dlg="upload"><i class="ic" data-i="LuUpload"></i>上传文件</span></div></div>
+<div class="row rel"><span class="mk" style="left:-10px;top:-8px">1</span><span class="btn" data-dlg="folder"><i class="ic" data-i="LuPlus"></i>新建文件夹</span><span class="btn btn-p" data-storage-upload data-dlg="upload"><i class="ic" data-i="LuUpload"></i>上传文件</span></div></div>
 <div style="margin-bottom:12px"></div>
+<div class="notice n-amber" data-storage-warning hidden>文件存储暂不可用，请稍后重试或联系平台负责人；文件夹可以先建起来。</div>
 
 <div class="card pad" style="padding:14px 16px">
   <div class="sbox"><div class="input ph"><i class="ic" data-i="LuSearch" style="color:var(--muted)"></i>搜索名称、备注、标签，如：复盘 模板</div><span class="btn btn-p btn-lg" data-done="找到 2 份文档">搜索</span></div>
@@ -77,7 +78,7 @@
   <div class="hd"><b style="font-size:16px">上传文件 · 活动档案</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
   <div class="bd">
     <div class="drop" style="padding:12px;text-align:left;display:flex;gap:12px;align-items:center"><i class="ic" data-i="LuFileText" style="margin:0;font-size:28px;color:var(--blue)"></i><div class="grow"><div class="b" style="font-size:13.5px">黑客松2026春_复盘.docx</div><div class="xs muted">1.4 MB · 点击更换</div></div></div>
-    <div class="xs muted" style="margin:6px 0 14px">支持 Word、Excel、PPT、WPS、PDF、Markdown、TXT、CSV、OpenDocument、Pages/Numbers/Keynote、图片、压缩包等，单个不超过 50 MB</div>
+    <div class="xs muted" style="margin:6px 0 14px">支持 Word、Excel、PPT、WPS、PDF、Markdown、TXT、CSV、OpenDocument、Pages/Numbers/Keynote、图片、压缩包等，单个不超过 50 MB；不能上传空文件</div>
     <div class="field"><div class="label">名称 <span class="req">*</span></div><div class="input">黑客松2026春_复盘</div></div>
     <div class="field"><div class="label">备注</div><div class="input ph textarea">一两句话，方便别人搜到、看懂；以后有读写权限的人可以修改，留编辑记录</div></div>
     <div class="field"><div class="label">标签</div><div class="input"><span class="tag">黑客松</span><span class="tag">复盘</span></div></div>
@@ -89,7 +90,7 @@
       <div class="xs muted">可读写的人自动可读；你始终可读写，只有你能改这两项；删除只有会长团能操作。</div>
     </div>
   </div>
-  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已上传">上传</span></div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-storage-upload data-done="已上传">上传</span></div>
 </div></template>
 <template id="dlg-folder"><div class="dlg">
   <div class="hd"><b style="font-size:16px">新建文件夹</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
