@@ -12,7 +12,7 @@ const nav = runInNewContext(source + '\nNAV', { document: { addEventListener() {
 test('学社资产在分组统一标记内部权限，资源和知识入口不重复加锁，资源审核计数归到资源库', () => {
   const assets = nav.find(g => g.g === '学社资产')
   assert.equal(assets.internal, true)
-  assert.deepEqual(Array.from(assets.items, i => i[0]), ['resources', 'kb'])
+  assert.deepEqual(Array.from(assets.items, i => i[0]), ['resources', 'workbench', 'kb'])
   assert.ok(assets.items.every(i => !i[4]))
   assert.equal(assets.items.find(i => i[0] === 'resources')[5], 3)
 })
@@ -64,16 +64,15 @@ test('登录页使用 A–F 演示身份，邮箱入口保持隐藏', () => {
 })
 
 
-test('工作流从导航、通知和原型目录移除，旧页面只显示暂停提示', () => {
+test('任务与权益开放，活动申报仍暂停，资源审核独立', () => {
   const [pages, notes] = runInNewContext(source + '\n[PAGES, NOTES]', { document: { addEventListener() {} } })
   assert.ok(pages.some(([, file]) => file === 'resource_review.html'))
-  assert.ok(!pages.some(([, file]) => /^(workbench|activity_review)\.html$/.test(file || '')))
-  assert.ok(!notes.some(([title, , href]) => /审批|督办|终审|工作已逾期/.test(title) || /workbench|activity_review/.test(href)))
-  for (const file of ['workbench.html', 'activity_review.html']) {
-    const html = readFileSync(join(root, file), 'utf8')
-    assert.match(html, /工作流暂不开放/)
-    assert.doesNotMatch(html, /data-(?:dlg|open)="(?:apply|submit|assign|urge|task|points|appeal)"|提交申报|终审通过/)
-  }
+  assert.ok(pages.some(([, file]) => file === 'workbench.html'))
+  assert.ok(!pages.some(([, file]) => file === 'activity_review.html'))
+  assert.ok(notes.some(([, , href]) => href === 'workbench.html'))
+  assert.ok(!notes.some(([title]) => /审批|终审/.test(title)))
+  assert.match(readFileSync(join(root,'workbench.html'),'utf8'), /assets\/workbench.js/)
+  assert.match(readFileSync(join(root,'activity_review.html'),'utf8'), /活动申报暂不开放/)
 })
 
 test('活动录入独立于申报，资源审核只保留资源', () => {
@@ -88,4 +87,20 @@ test('活动录入独立于申报，资源审核只保留资源', () => {
   const check = expression => runInNewContext(source + '\n' + expression, { document: { addEventListener() {} } })
   assert.equal(check("demoAllowed(pageId('event_new.html'), DEMO_ROLES.member)"), false)
   assert.equal(check("demoAllowed(pageId('event_new.html'), DEMO_ROLES.backbone)"), true)
+})
+
+test('任务贡献只向本人和对应管理者可见，资源维护权限不等于积分管理权限', () => {
+  const rules = runInNewContext(readFileSync(join(root,'assets/workbench.js'),'utf8') + '\nTASK_RULES', { document: { addEventListener() {} } })
+  const roles = runInNewContext(source + '\nDEMO_ROLES', { document: { addEventListener() {} } })
+  const task = {owner:3,dept:1}
+  assert.equal(rules.visible(roles.backbone,task), true)
+  assert.equal(rules.visible(roles.minister,task), true)
+  assert.equal(rules.visible(roles.president,task), true)
+  for (const key of ['maintainer','member','outsider']) assert.equal(rules.visible(roles[key],task), false)
+  for (const key of ['backbone','maintainer','member']) assert.equal(rules.manager(roles[key],task), false)
+  assert.equal(rules.manager(roles.minister,{owner:4,dept:2}), false)
+  assert.equal(rules.reporter(roles.minister), false)
+  assert.equal(rules.points(120,180,1.2),9.6)
+  assert.equal(rules.points(15,0,1.1),0.28)
+  assert.equal(rules.period('term','2026-01-20'),'2025-08-01')
 })

@@ -7,6 +7,7 @@ const NAV = [
   ] },
   { g: "学社资产", internal: true, items: [
     ["resources", "资源库", "resources.html", "LuDatabase", 0, 3],
+    ["workbench", "工作台", "workbench.html", "LuClipboardList"],
     ["kb", "知识库", "kb.html", "LuLibrary"],
   ] },
   { g: "工具 · AI", items: [
@@ -22,12 +23,12 @@ const NAV = [
 
 // 演示身份仅用于展示；真实授权由 app 的后端负责。
 const DEMO_ROLES = {
-  president: { name: "同学 A", title: "会长团", backbone: true, admin: true },
-  minister: { name: "同学 B", title: "AI俱乐部 · 部长", backbone: true, admin: true },
-  backbone: { name: "同学 C", title: "AI俱乐部 · 骨干", backbone: true },
-  maintainer: { name: "同学 D", title: "外联部 · 维护人", backbone: true, maintainer: true },
-  member: { name: "同学 E", title: "会员" },
-  outsider: { name: "同学 F", title: "未入名单" },
+  president: { id: 1, president: true, leader: true, name: "同学 A", title: "会长团", backbone: true, admin: true },
+  minister: { id: 2, dept: 1, leader: true, name: "同学 B", title: "AI俱乐部 · 部长", backbone: true, admin: true },
+  backbone: { id: 3, dept: 1, name: "同学 C", title: "AI俱乐部 · 骨干", backbone: true },
+  maintainer: { id: 4, dept: 2, name: "同学 D", title: "外联部 · 维护人", backbone: true, maintainer: true },
+  member: { id: 5, name: "同学 E", title: "会员" },
+  outsider: { id: 6, name: "同学 F", title: "未入名单" },
 };
 const PAGE_NEEDS = { resources: "backbone", kb: "member", workbench: "backbone", event_new: "backbone", assistant: "member", events: "member", admin: "admin" };
 function demoRole() { return DEMO_ROLES[new URLSearchParams(location.search).get("role")] || DEMO_ROLES.minister; }
@@ -49,6 +50,7 @@ function ic(n) { return `<i class="ic" data-i="${n}"></i>`; }
 
 // 通知：只推和自己有关、需要处理或需要知道结果的事
 const NOTES = [
+  ["任务与贡献待处理", "查看 TODO 和待确认贡献", "workbench.html", "LuClipboardList", "backbone"],
   ["3 条资源待审核", "外联部提交 · 含 1 条疑似重复", "resource_review.html", "LuInbox", "maintainer"],
   ["你录入的资源已通过审核", "示例机构 F · 2 天前", "resource_detail.html", "LuCircleCheck"],
   ["你的想法「表格批量处理」：已排期", "想法共建 · 3 天前", "index.html#my-ideas", "LuLightbulb"],
@@ -62,7 +64,7 @@ function renderShell() {
   if (sb) {
     sb.className = "sb";
     sb.innerHTML = `<a class="brand" href="index.html">${LOGO}<div class="wm"><b>北大创新学社</b><span>资源 · 工具 · 社区</span></div></a>` +
-      NAV.filter(g => g.items.some(([id]) => demoVisible(id))).map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}${g.internal && demoRole().backbone ? `<span class="asset-lock" title="学社内部：资源库限骨干；知识库按文档范围开放" aria-label="学社内部资产">${ic("LuLock")}</span>` : ""}</div>` : ""}` + g.items.filter(([id]) => demoVisible(id)).map(([id, t, href, icon, lock, cnt]) =>
+      NAV.filter(g => g.items.some(([id]) => demoVisible(id))).map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}${g.internal && demoRole().backbone ? `<span class="asset-lock" title="学社内部：资源库与工作台限骨干；知识库按文档范围开放" aria-label="学社内部资产">${ic("LuLock")}</span>` : ""}</div>` : ""}` + g.items.filter(([id]) => demoVisible(id)).map(([id, t, href, icon, lock, cnt]) =>
         demoAllowed(id) ? `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${cnt && demoRole().maintainer ? `<span class="cnt">${cnt}</span>` : ""}</a>` : `<span class="nav-i off" aria-disabled="true" title="当前身份没有权限">${ic(icon)}<span>${t}</span>${!g.internal ? `<span class="lk">${ic("LuLock")}</span>` : ""}</span>`).join("") + `</div>`).join("") +
       `<a class="me" href="login.html"><span class="av av-sm a1">${demoRole().name.slice(-1)}</span><div class="who"><b>${demoRole().name}</b><span>${demoRole().title}</span></div>${ic("LuChevronDown")}</a>`;
   }
@@ -118,7 +120,7 @@ function renderIcons() {
 const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
   ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档详情与版本", "kb_doc.html"], ["资源审核", "resource_review.html"],
-  ["AI 工具箱", "assistant.html"], ["录入活动", "event_new.html"],
+  ["工作台 · 任务与权益", "workbench.html"], ["AI 工具箱", "assistant.html"], ["录入活动", "event_new.html"],
   ["活动", "events.html"], ["审核与管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
   ["—— 暂不开放 ——"], ["AI 能力说明", "skills.html"], ["讨论", "community.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"],
 ];
