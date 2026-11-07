@@ -50,3 +50,8 @@
   .task-toolbar .seg a { padding:5px 8px; }
   .task-earned { flex-wrap:wrap; }
 }
+
+.benefits-entry { display:flex; align-items:center; gap:14px; width:100%; text-align:left; font:inherit; color:var(--ink); border:1px solid var(--red-100); border-radius:12px; padding:14px 18px; background:var(--red-50); cursor:pointer; margin-bottom:20px; }
+.benefits-entry > .ic { font-size:22px; color:var(--red); flex:none; }
+.benefits-entry .grow > span { display:block; font-size:12px; color:var(--muted); margin-top:3px; }
+.benefits-entry > span:last-child { flex:none; color:var(--red); font-size:12px; }

@@ -1,4 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
+const DEMO_RELEASE = '20261108-workbench2';
 const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261031c" alt="北京大学校徽">`;
 
 const NAV = [
@@ -16,7 +17,6 @@ const NAV = [
   { g: "社区 · 活动广场", items: [
     ["events", "活动", "events.html", "LuCalendarDays"],
   ] },
-  { g: "个人", items: [["favorites", "我的收藏", "events.html?when=fav", "LuBookmark"]] },
   { g: "管理 · 平台管理", items: [
     ["admin", "审核与管理", "admin.html", "LuShieldCheck"],
   ] },
@@ -24,14 +24,14 @@ const NAV = [
 
 // 演示身份仅用于展示；真实授权由 app 的后端负责。
 const DEMO_ROLES = {
-  president: { id: 1, president: true, leader: true, name: "同学 A", title: "会长团", backbone: true, admin: true },
+  president: { id: 1, dept: 3, president: true, leader: true, name: "同学 A", title: "会长团", backbone: true, admin: true },
   minister: { id: 2, dept: 1, leader: true, name: "同学 B", title: "AI俱乐部 · 部长", backbone: true, admin: true },
   backbone: { id: 3, dept: 1, name: "同学 C", title: "AI俱乐部 · 骨干", backbone: true },
   maintainer: { id: 4, dept: 2, name: "同学 D", title: "外联部 · 维护人", backbone: true, maintainer: true },
   member: { id: 5, name: "同学 E", title: "会员" },
   outsider: { id: 6, name: "同学 F", title: "未入名单" },
 };
-const PAGE_NEEDS = { favorites: "member", resources: "backbone", kb: "member", workbench: "backbone", event_new: "backbone", assistant: "member", events: "member", admin: "admin" };
+const PAGE_NEEDS = { resources: "backbone", kb: "member", workbench: "backbone", event_new: "backbone", assistant: "member", events: "member", admin: "admin" };
 function demoRole() { return DEMO_ROLES[new URLSearchParams(location.search).get("role")] || DEMO_ROLES.minister; }
 function demoAllowed(id, role = demoRole()) {
   const need = PAGE_NEEDS[id];
@@ -60,7 +60,7 @@ const NOTES = [
 ];
 
 function renderShell() {
-  const page = document.body.dataset.page === "events" && new URLSearchParams(location.search).get("when") === "fav" ? "favorites" : document.body.dataset.page === "event_new" ? "events" : document.body.dataset.page;
+  const page = document.body.dataset.page === "event_new" ? "events" : document.body.dataset.page;
   const sb = document.getElementById("sb");
   if (sb) {
     sb.className = "sb";
@@ -159,7 +159,7 @@ function renderIcons() {
 const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
   ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档详情与版本", "kb_doc.html"], ["资源审核", "resource_review.html"],
-  ["工作台 · 任务与权益", "workbench.html"], ["AI 工具箱", "assistant.html"], ["录入活动", "event_new.html"],
+  ["工作台 · 任务与积分", "workbench.html"], ["AI 工具箱", "assistant.html"], ["录入活动", "event_new.html"],
   ["活动", "events.html"], ["审核与管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
   ["—— 暂不开放 ——"], ["AI 能力说明", "skills.html"], ["讨论", "community.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"],
 ];
@@ -210,6 +210,7 @@ function renderRoleState() {
     if (!/^[\w-]+\.html(?:[?#]|$)/.test(href)) return;
     const url = new URL(href, location.href);
     if (!url.searchParams.has('role')) url.searchParams.set('role', roleKey);
+    url.searchParams.set('v', DEMO_RELEASE);
     a.setAttribute('href', url.pathname.split('/').pop() + url.search + url.hash);
   });
 }
@@ -324,3 +325,12 @@ document.addEventListener('keydown', e => {
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
   }
 });
+
+document.addEventListener('click', e => {
+  const link = e.target.closest('a[href]'); if (!link) return;
+  const href = link.getAttribute('href'); if (!/^[\w-]+\.html(?:[?#]|$)/.test(href)) return;
+  const url = new URL(href, location.href);
+  if (!url.searchParams.has('role')) url.searchParams.set('role', new URLSearchParams(location.search).get('role') || 'minister');
+  url.searchParams.set('v', DEMO_RELEASE);
+  link.setAttribute('href', url.pathname.split('/').pop() + url.search + url.hash);
+}, true);

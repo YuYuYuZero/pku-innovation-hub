@@ -78,7 +78,7 @@ test('任务与权益开放，活动申报仍暂停，资源审核独立', () =>
 test('活动录入独立于申报，资源审核只保留资源', () => {
   const event = readFileSync(join(root, 'event_new.html'), 'utf8')
   assert.match(event, /活动来源/)
-  assert.match(event, /href="events.html">活动/)
+  assert.match(event, /href="events.html\?v=[^"]+">活动/)
   assert.doesNotMatch(event, /终审通过后会自动出现/)
   const review = readFileSync(join(root, 'resource_review.html'), 'utf8')
   assert.match(review, /资源审核/)
@@ -99,8 +99,23 @@ test('任务贡献只向本人和对应管理者可见，资源维护权限不�
   for (const key of ['maintainer','member','outsider']) assert.equal(rules.visible(roles[key],task), false)
   for (const key of ['backbone','maintainer','member']) assert.equal(rules.manager(roles[key],task), false)
   assert.equal(rules.manager(roles.minister,{owner:4,dept:2}), false)
-  assert.equal(rules.reporter(roles.minister), false)
+  assert.equal(rules.reporter(roles.minister), true)
+  assert.equal(rules.reporter(roles.president), true)
+  assert.equal(rules.manager(roles.minister,{owner:2,dept:1}), false)
   assert.equal(rules.points(120,180,1.2),9.6)
   assert.equal(rules.points(15,0,1.1),0.28)
-  assert.equal(rules.period('term','2026-01-20'),'2025-08-01')
+  assert.equal(rules.inTerm('2026-08-01','2026-11-08'),true)
+  assert.equal(rules.inTerm('2026-07-31','2026-11-08'),false)
+  assert.equal(rules.inTerm('2027-02-01','2027-03-01'),false)
+})
+
+test('所有页面使用同一发布版本，工作台图标存在，收藏只在活动页出现', () => {
+  const release = source.match(/const DEMO_RELEASE = '([^']+)'/)[1]
+  const icons = runInNewContext(readFileSync(join(root,'assets/icons.js'),'utf8') + '\nwindow.ICONS',{window:{}})
+  for (const group of nav) for (const item of group.items) assert.ok(icons[item[3]],item[3])
+  assert.ok(!nav.some(g=>g.items.some(i=>i[0]==='favorites')))
+  for (const file of readdirSync(root).filter(f=>f.endsWith('.html'))) {
+    const html=readFileSync(join(root,file),'utf8')
+    for (const [,href] of html.matchAll(/(?:src|href)="(assets\/[\w.-]+\.(?:js|css)[^"#]*)"/g)) assert.equal(new URL(href,'https://demo.test').searchParams.get('v'),release,`${file}: ${href}`)
+  }
 })
