@@ -18,7 +18,7 @@ test('学社资产在分组统一标记内部权限，资源和知识入口不�
 })
 
 test('所有导航入口与 HTML 本地资源链接可解析', () => {
-  for (const group of nav) for (const item of group.items) assert.ok(existsSync(join(root, item[2])), item[2])
+  for (const group of nav) for (const item of group.items) assert.ok(existsSync(join(root, item[2].split(/[?#]/)[0])), item[2])
   for (const file of readdirSync(root).filter(f => f.endsWith('.html'))) {
     const html = readFileSync(join(root, file), 'utf8')
     for (const [, target] of html.matchAll(/(?:href|src)="([^"#]+)"/g)) {

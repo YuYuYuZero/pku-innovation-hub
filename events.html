@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="utf-8"><title>活动 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261107f"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107f"></script>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>活动 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css?v=20261108feedback"><script src="assets/icons.js?v=20261108feedback"></script><script src="assets/app.js?v=20261108feedback"></script>
 <style>
 .cols { display: grid; grid-template-columns: 1fr 300px; gap: 18px; }
 .feat { display: grid; grid-template-columns: 1.15fr 1fr; overflow: hidden; }
@@ -29,9 +29,11 @@
 <div class="row between" style="margin:6px 0 16px"><div><div class="row between"><h1 class="h-page">活动</h1><a class="btn btn-p" data-need="backbone" href="event_new.html">录入活动</a></div><p class="muted" style="margin-top:2px">查看学社、合作社团和校外活动。已确认的信息由骨干整理发布；报名和组织安排按活动通知办理</p></div>
 <div class="psearch"><i class="ic" data-i="LuSearch"></i>搜索活动、主办方、地点</div>
 </div>
-<div class="row wrap-x rel" style="gap:8px;margin-bottom:14px"><span class="mk" style="left:-8px;top:-8px">1</span><span class="chip on">全部</span><span class="chip">讲座分享</span><span class="chip">工作坊</span><span class="chip">读书会</span><span class="chip">黑客松</span><span class="chip">企业参访</span><span class="chip"><i class="ic" data-i="LuRocket"></i>创业</span><span class="grow"></span><span class="chip">来源 <i class="ic" data-i="LuChevronDown"></i></span><div class="seg"><a class="on">即将开始</a><a>报名中</a><a>往期回顾</a></div></div>
+<div class="row wrap-x rel" style="gap:8px;margin-bottom:14px"><span class="mk" style="left:-8px;top:-8px">1</span><span class="chip on">全部</span><span class="chip">讲座分享</span><span class="chip">工作坊</span><span class="chip">读书会</span><span class="chip">黑客松</span><span class="chip">企业参访</span><span class="chip"><i class="ic" data-i="LuRocket"></i>创业</span><span class="grow"></span><span class="chip">来源 <i class="ic" data-i="LuChevronDown"></i></span><div class="seg" data-event-tabs><button data-when="upcoming">即将开始</button><button data-when="open">报名中</button><button data-when="past">往期回顾</button><button data-when="fav">我的收藏</button></div></div>
+<p class="small muted" data-favorite-hint hidden style="margin-bottom:14px">你收藏的活动都在这里，包括往期活动。演示收藏保存在当前浏览器，按身份分别记录。</p>
 <div class="cols">
 <div>
+  <div class="card pad" data-event-empty hidden></div>
   <div class="card feat rel"><span class="mk" style="left:calc(53.5% + 8px);top:10px">2</span>
     <div class="cover cv1"><div class="cv-k">FEATURED · TALK</div><div class="cv-t"><b>AI 产品从 0 到 1</b><span>第一版做到什么程度就能上线</span></div></div>
     <div class="tx">

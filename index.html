@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="utf-8"><title>首页 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261107f"><script src="assets/icons.js?v=20261109a"></script><script src="assets/app.js?v=20261107f"></script>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>首页 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css?v=20261108feedback"><script src="assets/icons.js?v=20261108feedback"></script><script src="assets/app.js?v=20261108feedback"></script>
 <style>
 .hero { border-radius: 20px; padding: 30px 32px 26px; color: #fff; position: relative; overflow: hidden;
   background: radial-gradient(70% 120% at 100% 0%, #B8414A 0, transparent 60%), radial-gradient(60% 90% at 0% 100%, #6E1A20 0, transparent 70%), #8C1D24; }
@@ -61,13 +61,15 @@ ul { list-style: none; margin: 0; padding: 0; }
   <div>
     <div class="card rel">
       <span class="mk" style="left:-8px;top:-8px">4</span>
-      <div class="pad row between" style="padding-bottom:6px"><div class="row" style="gap:18px"><span class="h-sec">学社动态</span><div class="seg pick"><a class="on">全部</a><a data-need="backbone">资源</a><a>文档</a><a>活动</a></div></div><span class="xs muted">只显示你有权限看的</span></div>
-      <div class="feed">
-        <a class="fd-i" data-need="backbone" href="resource_detail.html"><span class="fi t-red"><i class="ic" data-i="LuUser"></i></span><div class="grow"><div class="b">示例机构 F 加入资源库</div><div class="xs muted">机构资源 · 可提供路演场地 · 同学 G 录入，维护人已审核 · 1 小时前</div></div><span class="tag t-red">资源</span></a>
-        <a class="fd-i" data-need="backbone" href="kb_doc.html"><span class="fi t-blue"><i class="ic" data-i="LuFileText"></i></span><div class="grow"><div class="b">AI 产品分享会 · 活动纪要</div><div class="xs muted">知识库 · 同学 D 更新到 v2 · 3 小时前</div></div><span class="tag t-blue">文档</span></a>
-        <a class="fd-i" href="events.html"><span class="fi t-teal"><i class="ic" data-i="LuCalendarDays"></i></span><div class="grow"><div class="b">读书会第 4 期</div><div class="xs muted">AI俱乐部 · 11-20 · 已出现在活动页 · 今天</div></div><span class="tag t-teal">活动</span></a>
-        <a class="fd-i" href="events.html"><span class="fi t-teal"><i class="ic" data-i="LuCalendarDays"></i></span><div class="grow"><div class="b">大模型应用工作坊（第 3 期）</div><div class="xs muted">某 AI 社团 · 11-02 · 同学 G 从公众号链接录入 · 昨天</div></div><span class="tag t-teal">活动</span></a>
+      <div class="pad row between wrap-x" style="padding-bottom:6px"><div class="row wrap-x" style="gap:18px"><span class="h-sec">学社动态</span><div class="seg" data-home-tabs><button class="on" data-feed="event" aria-pressed="true">近期活动</button><button data-feed="res" data-need="backbone" aria-pressed="false">资源更新</button><button data-feed="doc" aria-pressed="false">文档更新</button></div></div><a class="lnk" data-feed-all href="events.html">查看全部</a></div>
+      <div class="pad" data-feed-panel="event" style="padding-top:0">
+        <a class="evt" href="events.html#event-1"><div class="date"><b>30</b><span>10 月</span></div><div class="grow"><div class="b">AI 产品从 0 到 1 · 分享会（示例）</div><div class="xs muted">19:00 · 理教 201</div></div></a>
+        <a class="evt" href="events.html#event-2"><div class="date"><b>02</b><span>11 月</span></div><div class="grow"><div class="b">大模型应用工作坊（第 3 期）</div><div class="xs muted">14:00 · 二教 305</div></div></a>
+        <a class="evt" href="events.html#event-3"><div class="date"><b>05</b><span>11 月</span></div><div class="grow"><div class="b">论文读书会：Agent 与工具调用</div><div class="xs muted">20:00 · 线上</div></div></a>
+        <p class="xs muted">演示活动与日期，仅用于体验页面。</p>
       </div>
+      <div class="feed" data-feed-panel="res" hidden><a class="fd-i" href="resource_detail.html"><span class="fi t-red"><i class="ic" data-i="LuUser"></i></span><div class="grow"><div class="b">示例机构 F 加入资源库</div><div class="xs muted">可提供路演场地 · 维护人已审核</div></div></a></div>
+      <div class="feed" data-feed-panel="doc" hidden><a class="fd-i" href="kb_doc.html"><span class="fi t-blue"><i class="ic" data-i="LuFileText"></i></span><div class="grow"><div class="b">AI 产品分享会 · 活动纪要</div><div class="xs muted">知识库 · 更新到 v2</div></div></a></div>
     </div>
   </div>
   <div>
@@ -80,21 +82,10 @@ ul { list-style: none; margin: 0; padding: 0; }
         <p class="small muted" data-review-empty style="padding:12px 0">暂时没有待审核的资源</p>
       </div>
     </div>
-    <div class="card pad" style="margin-top:14px">
-      <div class="row between"><span class="h-sec">近期活动</span><a class="lnk" href="events.html">全部 <i class="ic" data-i="LuChevronRight"></i></a></div>
-      <div style="margin-top:6px">
-        <div class="evt"><div class="date"><b>30</b><span>10 月</span></div><div class="grow"><div class="b" style="font-size:13.5px">AI 产品从 0 到 1 · 分享会</div><div class="xs muted">周四 19:00 · 报名中</div></div></div>
-        <div class="evt"><div class="date"><b>02</b><span>11 月</span></div><div class="grow"><div class="b" style="font-size:13.5px">大模型应用工作坊（第 3 期）</div><div class="xs muted">周日 14:00 · 剩 12 席</div></div></div>
-        <div class="evt"><div class="date"><b>05</b><span>11 月</span></div><div class="grow"><div class="b" style="font-size:13.5px">论文读书会：Agent 与工具调用</div><div class="xs muted">周三 20:00 · 线上</div></div></div>
-      </div>
-    </div>
     <div class="card pad rel" style="margin-top:14px">
       <span class="mk" style="left:-8px;top:-8px">6</span>
       <div class="row between"><span class="h-sec">我的想法</span><span class="lnk" onclick="document.querySelector('.ideas-btn').click()">全部 <i class="ic" data-i="LuChevronRight"></i></span></div>
-      <div style="margin-top:4px">
-        <a class="row" style="padding:8px 0;cursor:pointer" onclick="document.querySelector('.ideas-btn').click()"><div class="grow"><div class="b" style="font-size:13.5px">办活动助手</div><div class="xs muted">2 条回复</div></div><span class="tag t-amber">评估中</span></a>
-        <a class="row" style="padding:8px 0;cursor:pointer" onclick="document.querySelector('.ideas-btn').click()"><div class="grow"><div class="b" style="font-size:13.5px">部门周报</div><div class="xs muted">还没有回复</div></div><span class="tag">待处理</span></a>
-        <a class="row" style="padding:8px 0;cursor:pointer" onclick="document.querySelector('.ideas-btn').click()"><div class="grow"><div class="b" style="font-size:13.5px">表格批量处理</div><div class="xs muted">1 条回复</div></div><span class="tag t-blue">已排期</span></a>
+      <div data-home-ideas style="margin-top:4px">
       </div>
     </div>
   </div>

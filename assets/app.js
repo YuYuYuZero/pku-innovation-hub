@@ -16,6 +16,7 @@ const NAV = [
   { g: "社区 · 活动广场", items: [
     ["events", "活动", "events.html", "LuCalendarDays"],
   ] },
+  { g: "个人", items: [["favorites", "我的收藏", "events.html?when=fav", "LuBookmark"]] },
   { g: "管理 · 平台管理", items: [
     ["admin", "审核与管理", "admin.html", "LuShieldCheck"],
   ] },
@@ -30,7 +31,7 @@ const DEMO_ROLES = {
   member: { id: 5, name: "同学 E", title: "会员" },
   outsider: { id: 6, name: "同学 F", title: "未入名单" },
 };
-const PAGE_NEEDS = { resources: "backbone", kb: "member", workbench: "backbone", event_new: "backbone", assistant: "member", events: "member", admin: "admin" };
+const PAGE_NEEDS = { favorites: "member", resources: "backbone", kb: "member", workbench: "backbone", event_new: "backbone", assistant: "member", events: "member", admin: "admin" };
 function demoRole() { return DEMO_ROLES[new URLSearchParams(location.search).get("role")] || DEMO_ROLES.minister; }
 function demoAllowed(id, role = demoRole()) {
   const need = PAGE_NEEDS[id];
@@ -59,7 +60,7 @@ const NOTES = [
 ];
 
 function renderShell() {
-  const page = document.body.dataset.page === "event_new" ? "events" : document.body.dataset.page;
+  const page = document.body.dataset.page === "events" && new URLSearchParams(location.search).get("when") === "fav" ? "favorites" : document.body.dataset.page === "event_new" ? "events" : document.body.dataset.page;
   const sb = document.getElementById("sb");
   if (sb) {
     sb.className = "sb";
@@ -86,21 +87,59 @@ function renderShell() {
 }
 
 // 想法共建：每个页面右上角的入口，点开是右侧抽屉（不放在导航里）。想法只有提出人和处理人（会长团、AI俱乐部部长）能看
-const IDEA_ROW = (t, st, tone, n, open) => `<div class="idea"><div class="grow"><div class="row"><span class="b grow">${t}</span>${n ? `<span class="xs muted">${n} 条回复</span>` : ""}<span class="tag ${tone}">${st}</span></div>${open || ""}</div></div>`;
-const IDEAS = `<div class="drawer"><div class="dr-h"><b>想法共建</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
-  <div class="dr-b"><div class="row" style="margin-bottom:12px"><p class="small muted grow">有什么重复、费时的事想交给 AI，或者对平台有什么想法？写清谁、在什么场景、给它什么、想要什么。想法只有你和处理人（会长团、AI俱乐部部长）能看到，回复和进展会通过通知告诉你。</p><span class="btn btn-p btn-sm" data-done="已提交，处理后会通知你">提一个想法</span></div>
-  <div class="h-sec" style="margin-bottom:4px">我提的想法</div>
-  ${IDEA_ROW("办活动助手", "评估中", "t-amber", 2, `<div class="small" style="margin-top:8px">骨干准备办一场活动时，先看往届怎么办的</div><div class="xs muted" style="margin-top:2px">给它：一句话描述活动想法 → 得到：往届复盘、可请嘉宾和对接人、模板、活动策划草稿</div>
-    <div class="thread"><div class="reply"><span class="av av-sm a2">A</span><div class="grow"><div class="xs muted">同学 A（处理人）· 昨天</div><div class="small">方向很好。想先确认：往届复盘现在都在飞书里，你希望它直接读飞书文档，还是先由各部门整理一份复盘清单？</div></div></div>
-    <div class="reply"><span class="av av-sm a1">B</span><div class="grow"><div class="xs muted">同学 B（提出人）· 3 小时前</div><div class="small">先用清单就行，读飞书的以后再说。</div></div></div>
-    <div class="row" style="margin-top:4px"><div class="input ph grow">补充说明或回复处理人</div><span class="btn btn-p btn-sm" data-done="已回复">回复</span></div></div>`)}
-  ${IDEA_ROW("部门周报", "待处理", "", 0)}
-  ${IDEA_ROW("表格批量处理", "已排期", "t-blue", 1)}
-</div></div>`;
+const ideaDrafts = new Map();
+const demoEscape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
+function readDemoData(key, fallback) { try { return JSON.parse(localStorage.getItem(`hub-${key}-${demoRole().id}`)) ?? fallback; } catch { return fallback; } }
+function saveDemoData(key, value) { try { localStorage.setItem(`hub-${key}-${demoRole().id}`, JSON.stringify(value)); return true; } catch { toast('保存失败，请检查浏览器存储设置后重试'); return false; } }
+function demoIdeas() { return readDemoData('ideas', [{ id: 'example', title: '办活动助手', scene: '骨干准备活动时，希望能快速找到往届复盘和模板。', status: '评估中', replies: [{ body: '可以先整理一份复盘清单，你可以在这里继续补充。', who: '处理人' }] }]); }
+const IDEAS = `<div class="drawer" role="dialog" aria-modal="true" aria-label="想法共建"><div class="dr-h"><b>想法共建</b><span class="grow"></span><button class="icon-btn x" data-close aria-label="关闭想法共建">×</button></div>
+  <div class="dr-b"><p class="small muted">功能建议、使用问题，或想交给 AI 的事，都可以写在这里。只有你和处理人（会长团、AI俱乐部部长）可见。</p>
+  <form id="idea-form" class="idea-form"><h3>提一个想法</h3>
+    <label>想法标题 <span class="muted">必填</span><input class="input" name="title" aria-label="想法标题" required placeholder="一句话概括，如：活动收藏更好找"></label>
+    <label>想法内容 <span class="muted">必填</span><textarea class="input" name="scene" aria-label="想法内容" rows="5" required placeholder="在这里写具体想法：遇到了什么问题？希望怎么改？也可以举个例子。"></textarea></label>
+    <details><summary>补充 AI 使用场景（选填）</summary><label>可提供的材料<input class="input" name="input" placeholder="如：问卷导出的 Excel"></label><label>期望的结果<input class="input" name="output" placeholder="如：每组 5 人的名单"></label></details>
+    <button class="btn btn-p" type="submit" disabled>提交想法</button><p class="xs muted">关闭面板后草稿仍保留，刷新页面会清空。演示提交和回复保存在当前浏览器。</p>
+  </form><h3>我提的想法</h3><div id="idea-list"></div></div></div>`;
+function renderIdeaList(openId) {
+  const list = document.getElementById('idea-list'); if (!list) return;
+  list.innerHTML = demoIdeas().map(i => `<details class="idea-record" ${i.id === openId ? 'open' : ''}><summary><b>${demoEscape(i.title)}</b><span class="tag">${demoEscape(i.status)}</span><span class="xs muted">${i.replies.length} 条回复 · 展开</span></summary>
+    <p class="idea-body">${demoEscape(i.scene)}</p>${i.input || i.output ? `<p class="xs muted">材料：${demoEscape(i.input || '—')} · 期望：${demoEscape(i.output || '—')}</p>` : ''}
+    <div class="thread">${i.replies.map(r => `<div><span class="xs muted">${demoEscape(r.who)}</span><p class="idea-body">${demoEscape(r.body)}</p></div>`).join('') || '<p class="xs muted">还没有回复，可继续补充说明</p>'}
+    <form data-idea-reply="${demoEscape(i.id)}"><textarea class="input" aria-label="补充说明或回复处理人" name="body" rows="2" required placeholder="补充说明或回复处理人"></textarea><button type="submit" class="btn btn-p btn-sm">回复</button></form></div></details>`).join('');
+  list.querySelectorAll('[data-idea-reply]').forEach(form => form.onsubmit = e => {
+    e.preventDefault(); const body = form.elements.body.value.trim(); if (!body) return;
+    const ideas = demoIdeas(), idea = ideas.find(i => i.id === form.dataset.ideaReply); if (!idea) return;
+    idea.replies.push({ body, who: '我（提出人）' });
+    if (saveDemoData('ideas', ideas)) { renderIdeaList(idea.id); toast('已回复'); }
+  });
+}
+function bindIdeaForm() {
+  const form = document.getElementById('idea-form'); if (!form) return;
+  const draft = ideaDrafts.get(demoRole().id) || {};
+  for (const key of ['title', 'scene', 'input', 'output']) form.elements[key].value = draft[key] || '';
+  const update = () => {
+    ideaDrafts.set(demoRole().id, Object.fromEntries(new FormData(form)));
+    form.querySelector('[type=submit]').disabled = !form.elements.title.value.trim() || !form.elements.scene.value.trim();
+  };
+  form.oninput = update; update();
+  form.onsubmit = e => {
+    e.preventDefault(); const fields = Object.fromEntries([...new FormData(form)].map(([k,v]) => [k,v.trim()]));
+    if (!fields.title || !fields.scene) return;
+    const idea = { ...fields, id: crypto.randomUUID(), status: '待处理', replies: [] };
+    if (!saveDemoData('ideas', [idea, ...demoIdeas()])) return;
+    form.reset(); update(); renderIdeaList(idea.id); renderHomeIdeas();
+    document.getElementById('idea-list').scrollIntoView({block:'nearest',behavior:'smooth'}); toast('已提交，可在下方查看进展并补充说明');
+  };
+  renderIdeaList(); form.elements.title.focus();
+}
+function renderHomeIdeas() {
+  const list = document.querySelector('[data-home-ideas]'); if (!list) return;
+  list.innerHTML = demoIdeas().slice(0,3).map(i => `<button class="home-idea" data-dlg="ideas"><span class="grow"><b>${demoEscape(i.title)}</b><span class="xs muted">${i.replies.length} 条回复</span></span><span class="tag">${demoEscape(i.status)}</span></button>`).join('');
+}
 function renderIdeas() {
   const main = document.querySelector(".main");
   if (!main || !document.getElementById("sb") || demoRole() === DEMO_ROLES.outsider) return;
-  const btn = document.createElement("span");
+  const btn = document.createElement("button");
   btn.className = "btn btn-sm ideas-btn"; btn.innerHTML = `${ic("LuLightbulb")}想法共建`;
   main.appendChild(btn);
   const tpl = document.createElement("template"); tpl.id = "dlg-ideas"; tpl.innerHTML = IDEAS; document.body.appendChild(tpl);
@@ -192,6 +231,7 @@ function openDlg(id) {
   renderStorageState();
   mask.classList.toggle("right", id === "ideas");   // 想法共建从右侧滑出
   renderIcons();
+  if (id === 'ideas') bindIdeaForm();
 }
 function closeDlg() { const m = document.getElementById("gmask"); if (m) { m.hidden = true; m.classList.remove("right"); } }
 function toast(msg) {
@@ -221,6 +261,9 @@ document.addEventListener("DOMContentLoaded", () => {
   renderShell();
   renderStorageState();
   renderIdeas();
+  renderHomeFeed();
+  renderDemoEvents();
+  renderHomeIdeas();
   renderIcons();
   if (location.hash.includes("anno")) document.body.classList.add("anno");
   renderProtoNav();
@@ -228,4 +271,56 @@ document.addEventListener("DOMContentLoaded", () => {
   // 地址后加 #dlg-xxx 直接打开对应弹窗，便于截图和文档引用
   const m = location.hash.match(/dlg-([\w-]+)/);
   if (m) openDlg(m[1]);
+});
+
+// 首页只保留一个内容区，活动和资料更新按标签切换。
+function renderHomeFeed() {
+  const tabs = document.querySelector('[data-home-tabs]'); if (!tabs) return;
+  tabs.querySelectorAll('button').forEach(button => button.onclick = () => {
+    const kind = button.dataset.feed;
+    tabs.querySelectorAll('button').forEach(b => { b.classList.toggle('on', b === button); b.setAttribute('aria-pressed', String(b === button)); });
+    document.querySelectorAll('[data-feed-panel]').forEach(panel => { panel.hidden = panel.dataset.feedPanel !== kind; });
+    document.querySelector('[data-feed-all]').href = `${{event:'events',res:'resources',doc:'kb'}[kind]}.html?role=${new URLSearchParams(location.search).get('role') || 'minister'}`;
+  });
+}
+function renderDemoEvents() {
+  if (document.body.dataset.page !== 'events' || demoRole() === DEMO_ROLES.outsider) return;
+  const cards = [...document.querySelectorAll('.card.feat, .card.ev')];
+  const tabs = document.querySelector('[data-event-tabs]');
+  let when = new URLSearchParams(location.search).get('when') || 'upcoming';
+  const favorites = new Set(readDemoData('favorites', []));
+  cards.forEach((card, index) => {
+    card.dataset.eventId = String(index + 1); card.id = `event-${index + 1}`;
+    const button = document.createElement('button'); button.className = 'btn btn-sm event-fav'; button.dataset.favorite = card.dataset.eventId;
+    const original = card.querySelector('.btn-ghost'); if (original) original.replaceWith(button); else card.querySelector('.tx').appendChild(button);
+    button.onclick = () => {
+      const id = card.dataset.eventId, next = new Set(favorites); next.has(id) ? next.delete(id) : next.add(id);
+      if (!saveDemoData('favorites', [...next])) return;
+      favorites.clear(); next.forEach(id => favorites.add(id)); update(); toast(favorites.has(id) ? '已收藏，可在「我的收藏」查看' : '已取消收藏');
+    };
+  });
+  function update() {
+    cards.forEach((card,index) => {
+      const on = favorites.has(card.dataset.eventId), button = card.querySelector('[data-favorite]');
+      button.innerHTML = `${ic(on ? 'LuBookmarkCheck' : 'LuBookmark')}${on ? '已收藏' : '收藏'}`; button.setAttribute('aria-pressed', String(on)); button.setAttribute('aria-label', on ? '取消收藏' : '收藏');
+      const past = index === cards.length - 1;
+      card.hidden = when === 'fav' ? !on : when === 'past' ? !past : when === 'open' ? past || !card.textContent.includes('报名中') : past;
+    });
+    tabs.querySelectorAll('button').forEach(b => { b.classList.toggle('on', b.dataset.when === when); b.setAttribute('aria-pressed', String(b.dataset.when === when)); if (b.dataset.when === 'fav') b.textContent = `我的收藏${favorites.size ? ' ' + favorites.size : ''}`; });
+    const empty = document.querySelector('[data-event-empty]'); empty.hidden = cards.some(c => !c.hidden); empty.textContent = when === 'fav' ? '还没有收藏的活动，点活动卡片上的书签就能收藏' : '暂无符合条件的活动';
+    document.querySelector('[data-favorite-hint]').hidden = when !== 'fav'; renderIcons();
+  }
+  tabs.querySelectorAll('button').forEach(b => b.onclick = () => { when = b.dataset.when; const url = new URL(location); url.searchParams.set('when', when); history.pushState(null, '', url); update(); });
+  window.addEventListener('popstate', () => { when = new URLSearchParams(location.search).get('when') || 'upcoming'; update(); });
+  update();
+}
+document.addEventListener('keydown', e => {
+  const mask = document.getElementById('gmask'); if (!mask || mask.hidden) return;
+  if (e.key === 'Escape') { closeDlg(); document.querySelector('.ideas-btn')?.focus(); }
+  if (e.key === 'Tab') {
+    const items = [...mask.querySelectorAll('button, input, textarea, summary, a[href]')].filter(el => !el.disabled && el.getClientRects().length);
+    const first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
+  }
 });
