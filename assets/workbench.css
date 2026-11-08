@@ -51,7 +51,16 @@
   .task-earned { flex-wrap:wrap; }
 }
 
-.benefits-entry { display:flex; align-items:center; gap:14px; width:100%; text-align:left; font:inherit; color:var(--ink); border:1px solid var(--red-100); border-radius:12px; padding:14px 18px; background:var(--red-50); cursor:pointer; margin-bottom:20px; }
-.benefits-entry > .ic { font-size:22px; color:var(--red); flex:none; }
-.benefits-entry .grow > span { display:block; font-size:12px; color:var(--muted); margin-top:3px; }
-.benefits-entry > span:last-child { flex:none; color:var(--red); font-size:12px; }
+.workbench-tabs { margin-bottom:20px; }
+.workbench-tabs > button { border:0; border-bottom:2px solid transparent; background:none; font:inherit; padding:12px 16px; color:var(--muted); cursor:pointer; }
+.workbench-tabs > button.on { border-bottom-color:var(--red); color:var(--red); font-weight:600; }
+.term-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+.term-tabs > button { border:1px solid var(--line); background:white; padding:10px 14px; border-radius:10px; font:inherit; }
+.term-tabs > button.on { border-color:var(--red-200); background:var(--red-50); color:var(--red); }
+.term-tabs > button:disabled { color:var(--muted); background:#FAF9F7; cursor:not-allowed; }
+.term-tabs span { font-size:11px; margin-left:6px; }
+.term-members { min-width:510px; }
+.task-card .tbl-wrap { overflow-x:auto; }
+.term-history p { overflow-wrap:anywhere; }
+.task-dialog [hidden] { display:none; }
+@media(max-width:767px) { .workbench-tabs > button { padding:10px 12px; } }
