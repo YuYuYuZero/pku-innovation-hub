@@ -4,6 +4,7 @@ import { createServer } from 'node:http'
 import { existsSync, mkdirSync, readFileSync } from 'node:fs'
 import { resolve, extname } from 'node:path'
 import assert from 'node:assert/strict'
+const RELEASE = readFileSync(new URL('../assets/app.js', import.meta.url), 'utf8').match(/const DEMO_RELEASE = '([^']+)'/)[1]
 
 const chrome = process.env.CHROME_PATH ?? ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome','/usr/bin/google-chrome','/usr/bin/chromium'].find(existsSync)
 if (!chrome) { console.log('没找到 Chrome，跳过 DEMO 页面测试'); process.exit(0) }
@@ -58,7 +59,7 @@ try {
     await Promise.all([p.waitForNavigation({waitUntil:'networkidle0'}),p.click(`.nav-i[href^="${file}"]`)])
     assert.ok(await p.$('.nav-i [data-i="LuClipboardList"] svg'))
     assert.equal(new URL(p.url()).searchParams.get('role'),'president')
-    assert.equal(new URL(p.url()).searchParams.get('v'),'20261108-workbench3')
+    assert.equal(new URL(p.url()).searchParams.get('v'),RELEASE)
     assert.doesNotMatch(await p.$eval('#sb',e=>e.innerText),/我的收藏/)
   }
   await p.click('[data-action=report]'); await fill('工作名称','会长团本人工作'); await fill('工作内容与成果','完成全社统筹'); await fill('线上工时','1')

@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ${field('工作名称',input('title','工作名称',source?.title || '', 'text','required maxlength="200"'))}
       ${field('工作内容与成果',`<textarea name="note" aria-label="工作内容与成果" rows="3">${esc(source?.note || '')}</textarea>`)}
       <div data-incomplete-fields>${field('截止日期（可选）',input('due','任务截止日期','','date'))}</div>
-      ${!assign ? `<div data-complete-fields>${field(`实际工作日期 · ${TASK_RULES.term.label}`,input('date','实际工作日期',today,'date',`required min="${TASK_RULES.term.start}" max="${today < TASK_RULES.term.end ? today : TASK_RULES.term.end}"`))}<div class="task-two">${field('线上工时（小时）',input('online','线上工时',0,'number','min="0" step="0.25" required'))}${field('线下工时（小时）',input('offline','线下工时',0,'number','min="0" step="0.25" required'))}</div>${field('成果 / 凭证链接（可选）',input('evidence','成果凭证链接','','url'))}<p class="notice">工时按 0.25 小时填写，难度系数和积分由有权限的其他管理者确认。</p></div>` : field('难度系数（可稍后分配）',kSelect(null))}
+      ${!assign ? `<div data-complete-fields>${field(`实际工作日期 · ${TASK_RULES.term.label}`,input('date','实际工作日期',today,'date',`required min="${TASK_RULES.term.start}" max="${today < TASK_RULES.term.end ? today : TASK_RULES.term.end}"`))}<div class="task-two">${field('线上工时（小时）',input('online','线上工时',0,'number','min="0" step="0.25" required'))}${field('线下工时（小时）',input('offline','线下工时',0,'number','min="0" step="0.25" required'))}</div>${field('成果 / 凭证链接（可选）',input('evidence','成果凭证链接','','url'))}<p class="notice">工时按 0.25 小时填写，线上与线下不重复计算；难度系数和积分由有权限的其他管理者确认。</p></div>` : field('难度系数（可稍后分配）',kSelect(null))}
       <div class="task-actions">${button('create','保存工作',true)}</div>`, (a,f) => {
       if (a === 'work-open' || a === 'work-done') { completed = a === 'work-done'; syncProgress(); return; }
       if (a !== 'create' || !f.reportValidity()) return;
@@ -93,6 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const el = f.querySelector(selector); if (el) { el.hidden = hidden; el.querySelectorAll('input').forEach(e => e.disabled = hidden); }
       }
       f.elements.note.required = completed;
+      // 与 app 一致：已完成写“工作内容与成果”，未完成或分配写“工作内容 / 进展”。
+      f.elements.note.closest('.field').querySelector('.label').textContent = completed ? '工作内容与成果' : '工作内容 / 进展';
+      f.elements.note.placeholder = completed ? '说明完成了什么、交付了什么' : '简要说明要完成什么';
       f.querySelectorAll('.work-progress button').forEach(b => { const on = (b.dataset.action === 'work-done') === completed; b.classList.toggle('btn-p',on); b.setAttribute('aria-pressed',on); });
       f.querySelector('[data-action=create]').textContent = completed ? '提交完成，等待确认' : assign ? '分配工作' : '保存工作';
     }
@@ -102,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const r = Object.values(DEMO_ROLES).find(r => r.id === id);
     if (!r || !TASK_RULES.manager(role,{owner:id,dept:r.dept})) return;
     const expected = termTotal(id);
-    modal('校准学期积分', `<p>${r.name} · ${TASK_RULES.term.label} · 当前 ${money(expected)} 分</p>${field('校准后总积分',input('total','校准后总积分',expected,'number','required min="0" max="999999999.99" step="0.01"'))}${field('校准原因','<textarea name="reason" aria-label="学期校准原因" required maxlength="2000" rows="3"></textarea>')}<p class="notice">调整单独留痕；后续确认的新工作继续累加。</p><div class="task-actions">${button('save-term','保存学期校准',true)}</div>`,(a,f) => {
+    modal('校准学期积分', `<p>${r.name} · ${TASK_RULES.term.label} · 当前 ${money(expected)} 分</p>${field('校准后总积分',input('total','校准后总积分',expected,'number','required min="0" max="999999999.99" step="0.01"'))}${field('校准原因','<textarea name="reason" aria-label="学期校准原因" required maxlength="2000" rows="3"></textarea>')}<p class="notice" data-term-delta>本次调整 ${signed(0)} 分，单项工作的工时、系数和积分保持可追溯。</p><div class="task-actions">${button('save-term','保存学期校准',true)}</div>`,(a,f) => {
       if (a !== 'save-term' || !f.reportValidity()) return;
       const total = Number(f.elements.total.value), reason = f.elements.reason.value.trim();
       if (!reason || !Number.isFinite(total) || total < 0 || total >= 1e9 || Math.abs(Math.round(total*100)-total*100) > 1e-7) throw new Error('请填写有效积分与校准原因');
@@ -111,6 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
       adjustments.unshift({owner:id,dept:r.dept,delta:Math.round((total-expected)*100)/100,before:expected,after:total,reason,actor:role.name,at:new Date().toISOString()});
       localStorage.setItem('inno-term-adjustments-v1',JSON.stringify(adjustments)); close(); render(); toast('学期积分已校准，明细已保留');
     });
+    // 与 app 一致：实时显示本次调整差额，方便管理者核对。
+    const termForm = dialog.querySelector('form');
+    termForm.oninput = () => { const v = Number(termForm.elements.total.value); termForm.querySelector('[data-term-delta]').textContent = `本次调整 ${signed(Number.isFinite(v) ? Math.round((v - expected) * 100) / 100 : 0)} 分，单项工作的工时、系数和积分保持可追溯。`; };
   }
   function detail(t) {
     if (!TASK_RULES.visible(role,t)) return;
@@ -183,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     root.innerHTML = `<div class="task-head"><div><div class="row"><h1 class="h-page">工作台</h1><span class="tag t-line">骨干工作与权益</span></div><p class="muted">统一上报工作与进展；完成后确认积分，按学期查看贡献与权益。</p></div>${button('report','上报工作',true)}</div>
       <p class="small muted" style="margin-bottom:14px">演示数据 · 操作保存在当前浏览器，可从登录页切换身份继续演示。<a class="lnk" href="login.html">切换身份</a></p>
       <div class="tabs workbench-tabs" role="tablist" aria-label="工作台栏目">${[['mine','我的工作'],...(leader ? [['manage','工作管理']] : []),['points','骨干权益']].map(([k,l]) => `<button role="tab" aria-selected="${tab === k}" data-tab="${k}" class="${tab === k ? 'on' : ''}">${l}${k === 'manage' && pending ? ` <span class="cnt">${pending}</span>` : ''}</button>`).join('')}</div>
-      ${tab === 'points' ? benefitsView() : `<div class="task-toolbar"><div class="seg">${filters.map(([k,l]) => `<a href="#" data-filter="${k}" class="${k === filter ? 'on' : ''}">${l}</a>`).join('')}</div><div class="task-actions">${input('keyword','搜索任务',keyword,'search','placeholder="搜索工作或负责人"')}${tab === 'manage' ? button('assign','分配工作') : ''}</div></div>
+      ${tab === 'points' ? benefitsView() : `<div class="task-toolbar"><div class="seg">${filters.map(([k,l]) => `<a href="#" data-filter="${k}" class="${k === filter ? 'on' : ''}">${l}</a>`).join('')}</div><div class="task-actions">${input('keyword','搜索任务',keyword,'search',`placeholder="${tab === 'manage' ? '搜索工作或负责人' : '搜索我的工作'}"`)}${tab === 'manage' ? button('assign','分配工作') : ''}</div></div>
       <p class="small muted" style="margin-bottom:16px">${tab === 'manage' ? '处理管理范围内其他成员的工作：分配、跟进、设置系数、确认与校准。本人工作由其他有权限的管理者处理。' : '自主上报和分配给你的工作都在这里。完成状态与积分确认分别显示，退回补充的工作回到未完成。'}</p>
       <div class="card">${shown.map(t => `<button class="task-row" data-task="${t.id}"><span>${ic('LuClipboardList')}</span><span class="grow"><b>${esc(t.title)}</b><span class="row small muted"><span class="tag">${t.status === 'done' ? '已完成' : '未完成'}</span><span class="tag">${scoreLabel[t.score]}</span>${tab === 'manage' ? `<span>${person(t.owner)} · ${dept(t.dept)}</span>` : ''}${t.createdBy && t.createdBy !== t.owner ? `<span>${person(t.createdBy)} 分配</span>` : ''}<span>${t.k ? `系数 ${t.k.toFixed(1)}` : '系数待分配'}</span>${t.score === 'approved' ? `<b>${money(t.final)} 分</b>` : ''}</span><p>${esc(t.note)}</p></span><small class="muted">${t.due ? `${t.status !== 'done' && t.due < today ? '已逾期 · ' : ''}${t.due}` : '未设截止日'}</small></button>`).join('') || '<p class="task-empty">当前筛选下没有工作</p>'}</div>`}`;
     renderIcons();
@@ -202,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
   root.addEventListener('input', e => { const name = e.target.name; if (!['keyword','historyKeyword'].includes(name)) return; if (name === 'keyword') keyword = e.target.value; else historyKeyword = e.target.value; const pos = e.target.selectionStart; render(); const input = root.querySelector(`[name=${name}]`); input.focus(); input.setSelectionRange(pos,pos); });
   render();
   const id = Number(new URLSearchParams(location.search).get('task'));
-  if (id) { const t = tasks.find(t => t.id === id && TASK_RULES.visible(role,t)); t ? detail(t) : root.insertAdjacentHTML('beforeend','<p class="notice">这条任务不存在，或当前身份无权查看。</p>'); }
+  if (id) { const t = tasks.find(t => t.id === id && TASK_RULES.visible(role,t)); t ? detail(t) : root.insertAdjacentHTML('beforeend',`<p class="notice">这条工作不存在，或当前身份无权查看。<a class="lnk" href="workbench.html?role=${new URLSearchParams(location.search).get('role') || 'minister'}&v=${DEMO_RELEASE}">返回列表</a></p>`); }
   const mode = new URLSearchParams(location.search).get('new');
   if (['task','report','assign'].includes(mode) && TASK_RULES.reporter(role)) createTask(null,mode);
 });

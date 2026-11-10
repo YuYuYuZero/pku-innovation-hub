@@ -12,7 +12,6 @@
 | 资源库 | `resources.html` |
 | 资源详情 | `resource_detail.html` |
 | 录入资源 | `resource_new.html` |
-| 批量导入 | `upload.html` |
 | 知识库 | `kb.html` |
 | 文档阅读与版本 | `kb_doc.html` |
 | 资源审核 | `resource_review.html` |
@@ -23,11 +22,14 @@
 | 录入活动 | `event_new.html` |
 | 工作台 · 任务与积分 | `workbench.html` |
 | 旧活动申报入口（暂停提示） | `activity_review.html` |
+| 批量导入（暂不开放，app 用录入页 AI 拆分多条） | `upload.html` |
+| 资源对接（暂不开放） | `needs.html` |
 | 精选（暂不开放） | `featured.html` |
 | 创业 · 项目（暂不开放） | `projects.html` |
 | 创业 · 项目详情（暂不开放） | `project_detail.html` |
 | 创业 · 投资人与机构（暂不开放） | `investors.html` |
 | 平台管理 | `admin.html` |
+| 个人中心 | `me.html` |
 | 登录与身份 | `login.html` |
 | 手机与飞书 | `mobile.html` |
 

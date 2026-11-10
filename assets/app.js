@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const DEMO_RELEASE = '20261108-workbench3';
+const DEMO_RELEASE = '20261110-sync1';
 const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261031c" alt="北京大学校徽">`;
 
 const NAV = [
@@ -16,6 +16,9 @@ const NAV = [
   ] },
   { g: "社区 · 活动广场", items: [
     ["events", "活动", "events.html", "LuCalendarDays"],
+  ] },
+  { g: "个人", items: [
+    ["me", "个人中心", "me.html", "LuUser"],
   ] },
   { g: "管理 · 平台管理", items: [
     ["admin", "审核与管理", "admin.html", "LuShieldCheck"],
@@ -38,6 +41,29 @@ function demoAllowed(id, role = demoRole()) {
   return !need || (need === "member" ? role !== DEMO_ROLES.outsider : !!role[need]);
 }
 function demoVisible(id, role = demoRole()) { return demoAllowed(id, role) || !!role.backbone; }
+// 与 app 一致：工作台计数 = 本人未完成工作 + 待我确认的工作；演示数据来自工作台页保存的浏览器记录。
+const DEMO_TASK_SEED = [{ owner: 3, dept: 1, status: "doing", score: "unsubmitted" }, { owner: 3, dept: 1, status: "done", score: "pending" }, { owner: 4, dept: 2, status: "done", score: "approved" }];
+function demoTaskTodo(role = demoRole()) {
+  if (!role.backbone) return { open: 0, pending: 0, total: 0 };
+  let tasks = DEMO_TASK_SEED;
+  try { const stored = JSON.parse(localStorage.getItem("inno-task-demo-v1")); if (Array.isArray(stored)) tasks = stored; } catch { /* 使用示例数据 */ }
+  const manages = t => !!role.leader && t.owner !== role.id && !!(role.president || t.dept === role.dept);
+  const open = tasks.filter(t => t.owner === role.id && t.status !== "done").length, pending = tasks.filter(t => t.score === "pending" && manages(t)).length;
+  return { open, pending, total: open + pending };
+}
+function demoNavCount(id, role = demoRole()) { return id === "workbench" ? demoTaskTodo(role).total : id === "resources" && role.maintainer ? 3 : 0; }
+// 首页右栏：骨干及以上看“待我处理”计数，会员和未入名单看欢迎说明（与 app 首页一致）。
+function renderHomeTodo() {
+  const card = document.querySelector("[data-home-todo]"); if (!card) return;
+  const role = demoRole(), welcome = document.querySelector("[data-home-welcome]");
+  card.hidden = !role.backbone; welcome.hidden = !!role.backbone;
+  welcome.querySelector("p").textContent = role === DEMO_ROLES.outsider ? "你尚未在学社成员名单中，请联系所在部门部长确认身份。" : "你现在是学社会员，可以看活动、使用 AI 工具箱和知识库（按文档范围开放）。资源库和任务工作台对骨干开放。";
+  const todo = demoTaskTodo(role), task = card.querySelector("[data-home-task]");
+  task.hidden = !todo.total;
+  if (todo.pending) task.setAttribute("href", `workbench.html?tab=manage&v=${DEMO_RELEASE}`);
+  task.querySelector(".b").textContent = `${todo.open} 项个人工作未完成 · ${todo.pending} 项工作待确认`;
+  card.querySelector("[data-home-empty]").hidden = !!(todo.total || role.maintainer);
+}
 function pageId(file) {
   if (/^(resource|upload)/.test(file)) return 'resources';
   if (/^kb/.test(file)) return 'kb';
@@ -66,7 +92,7 @@ function renderShell() {
     sb.className = "sb";
     sb.innerHTML = `<a class="brand" href="index.html">${LOGO}<div class="wm"><b>北大创新学社</b><span>资源 · 工具 · 社区</span></div></a>` +
       NAV.filter(g => g.items.some(([id]) => demoVisible(id))).map(g => `<div class="nav-g">${g.g ? `<div class="gt">${g.g}${g.internal && demoRole().backbone ? `<span class="asset-lock" title="学社内部：资源库与工作台限骨干；知识库按文档范围开放" aria-label="学社内部资产">${ic("LuLock")}</span>` : ""}</div>` : ""}` + g.items.filter(([id]) => demoVisible(id)).map(([id, t, href, icon, lock, cnt]) =>
-        demoAllowed(id) ? `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${cnt && demoRole().maintainer ? `<span class="cnt">${cnt}</span>` : ""}</a>` : `<span class="nav-i off" aria-disabled="true" title="当前身份没有权限">${ic(icon)}<span>${t}</span>${!g.internal ? `<span class="lk">${ic("LuLock")}</span>` : ""}</span>`).join("") + `</div>`).join("") +
+        demoAllowed(id) ? `<a class="nav-i ${id === page ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${demoNavCount(id) ? `<span class="cnt">${demoNavCount(id)}</span>` : ""}</a>` : `<span class="nav-i off" aria-disabled="true" title="当前身份没有权限">${ic(icon)}<span>${t}</span>${!g.internal ? `<span class="lk">${ic("LuLock")}</span>` : ""}</span>`).join("") + `</div>`).join("") +
       `<a class="me" href="login.html"><span class="av av-sm a1">${demoRole().name.slice(-1)}</span><div class="who"><b>${demoRole().name}</b><span>${demoRole().title}</span></div>${ic("LuChevronDown")}</a>`;
   }
   // 不再用顶栏：搜索放在首页和各板块内部，通知铃铛放在侧边栏 Logo 旁边
@@ -158,10 +184,10 @@ function renderIcons() {
 // 原型目录：所有页面与对应文件，便于在 GitHub Pages 上预览
 const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
-  ["批量导入", "upload.html"], ["知识库", "kb.html"], ["文档详情与版本", "kb_doc.html"], ["资源审核", "resource_review.html"],
+  ["知识库", "kb.html"], ["文档详情与版本", "kb_doc.html"], ["资源审核", "resource_review.html"],
   ["工作台 · 任务与积分", "workbench.html"], ["AI 工具箱", "assistant.html"], ["录入活动", "event_new.html"],
-  ["活动", "events.html"], ["审核与管理", "admin.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
-  ["—— 暂不开放 ——"], ["AI 能力说明", "skills.html"], ["讨论", "community.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"],
+  ["活动", "events.html"], ["审核与管理", "admin.html"], ["个人中心", "me.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
+  ["—— 暂不开放 ——"], ["批量导入", "upload.html"], ["资源对接", "needs.html"], ["AI 能力说明", "skills.html"], ["讨论", "community.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"],
 ];
 function renderProtoNav() {
   if (new URLSearchParams(location.search).has("shot")) return;
@@ -198,6 +224,8 @@ function renderRoleState() {
     const need = el.dataset.need;
     el.hidden = need === "member" ? role === DEMO_ROLES.outsider : !role[need];
   });
+  // 与 app 一致的“有该身份时隐藏”，例如手机首页骨干用工作台替换活动入口。
+  document.querySelectorAll("[data-hide-need]").forEach(el => { el.hidden = !!role[el.dataset.hideNeed]; });
   document.querySelectorAll("[data-review-empty]").forEach(el => { el.hidden = !!role.maintainer; });
   const page = document.body.dataset.page;
   if (page && !demoAllowed(page, role)) {
@@ -263,6 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderStorageState();
   renderIdeas();
   renderHomeFeed();
+  renderHomeTodo();
   renderDemoEvents();
   renderHomeIdeas();
   renderIcons();

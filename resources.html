@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>资源库 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261108-workbench3"><script src="assets/icons.js?v=20261108-workbench3"></script><script src="assets/app.js?v=20261108-workbench3"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261110-sync1"><script src="assets/icons.js?v=20261110-sync1"></script><script src="assets/app.js?v=20261110-sync1"></script>
 <style>
 .cols { display: grid; grid-template-columns: 1fr 400px; gap: 18px; align-items: start; }
 .sbox { display: flex; gap: 10px; }
@@ -30,7 +30,7 @@
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
 <div class="row between" style="margin:6px 0 14px"><div><div class="row"><h1 class="h-page">资源库</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i>学社骨干可见</span></div><p class="muted" style="margin-top:2px">学社对接过的人、机构和学社骨干。找到后联系学社对接人；外部个人的联系方式不在平台登记</p></div>
-<div class="row"><a class="btn" href="resource_review.html?v=20261108-workbench3">资源审核 / 我的提交</a><a class="btn" href="upload.html?v=20261108-workbench3"><i class="ic" data-i="LuUpload"></i>批量导入</a><a class="btn btn-p" href="resource_new.html?v=20261108-workbench3"><i class="ic" data-i="LuPlus"></i>录入资源</a></div></div>
+<div class="row"><a class="btn" href="resource_review.html?v=20261110-sync1">资源审核 / 我的提交</a><a class="btn" href="#" data-dlg="requests"><i class="ic" data-i="LuMessagesSquare"></i>联系请求 · 1 待回复</a><a class="btn btn-p" href="resource_new.html?v=20261110-sync1"><i class="ic" data-i="LuPlus"></i>录入资源</a></div></div>
 
 <div class="card pad rel" style="padding:14px 16px"><span class="mk" style="left:-8px;top:-8px">1</span>
   <div class="sbox"><div class="mode"><a class="on">关键词</a></div><div class="input" style="color:var(--ink)"><i class="ic" data-i="LuSearch" style="color:var(--muted)"></i>AI 教育</div><span class="btn btn-p btn-lg" data-done="找到 3 项资源">搜索</span></div>
@@ -54,7 +54,7 @@
 </div>
 
 <div class="card det rel"><span class="mk" style="left:-8px;top:-8px">4</span>
-  <div class="hd"><div class="row between"><span class="tag t-red">外部个人</span><div class="row" style="gap:6px"><a class="icon-btn" style="width:32px;height:32px" href="resource_detail.html?v=20261108-workbench3"><i class="ic" data-i="LuArrowUpRight"></i></a></div></div>
+  <div class="hd"><div class="row between"><span class="tag t-red">外部个人</span><div class="row" style="gap:6px"><a class="icon-btn" style="width:32px;height:32px" href="resource_detail.html?v=20261110-sync1"><i class="ic" data-i="LuArrowUpRight"></i></a></div></div>
     <h2 style="font-size:21px;margin-top:10px">示例人物 A</h2><div class="muted" style="margin-top:2px">某教育科技公司 · 产品负责人</div>
     <div class="row" style="gap:6px;margin-top:10px"><span class="tag">AI</span><span class="tag">教育</span><span class="tag">产品</span></div></div>
   <div class="sec"><div class="st">可提供的帮助</div><div style="color:var(--ink)">可交流 AI 教育产品开发经验；可做分享嘉宾。是否担任评委需另行确认。</div><div class="small muted" style="margin-top:6px">待确认：时间偏好、是否可线上参与</div></div>
@@ -86,5 +86,16 @@
     <div class="grid g2"><div class="field"><div class="label">什么时候要</div><div class="input">11 月下旬</div></div><div class="field"><div class="label">关联活动</div><div class="input ph">选择（可选）</div></div></div>
   </div>
   <div class="fd"><span class="grow"></span><span class="btn" data-close>取消</span><span class="btn btn-p" data-done="已发给外联部维护人">发送</span></div>
+</div></template>
+<!-- 与 app 的“联系请求”抽屉一致：我发出的和发给我的请求，对接人在这里回复结果 -->
+<template id="dlg-requests"><div class="dlg">
+  <div class="hd"><b style="font-size:16px">联系请求</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
+  <div class="bd">
+    <p class="small muted" style="margin-bottom:10px">你发出的请求和发给你的请求。对接人联系对方后，在这里回复结果，对方会收到通知。</p>
+    <div style="padding:10px 0;border-bottom:1px solid var(--line)"><div class="row" style="gap:6px"><span class="b">示例人物 A</span><span class="tag">分享嘉宾</span><span class="tag t-amber">待处理</span></div><div class="xs muted" style="margin-top:2px">同学 C 发给我 · 2 小时前 · 期望 11 月下旬</div><div class="small" style="margin-top:6px">AI 教育主题分享会，想邀请对方做 20 分钟分享。</div>
+      <div class="row" style="margin-top:8px"><span class="input" style="width:110px">待处理</span><div class="input ph grow">回复结果，如：已联系，对方 11-25 晚上可以</div><span class="btn btn-p btn-sm" data-done="已回复，对方会收到通知">回复</span></div></div>
+    <div style="padding:10px 0"><div class="row" style="gap:6px"><span class="b">资源需求</span><span class="tag">资源需求</span><span class="tag t-blue">已联系</span></div><div class="xs muted" style="margin-top:2px">我发给 同学 G · 3 天前</div><div class="small" style="margin-top:6px">黑客松需要一个可容纳 80 人的场地。</div><div class="small muted" style="margin-top:6px">回复：已联系，对方需要提前两周确认档期</div></div>
+  </div>
+  <div class="fd"><span class="grow"></span><span class="btn" data-close>关闭</span></div>
 </div></template>
 </body></html>
