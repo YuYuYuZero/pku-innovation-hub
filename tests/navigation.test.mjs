@@ -52,8 +52,9 @@ test('会员与未入名单隐藏无权限入口，骨干保留锁定管理入�
   for (const page of ['resources', 'workbench', 'admin']) assert.equal(check(`demoVisible('${page}', DEMO_ROLES.member)`), false)
   assert.equal(check("demoAllowed('kb', DEMO_ROLES.member)"), true)
   assert.equal(check("demoAllowed('kb', DEMO_ROLES.outsider)"), false)
-  assert.equal(check("demoVisible('admin', DEMO_ROLES.backbone)"), true)
-  assert.equal(check("demoAllowed('admin', DEMO_ROLES.backbone)"), false)
+  assert.equal(check("demoVisible('admin', DEMO_ROLES.maintainer)"), true)
+  assert.equal(check("demoAllowed('admin', DEMO_ROLES.maintainer)"), false)
+  assert.equal(check("demoAllowed('admin', DEMO_ROLES.backbone)"), true)
 })
 
 test('登录页使用 A–F 演示身份，邮箱入口保持隐藏', () => {
@@ -83,6 +84,7 @@ test('活动录入独立于申报，资源审核只保留资源', () => {
   const review = readFileSync(join(root, 'resource_review.html'), 'utf8')
   assert.match(review, /资源审核/)
   assert.match(review, /data-need="maintainer"/)
+  assert.match(review, /我提交的/)
   assert.doesNotMatch(review, /活动申报|积分|终审|督办/)
   const check = expression => runInNewContext(source + '\n' + expression, { document: { addEventListener() {} } })
   assert.equal(check("demoAllowed(pageId('event_new.html'), DEMO_ROLES.member)"), false)

@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>资源审核 · 创新学社</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="assets/app.css?v=20261110-sync1"><script src="assets/icons.js?v=20261110-sync1"></script><script src="assets/app.js?v=20261110-sync1"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261111-sync2"><script src="assets/icons.js?v=20261111-sync2"></script><script src="assets/app.js?v=20261111-sync2"></script>
 <style>
 .rv td { vertical-align: top; }
 .sug { font-size: 12px; border-radius: 8px; padding: 6px 9px; margin-top: 4px; display: flex; gap: 6px; align-items: flex-start; line-height: 1.5; }
 .ckb { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--line-2); display: inline-block; }
 .ckb.on { background: var(--red); border-color: var(--red); }
 </style></head><body data-page="resources"><div class="app"><aside id="sb"></aside><div class="main"><div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row small muted" style="margin-bottom:12px"><a href="resources.html?v=20261110-sync1">资源库</a><span> / 资源审核</span></div>
+<div class="row small muted" style="margin-bottom:12px"><a href="resources.html?v=20261111-sync2">资源库</a><span> / 资源审核</span></div>
 <h1 class="h-page">资源审核</h1><p class="muted" style="margin:8px 0 20px">维护人核对资源信息、处理重复和退回补充；录入人可以查看自己提交的资源。</p>
-<div class="card" data-need="maintainer">
-    <div class="pad row between" style="padding-bottom:10px"><div class="seg pick"><a class="on">待我处理 3</a><a>资源 3</a></div><div class="row"><span class="btn btn-sm" data-dlg="reject">驳回所选</span><span class="btn btn-sm btn-p" data-done="已通过 2 条，提交人会收到通知"><i class="ic" data-i="LuCheck"></i>通过所选（2）</span></div></div>
-    <table class="tbl rv">
+<div class="card">
+    <div class="pad row between" style="padding-bottom:10px"><div class="seg pick" id="rv-groups"><a class="on" data-g="todo">待我处理 <span data-need="maintainer">3</span><span data-hide-need="maintainer">0</span></a><a data-g="res" data-need="maintainer">资源 3</a><a data-g="mine">我提交的 1</a></div><div data-gpane="todo res" data-need="maintainer"><div class="row"><span class="btn btn-sm" data-dlg="reject">驳回所选</span><span class="btn btn-sm btn-p" data-done="已通过 2 条，提交人会收到通知"><i class="ic" data-i="LuCheck"></i>通过所选（2）</span></div></div></div>
+    <div data-gpane="todo" data-hide-need="maintainer" class="pad muted" style="padding-top:0">没有需要你处理的资源</div>
+    <table class="tbl rv" data-gpane="todo res" data-need="maintainer">
       <tr><th style="width:36px"></th><th>内容</th><th style="width:250px">说明</th><th style="width:118px">提交</th><th style="width:96px"></th></tr>
 
       <tr><td><span class="ckb on"></span></td><td><div class="row"><span class="tag t-red">资源</span><span class="b">示例人物 E</span></div><div class="small muted" style="margin-top:4px">某 AI 医疗公司 · 可交流 AI 医疗落地经验</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuTriangleAlert"></i>与已有记录“示例人物 E”同名，疑似重复</div></td><td class="small">同学 F<br><span class="muted">10 分钟前</span></td><td><span class="btn btn-sm" data-dlg="dup">对比</span></td></tr>
       <tr><td><span class="ckb on"></span></td><td><div class="row"><span class="tag t-blue">资源</span><span class="b">示例机构 F</span></div><div class="small muted" style="margin-top:4px">某孵化器 · 可提供路演场地</div></td><td><div class="sug n-teal"><i class="ic" data-i="LuCircleCheck"></i>必填项完整，未发现重复</div></td><td class="small">同学 C<br><span class="muted">1 小时前</span></td><td><span class="btn btn-sm" data-dlg="rv">查看</span></td></tr>
       <tr><td><span class="ckb"></span></td><td><div class="row"><span class="tag t-red">资源</span><span class="b">示例人物 H</span></div><div class="small muted" style="margin-top:4px">缺少“可提供的帮助”</div></td><td><div class="sug n-amber"><i class="ic" data-i="LuTriangleAlert"></i>必填项缺失，建议退回补充</div></td><td class="small">同学 C<br><span class="muted">昨天</span></td><td><span class="btn btn-sm" data-dlg="reject">退回</span></td></tr>
-    </table></div>
-<div class="card pad" style="margin-top:16px"><h2 class="h-sec">我提交的</h2><div class="row between" style="margin-top:12px"><span>示例资源 · 可提供活动场地</span><span class="tag t-amber">待资源审核</span></div><p class="xs muted" style="margin-top:12px">审核结果会通过通知告知。</p></div>
+    </table>
+    <div data-gpane="mine" class="pad rv-off" style="padding-top:0"><div class="row between"><span>示例资源 · 可提供活动场地</span><span class="tag t-amber">待资源审核</span></div><p class="xs muted" style="margin-top:12px">审核结果会通过通知告知。</p></div>
+</div>
+<script>
+document.querySelectorAll("#rv-groups a").forEach(a => a.addEventListener("click", () => {
+  document.querySelectorAll("[data-gpane]").forEach(p => { p.classList.toggle("rv-off", !p.dataset.gpane.split(" ").includes(a.dataset.g)); });
+}));
+</script>
+<style>.rv-off { display: none !important; }</style>
 </div></div></div></div><template id="dlg-rv"><div class="dlg dlg-lg">
   <div class="hd"><span class="tag t-blue">资源</span><b style="font-size:16px">示例机构 F</b><span class="grow"></span><span class="icon-btn x" data-close>×</span></div>
   <div class="bd">
