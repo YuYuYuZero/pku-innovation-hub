@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const DEMO_RELEASE = '20261111-sync2';
+const DEMO_RELEASE = '20261111-sync3';
 const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261031c" alt="北京大学校徽">`;
 
 const NAV = [
@@ -27,8 +27,8 @@ const NAV = [
 
 // 演示身份仅用于展示；真实授权由 app 的后端负责。
 const DEMO_ROLES = {
-  president: { id: 1, dept: 3, president: true, leader: true, content: true, ideas: true, name: "同学 A", title: "会长团", backbone: true, admin: true },
-  minister: { id: 2, dept: 1, leader: true, ideas: true, name: "同学 B", title: "AI俱乐部 · 部长", backbone: true, admin: true },
+  president: { id: 1, dept: 3, president: true, leader: true, content: true, ideas: true, people: true, name: "同学 A", title: "会长团", backbone: true, admin: true },
+  minister: { id: 2, dept: 1, leader: true, ideas: true, people: true, name: "同学 B", title: "AI俱乐部 · 部长", backbone: true, admin: true },
   backbone: { id: 3, dept: 1, name: "同学 C", title: "AI俱乐部 · 骨干（内容管理）", backbone: true, content: true, admin: true },
   maintainer: { id: 4, dept: 2, name: "同学 D", title: "外联部 · 维护人", backbone: true, maintainer: true },
   member: { id: 5, name: "同学 E", title: "会员" },
@@ -117,26 +117,39 @@ const ideaDrafts = new Map();
 const demoEscape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
 function readDemoData(key, fallback) { try { return JSON.parse(localStorage.getItem(`hub-${key}-${demoRole().id}`)) ?? fallback; } catch { return fallback; } }
 function saveDemoData(key, value) { try { localStorage.setItem(`hub-${key}-${demoRole().id}`, JSON.stringify(value)); return true; } catch { toast('保存失败，请检查浏览器存储设置后重试'); return false; } }
-function demoIdeas() { return readDemoData('ideas', [{ id: 'example', title: '办活动助手', scene: '骨干准备活动时，希望能快速找到往届复盘和模板。', status: '评估中', replies: [{ body: '可以先整理一份复盘清单，你可以在这里继续补充。', who: '处理人' }] }]); }
+// 想法在提出人和处理人之间共用一份演示数据（与 app 一致：处理人回复、改状态，提出人在抽屉里看到）
+const IDEA_SEED = [
+  { id: 'i1', title: '办活动助手', by: 2, name: '同学 B', status: '评估中', at: '3 天前', upd: '今天 09:12', scene: '骨干准备办一场活动时，先看往届怎么办的', input: '一句话描述活动想法', output: '往届复盘、可请嘉宾和对接人、模板、活动策划草稿',
+    replies: [{ by: 1, name: '同学 A', body: '方向很好。想先确认：往届复盘现在都在飞书里，你希望它直接读飞书文档，还是先由各部门整理一份复盘清单？' }, { by: 2, name: '同学 B', body: '先用清单就行，读飞书的以后再说。' }] },
+  { id: 'i2', title: '报名表自动分组', by: 5, name: '同学 E', status: '待处理', at: '今天', upd: '今天 08:40', scene: '活动报名后，希望按年级和兴趣自动分组。', input: '问卷导出的 Excel', output: '按年级分组的名单，每组 5 人', replies: [] },
+  { id: 'i3', title: '会议纪要整理', by: 3, name: '同学 C', status: '待处理', at: '昨天', upd: '昨天', scene: '部门例会后，希望把录音整理成纪要和待办。', replies: [] },
+  { id: 'i4', title: '表格批量处理', by: 2, name: '同学 B', status: '已排期', at: '上周', upd: '3 天前', scene: '招新报名表需要批量清洗、去重。', replies: [{ by: 1, name: '同学 A', body: '已排进 12 月，先做去重和格式统一。' }] },
+  { id: 'i5', title: '换届交接包', by: 1, name: '同学 A', status: '已排期', at: '上周', upd: '上周', scene: '换届时，把本部门的资料、对接人和待办打包交给下一任。', replies: [] },
+];
+const IDEA_STATUS = ['待处理', '评估中', '已排期', '开发中', '已上线', '暂不做'];
+function demoAllIdeas() { try { return JSON.parse(localStorage.getItem('hub-ideas-shared')) ?? IDEA_SEED; } catch { return IDEA_SEED; } }
+function saveAllIdeas(value) { try { localStorage.setItem('hub-ideas-shared', JSON.stringify(value)); return true; } catch { toast('保存失败，请检查浏览器存储设置后重试'); return false; } }
+function demoIdeas() { return demoAllIdeas().filter(i => i.by === demoRole().id); }
+const ideaWho = (i, r) => `${r.name}${r.by === i.by ? '（提出人）' : '（处理人）'}`;
 const IDEAS = `<div class="drawer" role="dialog" aria-modal="true" aria-label="想法共建"><div class="dr-h"><b>想法共建</b><span class="grow"></span><button class="icon-btn x" data-close aria-label="关闭想法共建">×</button></div>
   <div class="dr-b"><p class="small muted">功能建议、使用问题，或想交给 AI 的事，都可以写在这里。只有你和处理人（会长团、AI俱乐部部长）可见。</p>
   <form id="idea-form" class="idea-form"><h3>提一个想法</h3>
     <label>想法标题 <span class="muted">必填</span><input class="input" name="title" aria-label="想法标题" required placeholder="一句话概括，如：活动收藏更好找"></label>
     <label>想法内容 <span class="muted">必填</span><textarea class="input" name="scene" aria-label="想法内容" rows="5" required placeholder="在这里写具体想法：遇到了什么问题？希望怎么改？也可以举个例子。"></textarea></label>
     <details><summary>补充 AI 使用场景（选填）</summary><label>可提供的材料<input class="input" name="input" placeholder="如：问卷导出的 Excel"></label><label>期望的结果<input class="input" name="output" placeholder="如：每组 5 人的名单"></label></details>
-    <button class="btn btn-p" type="submit" disabled>提交想法</button><p class="xs muted">关闭面板后草稿仍保留，刷新页面会清空。演示提交和回复保存在当前浏览器。</p>
+    <button class="btn btn-p" type="submit" disabled>提交想法</button><p class="xs muted">关闭面板后草稿仍保留，刷新页面会清空。演示数据保存在当前浏览器，切换到处理人身份（同学 A、同学 B）可在「审核与管理 · 想法共建」处理。</p>
   </form><h3>我提的想法</h3><div id="idea-list"></div></div></div>`;
 function renderIdeaList(openId) {
   const list = document.getElementById('idea-list'); if (!list) return;
   list.innerHTML = demoIdeas().map(i => `<details class="idea-record" ${i.id === openId ? 'open' : ''}><summary><b>${demoEscape(i.title)}</b><span class="tag">${demoEscape(i.status)}</span><span class="xs muted">${i.replies.length} 条回复 · 展开</span></summary>
     <p class="idea-body">${demoEscape(i.scene)}</p>${i.input || i.output ? `<p class="xs muted">材料：${demoEscape(i.input || '—')} · 期望：${demoEscape(i.output || '—')}</p>` : ''}
-    <div class="thread">${i.replies.map(r => `<div><span class="xs muted">${demoEscape(r.who)}</span><p class="idea-body">${demoEscape(r.body)}</p></div>`).join('') || '<p class="xs muted">还没有回复，可继续补充说明</p>'}
+    <div class="thread">${i.replies.map(r => `<div><span class="xs muted">${demoEscape(ideaWho(i, r))}</span><p class="idea-body">${demoEscape(r.body)}</p></div>`).join('') || '<p class="xs muted">还没有回复，可继续补充说明</p>'}
     <form data-idea-reply="${demoEscape(i.id)}"><textarea class="input" aria-label="补充说明或回复处理人" name="body" rows="2" required placeholder="补充说明或回复处理人"></textarea><button type="submit" class="btn btn-p btn-sm">回复</button></form></div></details>`).join('');
   list.querySelectorAll('[data-idea-reply]').forEach(form => form.onsubmit = e => {
     e.preventDefault(); const body = form.elements.body.value.trim(); if (!body) return;
-    const ideas = demoIdeas(), idea = ideas.find(i => i.id === form.dataset.ideaReply); if (!idea) return;
-    idea.replies.push({ body, who: '我（提出人）' });
-    if (saveDemoData('ideas', ideas)) { renderIdeaList(idea.id); toast('已回复'); }
+    const ideas = demoAllIdeas(), idea = ideas.find(i => i.id === form.dataset.ideaReply); if (!idea) return;
+    idea.replies.push({ by: demoRole().id, name: demoRole().name, body }); idea.upd = '刚刚';
+    if (saveAllIdeas(ideas)) { renderIdeaList(idea.id); toast('已回复，处理人会收到通知'); }
   });
 }
 function bindIdeaForm() {
@@ -151,8 +164,8 @@ function bindIdeaForm() {
   form.onsubmit = e => {
     e.preventDefault(); const fields = Object.fromEntries([...new FormData(form)].map(([k,v]) => [k,v.trim()]));
     if (!fields.title || !fields.scene) return;
-    const idea = { ...fields, id: crypto.randomUUID(), status: '待处理', replies: [] };
-    if (!saveDemoData('ideas', [idea, ...demoIdeas()])) return;
+    const idea = { ...fields, id: crypto.randomUUID(), by: demoRole().id, name: demoRole().name, status: '待处理', at: '刚刚', upd: '刚刚', replies: [] };
+    if (!saveAllIdeas([idea, ...demoAllIdeas()])) return;
     form.reset(); update(); renderIdeaList(idea.id); renderHomeIdeas();
     document.getElementById('idea-list').scrollIntoView({block:'nearest',behavior:'smooth'}); toast('已提交，可在下方查看进展并补充说明');
   };
