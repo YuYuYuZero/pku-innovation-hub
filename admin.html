@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>审核与管理 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261111-sync3"><script src="assets/icons.js?v=20261111-sync3"></script><script src="assets/app.js?v=20261111-sync3"></script>
+<link rel="stylesheet" href="assets/app.css?v=20261111-sync4"><script src="assets/icons.js?v=20261111-sync4"></script><script src="assets/app.js?v=20261111-sync4"></script>
 <style>
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .stats .card { padding: 16px 18px; display: flex; gap: 14px; align-items: center; }
@@ -24,11 +24,11 @@
 <body data-page="admin">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row between" style="margin:6px 0 16px"><div><div class="row"><h1 class="h-page">审核与管理</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i><span id="admin-roles">会长团权限</span></span></div><p class="muted" style="margin-top:2px" data-need="president">活动页内容管理、成员与权限、想法共建、操作日志。拥有会长团权限（含额外授予）的同学可见；资源信息核对在<a class="lnk" href="resource_review.html?v=20261111-sync3">资源审核</a></p><p class="muted" style="margin-top:2px" data-hide-need="president" id="admin-desc"></p></div>
+<div class="row between" style="margin:6px 0 16px"><div><div class="row"><h1 class="h-page">审核与管理</h1><span class="tag t-line"><i class="ic" data-i="LuLock"></i><span id="admin-roles">会长团权限</span></span></div><p class="muted" style="margin-top:2px" data-need="president">活动页内容管理、成员与权限、想法共建、操作日志。拥有会长团权限（含额外授予）的同学可见；资源信息核对在<a class="lnk" href="resource_review.html?v=20261111-sync4">资源审核</a></p><p class="muted" style="margin-top:2px" data-hide-need="president" id="admin-desc"></p></div>
 <!-- 与 app 一致：会长团看到四个页签；内容管理授权看“内容管理”；部长看“成员与权限”；AI俱乐部部长另看“想法共建” -->
 <div class="tabs rel" id="tabs" style="border:0"><span class="mk" style="left:-14px;top:-8px">1</span><a class="on" data-t="content" data-need="content">内容管理</a><a data-t="members" data-need="people">成员与权限</a><a data-t="ideas" data-need="ideas">想法共建</a><a data-t="log" data-need="president">操作日志</a></div></div>
 
-<p class="xs muted" data-hide-need="president" style="margin-bottom:14px">演示提示：切换为会长团身份（同学 A）可查看全部四个页签；同学 C 有内容管理授权；同学 B 是 AI俱乐部部长，可修改身份（不高于部长）、授予自己拥有的权限。</p>
+<p class="xs muted" data-hide-need="president" style="margin-bottom:14px">演示提示：切换为会长团身份（同学 A）可查看全部四个页签；同学 C 有内容管理授权；同学 B 是 AI俱乐部部长，可在会员和骨干之间调整本部门成员的身份、授予自己拥有的权限。</p>
 
 <div data-panel="content">
 <div class="card rel"><span class="mk" style="left:-8px;top:-8px">3</span>
@@ -49,19 +49,20 @@
     <table class="tbl mem">
       <tr><th>姓名</th><th>部门</th><th>身份</th><th>额外授权</th></tr>
       <tr><td class="b">同学 B</td><td>AI俱乐部</td><td>部长</td><td><span class="tag">维护人</span></td></tr>
-      <tr class="on"><td class="b">同学 G</td><td>综合管理部</td><td id="g-role">骨干</td><td><span class="tag t-red">会长团权限</span> <span class="xs muted">至 2027-01-31</span></td></tr>
+      <tr class="on"><td class="b">同学 G</td><td>综合管理部</td><td>骨干</td><td><span class="tag t-red">会长团权限</span> <span class="xs muted">至 2027-01-31</span></td></tr>
       <tr><td class="b">同学 D</td><td>外联部</td><td>骨干</td><td><span class="tag">维护人</span></td></tr>
       <tr><td class="b">同学 C</td><td>AI俱乐部</td><td>骨干</td><td class="muted">—</td></tr>
       <tr><td class="b">同学 E</td><td>—</td><td>会员</td><td class="muted">—</td></tr>
     </table>
   </div>
   <div class="card pad rel"><span class="mk" style="left:-8px;top:-8px">5</span>
-    <div class="row between"><span class="h-sec">授权 · 同学 G</span><span class="tag t-line" id="grant-lock">会长团可修改全部</span></div>
+    <div class="row between"><span class="h-sec">授权 · <span id="m-name">同学 G</span></span><span class="tag t-line" id="grant-lock">会长团可修改全部</span></div>
     <div class="small muted" style="margin:8px 0 6px">身份默认来自招新表；这里修改后记入操作日志，下学期导入名单时以名单为准</div>
     <div class="input" style="background:#FAF9F7" id="g-base">综合管理部 · 骨干</div>
     <div class="small b" style="margin:14px 0 6px">身份</div>
     <div class="row" style="gap:8px"><select class="input" id="role-pick" aria-label="身份" style="width:120px;height:34px"><option value="会员">会员</option><option value="骨干" selected>骨干</option><option value="部长">部长</option><option value="会长团">会长团</option></select>
       <input class="input grow" id="role-why" aria-label="修改原因" placeholder="修改原因，如：招新补录、换届" style="height:34px"><span class="btn btn-sm" id="role-save">修改身份</span></div>
+    <div class="xs muted" id="role-note" style="margin-top:4px" hidden></div>
     <div class="small b" style="margin:14px 0 2px">额外授权</div>
     <div class="grant on" data-g="council"><span class="gb"><i class="ic" data-i="LuCheck"></i></span><div class="grow"><b>会长团权限</b><span>管理全社任务与贡献校准、活动内容、成员与权限和操作日志</span></div></div>
     <div class="grant" data-g="dept_admin"><span class="gb"></span><div class="grow"><b>部门管理权限</b><span>管理指定部门任务，分配系数、确认与完整校准积分，访问部门资料</span></div></div>
@@ -71,7 +72,7 @@
       <div class="field"><div class="label">有效期至 <span class="req">*</span></div><div class="input">2027-01-31（学期末）</div></div>
       <div class="field"><div class="label">原因</div><div class="input">协助会长团审核活动内容</div></div>
     </div>
-    <div class="row" style="margin-top:4px"><span class="xs muted grow">变更记入操作日志；到期自动失效，换届时重新授权</span><span class="btn btn-p btn-sm" data-done="已保存，同学 G 下次登录生效">保存</span></div>
+    <div class="row" style="margin-top:4px"><span class="xs muted grow">变更记入操作日志；到期自动失效，换届时重新授权</span><span class="btn btn-p btn-sm" id="grant-save">保存</span></div>
   </div>
 </div>
 </div>
@@ -105,26 +106,51 @@ const show = (t) => {
 document.querySelectorAll("#tabs a").forEach(a => a.addEventListener("click", () => show(a.dataset.t)));
 const h = location.hash, r = demoRole();
 document.getElementById("admin-roles").textContent = r.president ? "会长团权限" : [r.content && "内容管理", r.people && !r.ideas && "部长", r.ideas && "AI俱乐部部长"].filter(Boolean).join(" · ");
-document.getElementById("admin-desc").textContent = [r.content && "活动页内容的下架和恢复", r.people && "修改成员身份（不高于部长）、授予自己拥有的权限", r.ideas && "成员提给平台的想法：回复、调整进展，提出人会收到通知"].filter(Boolean).join("；");
+document.getElementById("admin-desc").textContent = [r.content && "活动页内容的下架和恢复", r.people && "调整本部门成员的身份（会员、骨干）、授予自己拥有的权限", r.ideas && "成员提给平台的想法：回复、调整进展，提出人会收到通知"].filter(Boolean).join("；");
 const allowed = ["content", "members", "ideas", "log"].filter(t => r.president || (t === "content" && r.content) || (t === "members" && r.people) || (t === "ideas" && r.ideas));
 const want = ["members", "ideas", "content", "log"].find(t => h.includes(t));
 show(allowed.includes(want) ? want : allowed[0]);
-// 成员与权限：会长团可授予全部、改为任何身份；部长只能授予自己拥有的权限（同学 B：AI俱乐部的部门管理），身份不能改为会长团
+// 成员与权限（与 app 一致）：会长团可授予全部权限、修改任何人的身份；
+// 部长只能授予自己拥有的权限（同学 B：AI俱乐部的部门管理），只能在会员和骨干之间调整本部门成员的身份；都不能改自己
+const DEPTS = { 1: "AI俱乐部", 2: "外联部", 3: "综合管理部" };
 const grantable = g => r.president || (r.people && (g === "dept_admin" || (g === "maintainer" && r.maintainer) || (g === "content_admin" && r.content)));
 document.getElementById("grant-lock").textContent = r.president ? "会长团可修改全部" : "部长可授予自己拥有的权限";
 document.querySelectorAll(".grant").forEach(g => {
   if (!grantable(g.dataset.g)) { g.style.opacity = ".5"; g.style.cursor = "not-allowed"; g.title = "只能授予自己拥有的权限"; return; }
   g.addEventListener("click", () => g.classList.toggle("on"));
 });
-if (!r.president) document.querySelector('#role-pick option[value="会长团"]').remove();
+let memberRow = null;
+const cell = (tr, i) => tr.children[i].textContent.trim();
+function pickMember(tr) {
+  memberRow = tr;
+  document.querySelectorAll("[data-panel=members] .tbl.mem tr").forEach(x => x.classList.toggle("on", x === tr));
+  const name = cell(tr, 0), dept = cell(tr, 1), role = cell(tr, 2), tags = cell(tr, 3);
+  document.getElementById("m-name").textContent = name;
+  document.getElementById("g-base").textContent = `${dept === "—" ? "无部门" : dept} · ${role}`;
+  const self = name === r.name, mine = dept === DEPTS[r.dept];
+  const choices = r.president ? ["会员", "骨干", "部长", "会长团"] : ["会员", "骨干"];
+  const locked = self || (!r.president && (!mine || !choices.includes(role)));
+  const pick = document.getElementById("role-pick");
+  pick.innerHTML = (locked ? [role] : choices).map(x => `<option ${x === role ? "selected" : ""}>${x}</option>`).join("");
+  pick.disabled = locked; document.getElementById("role-why").disabled = locked;
+  document.getElementById("role-save").style.opacity = locked ? ".5" : "";
+  const note = document.getElementById("role-note");
+  note.hidden = !locked; note.textContent = self ? "不能修改自己的身份" : "部长只能在会员和骨干之间调整本部门成员的身份";
+  const has = { council: tags.includes("会长团权限"), maintainer: tags.includes("维护人"), content_admin: tags.includes("内容管理"), dept_admin: tags.includes("部门管理") };
+  document.querySelectorAll(".grant").forEach(g => g.classList.toggle("on", !!has[g.dataset.g]));
+}
+document.querySelectorAll("[data-panel=members] .tbl.mem tr").forEach((tr, i) => { if (i) { tr.style.cursor = "pointer"; tr.onclick = () => pickMember(tr); } });
+pickMember(document.querySelector("[data-panel=members] .tbl.mem tr.on"));
 document.getElementById("role-save").onclick = () => {
-  const to = document.getElementById("role-pick").value, why = document.getElementById("role-why").value.trim(), cell = document.getElementById("g-role");
-  if (to === cell.textContent) return toast("身份没有变化");
+  if (document.getElementById("role-pick").disabled) return;
+  const name = cell(memberRow, 0), from = cell(memberRow, 2), to = document.getElementById("role-pick").value, why = document.getElementById("role-why").value.trim();
+  if (to === from) return toast("身份没有变化");
   if (!why) return toast("请填写修改原因");
-  const from = cell.textContent; cell.textContent = to; document.getElementById("g-base").textContent = "综合管理部 · " + to;
-  document.querySelector('[data-panel="log"] tr').insertAdjacentHTML("afterend", `<tr><td class="small">刚刚</td><td>${r.title.split(" · ").pop()} · ${r.name}</td><td class="small">把同学 G 的身份从${from}改为${to}：${demoEscape(why)}</td></tr>`);
-  document.getElementById("role-why").value = ""; toast("已修改，同学 G 重新登录后生效");
+  memberRow.children[2].textContent = to; pickMember(memberRow);
+  document.querySelector('[data-panel="log"] tr').insertAdjacentHTML("afterend", `<tr><td class="small">刚刚</td><td>${r.title.split(" · ").pop()} · ${r.name}</td><td class="small">把${name}的身份从${from}改为${to}：${demoEscape(why)}</td></tr>`);
+  document.getElementById("role-why").value = ""; toast(`已修改，${name} 重新登录后生效`);
 };
+document.getElementById("grant-save").onclick = () => toast(`已保存，${cell(memberRow, 0)} 下次登录生效`);
 
 // 想法共建：与 app 一致，读写和提出人共用的演示数据
 let ideaFilter = "", ideaCur = null;

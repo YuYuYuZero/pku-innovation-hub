@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const DEMO_RELEASE = '20261111-sync3';
+const DEMO_RELEASE = '20261111-sync4';
 const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261031c" alt="北京大学校徽">`;
 
 const NAV = [
