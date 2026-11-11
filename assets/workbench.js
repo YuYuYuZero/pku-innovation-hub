@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal(source ? '复用工作' : assign ? '分配工作' : '上报工作', `${source ? '<p class="notice">本次工时、日期、凭证、系数和积分重新填写与确认。</p>' : ''}
       ${!assign ? field('工作进度',`<div class="work-progress task-actions">${button('work-open','未完成',!completed)}${button('work-done','已完成',completed)}</div>`) : ''}
       ${assign ? field('负责人',`<select name="owner" aria-label="任务负责人" required><option value="">选择管理范围内的其他成员</option>${people.map(p => `<option value="${p.id}">${p.name} · ${dept(p.dept)}</option>`).join('')}</select>`) : ''}
+      ${!assign && (role.depts || []).length > 1 ? field('归属部门',`<select name="dept" aria-label="归属部门">${role.depts.map(d => `<option value="${d}" ${d === role.dept ? 'selected' : ''}>${dept(d)}</option>`).join('')}</select>`) : ''}
       ${field('工作名称',input('title','工作名称',source?.title || '', 'text','required maxlength="200"'))}
       ${field('工作内容与成果',`<textarea name="note" aria-label="工作内容与成果" rows="3">${esc(source?.note || '')}</textarea>`)}
       <div data-incomplete-fields>${field('截止日期（可选）',input('due','任务截止日期','','date'))}</div>
@@ -75,7 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const owner = assign ? Number(f.elements.owner.value) : role.id;
       const r = Object.values(DEMO_ROLES).find(r => r.id === owner);
       if (!r || !TASK_RULES.reporter(r) || (assign && !TASK_RULES.manager(role,{owner,dept:r.dept}))) throw new Error('请选择管理范围内的其他成员');
-      const t = newTask(Math.max(...tasks.map(t => t.id),0) + 1,f.elements.title.value.trim(),owner,r.dept || null);
+      // 与 app 一致：属于多个部门时，本人的工作选择归属部门，由该部门的管理者确认
+      const t = newTask(Math.max(...tasks.map(t => t.id),0) + 1,f.elements.title.value.trim(),owner,(!assign && f.elements.dept ? Number(f.elements.dept.value) : r.dept) || null);
       if (!t.title) throw new Error('请填写工作名称');
       Object.assign(t,{note:f.elements.note.value,due:completed ? '' : f.elements.due.value,k:assign && f.elements.k.value ? Number(f.elements.k.value) : null,source:source?.id || null,createdBy:role.id});
       if (completed) {

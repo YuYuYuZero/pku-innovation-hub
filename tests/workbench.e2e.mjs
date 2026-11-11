@@ -59,15 +59,22 @@ try {
   await p.screenshot({path:resolve(root,'data/screens/反馈优化-想法处理.png'),fullPage:true})
   await p.goto(`${base}/admin.html?role=minister&tab=members#members`,{waitUntil:'networkidle0'})
   assert.deepEqual(await p.$$eval('.grant',es=>es.filter(e=>e.style.cursor!=='not-allowed').map(e=>e.querySelector('b').textContent)),['部门管理权限'])
-  // 部长只能在会员和骨干之间调整本部门成员：综合管理部的同学 G 锁定，AI俱乐部骨干同学 C 可改为会员
-  assert.equal(await p.$eval('#role-pick',e=>e.disabled),true)
+  // 一人多部门：同学 B 是 AI俱乐部部长、综合管理部骨干；部长只能在会员和骨干之间调整 AI俱乐部成员
   const pickRow = n => p.evaluate(n=>[...document.querySelectorAll('[data-panel=members] .tbl.mem tr')].find(r=>r.children[0].textContent===n).click(),n)
+  assert.match(await p.$eval('[data-panel=members] .tbl.mem',e=>e.innerText),/AI俱乐部（部长）、综合管理部（骨干）/)
+  assert.equal(await p.$eval('[aria-label="综合管理部身份"]',e=>e.disabled),true)   // 同学 G 在综合管理部，不归同学 B 管
   await pickRow('同学 C')
-  assert.deepEqual(await p.$$eval('#role-pick option',es=>es.map(e=>e.value)),['会员','骨干'])
-  await p.select('#role-pick','会员'); await p.type('#role-why','本部门调整'); await p.click('#role-save')
+  assert.deepEqual(await p.$$eval('[aria-label="AI俱乐部身份"] option',es=>es.map(e=>e.value)),['会员','骨干'])
+  await p.select('[aria-label="AI俱乐部身份"]','会员'); await p.type('#role-why','本部门调整'); await p.click('[data-role-save="AI俱乐部"]')
   assert.match(await p.$eval('[data-panel=members] .tbl.mem tr.on',e=>e.innerText),/同学 C\s+AI俱乐部\s+会员/)
-  assert.match(await p.$eval('[data-panel=log]',e=>e.textContent),/把同学 C的身份从骨干改为会员：本部门调整/)
-  await pickRow('同学 D'); assert.equal(await p.$eval('#role-pick',e=>e.disabled),true)
+  assert.match(await p.$eval('[data-panel=log]',e=>e.textContent),/把同学 C在AI俱乐部的身份从骨干改为会员：本部门调整/)
+  await pickRow('同学 D'); assert.equal(await p.$eval('[aria-label="外联部身份"]',e=>e.disabled),true)
+  // 会长团：可加入新部门、设置会长团
+  await p.goto(`${base}/admin.html?role=president&tab=members#members`,{waitUntil:'networkidle0'})
+  await pickRow('同学 E'); await p.select('[aria-label="加入部门"]','外联部'); await p.type('#role-why','补录'); await p.click('[data-role-join]')
+  assert.match(await p.$eval('[data-panel=members] .tbl.mem tr.on',e=>e.innerText),/同学 E\s+外联部\s+骨干/)
+  await p.goto(`${base}/workbench.html?role=minister&new=report`,{waitUntil:'networkidle0'})
+  assert.deepEqual(await p.$$eval('[aria-label="归属部门"] option',es=>es.map(e=>e.textContent)),['AI俱乐部','综合管理部'])
   await p.goto(`${base}/index.html?role=member`,{waitUntil:'networkidle0'}); await p.click('.ideas-btn')
   const mine = await p.$eval('#idea-list',e=>e.textContent)
   assert.match(mine,/收藏入口建议已排期/); assert.match(mine,/同学 B（处理人）/)

@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const DEMO_RELEASE = '20261111-sync4';
+const DEMO_RELEASE = '20261111-sync5';
 const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261031c" alt="北京大学校徽">`;
 
 const NAV = [
@@ -28,7 +28,7 @@ const NAV = [
 // 演示身份仅用于展示；真实授权由 app 的后端负责。
 const DEMO_ROLES = {
   president: { id: 1, dept: 3, president: true, leader: true, content: true, ideas: true, people: true, name: "同学 A", title: "会长团", backbone: true, admin: true },
-  minister: { id: 2, dept: 1, leader: true, ideas: true, people: true, name: "同学 B", title: "AI俱乐部 · 部长", backbone: true, admin: true },
+  minister: { id: 2, dept: 1, depts: [1, 3], leader: true, ideas: true, people: true, name: "同学 B", title: "AI俱乐部、综合管理部 · 部长", backbone: true, admin: true },
   backbone: { id: 3, dept: 1, name: "同学 C", title: "AI俱乐部 · 骨干（内容管理）", backbone: true, content: true, admin: true },
   maintainer: { id: 4, dept: 2, name: "同学 D", title: "外联部 · 维护人", backbone: true, maintainer: true },
   member: { id: 5, name: "同学 E", title: "会员" },
