@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="utf-8"><title>移动端与飞书 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261111-sync5"><script src="assets/icons.js?v=20261111-sync5"></script><script src="assets/app.js?v=20261111-sync5"></script>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>手机与小程序预览 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css?v=20261113-mp1"><script src="assets/icons.js?v=20261113-mp1"></script><script src="assets/app.js?v=20261113-mp1"></script>
 <style>
 body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%), radial-gradient(50% 60% at 100% 100%, #F1E9DC 0, transparent 60%), #F6F5F2; }
 .stage { display: flex; gap: 34px; padding: 40px 48px; align-items: flex-start; }
@@ -30,38 +30,67 @@ body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%)
 .fs-card .btns { display: flex; gap: 8px; padding: 0 14px 12px; }
 .fs-card .btns span { flex: 1; text-align: center; height: 30px; line-height: 30px; border-radius: 6px; border: 1px solid #D0D3D6; font-size: 12.5px; color: #1F2329; }
 .fs-card .btns span.p { background: #8C1D24; border-color: #8C1D24; color: #fff; }
+/* 预览：两台手机加载同一页面，一台按手机浏览器，一台按微信小程序 */
+.pv { padding: 32px 40px 48px; max-width: 1320px; }
+.pv-ctl { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.pv-ctl .label { width: 64px; margin: 0; flex: none; }
+.pv-ctl button.chip { font: inherit; font-size: 13px; cursor: pointer; }
+.pv-stage { display: flex; gap: 28px; margin-top: 22px; align-items: flex-start; flex-wrap: wrap; }
+.pv-stage figure { margin: 0; }
+.dev { width: 399px; border-radius: 52px; background: #111; padding: 12px; box-shadow: var(--shadow-lg); position: relative; }
+.dev-scr { width: 375px; height: 812px; border-radius: 40px; overflow: hidden; background: #fff; display: flex; flex-direction: column; position: relative; }
+.dev-st { height: 44px; flex: none; display: flex; align-items: center; justify-content: space-between; padding: 0 26px 0 30px; font-size: 14px; font-weight: 600; color: #000; background: #F6F5F2; }
+.dev-st.w { background: #fff; }
+.dev-notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 118px; height: 30px; border-radius: 18px; background: #111; z-index: 2; }
+.dev iframe { width: 375px; flex: 1; border: 0; display: block; background: #F6F5F2; }
+.dev-home { height: 26px; flex: none; background: rgba(255, 255, 255, .96); display: flex; align-items: center; justify-content: center; }
+.dev-home i { width: 134px; height: 5px; border-radius: 3px; background: #111; }
+.pv-stage figcaption { text-align: center; margin-top: 14px; font-weight: 600; color: var(--ink); font-size: 15px; }
+.pv-stage figcaption span { display: block; font-weight: 400; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.pv-note { width: 340px; flex: 1 1 300px; max-width: 440px; font-size: 13px; }
+.pv-note h3 { font-size: 15px; margin: 4px 0 8px; }
+.pv-note h3 + p, .pv-note ul { margin: 0 0 14px; }
+.pv-note ul { padding-left: 18px; }
+.pv-note li { margin: 5px 0; }
+.pv-note code { font-size: 12px; background: #F2F1EE; padding: 1px 5px; border-radius: 5px; word-break: break-all; }
+.pv-phone-links { display: none; }
+.future { display: flex; gap: 34px; padding: 8px 40px 48px; align-items: flex-start; flex-wrap: wrap; }
+.future-h { padding: 0 40px; }
+@media (max-width: 767px) {
+  .pv { padding: 20px 16px 32px; }
+  .pv-ctl, .pv-stage figure { display: none; }
+  .pv-phone-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+  .pv-note { width: auto; max-width: none; }
+  .future, .future-h { display: none; }
+}
 </style></head>
-<body>
-<div class="stage">
-  <div><div class="phone"><div class="scr"><div class="notch"></div><div class="status"><span>9:41</span><span>●●● 5G</span></div>
-    <div class="m-pad">
-      <div class="row between" style="margin-top:6px"><div class="row" style="gap:8px"><span id="ml" style="width:30px;height:30px;display:inline-block"></span><span class="b" style="font-family:var(--serif);font-size:17px">北大创新学社</span></div><span class="icon-btn" style="width:34px;height:34px"><i class="ic" data-i="LuBell"></i></span></div>
-      <div class="m-h" style="margin-top:14px">晚上好，<span data-demo-name>同学 B</span></div>
-      <div class="m-ask"><i class="ic" data-i="LuSearch"></i>搜索资源、资料、活动</div>
-      <div class="m-grid" data-need="member">
-        <div data-need="backbone"><div class="gi t-red"><i class="ic" data-i="LuDatabase"></i></div>资源库</div><div><div class="gi t-blue"><i class="ic" data-i="LuLibrary"></i></div>知识库</div><a data-need="backbone" href="workbench.html?v=20261111-sync5" style="color:inherit"><div class="gi t-teal"><i class="ic" data-i="LuClipboardList"></i></div>工作台</a><div data-hide-need="backbone"><div class="gi t-teal"><i class="ic" data-i="LuCalendarDays"></i></div>活动</div><div><div class="gi t-gold"><i class="ic" data-i="LuSparkles"></i></div>AI 工具</div>
-      </div>
-      <div class="m-card" data-need="member"><div class="cover cv1" style="height:96px;border-radius:0"><div class="cv-k">THIS THURSDAY</div><div class="cv-t"><b style="font-size:16px">AI 产品从 0 到 1</b></div></div><div style="padding:10px 14px" class="row between"><span class="small muted">10/30 19:00 · 理教 201</span><span class="btn btn-sm btn-p">去推文报名</span></div></div>
-      <div class="m-card" data-need="member" style="padding:12px 14px"><div class="row"><i class="ic" data-i="LuSparkles" style="color:var(--red)"></i><span class="b" style="font-size:13px">结构化解析</span></div><div style="font-size:13px;color:var(--ink);margin-top:6px">粘贴接龙名单，整理成表格导出 Excel</div></div>
+<body data-page="mobile">
+<div class="pv">
+  <h1 class="h-page">手机与小程序</h1>
+  <p class="muted" style="margin-top:4px;max-width:900px">同一套页面在三种环境里自动切换：电脑浏览器显示侧边栏；手机浏览器显示顶栏和底部标签栏；微信小程序只是一个加载这些页面的壳，标题栏和右上角胶囊由微信绘制。下面两台手机加载的是同一个页面文件，可以直接点按操作。</p>
+  <div class="pv-phone-links"><a class="btn btn-p" data-pv-open="web" href="index.html?v=20261113-mp1">打开手机版</a><a class="btn" data-pv-open="mp" href="index.html?env=mp&v=20261113-mp1">打开小程序效果</a></div>
+  <div class="pv-ctl card pad">
+    <div class="row wrap-x"><span class="label">页面</span><div class="chips" id="pv-pages"></div></div>
+    <div class="row wrap-x"><span class="label">演示身份</span><div class="chips" id="pv-roles"></div></div>
+    <div class="row wrap-x"><span class="label">小程序 AI</span><div class="chips" id="pv-ai"><button type="button" class="chip" data-ai="0">未开通类目（默认）</button><button type="button" class="chip" data-ai="1">已开通「深度合成」类目</button></div></div>
+  </div>
+  <div class="pv-stage">
+    <figure><div class="dev"><div class="dev-scr"><div class="dev-notch"></div><div class="dev-st"><span>9:41</span><span>●●● 5G</span></div><iframe id="pv-web" title="手机浏览器预览"></iframe><div class="dev-home"><i></i></div></div></div>
+      <figcaption>手机浏览器<span>微信里点开链接、Safari、飞书内置浏览器</span></figcaption></figure>
+    <figure><div class="dev"><div class="dev-scr"><div class="dev-notch"></div><div class="dev-st w"><span>9:41</span><span>●●● 5G</span></div><iframe id="pv-mp" title="微信小程序预览"></iframe><div class="dev-home"><i></i></div></div></div>
+      <figcaption>微信小程序<span>web-view 加载同一页面；标题栏和胶囊在此为模拟，真机上由微信绘制</span></figcaption></figure>
+    <div class="pv-note card pad" id="pv-note">
+      <h3>小程序里有什么不同</h3>
+      <ul data-mp-diff></ul>
+      <h3>在自己手机上看</h3>
+      <p>直接打开任意页面就是手机版；地址后加 <code>?env=mp</code> 看小程序效果（页面自己画出微信标题栏）。真正放进小程序时不需要这个参数，页面按微信的标识自动切换。</p>
+      <p class="xs muted">电脑上打开带 <code>?env=mp</code> 的地址，会自动回到这个预览页。</p>
     </div>
-    <div class="tabbar"><a class="on"><i class="ic" data-i="LuHouse"></i>首页</a><a data-need="member"><i class="ic" data-i="LuCalendarDays"></i>活动</a><a data-need="member"><span class="fab"><i class="ic" data-i="LuPlus"></i></span></a><a data-need="member"><i class="ic" data-i="LuSparkles"></i>AI</a><a><i class="ic" data-i="LuUser"></i>我的</a></div>
-  </div></div><div class="cap">手机首页<span>搜索与常用入口：骨干看到资源库、知识库、工作台、AI 工具，会员看到知识库、活动、AI 工具</span></div></div>
+  </div>
+</div>
 
-  <div data-need="backbone"><div class="phone"><div class="scr"><div class="notch"></div><div class="status"><span>9:41</span><span>●●● 5G</span></div>
-    <div class="m-pad">
-      <div class="row" style="margin-top:6px"><i class="ic" data-i="LuChevronRight" style="transform:rotate(180deg);font-size:20px"></i><span class="b" style="font-size:16px">资源库</span><span class="grow"></span><span class="tag t-line"><i class="ic" data-i="LuLock"></i>骨干</span></div>
-      <div class="input" style="margin-top:12px;color:var(--ink)"><i class="ic" data-i="LuSparkles" style="color:var(--red)"></i>做 AI 教育的分享嘉宾</div>
-      <div class="row" style="gap:6px;margin-top:10px;overflow:hidden"><span class="chip on" style="height:28px">全部</span><span class="chip" style="height:28px">外部个人</span><span class="chip" style="height:28px">机构</span><span class="chip" style="height:28px">骨干</span></div>
-      <div class="small muted" style="margin-top:12px">找到 3 项资源</div>
-      <div class="m-card">
-        <div class="m-res"><div class="row between"><span class="b">示例人物 A</span><span class="tag t-red">外部个人</span></div><div class="xs muted">某教育科技公司 · 产品负责人</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">可交流 AI 教育产品经验，可做分享嘉宾</div><div class="row between" style="margin-top:8px"><span class="xs muted">对接人：同学 D</span><span class="btn btn-sm btn-soft">联系对接人</span></div></div>
-        <div class="m-res"><div class="row between"><span class="b">示例机构 C</span><span class="tag t-blue">机构资源</span></div><div class="xs muted">教育公益基金会</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">可提供活动场地与小额赞助</div><div class="row between" style="margin-top:8px"><span class="xs muted">对接人：同学 G</span><span class="btn btn-sm btn-soft">联系对接人</span></div></div>
-        <div class="m-res"><div class="row between"><span class="b">同学 B</span><span class="tag t-teal">学社骨干</span></div><div class="xs muted">AI俱乐部</div><div style="font-size:13px;margin-top:6px;color:var(--ink)">熟悉黑客松评审流程，可协助邀请评委</div></div>
-      </div>
-    </div>
-    <div class="tabbar"><a><i class="ic" data-i="LuHouse"></i>首页</a><a data-need="member"><i class="ic" data-i="LuCalendarDays"></i>活动</a><a data-need="member"><span class="fab"><i class="ic" data-i="LuPlus"></i></span></a><a data-need="member"><i class="ic" data-i="LuSparkles"></i>AI</a><a class="on"><i class="ic" data-i="LuUser"></i>我的</a></div>
-  </div></div><div class="cap">手机搜资源<span>关键词搜索，联系方式经对接人</span></div></div>
-
+<h2 class="h-sec future-h">未来方案</h2>
+<div class="future">
   <div data-need="member"><div class="phone"><div class="scr"><div class="notch"></div><div class="status"><span>9:41</span><span>●●● 5G</span></div>
     <div class="m-pad">
       <div class="row" style="margin-top:6px"><span class="b" style="font-size:16px">AI 助手</span><span class="grow"></span><span class="tag t-red">全部范围</span></div>
@@ -86,5 +115,33 @@ body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%)
         <div class="b">示例人物 E、示例机构 F、黑客松赞助方案.pdf</div><div class="btns"><span class="p" style="background:#1F766C;border-color:#1F766C">去审核台</span><span>稍后提醒</span></div></div></div>
     </div></div><div class="cap">未来方案 · 飞书机器人<span>尚未接入，配置环境变量不会启用</span></div></div>
 </div>
-<script>document.addEventListener("DOMContentLoaded",()=>{for(const id of ["ml","ml2","ml3"]){const el=document.getElementById(id);el.innerHTML=LOGO.replace('class="mark"','style="width:100%;height:100%"');}});</script>
+<script>
+const PV_PAGES = [["首页", "index.html"], ["活动", "events.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"], ["知识库", "kb.html"], ["文档详情", "kb_doc.html"], ["工作台", "workbench.html"], ["AI 工具箱", "assistant.html"], ["录入活动", "event_new.html"], ["审核与管理", "admin.html"], ["个人中心", "me.html"], ["登录", "login.html"]];
+const PV_ROLES = [["president", "A 会长团"], ["minister", "B 部长"], ["backbone", "C 骨干"], ["maintainer", "D 维护人"], ["member", "E 会员"], ["outsider", "F 未入名单"]];
+document.addEventListener("DOMContentLoaded", () => {
+  for (const id of ["ml2", "ml3"]) { const el = document.getElementById(id); if (el) el.innerHTML = LOGO.replace('class="mark"', 'style="width:100%;height:100%"'); }
+  document.querySelector("[data-mp-diff]").innerHTML = MP_DIFFS.map(([t, d]) => `<li><b>${t}</b>：${d}</li>`).join("");
+  const q = new URLSearchParams(location.search);
+  const start = new URL(q.get("page") || "index.html", location.href);
+  let file = start.pathname.split("/").pop() || "index.html";
+  let role = start.searchParams.get("role") || q.get("role") || "minister";
+  const extra = new URLSearchParams(start.search); extra.delete("role"); extra.delete("v"); extra.delete("env");
+  let hash = start.hash, mpai = extra.get("mpai") === "1" || q.get("mpai") === "1" ? "1" : "0"; extra.delete("mpai"); let keep = extra.toString();
+  const src = (mp) => { const u = new URLSearchParams(keep); u.set("role", role); if (mp) { u.set("env", "mp"); if (mpai === "1") u.set("mpai", "1"); } u.set("v", DEMO_RELEASE); return `${file}?${u}${hash}`; };
+  const load = () => {
+    document.getElementById("pv-web").src = src(false);
+    document.getElementById("pv-mp").src = src(true);
+    document.querySelectorAll("#pv-pages button").forEach(b => b.classList.toggle("on", b.dataset.f === file));
+    document.querySelectorAll("#pv-roles button").forEach(b => b.classList.toggle("on", b.dataset.r === role));
+    document.querySelectorAll("#pv-ai button").forEach(b => b.classList.toggle("on", b.dataset.ai === mpai));
+    const u = new URL(location.href); u.searchParams.set("page", src(false)); if (mpai === "1") u.searchParams.set("mpai", "1"); else u.searchParams.delete("mpai"); history.replaceState(null, "", u);
+  };
+  document.getElementById("pv-pages").innerHTML = PV_PAGES.map(([t, f]) => `<button type="button" class="chip" data-f="${f}">${t}</button>`).join("");
+  document.getElementById("pv-roles").innerHTML = PV_ROLES.map(([r, t]) => `<button type="button" class="chip" data-r="${r}">${t}</button>`).join("");
+  document.getElementById("pv-pages").onclick = (e) => { const b = e.target.closest("button"); if (b) { file = b.dataset.f; keep = ""; hash = ""; load(); } };
+  document.getElementById("pv-roles").onclick = (e) => { const b = e.target.closest("button"); if (b) { role = b.dataset.r; load(); } };
+  document.getElementById("pv-ai").onclick = (e) => { const b = e.target.closest("button"); if (b) { mpai = b.dataset.ai; load(); } };
+  load();
+});
+</script>
 </body></html>

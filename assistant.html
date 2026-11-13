@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="utf-8"><title>AI 工具箱 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261111-sync5"><script src="assets/icons.js?v=20261111-sync5"></script><script src="assets/app.js?v=20261111-sync5"></script>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>AI 工具箱 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css?v=20261113-mp1"><script src="assets/icons.js?v=20261113-mp1"></script><script src="assets/app.js?v=20261113-mp1"></script>
 <style>
 .cols { display: grid; grid-template-columns: 460px 1fr; gap: 16px; align-items: start; }
 .fr { display: grid; grid-template-columns: 1fr 90px 92px 50px; gap: 6px; align-items: center; padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 13px; }
@@ -43,13 +43,13 @@
       <div class="seg pick" style="margin-bottom:8px"><a class="on">粘贴文字</a><a>公众号链接</a></div>
       <div class="paste">【下周活动汇总】<br>1. 大模型应用工作坊（第 3 期）：11 月 2 日 14:00，二教 305，嘉宾张三（某 AI 公司），报名见推文<br>2. 论文读书会：11 月 5 日 20:00，线上飞书会议，嘉宾李四（信科）、王五（光华）</div>
       <div class="row" style="margin-top:10px"><span class="btn btn-p" data-done="解析完成：2 条"><i class="ic" data-i="LuSparkles"></i>解析</span><span class="small muted">AI 只根据原文填写，原文没有的留空；结果请核对后再用</span></div>
-      <div class="img-pick"><div class="thumb poster" title="已添加的海报（示意）"><b>海报</b></div><span class="btn btn-sm" data-done="已添加图片（自动压缩）"><i class="ic" data-i="LuImage"></i>上传海报图片</span><span class="xs muted">可直接 Ctrl+V 粘贴截图；海报里的文字和二维码也能识别，最多 10 张</span></div>
+      <div class="img-pick"><div class="thumb poster" title="已添加的海报（示意）"><b>海报</b></div><span class="btn btn-sm" data-done="已添加图片（自动压缩）" data-mp-image><i class="ic" data-i="LuImage"></i>上传海报图片</span><span class="xs muted">可直接 Ctrl+V 粘贴截图；海报里的文字和二维码也能识别，最多 10 张</span></div>
       <p class="xs muted" style="margin:8px 0 0">也可以切到「公众号链接」直接粘贴文章链接：会按原顺序读取正文和配图（海报里的时间、地点、报名方式也能识别），最多 10 张图</p>
     </div>
     <div class="card rel" style="margin-top:14px"><span class="mk" style="left:-8px;top:-8px">3</span>
-      <div class="pad row between" style="padding-bottom:8px"><span class="h-sec">结果 · 2 条</span><div class="row"><span class="btn btn-sm" data-done="已下载 活动信息_2026-10-31.xlsx（嘉宾单独一张表）"><i class="ic" data-i="LuDownload"></i>Excel</span><span class="btn btn-sm" data-done="已下载 CSV">CSV</span><span class="btn btn-sm" data-done="已下载 JSON">JSON</span></div></div>
+      <div class="pad row between" style="padding-bottom:8px"><span class="h-sec">结果 · 2 条</span><div class="row"><span class="btn btn-sm" data-done="已下载 活动信息_2026-10-31.xlsx（嘉宾单独一张表）" data-mp-file="活动信息_2026-10-31.xlsx"><i class="ic" data-i="LuDownload"></i>Excel</span><span class="btn btn-sm" data-done="已下载 CSV" data-mp-copy="CSV">CSV</span><span class="btn btn-sm" data-done="已下载 JSON" data-mp-copy="JSON">JSON</span></div></div>
       <table class="tbl"><tr><th>#</th><th>活动名称</th><th>开始时间</th><th>地点</th><th>报名方式</th><th>报名二维码</th><th>嘉宾</th></tr>
-        <tr><td>1</td><td class="b">大模型应用工作坊（第 3 期）</td><td>2026-11-02 14:00</td><td>二教 305</td><td>扫码填写飞书表单</td><td><div class="qr-view"><img src="assets/demo-qr.png" width="44" height="44" alt="报名二维码"><div class="qr-meta"><span class="lnk small" data-done="已打开报名链接"><i class="ic" data-i="LuExternalLink"></i>打开链接</span><span class="lnk small" data-done="已保存到相册，可用微信扫一扫识别"><i class="ic" data-i="LuDownload"></i>保存图片</span><span class="xs muted">手机上保存到相册，用微信扫一扫识别</span></div></div></td><td>张三 / 某 AI 公司</td></tr>
+        <tr><td>1</td><td class="b">大模型应用工作坊（第 3 期）</td><td>2026-11-02 14:00</td><td>二教 305</td><td>扫码填写飞书表单</td><td><div class="qr-view"><img src="assets/demo-qr.png" width="44" height="44" alt="报名二维码"><div class="qr-meta"><span class="lnk small" data-done="已打开报名链接" data-mp-link="https://www.wjx.top/vm/xxxx"><i class="ic" data-i="LuExternalLink"></i>打开链接</span><span class="lnk small" data-done="已保存到相册，可用微信扫一扫识别" data-mp-img><i class="ic" data-i="LuDownload"></i>保存图片</span><span class="xs muted">手机上保存到相册，用微信扫一扫识别</span></div></div></td><td>张三 / 某 AI 公司</td></tr>
         <tr><td>2</td><td class="b">论文读书会</td><td>2026-11-05 20:00</td><td>线上飞书会议</td><td>—</td><td>—</td><td>2 条</td></tr></table>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="utf-8"><title>录入资源 · 创新学社</title>
-<link rel="stylesheet" href="assets/app.css?v=20261111-sync5"><script src="assets/icons.js?v=20261111-sync5"></script><script src="assets/app.js?v=20261111-sync5"></script>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>录入资源 · 创新学社</title>
+<link rel="stylesheet" href="assets/app.css?v=20261113-mp1"><script src="assets/icons.js?v=20261113-mp1"></script><script src="assets/app.js?v=20261113-mp1"></script>
 <style>
 .cols { display: grid; grid-template-columns: 420px 1fr; gap: 18px; align-items: start; }
 .aip { background: linear-gradient(180deg, #FFFAF7 0, #fff 120px); }
@@ -22,10 +22,10 @@
 <body data-page="resources">
 <div class="app"><aside id="sb"></aside><div class="main"><header id="tb"></header>
 <div class="page"><div class="wrap" style="max-width:1180px">
-<div class="row small muted" style="margin:4px 0 6px"><a href="resources.html?v=20261111-sync5">资源库</a><i class="ic" data-i="LuChevronRight"></i><span>录入资源</span></div>
+<div class="row small muted" style="margin:4px 0 6px"><a href="resources.html?v=20261113-mp1">资源库</a><i class="ic" data-i="LuChevronRight"></i><span>录入资源</span></div>
 <div class="row between" style="margin-bottom:16px"><div><h1 class="h-page">录入一项资源</h1><p class="muted" style="margin-top:2px">不确定的信息写“待确认”，不要替对方承诺合作。提交后进入待审核列表。</p></div></div>
 <div class="cols">
-  <div class="card pad aip rel"><span class="mk" style="left:-8px;top:-8px">1</span>
+  <div class="card pad aip rel" data-ai><span class="mk" style="left:-8px;top:-8px">1</span>
     <div class="row between"><div class="row"><span class="ai-tag"><i class="ic" data-i="LuSparkles"></i>资源录入 · AI 提取</span></div><span class="xs muted">粘贴文字</span></div>
     <div class="paste">【活动交流纪要 · 10 月 24 日】今晚分享会结束后和 <mark>示例人物 E</mark> 聊了一会儿，她现在是 <mark>某 AI 医疗公司的算法负责人</mark>，之前在医学部做过影像相关的研究。她说 <mark>可以和同学交流 AI 医疗落地经验</mark>，如果时间合适也愿意来做一次分享，但具体时间要等她确认。另外她提到 <mark>所在公司</mark> 也愿意支持学生的 AI 医疗项目……对接人是我（同学 F，外联部）。</div>
     <div class="row" style="margin-top:12px"><span class="btn btn-p" style="flex:1"><i class="ic" data-i="LuSparkles"></i>AI 提取字段</span><span class="btn"><i class="ic" data-i="LuRefreshCw"></i></span></div>
@@ -44,7 +44,7 @@
         <div class="field"><div class="label">所属机构或部门<span class="xs muted" style="margin-left:6px;font-weight:400">学社骨干必填部门</span><span class="conf">AI · 高</span></div><div class="input ai">某 AI 医疗公司 · 算法负责人</div></div>
         <div class="field"><div class="label">领域标签<span class="conf">AI · 高</span></div><div class="input ai"><span class="tag">AI</span><span class="tag">医疗</span><span class="tag">算法</span></div></div>
       </div>
-      <div class="field"><div class="label">可以提供什么帮助 <span class="req">*</span><span class="conf mid">AI · 中 · 请核对</span></div><div class="input ai textarea">可交流 AI 医疗落地经验；可做分享嘉宾，<b style="color:var(--amber)">时间待确认</b>。</div><div class="xs muted" style="margin-top:6px">AI 只从原文里提取，原文里出现的手机号、微信号会自动略去</div></div>
+      <div class="field"><div class="label">可以提供什么帮助 <span class="req">*</span><span class="conf mid">AI · 中 · 请核对</span></div><div class="input ai textarea">可交流 AI 医疗落地经验；可做分享嘉宾，<b style="color:var(--amber)">时间待确认</b>。</div><div class="xs muted" data-ai style="margin-top:6px">AI 只从原文里提取，原文里出现的手机号、微信号会自动略去</div></div>
       <div class="grid g2">
         <div class="field"><div class="label">学社对接人 <span class="req">*</span><span class="conf">AI · 高</span></div><div class="input ai"><span class="av av-sm a4" style="width:22px;height:22px;font-size:10px">F</span>同学 F（外联部）</div><div class="xs muted" style="margin-top:6px"><i class="ic" data-i="LuEyeOff"></i> 不录入对方的手机号、微信号，由对接人自己保管</div></div>
         <div class="field"><div class="label">资料来源</div><div class="input">活动交流纪要（10 月 24 日）</div></div>

@@ -79,7 +79,10 @@ try {
   const mine = await p.$eval('#idea-list',e=>e.textContent)
   assert.match(mine,/收藏入口建议已排期/); assert.match(mine,/同学 B（处理人）/)
   await p.setViewport({width:390,height:844,isMobile:true,hasTouch:true})
-  await p.waitForSelector('.ideas-btn'); await p.click('.ideas-btn')
+  // 手机上与 app 一致：想法共建在底部标签栏「+」里，右上角按钮隐藏
+  assert.equal(await p.$eval('.ideas-btn', e=>getComputedStyle(e).display), 'none')
+  await p.click('[data-m-plus]'); await p.waitForSelector('[data-sheet-ideas]'); await p.click('[data-sheet-ideas]')
+  await p.waitForSelector('.drawer')
   assert.ok(await p.$eval('.drawer', e=>e.getBoundingClientRect().width <= 390))
   await p.screenshot({path:resolve(root,'data/screens/反馈优化-手机想法.png')})
   await p.setViewport({width:1440,height:960})

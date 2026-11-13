@@ -1,6 +1,52 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const DEMO_RELEASE = '20261111-sync5';
+const DEMO_RELEASE = '20261113-mp1';
 const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261031c" alt="北京大学校徽">`;
+
+// ---------- 运行环境：同一套页面，三种外观（与 app 的判断一致） ----------
+// desktop：电脑浏览器，侧边栏；mobile：手机浏览器（< 768px），顶栏 + 底部标签栏；
+// mp：微信小程序。小程序只是一个 <web-view> 壳，加载的就是这些页面，标题栏和右上角胶囊由微信绘制。
+// 真实小程序靠 UA 里的 miniProgram 识别；演示时加 ?env=mp，由页面自己画出微信标题栏和胶囊。
+function mpReal() { return typeof navigator !== 'undefined' && /miniProgram/i.test(navigator.userAgent || ''); }
+function mpSim() { return typeof location !== 'undefined' && new URLSearchParams(location.search).get('env') === 'mp' && !mpReal(); }
+function demoEnv() {
+  if (mpReal() || mpSim()) return 'mp';
+  return typeof matchMedia !== 'undefined' && matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop';
+}
+// 小程序里的 AI 功能：微信要求先取得「深度合成」类目（算法备案，或模型方的算法备案 + 合作协议）。
+// 开通前在小程序里隐藏 AI 入口，网页版不受影响；演示时加 ?mpai=1 查看开通后的样子。
+const MP_AI_APPROVED = false;
+function mpAi() { return MP_AI_APPROVED || (typeof location !== 'undefined' && new URLSearchParams(location.search).get('mpai') === '1'); }
+// 切页时保留演示参数（真实小程序靠 UA 识别，不需要参数）
+function carryEnv(url) {
+  if (!mpSim()) return;
+  url.searchParams.set('env', 'mp');
+  if (mpAi()) url.searchParams.set('mpai', '1');
+}
+// 小程序里和网页不同的地方（预览页的说明与下面的处理一一对应）
+const MP_DIFFS = [
+  ["标题栏", "用微信的标题栏，文字取页面标题，不能隐藏；网页不再画自己的顶栏，通知移到「我的」"],
+  ["下载与导出", "网页里不能下载文件。PDF、Word、Excel、PPT 跳到小程序原生页用微信打开，可转发；其他格式复制链接到浏览器下载；CSV、JSON 改为复制内容"],
+  ["上传", "文件只能从微信聊天记录选择（手机里的文件先发到文件传输助手）；图片可从相册、拍照或聊天记录选择"],
+  ["外部链接", "只能打开平台自己的域名和关联公众号的文章；问卷、飞书表单等链接改为复制"],
+  ["AI 功能", "调用大模型就要「深度合成-AI问答」类目（信息抽取、OCR 也算）。开通前小程序里对所有人都不出现 AI 入口，也不引导去网页版；网页版照常"],
+  ["登录与分享", "沿用手机号验证码登录；转发卡片带上当前页面，好友点开回到同一页"],
+];
+// 标签栏一级页面：小程序里不显示返回箭头
+const MP_TAB_PAGES = ['index.html', 'events.html', 'assistant.html', 'me.html'];
+(function markEnv() {
+  if (typeof document === 'undefined' || !document.documentElement || typeof location === 'undefined') return;
+  const html = document.documentElement, file = location.pathname.split('/').pop() || 'index.html';
+  const framed = window.top !== window;
+  // 电脑上直接打开 ?env=mp：放进手机外框预览，避免把手机界面拉宽
+  if (mpSim() && !framed && !matchMedia('(max-width: 767px)').matches && file !== 'mobile.html') {
+    const u = new URL(location.href); u.searchParams.delete('env');
+    location.replace(`mobile.html?page=${encodeURIComponent(file + u.search + u.hash)}`); return;
+  }
+  if (framed) html.classList.add('in-frame');
+  if (demoEnv() === 'mp') html.classList.add('mp');
+  if (mpSim()) html.classList.add('mp-sim');
+  if (demoEnv() === 'mp' && mpAi()) html.classList.add('mp-ai');
+})();
 
 const NAV = [
   { g: "", items: [
@@ -98,18 +144,84 @@ function renderShell() {
   // 不再用顶栏：搜索放在首页和各板块内部，通知铃铛放在侧边栏 Logo 旁边
   const tb = document.getElementById("tb");
   if (tb) tb.remove();
-  if (sb && demoRole() !== DEMO_ROLES.outsider) {
-    const bell = document.createElement("div");
-    bell.className = "dd-wrap sb-bell";
-    bell.innerHTML = `<button class="icon-btn">${ic("LuBell")}<span class="dot"></span></button>
-      <div class="dd dd-note" hidden><div class="dd-h">通知<span>全部已读</span></div>${NOTES.filter(([, , href, , need]) => (!need || demoRole()[need]) && demoAllowed(pageId(href.split('#')[0]))).map(([t, d, href, icon]) =>
-        `<a href="${href}">${ic(icon)}<div><b>${t}</b><span>${d}</span></div></a>`).join("")}</div>`;
-    sb.querySelector(".brand").after(bell);
-    const box = bell.querySelector(".dd");
-    bell.querySelector("button").onclick = (e) => { e.stopPropagation(); box.hidden = !box.hidden; };
-    document.addEventListener("click", () => { box.hidden = true; });
-  }
+  if (sb && demoRole() !== DEMO_ROLES.outsider) sb.querySelector(".brand").after(makeBell("sb-bell"));
+  if (sb) renderMobileShell(page);
+  renderMpBar();
+}
 
+const myNotes = (role = demoRole()) => NOTES.filter(([, , href, , need]) => (!need || role[need]) && demoAllowed(pageId(href.split('#')[0]), role));
+const notesHtml = () => myNotes().map(([t, d, href, icon]) => `<a href="${href}">${ic(icon)}<div><b>${t}</b><span>${d}</span></div></a>`).join("");
+function makeBell(cls) {
+  const bell = document.createElement("div");
+  bell.className = "dd-wrap " + cls;
+  bell.innerHTML = `<button class="icon-btn" aria-label="通知">${ic("LuBell")}<span class="dot"></span></button><div class="dd dd-note" hidden><div class="dd-h">通知<span>全部已读</span></div>${notesHtml()}</div>`;
+  const box = bell.querySelector(".dd");
+  bell.querySelector("button").onclick = (e) => { e.stopPropagation(); box.hidden = !box.hidden; };
+  document.addEventListener("click", () => { box.hidden = true; });
+  return bell;
+}
+
+// ---------- 手机外壳（< 768px 与小程序共用）：与 app 的 MobileShell 一致 ----------
+// 顶栏：校徽 + 名称 + 通知；小程序里由微信标题栏代替，通知移到「我的」。底部标签栏：首页 / 活动 / + / AI / 我的。
+const M_TABS = [["home", "首页", "index.html", "LuHouse"], ["events", "活动", "events.html", "LuCalendarDays", "member"], ["+", "", "", "LuPlus", "member"], ["assistant", "AI", "assistant.html", "LuSparkles", "member"], ["me", "我的", "me.html", "LuUser"]];
+const M_ACTIONS = [["上报工作", "workbench.html?new=report", "backbone"], ["录入资源", "resource_new.html", "backbone"], ["上传文件", "kb.html#dlg-upload", "member"], ["录入活动", "event_new.html", "backbone"], ["想法共建", "#ideas", "member"]];
+function demoHas(need, role = demoRole()) { return !need || (need === "member" ? role !== DEMO_ROLES.outsider : !!role[need]); }
+function renderMobileShell(page) {
+  const app = document.querySelector(".app"); if (!app) return;
+  const top = document.createElement("header");
+  top.className = "m-top";
+  top.innerHTML = `<a class="m-brand" href="index.html">${LOGO}<b>北大创新学社</b></a><span class="grow"></span>`;
+  if (demoRole() !== DEMO_ROLES.outsider) top.appendChild(makeBell("m-bell"));
+  app.prepend(top);
+  const cur = M_TABS.some(([id]) => id === page) ? page : "me";
+  const bar = document.createElement("nav");
+  bar.className = "m-tabbar"; bar.setAttribute("aria-label", "底部导航");
+  const noAi = demoEnv() === "mp" && !mpAi();
+  bar.innerHTML = M_TABS.filter(t => demoHas(t[4]) && !(noAi && t[0] === "assistant")).map(([id, t, href, icon]) => id === "+"
+    ? `<button class="m-tab" type="button" data-m-plus aria-label="新建">${`<span class="m-fab">${ic(icon)}</span>`}</button>`
+    : `<a class="m-tab ${id === cur ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${id === "me" && demoEnv() === "mp" && myNotes().length ? '<i class="m-dot"></i>' : ""}</a>`).join("");
+  document.body.appendChild(bar);
+  const plus = bar.querySelector("[data-m-plus]");
+  if (plus) plus.onclick = () => mSheet("", M_ACTIONS.filter(([, , need]) => demoHas(need)).map(([t, href]) => href === "#ideas" ? `<button type="button" data-sheet-ideas>${t}</button>` : `<a href="${href}">${t}</a>`).join(""));
+}
+// 底部动作面板（对应 app 的 antd-mobile ActionSheet）
+function mSheet(title, body) {
+  closeSheet();
+  const m = document.createElement("div");
+  m.className = "m-sheet-mask"; m.id = "msheet";
+  m.innerHTML = `<div class="m-sheet" role="dialog" aria-modal="true" aria-label="${title || "操作"}">${title ? `<div class="m-sheet-h">${title}</div>` : ""}<div class="m-sheet-b">${body}</div><button type="button" class="m-sheet-x" data-sheet-close>取消</button></div>`;
+  m.addEventListener("click", (e) => {
+    if (e.target === m || e.target.closest("[data-sheet-close]")) closeSheet();
+    else if (e.target.closest("[data-sheet-ideas]")) { closeSheet(); openDlg("ideas"); }
+    else if (e.target.closest("[data-sheet-done]")) { closeSheet(); toast(e.target.closest("[data-sheet-done]").dataset.sheetDone); }
+  });
+  document.body.appendChild(m); renderIcons();
+}
+function closeSheet() { document.getElementById("msheet")?.remove(); }
+
+// ---------- 小程序：微信标题栏（演示时模拟；真实小程序由微信绘制） ----------
+function mpTitle() { const t = document.title.split(" · ")[0]; return t === "首页" ? "北大创新学社" : t; }
+function renderMpBar() {
+  if (demoEnv() !== "mp") return;
+  document.title = mpTitle();   // web-view 的标题栏文字取网页标题，去掉站名后缀
+  if (!mpSim()) return;
+  const file = location.pathname.split("/").pop() || "index.html";
+  const bar = document.createElement("div");
+  bar.className = "mp-bar";
+  bar.innerHTML = `${MP_TAB_PAGES.includes(file) ? "" : `<button class="mp-back" type="button" aria-label="返回">${ic("LuChevronRight")}</button>`}<div class="mp-title">${document.title}</div>` +
+    `<div class="mp-capsule" title="微信右上角胶囊：由微信绘制，网页不能修改或遮挡"><span class="mp-more">•••</span><i></i><span class="mp-ring"></span></div>`;
+  const back = bar.querySelector(".mp-back");
+  if (back) back.onclick = () => { if (history.length > 1 && document.referrer) history.back(); else location.href = "index.html" + location.search; };
+  document.body.prepend(bar);
+}
+// 小程序里通知没有顶栏可放，放在「我的」第一项
+function renderMpNotes() {
+  const list = document.querySelector(".me-list");
+  if (!list || demoEnv() !== "mp" || demoRole() === DEMO_ROLES.outsider) return;
+  const a = document.createElement("a");
+  a.href = "#"; a.innerHTML = `${ic("LuBell")}<span class="grow">通知</span>${myNotes().length ? `<span class="tag t-red">${myNotes().length}</span>` : ""}`;
+  a.onclick = (e) => { e.preventDefault(); mSheet("通知", `<div class="m-notes">${notesHtml()}</div>`); };
+  list.prepend(a);
 }
 
 // 想法共建：每个页面右上角的入口，点开是右侧抽屉（不放在导航里）。想法只有提出人和处理人（会长团、AI俱乐部部长）能看
@@ -199,7 +311,7 @@ const PAGES = [
   ["首页", "index.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"],
   ["知识库", "kb.html"], ["文档详情与版本", "kb_doc.html"], ["资源审核", "resource_review.html"],
   ["工作台 · 任务与积分", "workbench.html"], ["AI 工具箱", "assistant.html"], ["录入活动", "event_new.html"],
-  ["活动", "events.html"], ["审核与管理", "admin.html"], ["个人中心", "me.html"], ["登录", "login.html"], ["手机与飞书", "mobile.html"],
+  ["活动", "events.html"], ["审核与管理", "admin.html"], ["个人中心", "me.html"], ["登录", "login.html"], ["手机与小程序预览", "mobile.html"],
   ["—— 暂不开放 ——"], ["批量导入", "upload.html"], ["资源对接", "needs.html"], ["AI 能力说明", "skills.html"], ["讨论", "community.html"], ["精选", "featured.html"], ["创业 · 项目", "projects.html"], ["创业 · 项目详情", "project_detail.html"], ["创业 · 投资人与机构", "investors.html"],
 ];
 function renderProtoNav() {
@@ -251,6 +363,7 @@ function renderRoleState() {
     if (!/^[\w-]+\.html(?:[?#]|$)/.test(href)) return;
     const url = new URL(href, location.href);
     if (!url.searchParams.has('role')) url.searchParams.set('role', roleKey);
+    carryEnv(url);
     url.searchParams.set('v', DEMO_RELEASE);
     a.setAttribute('href', url.pathname.split('/').pop() + url.search + url.hash);
   });
@@ -284,6 +397,10 @@ function toast(msg) {
 }
 document.addEventListener("click", (e) => {
   if (e.target.closest('[aria-disabled="true"]')) { e.preventDefault(); return; }
+  if (mpIntercept(e.target)) { e.preventDefault(); return; }
+  // 手机上整行可点（如资源库条目进入详情页）；电脑上仍在右侧显示详情
+  const row = e.target.closest("[data-m-href]");
+  if (row && demoEnv() !== "desktop" && !e.target.closest("a, button")) { const a = document.createElement("a"); a.href = row.dataset.mHref; document.body.appendChild(a); a.click(); return; }
   const open = e.target.closest("[data-dlg]");
   if (open) { e.preventDefault(); openDlg(open.dataset.dlg); return; }
   const done = e.target.closest("[data-done]");
@@ -301,6 +418,8 @@ document.addEventListener("DOMContentLoaded", () => {
     location.replace('resource_review.html' + location.search); return;
   }
   renderShell();
+  renderMpNotes();
+  renderMpAiOff();
   renderStorageState();
   renderIdeas();
   renderHomeFeed();
@@ -373,6 +492,48 @@ document.addEventListener('click', e => {
   const href = link.getAttribute('href'); if (!/^[\w-]+\.html(?:[?#]|$)/.test(href)) return;
   const url = new URL(href, location.href);
   if (!url.searchParams.has('role')) url.searchParams.set('role', new URLSearchParams(location.search).get('role') || 'minister');
+  carryEnv(url);
   url.searchParams.set('v', DEMO_RELEASE);
   link.setAttribute('href', url.pathname.split('/').pop() + url.search + url.hash);
 }, true);
+
+// ---------- 小程序里网页做不到的操作：交给小程序原生页面，或改为复制 ----------
+// 对应 app 里的处理：下载走 wx.downloadFile + wx.openDocument；上传走 wx.chooseMessageFile + 预签名地址 PUT。
+function mpIntercept(t) {
+  if (demoEnv() !== "mp") return false;
+  const file = t.closest("[data-mp-file]");
+  if (file) {
+    const name = file.dataset.mpFile, office = /\.(docx?|xlsx?|pptx?|pdf)$/i.test(name);
+    mSheet(name, (office
+      ? `<button type="button" data-sheet-done="（演示）跳到小程序原生页下载并用微信打开，右上角可转发或用其他应用打开">在微信中打开<span class="sub">PDF、Word、Excel、PPT，可转发到聊天</span></button>`
+      : `<div class="tip">这种格式微信不能直接打开</div>`) +
+      `<button type="button" data-sheet-done="已复制下载链接（10 分钟内有效），可粘贴到浏览器下载">复制下载链接</button>`);
+    return true;
+  }
+  const copy = t.closest("[data-mp-copy]");
+  if (copy) { toast(`已复制 ${copy.dataset.mpCopy} 内容，可粘贴到聊天或表格`); return true; }
+  if (t.closest("[data-mp-upload]")) {
+    mSheet("上传文件", `<button type="button" data-sheet-done="（演示）已从聊天记录选择「交流纪要.docx」并上传">从微信聊天选择文件<span class="sub">小程序只能从聊天记录选文件</span></button><div class="tip">手机里的文件，先发到「文件传输助手」再选择</div>`);
+    return true;
+  }
+  if (t.closest("[data-mp-image]")) {
+    mSheet("添加图片", ["从相册选择", "拍照", "从聊天记录选择"].map(x => `<button type="button" data-sheet-done="已添加图片（自动压缩）">${x}</button>`).join(""));
+    return true;
+  }
+  if (t.closest("[data-mp-img]")) {
+    mSheet("报名二维码", `<button type="button" data-sheet-done="（演示）小程序原生页显示大图，长按可保存到相册或识别二维码">查看大图<span class="sub">长按保存或识别</span></button>`);
+    return true;
+  }
+  const link = t.closest("[data-mp-link]");
+  if (link) {
+    mSheet("", `<div class="tip">小程序只能打开学社平台和关联公众号的文章，其他网址请复制到浏览器打开</div><button type="button" data-sheet-done="已复制链接">复制链接<span class="sub">${demoEscape(link.dataset.mpLink)}</span></button>`);
+    return true;
+  }
+  return false;
+}
+// 小程序未开通「深度合成」类目：小程序里对所有人都不提供 AI，也不引导去网页版（运营规范 2.5.19、2.8）。
+// 直接打开 AI 工具箱的链接（如转发卡片）回到首页。
+function renderMpAiOff() {
+  if (demoEnv() !== "mp" || mpAi() || document.body.dataset.page !== "assistant") return;
+  location.replace("index.html" + location.search);
+}

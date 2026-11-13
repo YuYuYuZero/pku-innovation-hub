@@ -369,20 +369,139 @@ body.anno .mk {
 .event-fav[aria-pressed=true] { color: var(--red); background: var(--red-50); }
 @media(max-width: 767px) { body[data-page=home] .cols, body[data-page=events] .cols { grid-template-columns: 1fr; } body[data-page=events] .ev-grid { grid-template-columns: 1fr; } body[data-page=events] .feat { grid-template-columns: 1fr; } .drawer { height: 100dvh; } }
 
-@media(max-width: 767px) {
-  body:is([data-page=home],[data-page=events]) .app { grid-template-columns: minmax(0,1fr); }
-  body:is([data-page=home],[data-page=events]) .sb { position: relative; height: auto; flex-direction: row; flex-wrap: wrap; gap: 4px; padding: 12px; }
-  body:is([data-page=home],[data-page=events]) .sb .brand { width: 100%; padding-bottom: 8px; }
-  body:is([data-page=home],[data-page=events]) .sb .nav-g { display: contents; }
-  body:is([data-page=home],[data-page=events]) .sb .gt, body:is([data-page=home],[data-page=events]) .sb .me { display: none; }
-  body:is([data-page=home],[data-page=events]) .sb .nav-i { font-size: 13px; padding: 0 8px; gap: 6px; }
-  body:is([data-page=home],[data-page=events]) .page { padding: 56px 16px 32px; }
-  body[data-page=home] .hero { padding: 22px 18px; }
+body:has(.mask:not([hidden])) .proto-nav { visibility: hidden; }
+
+/* ---------- 手机外壳与小程序（同一套页面）----------
+   < 768px：隐藏侧边栏，显示顶栏 + 底部标签栏（与 app 的 MobileShell 一致）。
+   html.mp：在微信小程序 web-view 里，标题栏和胶囊由微信绘制，所以不再画网页自己的顶栏。
+   html.mp-sim：演示用，页面自己画出微信标题栏，真实小程序不会出现这一层。 */
+.m-top, .m-tabbar, .mp-bar { display: none; }
+.only-m { display: none; }
+@media (max-width: 767px) {
+  .only-m { display: block; }
+  .hide-m { display: none !important; }
+  .app { display: block; min-height: 100dvh; }
+  .sb, .ideas-btn { display: none !important; }
+  .m-top { display: flex; position: sticky; top: 0; z-index: 30; height: 52px; align-items: center; gap: 10px; padding: 0 16px; background: rgba(246, 245, 242, .94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .m-brand { display: flex; align-items: center; gap: 8px; }
+  .m-brand .mark { width: 28px; height: 28px; }
+  .m-brand b { font-family: var(--serif); font-size: 16px; color: var(--ink); }
+  .m-bell .icon-btn { width: 34px; height: 34px; border-radius: 10px; }
+  .m-bell .dd { position: fixed; top: 56px; left: 12px; right: 12px; width: auto; max-height: 70vh; overflow: auto; }
+  .m-tabbar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: rgba(255, 255, 255, .96); backdrop-filter: blur(10px); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
+  .m-tab { flex: 1; height: 54px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 10.5px; color: var(--muted); border: 0; background: none; font-family: inherit; position: relative; cursor: pointer; padding: 0; }
+  .m-tab .ic { font-size: 22px; }
+  .m-tab.on { color: var(--red); font-weight: 600; }
+  .m-fab { width: 46px; height: 46px; border-radius: 15px; background: var(--red); color: #fff; display: flex; align-items: center; justify-content: center; margin-top: -10px; box-shadow: 0 6px 14px rgba(140, 29, 36, .35); }
+  .m-fab .ic { font-size: 22px; }
+  .m-dot { position: absolute; top: 7px; left: calc(50% + 8px); width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+
+  /* 页面通用：单列、留出标签栏高度、宽表格横向滚动 */
+  .main { position: static; }
+  .page { padding: 16px 16px calc(84px + env(safe-area-inset-bottom)); }
+  .wrap { max-width: none !important; }
+  .h-page { font-size: 24px; }
+  .g2, .g3, .g4, .grid.g2 { grid-template-columns: minmax(0, 1fr) !important; }
+  .row.between { flex-wrap: wrap; row-gap: 10px; }
+  .tabs { overflow-x: auto; scrollbar-width: none; gap: 18px; white-space: nowrap; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .chips { row-gap: 8px; }
+  .psearch { width: 100%; }
+  table.tbl { display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+  .kv { grid-template-columns: 84px minmax(0, 1fr); }
+  .pad { padding: 16px; }
+  .cmp { grid-template-columns: 72px 1fr 1fr; font-size: 12px; }
+
+  /* 弹窗改为底部面板，抽屉铺满 */
+  .mask { align-items: flex-end; padding-top: 0; }
+  .mask .dlg, .mask .dlg-lg { width: 100%; max-width: 100%; border-radius: 18px 18px 0 0; max-height: 92dvh; display: flex; flex-direction: column; }
+  .dlg .bd { max-height: none; flex: 1; overflow: auto; padding: 14px 16px; }
+  .dlg .hd { padding: 16px 16px 0; }
+  .dlg .fd { padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); border-radius: 0; flex-wrap: wrap; }
+  .drawer { width: 100vw; height: 100dvh; }
+  .drawer .dr-b { padding: 16px; }
+  .toast { top: auto; bottom: calc(96px + env(safe-area-inset-bottom)); max-width: calc(100vw - 32px); }
+  .proto-nav { bottom: calc(70px + env(safe-area-inset-bottom)); right: 12px; }
+  .pn-btn { height: 34px; padding: 0 12px; font-size: 12px; opacity: .88; }
+  .mask:not([hidden]) ~ .proto-nav { visibility: hidden; }
+}
+/* 底部动作面板 */
+.m-sheet-mask { position: fixed; inset: 0; z-index: 120; background: rgba(24, 22, 20, .42); display: flex; align-items: flex-end; }
+.m-sheet { width: 100%; background: #F6F5F2; border-radius: 16px 16px 0 0; padding-bottom: env(safe-area-inset-bottom); max-height: 80dvh; display: flex; flex-direction: column; }
+.m-sheet-h { text-align: center; font-size: 13px; color: var(--muted); padding: 14px 16px 6px; }
+.m-sheet-b { overflow: auto; background: #fff; }
+.m-sheet-b > a, .m-sheet-b > button { display: block; width: 100%; text-align: center; padding: 15px 16px; font: inherit; font-size: 16px; color: var(--ink); background: #fff; border: 0; border-bottom: 1px solid var(--line); cursor: pointer; }
+.m-sheet-b .sub { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; word-break: break-all; }
+.m-sheet-b .tip { padding: 10px 16px; font-size: 12px; color: var(--muted); text-align: center; background: #fff; border-bottom: 1px solid var(--line); }
+.m-sheet-x { margin-top: 8px; padding: 15px; font: inherit; font-size: 16px; color: var(--ink); background: #fff; border: 0; cursor: pointer; }
+.m-notes a { display: flex; gap: 10px; align-items: flex-start; padding: 12px 16px; border-bottom: 1px solid var(--line); color: var(--ink); text-align: left; }
+.m-notes a .ic { font-size: 17px; color: var(--red); margin-top: 2px; flex: none; }
+.m-notes a b { display: block; font-size: 14px; font-weight: 500; }
+.m-notes a span { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* 小程序：没有网页顶栏；演示时画出微信标题栏（高 44px，白底黑字，右侧胶囊 87×32） */
+html.mp .m-top { display: none !important; }
+html.mp-sim .mp-bar { display: flex; position: sticky; top: 0; z-index: 60; height: 44px; align-items: center; justify-content: center; background: #fff; color: #000; }
+html.mp-sim .mp-title { font-size: 17px; font-weight: 500; max-width: 52%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+html.mp-sim .mp-back { position: absolute; left: 4px; top: 0; width: 40px; height: 44px; border: 0; background: none; font-size: 24px; color: #000; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+html.mp-sim .mp-back .ic { transform: rotate(180deg); }
+html.mp-sim .mp-capsule { position: absolute; right: 7px; top: 6px; width: 87px; height: 32px; border-radius: 16px; border: .5px solid rgba(0, 0, 0, .12); background: rgba(255, 255, 255, .7); display: flex; align-items: center; justify-content: space-around; padding: 0 10px; }
+html.mp-sim .mp-capsule i { width: .5px; height: 18px; background: rgba(0, 0, 0, .15); }
+html.mp-sim .mp-more { font-size: 11px; letter-spacing: 1px; color: #000; line-height: 1; }
+html.mp-sim .mp-ring { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #000; box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 6px #000; }
+html.mp-sim .m-bell .dd { top: 48px; }
+html.in-frame .proto-nav { display: none; }
+
+/* 首页、活动页的手机版细节 */
+.m-grid { margin-top: 14px; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; font-size: 12.5px; color: var(--ink); }
+.m-grid a { display: flex; flex-direction: column; align-items: center; }
+.m-grid .gi { width: 48px; height: 48px; border-radius: 14px; margin: 0 auto 6px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+@media (max-width: 767px) {
+  .m-grid.only-m { display: grid; }
+  body[data-page=home] .hero { padding: 22px 18px; border-radius: 16px; }
   body[data-page=home] .hero h1 { font-size: 26px; }
+  body[data-page=home] .askbox .btn { padding: 0 12px; }
   body[data-page=home] .pillars { display: none; }
   body[data-page=events] .wrap > .row { flex-wrap: wrap; gap: 12px; }
   body[data-page=events] .cols > div:last-child { display: none; }
-  .drawer .dr-b { padding: 16px; }
-  .mask:not([hidden]) ~ .proto-nav { visibility: hidden; }
 }
-body:has(.mask:not([hidden])) .proto-nav { visibility: hidden; }
+/* 各页面的多栏布局在手机上改为单列 */
+@media (max-width: 767px) {
+  .cols, .kb, .kb-cols, .lg, [style*="grid-template-columns:1fr 1fr"], [style*="grid-template-columns:1fr 420px"] { grid-template-columns: minmax(0, 1fr) !important; }
+  /* 资源库：与 app 一致，手机上只显示列表，点条目进入详情页 */
+  body[data-page=resources] .det { display: none; }
+  [data-m-href] { cursor: pointer; }
+  .res { grid-template-columns: 40px minmax(0, 1fr) !important; }
+  .res > div:last-child:not(.grow) { grid-column: 2; }
+  .res .row, .res .ft { flex-wrap: wrap; row-gap: 4px; }
+  .login-side, .lg .left { display: none !important; }
+  .lg .box, .box { width: 100%; max-width: 420px; }
+}
+@media (max-width: 767px) {
+  .page .row { flex-wrap: wrap; row-gap: 8px; }
+  .page .row > .btn { flex: none; }
+}
+/* 个别组件的手机版 */
+@media (max-width: 767px) {
+  .hdc { flex-wrap: wrap; padding: 16px !important; gap: 12px !important; }
+  .hdc > .grow, .hdc > div:not(.ra):not(.mk) { min-width: 0; flex: 1 1 calc(100% - 80px); }
+  .hdc > .row { flex-basis: 100% !important; }
+  .hdc .ra { width: 52px !important; height: 52px !important; font-size: 24px !important; }
+  .seg { max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+  .seg > * { flex: none; white-space: nowrap; }
+  .fr { grid-template-columns: minmax(0, 1fr) 84px 30px 16px !important; }
+  .fr > .input { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; display: block; line-height: 40px; }
+  .tabs2 { flex-wrap: nowrap !important; overflow-x: auto; width: 100%; scrollbar-width: none; }
+  .tabs2 a { flex: none; white-space: nowrap; }
+}
+
+/* 小程序未开通 AI 类目：隐藏 AI 入口与 AI 填入标记，表单改为手动填写 */
+html.mp:not(.mp-ai) [data-ai], html.mp:not(.mp-ai) .conf { display: none !important; }
+html.mp:not(.mp-ai) .input.ai { border-color: var(--line-2); background: #fff; box-shadow: none; }
+html.mp:not(.mp-ai) .input.ai::after { content: none; }
+/* 模拟时让出标题栏：真实小程序里网页区域从标题栏下方开始，弹层不会盖住微信标题栏 */
+html.mp-sim .mp-bar { position: fixed; left: 0; right: 0; z-index: 300; }
+html.mp-sim body { padding-top: 44px; }
+html.mp-sim .mask, html.mp-sim .m-sheet-mask { top: 44px; }
+html.mp-sim .drawer { height: calc(100dvh - 44px); }
+html.mp-sim .mask .dlg, html.mp-sim .mask .dlg-lg { max-height: calc(92dvh - 44px); }
