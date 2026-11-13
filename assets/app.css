@@ -236,18 +236,6 @@ body.anno .mk {
 }
 .rel { position: relative; }
 
-/* 移动端外框 */
-.phone { width: 390px; height: 800px; border-radius: 46px; background: #111; padding: 12px; box-shadow: var(--shadow-lg); flex: none; }
-.phone .scr { width: 100%; height: 100%; border-radius: 36px; overflow: hidden; background: var(--bg); position: relative; }
-.phone .notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 120px; height: 32px; border-radius: 20px; background: #111; z-index: 5; }
-.phone .status { height: 52px; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 28px 6px; font-size: 13px; font-weight: 600; color: var(--ink); }
-.tabbar { position: absolute; bottom: 0; left: 0; right: 0; height: 78px; background: rgba(255, 255, 255, .96); border-top: 1px solid var(--line); display: flex; justify-content: space-around; padding-top: 8px; }
-.tabbar a { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 10.5px; color: var(--muted); }
-.tabbar a .ic { font-size: 22px; }
-.tabbar a.on { color: var(--red); font-weight: 600; }
-.tabbar .fab { width: 46px; height: 46px; border-radius: 15px; background: var(--red); color: #fff; display: flex; align-items: center; justify-content: center; margin-top: -4px; box-shadow: 0 6px 14px rgba(140, 29, 36, .35); }
-.tabbar .fab .ic { font-size: 22px; }
-
 /* 原型目录（仅预览用） */
 .proto-nav { position: fixed; right: 18px; bottom: 18px; z-index: 100; font-family: var(--sans); }
 .pn-btn { height: 40px; padding: 0 16px; border-radius: 20px; border: 0; background: var(--ink); color: #fff; font-size: 13px; font-weight: 600; box-shadow: var(--shadow-lg); cursor: pointer; }

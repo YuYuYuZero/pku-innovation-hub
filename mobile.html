@@ -3,21 +3,6 @@
 <link rel="stylesheet" href="assets/app.css?v=20261113-mp1"><script src="assets/icons.js?v=20261113-mp1"></script><script src="assets/app.js?v=20261113-mp1"></script>
 <style>
 body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%), radial-gradient(50% 60% at 100% 100%, #F1E9DC 0, transparent 60%), #F6F5F2; }
-.stage { display: flex; gap: 34px; padding: 40px 48px; align-items: flex-start; }
-.cap { text-align: center; margin-top: 14px; font-weight: 600; color: var(--ink); font-size: 15px; }
-.cap span { display: block; font-weight: 400; color: var(--muted); font-size: 12.5px; }
-.m-pad { padding: 4px 18px; }
-.m-h { font-family: var(--serif); font-size: 24px; color: var(--ink); }
-.m-ask { margin-top: 12px; background: #fff; border-radius: 14px; padding: 12px 14px; display: flex; gap: 10px; align-items: center; color: var(--muted); font-size: 13.5px; box-shadow: var(--shadow); }
-.m-ask .ic { color: var(--red); font-size: 18px; }
-.m-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; text-align: center; font-size: 11.5px; color: var(--text); }
-.m-grid .gi { width: 48px; height: 48px; border-radius: 14px; margin: 0 auto 5px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
-.m-card { background: #fff; border-radius: 16px; border: 1px solid var(--line); margin-top: 14px; overflow: hidden; }
-.m-res { padding: 12px 14px; border-bottom: 1px solid var(--line); }
-.m-res:last-child { border-bottom: 0; }
-.bub-me { background: var(--ink); color: #fff; border-radius: 16px 16px 4px 16px; padding: 9px 12px; font-size: 13px; margin-left: 50px; }
-.bub-ai { background: #fff; border: 1px solid var(--line); border-radius: 16px 16px 16px 4px; padding: 11px 13px; font-size: 13px; color: var(--ink); margin-top: 12px; margin-right: 20px; line-height: 1.7; }
-.m-in { position: absolute; left: 12px; right: 12px; bottom: 26px; background: #fff; border: 1px solid var(--line-2); border-radius: 16px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; color: var(--faint); font-size: 13px; box-shadow: var(--shadow); }
 /* 预览：两台手机加载同一页面，一台按手机浏览器，一台按微信小程序 */
 .pv { padding: 32px 40px 48px; max-width: 1320px; }
 .pv-ctl { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
@@ -42,14 +27,11 @@ body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%)
 .pv-note li { margin: 5px 0; }
 .pv-note code { font-size: 12px; background: #F2F1EE; padding: 1px 5px; border-radius: 5px; word-break: break-all; }
 .pv-phone-links { display: none; }
-.future { display: flex; gap: 34px; padding: 8px 40px 48px; align-items: flex-start; flex-wrap: wrap; }
-.future-h { padding: 0 40px; }
 @media (max-width: 767px) {
   .pv { padding: 20px 16px 32px; }
   .pv-ctl, .pv-stage figure { display: none; }
   .pv-phone-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
   .pv-note { width: auto; max-width: none; }
-  .future, .future-h { display: none; }
 }
 </style></head>
 <body data-page="mobile">
@@ -77,22 +59,6 @@ body { background: radial-gradient(60% 60% at 10% 0, #F4E4E5 0, transparent 60%)
   </div>
 </div>
 
-<h2 class="h-sec future-h">未来方案</h2>
-<div class="future">
-  <div data-need="member"><div class="phone"><div class="scr"><div class="notch"></div><div class="status"><span>9:41</span><span>●●● 5G</span></div>
-    <div class="m-pad">
-      <div class="row" style="margin-top:6px"><span class="b" style="font-size:16px">AI 助手</span><span class="grow"></span><span class="tag t-red">全部范围</span></div>
-      <div style="margin-top:16px"><div class="bub-me">上学期黑客松的赞助方案在哪？</div>
-        <div class="bub-ai">找到 2 份相关资料：黑客松赞助方案<span class="cite">1</span>、黑客松复盘<span class="cite">2</span>。想联系赞助机构，可以找外联部的对接人。
-          <div style="margin-top:8px;padding:7px 9px;background:#FAF9F7;border-radius:8px;font-size:12px" class="row"><span class="cite">1</span><i class="ic" data-i="LuFileText"></i>资源资料 · 黑客松赞助方案</div><div style="margin-top:4px;padding:7px 9px;background:#FAF9F7;border-radius:8px;font-size:12px" class="row"><span class="cite">2</span><i class="ic" data-i="LuFileText"></i>活动档案 · 黑客松复盘</div></div>
-        <div class="bub-me" style="margin-top:12px">帮我收录这条活动通知</div>
-        <div class="bub-ai"><span class="ai-tag" style="height:18px;font-size:10.5px"><i class="ic" data-i="LuCalendarDays"></i>技能 · 活动录入</span> 已识别时间、地点和报名方式，确认后进入活动列表。<div class="row" style="margin-top:8px;gap:6px"><span class="btn btn-sm btn-p">查看并确认</span></div></div>
-      </div>
-    </div>
-    <div class="m-in"><i class="ic" data-i="LuPlus"></i>问点什么，或输入 / 调用技能<span class="grow"></span><span class="icon-btn" style="width:30px;height:30px;background:var(--red);color:#fff;border-color:var(--red)"><i class="ic" data-i="LuSend"></i></span></div>
-  </div></div><div class="cap">未来方案 · 手机 AI 助手<span>知识库问答尚未上线；当前可用结构化解析</span></div></div>
-
-</div>
 <script>
 const PV_PAGES = [["首页", "index.html"], ["活动", "events.html"], ["资源库", "resources.html"], ["资源详情", "resource_detail.html"], ["录入资源", "resource_new.html"], ["知识库", "kb.html"], ["文档详情", "kb_doc.html"], ["工作台", "workbench.html"], ["AI 工具箱", "assistant.html"], ["录入活动", "event_new.html"], ["审核与管理", "admin.html"], ["个人中心", "me.html"], ["登录", "login.html"]];
 const PV_ROLES = [["president", "A 会长团"], ["minister", "B 部长"], ["backbone", "C 骨干"], ["maintainer", "D 维护人"], ["member", "E 会员"], ["outsider", "F 未入名单"]];
