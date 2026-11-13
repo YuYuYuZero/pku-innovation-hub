@@ -32,7 +32,7 @@ const MP_DIFFS = [
   ["登录与分享", "沿用手机号验证码登录；转发卡片带上当前页面，好友点开回到同一页"],
 ];
 // 标签栏一级页面：小程序里不显示返回箭头
-const MP_TAB_PAGES = ['index.html', 'events.html', 'assistant.html', 'me.html'];
+const mpTabPages = () => ['index.html', 'events.html', mpAi() ? 'assistant.html' : 'resources.html', 'me.html'];
 (function markEnv() {
   if (typeof document === 'undefined' || !document.documentElement || typeof location === 'undefined') return;
   const html = document.documentElement, file = location.pathname.split('/').pop() || 'index.html';
@@ -162,8 +162,9 @@ function makeBell(cls) {
 }
 
 // ---------- 手机外壳（< 768px 与小程序共用）：与 app 的 MobileShell 一致 ----------
-// 顶栏：校徽 + 名称 + 通知；小程序里由微信标题栏代替，通知移到「我的」。底部标签栏：首页 / 活动 / + / AI / 我的。
-const M_TABS = [["home", "首页", "index.html", "LuHouse"], ["events", "活动", "events.html", "LuCalendarDays", "member"], ["+", "", "", "LuPlus", "member"], ["assistant", "AI", "assistant.html", "LuSparkles", "member"], ["me", "我的", "me.html", "LuUser"]];
+// 顶栏：校徽 + 名称 + 通知；小程序里由微信标题栏代替，通知移到「我的」。
+// 底部标签栏：首页 / 活动 / + / AI / 我的；小程序未开通 AI 类目时第四格换成资源库，保持五格、「+」居中。
+const M_TABS = [["home", "首页", "index.html", "LuHouse"], ["events", "活动", "events.html", "LuCalendarDays", "member"], ["+", "", "", "LuPlus", "member"], ["assistant", "AI", "assistant.html", "LuSparkles", "member", "ai"], ["resources", "资源库", "resources.html", "LuDatabase", "member", "noai"], ["me", "我的", "me.html", "LuUser"]];
 const M_ACTIONS = [["上报工作", "workbench.html?new=report", "backbone"], ["录入资源", "resource_new.html", "backbone"], ["上传文件", "kb.html#dlg-upload", "member"], ["录入活动", "event_new.html", "backbone"], ["想法共建", "#ideas", "member"]];
 function demoHas(need, role = demoRole()) { return !need || (need === "member" ? role !== DEMO_ROLES.outsider : !!role[need]); }
 function renderMobileShell(page) {
@@ -177,7 +178,7 @@ function renderMobileShell(page) {
   const bar = document.createElement("nav");
   bar.className = "m-tabbar"; bar.setAttribute("aria-label", "底部导航");
   const noAi = demoEnv() === "mp" && !mpAi();
-  bar.innerHTML = M_TABS.filter(t => demoHas(t[4]) && !(noAi && t[0] === "assistant")).map(([id, t, href, icon]) => id === "+"
+  bar.innerHTML = M_TABS.filter(t => demoHas(t[4]) && t[5] !== (noAi ? "ai" : "noai")).map(([id, t, href, icon]) => id === "+"
     ? `<button class="m-tab" type="button" data-m-plus aria-label="新建">${`<span class="m-fab">${ic(icon)}</span>`}</button>`
     : `<a class="m-tab ${id === cur ? "on" : ""}" href="${href}">${ic(icon)}<span>${t}</span>${id === "me" && demoEnv() === "mp" && myNotes().length ? '<i class="m-dot"></i>' : ""}</a>`).join("");
   document.body.appendChild(bar);
@@ -208,7 +209,7 @@ function renderMpBar() {
   const file = location.pathname.split("/").pop() || "index.html";
   const bar = document.createElement("div");
   bar.className = "mp-bar";
-  bar.innerHTML = `${MP_TAB_PAGES.includes(file) ? "" : `<button class="mp-back" type="button" aria-label="返回">${ic("LuChevronRight")}</button>`}<div class="mp-title">${document.title}</div>` +
+  bar.innerHTML = `${mpTabPages().includes(file) ? "" : `<button class="mp-back" type="button" aria-label="返回">${ic("LuChevronRight")}</button>`}<div class="mp-title">${document.title}</div>` +
     `<div class="mp-capsule" title="微信右上角胶囊：由微信绘制，网页不能修改或遮挡"><span class="mp-more">•••</span><i></i><span class="mp-ring"></span></div>`;
   const back = bar.querySelector(".mp-back");
   if (back) back.onclick = () => { if (history.length > 1 && document.referrer) history.back(); else location.href = "index.html" + location.search; };
