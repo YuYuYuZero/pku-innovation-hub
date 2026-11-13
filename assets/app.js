@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const DEMO_RELEASE = '20261114-mp2';
+const DEMO_RELEASE = '20261114-mp3';
 const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261031c" alt="北京大学校徽">`;
 
 // ---------- 运行环境：同一套页面，三种外观（与 app 的判断一致） ----------
@@ -32,7 +32,7 @@ const MP_DIFFS = [
   ["登录与分享", "沿用手机号验证码登录；转发卡片带上当前页面，好友点开回到同一页"],
 ];
 // 标签栏一级页面：小程序里不显示返回箭头
-const mpTabPages = () => ['index.html', 'events.html', mpAi() ? 'assistant.html' : 'resources.html', 'me.html'];
+const mpTabPages = () => ['index.html', 'events.html', mpAi() ? 'assistant.html' : 'kb.html', 'me.html'];
 (function markEnv() {
   if (typeof document === 'undefined' || !document.documentElement || typeof location === 'undefined') return;
   const html = document.documentElement, file = location.pathname.split('/').pop() || 'index.html';
@@ -163,8 +163,8 @@ function makeBell(cls) {
 
 // ---------- 手机外壳（< 768px 与小程序共用）：与 app 的 MobileShell 一致 ----------
 // 顶栏：校徽 + 名称 + 通知；小程序里由微信标题栏代替，通知移到「我的」。
-// 底部标签栏：首页 / 活动 / + / AI / 我的；小程序未开通 AI 类目时第四格换成资源库，保持五格、「+」居中。
-const M_TABS = [["home", "首页", "index.html", "LuHouse"], ["events", "活动", "events.html", "LuCalendarDays", "member"], ["+", "", "", "LuPlus", "member"], ["assistant", "AI", "assistant.html", "LuSparkles", "member", "ai"], ["resources", "资源库", "resources.html", "LuDatabase", "member", "noai"], ["me", "我的", "me.html", "LuUser"]];
+// 底部标签栏：首页 / 活动 / + / AI / 我的；小程序未开通 AI 类目时第四格换成知识库（会员都能用；资源库、工作台只对骨干开放），保持五格、「+」居中。
+const M_TABS = [["home", "首页", "index.html", "LuHouse"], ["events", "活动", "events.html", "LuCalendarDays", "member"], ["+", "", "", "LuPlus", "member"], ["assistant", "AI", "assistant.html", "LuSparkles", "member", "ai"], ["kb", "知识库", "kb.html", "LuLibrary", "member", "noai"], ["me", "我的", "me.html", "LuUser"]];
 const M_ACTIONS = [["上报工作", "workbench.html?new=report", "backbone"], ["录入资源", "resource_new.html", "backbone"], ["上传文件", "kb.html#dlg-upload", "member"], ["录入活动", "event_new.html", "backbone"], ["想法共建", "#ideas", "member"]];
 function demoHas(need, role = demoRole()) { return !need || (need === "member" ? role !== DEMO_ROLES.outsider : !!role[need]); }
 function renderMobileShell(page) {

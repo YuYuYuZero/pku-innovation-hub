@@ -45,7 +45,7 @@ try {
   assert.ok(await shown('.mp-bar')); assert.ok(await shown('.mp-capsule')); assert.ok(await shown('.mp-back'))
   assert.equal(await shown('.m-top'), false)
   assert.equal(await p.title(), '知识库')
-  assert.deepEqual(await p.$$eval('.m-tab', es => es.map(e => e.textContent.trim())), ['首页','活动','','资源库','我的'])   // 未开通 AI 类目：AI 换成资源库
+  assert.deepEqual(await p.$$eval('.m-tab', es => es.map(e => e.textContent.trim())), ['首页','活动','','知识库','我的'])   // 未开通 AI 类目：AI 换成知识库
   assert.ok(await p.$eval('[data-m-plus]', e => Math.abs(e.getBoundingClientRect().left + e.offsetWidth / 2 - innerWidth / 2) < 2), '「+」不在正中')
   // 下载：不走网页下载，弹出「在微信中打开 / 复制下载链接」
   await p.click('[data-mp-file]'); await p.waitForSelector('.m-sheet')
@@ -69,8 +69,10 @@ try {
   // AI 工具箱：未开通类目显示说明；开通后（?mpai=1）恢复，并在切页时保留
   await open('assistant.html?role=minister&env=mp')
   assert.match(p.url(), /index\.html\?.*env=mp/)   // 不展示 AI，也不引导去网页版
-  await open('resources.html?role=minister&env=mp')
-  assert.equal(await shown('.mp-back'), false); assert.ok(await shown('.m-tab.on[href^="resources.html"]'))
+  await open('kb.html?role=minister&env=mp')
+  assert.equal(await shown('.mp-back'), false); assert.ok(await shown('.m-tab.on[href^="kb.html"]'))
+  await open('index.html?role=member&env=mp')   // 普通会员也是五格
+  assert.deepEqual(await p.$$eval('.m-tab', es => es.map(e => e.textContent.trim())), ['首页','活动','','知识库','我的'])
   await open('index.html?role=minister&env=mp&mpai=1')
   assert.deepEqual(await p.$$eval('.m-tab', es => es.map(e => e.textContent.trim())), ['首页','活动','','AI','我的'])
   await Promise.all([p.waitForNavigation(), p.click('.m-tab[href^="assistant.html"]')])
