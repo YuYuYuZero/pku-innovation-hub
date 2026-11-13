@@ -1,5 +1,5 @@
 // 原型公共框架：侧边栏、顶栏、图标、标注开关
-const DEMO_RELEASE = '20261113-mp1';
+const DEMO_RELEASE = '20261114-mp2';
 const LOGO = `<img class="mark" src="assets/pku-logo.svg?v=20261031c" alt="北京大学校徽">`;
 
 // ---------- 运行环境：同一套页面，三种外观（与 app 的判断一致） ----------
